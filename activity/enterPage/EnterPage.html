@@ -1,0 +1,262 @@
+﻿<!DOCTYPE HTML>
+<html >
+<head lang="en" >
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title></title>
+    <link rel="stylesheet" href="./css/base.css?v=201508132008">
+    <link rel="stylesheet" href="./css/main.css?v=201508132008">
+    <!--<link rel="stylesheet" type="text/css" href="./css/test3.css?v=1.01">-->
+    <style>
+.Q_input{
+    IME-MODE: disabled;
+    WIDTH: 180px;
+    HEIGHT: 30px;
+    border: #683903 2px solid;
+    -webkit-border-top-left-radius:  8px;
+    -webkit-border-top-right-radius:  8px;
+    -webkit-border-bottom-right-radius:  8px;
+    -webkit-border-bottom-left-radius:  8px;
+    box-shadow: 1px 1px 2px #888888;
+    text-align: center;
+    padding-right: 10px;
+}
+.hiui-navContainer p{
+    font-weight:bold;
+    white-space:nowrap;
+    display:inline;
+    font-size: 16px;;
+    color: #422b02
+}
+.hiui-navContainer span{
+
+    color: #422b02
+}
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+    </style>
+
+    <script src="./js/jquery-2.1.4.min.js"></script>
+
+</head>
+<body>
+
+<section id="container" style="padding-bottom: 0%">
+    <img src="./img/ToJiaXin_1.png" width="100%">
+</section>
+
+<div class="mod_focus" style="margin-top: -7px">
+    <div class="img_box" style="height:300px">
+        <div class="hiui-slide cm-slide--full-img" id="ui-view-11" style="height:300px;">
+            <img height="100%" src="./img/ToJiaXin_2.png">
+
+            <div class="hiui-navContainer " style=" ;margin-top: -240px; bottom: 10px; z-index: 500;color: #000000;font-size: 14px" >
+                <div style="margin-top: 0px"><span style="margin-left: 10%">
+            <input id="amount" class="Q_input" value="10"
+        onkeyup="this.value=this.value.replace(/\D/g,'');showProfit()"
+        onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="5" size="14" name="amount" type="number"  onfocus="closeBtn()" onblur="showBtn()"/>
+
+                </span><span>千元</span></div>
+                <div style="margin-top: 5px"><span style="margin-left: 8%">投资产品:&ensp;&ensp;<p style="font-weight: 600">月月加薪产品</p></span></div>
+                <div style="margin-top: 5px"><span style="margin-left: 8%">一年后本金+收益</span><span style="margin-left: 10%">两年后本金+收益</span></div>
+                <div style="margin-top: 0px"><span style="margin-left: 8%" id="Profit_1"><p>0</p>元</span><span style="margin-left:10%" id="Profit_2"><p>0</p>元</span></div>
+                <div style="margin-top: 0px"><span style="margin-left: 8%">三年后本金+收益</span><span style="margin-left: 10%">四年后本金+收益</span></div>
+                <div style="margin-top: 0px"><span style="margin-left: 8%" id="Profit_3"><p>0</p>元</span><span style="margin-left: 10%" id="Profit_4"><p>0</p>元</span></div>
+                <div style="margin-top: 0px"><span style="margin-left: 8%">五年后本金+收益</span><span style="margin-left: 10%">六年后本金+收益</span></div>
+                <div style="margin-top: 0px"><span style="margin-left: 8%" id="Profit_5"><p>0</p>元</span><span style="margin-left:10%" id="Profit_6"><p>0</p>元</span></div>
+            </div></div></div>
+</div>
+
+<section  style="padding-bottom: 20%;background-color:#fcc850">
+    <img src="./img/ToJiaXin_3.png" width="100%">
+</section>
+
+
+
+<footer class="foot_index"  style="height: auto;padding-top: 0;">
+    <div class="fixed opacity" style="height: auto;padding-top: 0;background-color:transparent;opacity: 1;" id="footerDiv">
+        <div class="btn_box"> </div>
+        <p class="other" ><img src="./img/ToJiaXin_btn.png" width="70%" onclick="toNextPage()"></p>
+    </div>
+</footer>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://m.jiaxinmore.com/js/hih5/hih5.js"></script>
+</body>
+
+
+<script>
+    $(document).ready(function(){
+//        $("#div_id").outerHeight(true)
+//        $("#footerDiv").css("height",window.innerHeight*0.1);
+//        $("#footerDiv").css("margin-top",window.innerHeight-window.innerHeight*0.1);
+        console.log($("#footerDiv").outerHeight()+"  "+$("#indexImg").height()+"  window.innerHeight"+window.innerHeight+"  document.body.clientWidth"+document.body.clientHeight)
+     //   $("#container").css("padding-bottom",$("#footerDiv").height());
+        //initData();
+       // initHero();
+        showProfit();
+    });
+
+    function showProfit(){
+       var amount= $("#amount").val();
+        $("#Profit_1").html(calProfit(amount,1));
+        $("#Profit_2").html(calProfit(amount,2));
+        $("#Profit_3").html(calProfit(amount,3));
+        $("#Profit_4").html(calProfit(amount,4));
+        $("#Profit_5").html(calProfit(amount,5));
+        $("#Profit_6").html(calProfit(amount,6));
+    }
+
+function calProfit(amount,year){
+    var m_input=amount*1000;
+
+    var totalTemp=0;
+    for(var i=0;i<year*12;i++){
+        totalTemp+=totalTemp*(0.07/12)+m_input*(1+0.07/12);
+       // console.log("第"+(i+1)+"月  m_input:"+m_input+"totalTemp:"+totalTemp);
+    }
+
+    console.log("第"+(year)+"年  m_input:"+m_input+"totalTemp:"+totalTemp);
+
+    return "<p>"+totalTemp.toFixed(2)+"</p>元";
+}
+function toNextPage(){
+    //inviteCode
+    var url = location.search; //获取url中"?"符后的字串
+
+    var inviteData= _.isEmpty(GetRequest())?{"inviteCode":""}:GetRequest();
+   // console.log(inviteData);
+    //inviteData.inviteCode;
+    window.location.href="../../index.html#index?invitecode="+inviteData.inviteCode;
+}
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    function closeBtn(){
+        $("#footerDiv").css("visibility","hidden");
+    }
+    function showBtn(){
+        $("#footerDiv").css("visibility","visible");
+    }
+
+</script>
+<script>
+    var wxshare = function(shareConfig){
+        if(!(navigator.userAgent.toLowerCase().indexOf('micromessenger') > -1)) return;
+        //var self = this;
+        var loginData = localStorage.getItem("S_JXM_LOGIN_STATUS");
+
+        var apidomain=window.location.host.indexOf("localhost")>-1?"test.jiaxinmore.com":window.location.host;
+        var apihost="http://"+apidomain+"/apps";
+        var model=App.Model.extend({"url": apihost + '/api/webChat/jsSignature'});
+        var shareModel=new model();
+        shareModel.set({'url': encodeURIComponent(location.href.split('#')[0])});
+        shareModel.exec({
+            type: 'get',
+            success: function(data){
+                if(!_.isNull(data)){
+                    var title =  loginData ? '我正式邀请你加入加薪猫理财,秒拿微信现金红包' : '能送微信红包的理财平台，你听说过吗？';
+                    var link =  window.location.href;
+                    var desc = '加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送30元微信现金红包,身边的好友都抢疯了!';//描述
+                    var imgUrl = 'http://m.jiaxinmore.com/activity/enterPage/img/jxm.png';//分享图标
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data.appId, // 必填，公众号的唯一标识
+                        timestamp: data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                        signature: data.signature,// 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'] // 必填，需要使用的JS接口列表
+                    });
+                    wx.ready(function(){
+                        //分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: title,
+                            link: link,
+                            imgUrl: imgUrl,
+                            success: function () {
+                                App.showToast('分享成功!');
+                            },
+                            cancel: function () {
+                                App.showToast('分享取消!');
+                            }
+                        });
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title: title,
+                            desc: desc,
+                            link: link,
+                            imgUrl: imgUrl,
+                            type: '', // 分享类型,music、video或link，不填默认为link
+                            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                            success: function () {
+                                //App.showToast("分享成功!")
+                            },
+                            cancel: function () {
+                                //App.showToast("分享取消!")
+                            }
+                        });
+                        //分享到QQ
+                        wx.onMenuShareQQ({
+                            title: title,
+                            desc: desc,
+                            link: link,
+                            imgUrl: imgUrl,
+                            success: function () {
+                                //App.showToast("分享成功!")
+                            },
+                            cancel: function () {
+                                //App.showToast("分享取消!")
+                            }
+                        });
+                        //分享到腾讯微博
+                        wx.onMenuShareWeibo({
+                            title: title,
+                            desc: desc,
+                            link: link,
+                            imgUrl: imgUrl,
+                            success: function () {
+                                //App.showToast("分享成功!")
+                            },
+                            cancel: function () {
+                                // App.showToast("分享取消!")
+                            }
+                        });
+                        //分享到QQ空间
+                        wx.onMenuShareQZone({
+                            title: title,
+                            desc: desc,
+                            link: link,
+                            imgUrl: imgUrl,
+                            success: function () {
+                                //App.showToast("分享成功!")
+                            },
+                            cancel: function () {
+                                //App.showToast("分享取消!")
+                            }
+                        })
+                    });
+                }
+            },
+            error: function(){
+            }
+        })
+    }
+    wxshare();
+</script>
+</html>

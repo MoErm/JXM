@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/ranking.css?v=1.08">
+    <link rel="stylesheet" href="./css/base.css?v=201508132009">
+    <link rel="stylesheet" href="./css/main.css?v=201508132009">
+    <script src="js/jquery-2.1.4.min.js"></script>
+
+    <div class="ui_header " id="eventTitle" style="height: 44px" >
+
+    <span class="ui_header-icon fl " onclick="goback()">
+
+        <i class="icon-back"></i>
+
+    </span>
+
+        <h1 class="hiui-page-title " style="line-height: 44px;" >
+
+            加薪猫
+
+        </h1>
+    </div>
+</head>
+<body  style=" background-color: white;">
+<div style="height: 44px;" id="padBox"></div>
+<!--<div class="Countdown"  id="Countdown">-->
+    <!--活动还有:<h1>00</h1>天<h1>00</h1>小时<h1>00</h1>分<h1>00</h1>秒结束-->
+<!--</div>-->
+    <div class="mod_focus" >
+        <div class="img_box" style="height:138px">
+            <div class="hiui-slide " id="ui-view-11" style="height:138px;">
+                <img height="100%" src="./img/hero_banner_n.png">
+
+
+               </div></div>
+    </div>
+
+    <!--<img src="./img/hero_banner.png" style="height: 100%">-->
+
+<div style="background-color: white;">
+    <div class="heroList" >
+        <div>
+            <span style="margin-left:2%;width: 8%">排名</span> <span style="width: 20%">姓名</span><span style="width: 16%;text-align: center;">本月&nbsp;&ensp;&ensp;<br>邀请/人</span><span style="width: 16%;text-align: center">累计&nbsp;&ensp;&ensp;<br>邀请/人</span><span style="width: 18%;text-align: center">本月<br>成交</span><span style="width: 18%;text-align: center">累计<br>成交</span></div>
+            <!--<div class="heroList_1">姓名</div><div  class="heroList_1 m5" >邀请支付/人</div><div  class="heroList_1 m5">累计成交</div><div   class="heroList_1">奖品</div>-->
+    </div>
+
+
+            <div  style="text-align: left;font-size: 14px;padding: 10px 0;color: #5a5a5a" id="heroList_1">
+                <!--<span style="margin-left:2%;width: 8%;color: #a10000;font-weight:900">01</span><span style="width: 20%;font-weight: bolder">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">1525.3W</span>-->
+                <!--<div style="width: 95%;margin: 10px 2.5%;border-bottom: 1px dashed #e4e2e2"></div>-->
+                <!--<span style="margin-left:2%;width: 8%;color: #a10000;font-weight:900">01</span><span style="width: 20%;font-weight: bolder">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span>-->
+                <!--<div style="width: 95%;margin: 10px 2.5%;border-bottom: 1px dashed #e4e2e2"></div>-->
+                <!--<span style="margin-left:2%;width: 8%;color: #a10000;font-weight:900">01</span><span style="width: 20%;font-weight: bolder">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span>-->
+
+            </div>
+
+
+        <div class="title_4_30">No.4～No.10
+            </div>
+
+<!--<div class="rankheader" >-->
+    <!--<div ><span style="margin-left: 25%;width: 12%">姓名</span><span style="width: 22%">本月邀请/人</span><span style="width: 22%">累计邀请/人</span><span style="width: 18%">累计成交</span></div>-->
+
+<!--</div>-->
+
+    <div  style=" margin-top: 5px;text-align: left; color: #000000;font-size: 14px;line-height: 30px;color: #5a5a5a" id="heroLest_4_10">
+
+        <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+        <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+
+        <!--<div ><span style="margin-left: 5%;width: 20%">No.11秀才</span><span style="width: 15%">升水啊</span><span style="width: 18%">122</span><span style="width: 18%">122</span><span style="width: 18%">20W</span></div>-->
+
+</div>
+
+<div class="title_4_30">No.11～No.50</div>
+
+
+<div  style=" margin-top: 5px;text-align: left;color: #000000;font-size: 14px;color: #5a5a5a;line-height: 30px;" id="heroLest_11_30">
+    <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #f7f7f7;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+    <!--<div style="background-color: #ffffff;height: 30px;"><span style="margin-left:2%;width: 8%">01</span> <span style="width: 20%">哇哇哇</span><span style="width: 16%;text-align: center">200</span><span style="width: 16%;text-align: center">200</span><span style="width: 18%;text-align: center">200.0W</span><span style="width: 18%;text-align: center">525.3W</span></div>-->
+
+</div>
+
+<div id="eventInfo" style="border-bottom: 1px solid #d9d9d9;padding-bottom: 5%;background-color: #ffffff">
+    <div style="width: 100%;text-align: center;color: #b90405;font-size: 28px;font-weight: bold;padding-bottom: 20px;padding-top: 20px">活动说明</div>
+    <div class="tips">
+    <strong>活动针对对象：</strong>已经发放邀请码的展义全体员工（还没有邀请码的展义员工请联系尹馨培，微信号：yxp272338959）。<br>
+        <strong>邀请人数计算方法：</strong>包括本人，本人邀请的一级客户人数以及次级客户人数之和。<br>
+        <strong>活动规则：</strong>活动期间，按照邀请的支付用户的排序，当邀请人数一样时，则按照累计成交金额确定排名。
+    </div>
+</div>
+<div style="width: 100%;background-color: #ffffff;text-align: center;color: #b90405;font-size: 28px;font-weight: bold;padding-top: 20px">如何进行客户邀请？</div>
+
+
+<div class="notice">
+
+    <div class="infoText">
+        <div style="padding:20px 20px 10px 10px">
+            <big class="infostep1"> Step 1:&nbsp;</big>请于活动开始前关注加薪猫理财公众账号：jiaxinmaolicai，按照微信提示进行注册，绑卡。<br>
+            <big class="infostep1"> Step 2:&nbsp;</big>方法1：进入【我的投资】，点击右上角【邀请好友】，按照提示开始邀请操作。
+        </div>
+        <div style="padding:10px 20px 10px 10px;">
+            <img style="height: auto;width: 45%;margin-left:10px;float:left;" src="./img/heroList_info1.png" >
+            <big class="infostep"> 微信</big><br>
+            点击【微信】，直接将连接发送给朋友或分享到朋友圈，好友点击注册后自动产生绑定关系。<br>
+            <big class="infostep"> 二维码</big><br>
+            二维码用于面对面邀请好友时使用，您点开二维码后，好友使用微信扫一扫，进入注册页面点击注册即与您产生绑定关系
+        </div>
+        <div style="padding:10px 20px 10px 10px;clear: both">
+            方法2：在公众号底部菜单栏点击【我的加薪猫】-【生成我的邀请页】，直接分享邀请页进行邀请。
+        </div>
+        <div style="">
+            <img style="height: auto;width: 40%;float:left;padding:0 5% 20px 5%" src="./img/heroList_info2.png" >
+            <img style="height: auto;width: 40%;float:left;padding:0 5% 20px 0" src="./img/heroList_info3.png" >
+        </div>
+        <div style="padding:10px 20px 40px 10px;clear:both;">
+            <big class="infostep">我的邀请页</big><br>
+            在公众号底部菜单栏点击【我的加薪猫】-【生成我的邀请页】，生成如右图所示的邀请页，直接发送给好友或者分享到朋友圈，好友点击注册后自动产生绑定关系。
+
+        </div>
+    </div>
+</div>
+<!--<p id="testUserAgent"></p>-->
+
+
+<div style="background-color: white;height: 20px;margin: 0 auto;width: 320px">
+    <div style="margin: 0;padding: 5px 10px 0 20px;background-color: #ffffff;float: left;height: 20px">
+        <img src="./img/hero_imp.png" style="height: 90%"></div>
+    <div>
+        <div style="font-size:10px;padding: 8px 0">活动最终解释权归展义金融信息服务有限公司所有
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+<script>
+
+
+
+    var temp4_10="";
+    var temp11_30="";
+    var temp1_3="";
+    function initHero(){
+              var now = new Date();
+        var nowMonth = now.getMonth(); //当前月0-11整数
+        var nowYear = now.getFullYear(); //当前年
+        var endYear;
+        var endMonth;
+        var endday=30;
+        if(nowMonth==0||nowMonth==2||nowMonth==4||nowMonth==6||nowMonth==7||nowMonth==9||nowMonth==11){
+            endday=31;
+        }else if(nowMonth==1){
+            if(isLeapYear(nowYear)){
+                endday=29;
+            }else{
+                endday=28;
+            }
+
+        }
+
+        if(nowMonth==11){
+            endYear=nowYear+1;
+            endMonth=1;
+        }else{
+            endYear=nowYear;
+            endMonth=nowMonth+1;
+        }
+        //var startDate=nowYear+"-"+(nowMonth+1)+"-1";
+        var startDate="2015-8-18";
+        var endDate="2015-8-31 23:59:59";
+        //  var endDate=endYear+'-'+endMonth+"-"+endday+" 23:59:59";
+
+        //  window.setInterval(function(){ShowCountDown(2015,9,1,'Countdown');}, interval);//更新倒计时endMonth+1下月1日0点之前
+        if(nowYear=='2015'&&(endMonth)=='8'){
+            //startDate="2015-8-18";
+            //  endDate="2015-8-31 23:59:59";
+        }else{
+            //  $("#eventTime").html(nowYear+"年"+(nowMonth+1)+"月"+"1日-"+endYear+"年"+(endMonth)+"月"+endday+"日。");
+        }
+//        $("#eventTime").html(nowYear+"年"+(nowMonth+1)+"月"+"1日-"+endYear+"年"+(endMonth)+"月"+endday+"日。");
+
+
+
+        $.ajax({
+
+            type: 'GET',
+           url: "../../apps/api/activity/lcsInviteStat",
+//          url: "http://test.jiaxinmore.com/apps/api/activity/lcsInviteStat",
+            data:{
+
+            },
+            success: function(data) {
+                //console.log(data);
+               // var testData='{"ret":0,"data":[{"username":"旺旺","totalInviteCount":5,"monthInviteCount":5,"totalPayAmount":119504.95,"mobile":"13816717206"},{"username":"贺章鹏","totalInviteCount":1,"monthInviteCount":1,"totalPayAmount":69504.95,"mobile":"15055127610"}],"msg":"成功"}';
+                if(data.ret==0){
+                    var heroList=data.data;
+                    for(var i=0;i<heroList.length;i++){
+                        if(i==0||i==1){
+                            temp1_3+=' <span style="margin-left:2%;width: 8%;color: #a10000;font-weight:900">'+(i+1)+'</span><span style="width: 20%;font-weight: bolder">'+heroList[i].username+'</span><span style="width: 16%;text-align: center">'+heroList[i].monthInviteCount+'</span>' +
+                                    '<span style="width: 16%;text-align: center">'+heroList[i].totalInviteCount+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].monthPayAmount)+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].totalPayAmount)+'</span>' +
+                                    '<div style="width: 95%;margin: 10px 2.5%;border-bottom: 1px dashed #e4e2e2"></div>';
+                        }
+                        if(i==2){
+                            temp1_3+=' <span style="margin-left:2%;width: 8%;color: #a10000;font-weight:900">'+(i+1)+'</span><span style="width: 20%;font-weight: bolder">'+heroList[i].username+'</span><span style="width: 16%;text-align: center">'+heroList[i].monthInviteCount+'</span>' +
+                                    '<span style="width: 16%;text-align: center">'+heroList[i].totalInviteCount+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].monthPayAmount)+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].totalPayAmount)+'</span>';
+                        }
+                        if(i>2&&i<=9){
+                            if(i%2==0){
+                                temp4_10 +='  <div style="background-color: #f7f7f7;height: 30px;">';
+                            }else{
+                                temp4_10 +='  <div style="background-color: #ffffff;height: 30px;">';
+                            }
+
+                            temp4_10 +='<span style="margin-left:2%;width: 8%">'+(i+1)+'</span> <span style="width: 20%">'+heroList[i].username+'</span><span style="width: 16%;text-align: center">'+heroList[i].monthInviteCount+'</span><span style="width: 16%;text-align: center">'+heroList[i].totalInviteCount+'</span>' +
+                                    '<span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].monthPayAmount)+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].totalPayAmount)+'</span></div>'
+                        }
+
+                        if(i>9){
+                            if(i%2==0){
+                                temp11_30 +='  <div style="background-color: #f7f7f7;height: 30px;">';
+                            }else{
+                                temp11_30 +='  <div style="background-color: #ffffff;height: 30px;">';
+                            }
+                            temp11_30 +='<span style="margin-left:2%;width: 8%">'+(i+1)+'</span> <span style="width: 20%">'+heroList[i].username+'</span><span style="width: 16%;text-align: center">'+heroList[i].monthInviteCount+'</span><span style="width: 16%;text-align: center">'+heroList[i].totalInviteCount+'</span>' +
+                                    '<span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].monthPayAmount)+'</span><span style="width: 18%;text-align: center">'+fmtAmount(heroList[i].totalPayAmount)+'</span></div>'
+
+
+                        }
+                    }
+                    $("#heroList_1").html(temp1_3);
+                    $("#heroLest_4_10").html(temp4_10);
+                    $("#heroLest_11_30").html(temp11_30);
+                }
+
+            },
+            error : function() {
+                //  alert('fail');
+            }
+        });
+    }
+    var log='';
+    $(document).ready(function(){
+        initHero();
+    });
+
+//    function showTitle(){
+//        log+="into showTitle<br>"
+//        $("#testUserAgent").html(log);
+//        var userAgent = window.navigator.userAgent.toLocaleLowerCase();
+//        log+=userAgent+"  <br>showTitle:"+(userAgent.indexOf("hih5hybird") > -1)+"<br>"
+//        $("#testUserAgent").html(log);
+//        if (userAgent.indexOf("hih5hybird") > -1) {
+//            log+="隐藏 标题<br>"
+//            $("#testUserAgent").html(log);
+////            $("#eventTitle").hide()
+////            $("#padBox").css("height",0)
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+    function fmtAmount(num) {
+        if (num == null || num == Number.NaN||num==0) {
+            return 0 + "W";
+        }
+        return (num / 10000).toFixed(1) + "W";
+        //  return "20W"    }
+
+    }
+        function goback() {
+            history.back();
+        }
+
+</script>
+</html>

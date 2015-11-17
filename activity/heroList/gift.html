@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html >
+<head lang="en" >
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title></title>
+    <link rel="stylesheet" href="./css/base.css?v=201508132008">
+    <link rel="stylesheet" href="./css/main.css?v=201508132008">
+    <link rel="stylesheet" type="text/css" href="./css/gift.css?v=1.02">
+    <style>
+
+
+
+    </style>
+
+    <script src="./js/jquery-2.1.4.min.js"></script>
+
+    <div class="hiui-header cm-header--no-right" id="ui-view-9">
+
+    <span class="hiui-header-icon fl  js_">
+
+        <i class="icon-"></i>
+
+    </span>
+
+        <h1 class="hiui-page-title js_title">
+
+            加薪猫
+
+        </h1>
+
+
+    </div>
+</head>
+<body>
+<div class="cover" id="cover"></div>
+<div class="coverText" id="coverText" onclick="closeCover()"></div>
+<div style="height: 44px;"></div>
+<div class="banner">
+    <img src="./img/banner.png" style="width: 100%">
+</div>
+
+    <div class="textArea" >
+   <div style="padding:0px 5%;width: auto;">
+       <div class="step">
+           <div class=" infoText stepTitle" style="color: #ffbb2a">1</div>
+
+           <div class="infoText" >
+               关注加薪猫理财微信公众号：</br>
+               <font color="#ffbb2a">(ID:jiaxinmaolicai)</font>，按照引导前往加薪猫理财平台进行注册并投资。
+           </div>
+       </div>
+       <div class="step" >
+           <div class=" infoText stepTitle" style="color:#ff982a ">2</div>
+
+           <div class="infoText" >
+               单笔投资金额达1万元的用户在加薪猫理财公众账号里回复“一万”，并在弹出页面里填写收货地址等信息。
+           </div>
+       </div>
+       <div class="step">
+           <div class=" infoText stepTitle" style="color:#d01b02 ">3</div>
+
+           <div class="infoText" >
+               正确填写信息后，我们会在1-5个工作日内寄出礼物。
+           </div>
+       </div>
+
+       </div>
+
+
+
+
+
+   </div>
+   </div>
+<div class="tips">
+    <div style="margin: 20px 10% 0 30%;width: 60;float: left" ><img src="./img/tips.png" width="40px"></div>
+    <div class="tipsText">信息登记时间为8月18号-8月20号</br>
+    如果重复提交则以最后一次提交信息为准
+    </div>
+</div>
+
+
+<div class="infoForm2" style="border-color: #ffffff">
+    <ul><li class="titleText2">加薪猫帐号</li>
+    <li><input placeholder="请填写平台注册手机号码" id="jxmAccount" style=" border-bottom:1px solid #ffa628;" maxlength="11"></li>
+    </ul>
+</div>
+<div class="infoForm2" style="clear: left">
+    <ul> <li class="titleText2">收货人姓名</li>
+    <li><input placeholder="如：小薪薪" id="receiverName"></li> </ul>
+
+</div>
+<div class="infoForm2" style="clear: left">
+    <ul> <li class="titleText2">收货地址</li>
+    <li><input placeholder="如广州是白云区白云大道2号" id="receiverAddress"></li> </ul>
+</div>
+<div class="infoForm2" style="clear: left">
+    <ul> <li class="titleText2">收货手机号码</li>
+    <li><input placeholder="13800138000" id="receiverCellphone" maxlength="11"></li> </ul>
+</div>
+<div style="padding: 5% 0;background-color: #ffffff">
+    <button class="submitBtn" onclick="submit()">确认信息</button>
+
+</div>
+
+
+</body>
+
+<script>
+function submit(){
+
+    if($("#jxmAccount").val()==""||$("#jxmAccount").val()==null){
+        showCover("请输入平台注册手机号码");
+        return;
+    }
+    var jxmAccount = $("#jxmAccount").val(); //获取手机号
+    var telReg = !!jxmAccount.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+        //如果手机号码不能通过验证
+    if(telReg == false){
+        showCover("请正确输入手机号码");
+        return;
+    }
+    if($("#receiverName").val()==""||$("#receiverName").val()==null){
+        showCover("请输入收货人姓名");
+        return;
+    }
+    if($("#receiverAddress").val()==""||$("#receiverAddress").val()==null){
+        showCover("请输入收货地址");
+        return;
+    }
+    if($("#receiverCellphone").val()==""||$("#receiverCellphone").val()==null){
+        showCover("请输入收货人手机号码");
+        return;
+    }
+    var receiverCellphone = $("#receiverCellphone").val(); //获取手机号
+
+
+    var receiverName=$("#receiverName").val();
+    var receiverAddress=$("#receiverAddress").val();
+
+   // console.log("ConsigneeNo:"+ConsigneeNo+"  ConsigneeName:"+ConsigneeName+"  ConsigneeAddress:"+ConsigneeAddress+"  ConsigneePhone:"+ConsigneePhone)
+    $(document).ready(function(){
+
+        $.ajax({
+
+            type: 'GET',
+           url: "http://120.26.138.152/apps/api/activity/receiverInfo",
+        //    url: "http://172.16.0.182:8080/apps/api/activity/receiverInfo",
+            data: {
+               "jxmAccount":jxmAccount,
+                "receiverName":receiverName,
+                "receiverAddress":receiverAddress,
+                "receiverCellphone":receiverCellphone
+            },
+             success: function(data) {
+                 if(data.ret=='0'){
+                     showCover(data.msg);
+                 }else{
+                     showCover(data.msg);
+                 }
+                console.log(data.ret+data.msg);
+            },
+            error : function() {
+                showCover('网络异常');
+            }
+        });
+    });
+}
+function showCover(msg) {
+    console.log("显示")
+    $("#cover").css("height",document.body.scrollHeight)
+    $("#cover").css("width",document.body.clientWidth)
+    $("#coverText").css("margin-top",window.innerHeight/2)
+    $("#coverText").css("width",document.body.clientWidth*0.6)
+
+    $("#coverText").html(msg)
+    window.setTimeout("closeCover()",1500);
+
+}
+    function closeCover(){
+        console.log("消除");
+        $("#cover").css("height",0);
+        $("#coverText").css("width",0);
+        $("#coverText").html("");
+    }
+</script>
+</html>

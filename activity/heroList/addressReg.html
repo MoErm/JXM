@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/heroList_n.css?v=1.19">
+    <link rel="stylesheet" href="./css/base.css?v=201508132008">
+    <link rel="stylesheet" href="./css/main.css?v=201508132008">
+
+
+</head>
+<body  style=" background-color: #490d86">
+<!--<body  style=" background-color: #ffffff">-->
+<div class="ui_header " id="eventTitle" style="height: 44px" >
+
+    <span class="ui_header-icon fl " onclick="backToIndex()">
+
+        <i class="icon-back"></i>
+
+    </span>
+
+    <h1 class="hiui-page-title " style="line-height: 44px;" >
+
+        加薪猫
+
+    </h1>
+</div>
+<div class="cover" id="cover"></div>
+<div class="coverText" id="coverText" onclick="closeCover()"></div>
+<div style="height: 44px;" id="padBox"></div>
+
+
+        <div class="imgBox" id="banner">
+
+                <img width="100%" height="100%" src="./img/addressReg/addressReg_banner.jpg">
+
+
+              </div>
+
+<div class="imgBox" style="height: 70px;text-align: center;margin-top: 10px" >
+    <img width="90%" height="80%" src="./img/addressReg/addressReg_title1.png">
+</div>
+
+<div  id="test1" class="address_radius_div" >
+    <div  class="address_step step1" > 关注加薪猫理财微信公众号
+        <small class="textYellow">（ID：jiaxinmaolicai）</small>
+        按照引导前往加薪猫理财平台进行注册</div>
+</div>
+<div  id="test2" class="address_radius_div" >
+   <div class="address_step step2"> 购买活动产品：<small class="textYellow">“季季加薪-豪年计划”</small>
+    活动期间累计投资金额大于等于3000元用户在
+    加薪猫理财公众账号里回复<small class="textYellow">“豪年计划”</small>
+    或者点击菜单栏<small class="textYellow">【加薪神器】
+    —【豪年计划】</small>，并在弹出的页面里填写
+    收货地址等信息</div>
+</div>
+<div  id="test3" class="address_radius_div" >
+    <div class="address_step step3"> 正确填写信息后，我们会在活动结束后
+        1-5个工作日内寄出礼物。</div>
+</div>
+<div class="imgBox" style="height: 70px;text-align: center;margin-top: 10px" >
+    <img width="90%" height="80%" src="./img/addressReg/addressReg_title2.png">
+</div>
+<div id="area_input" >
+    <div class="address_input">
+        <p>加薪猫账号</p>
+        <input type="text" placeholder="请填写平台注册手机号码" id="jxmAccount"  maxlength="11"><br>
+        <p>收货人姓名</p>
+        <input type="text" placeholder="如：小薪薪" id="receiverName"><br>
+        <p>收货地址</p>
+        <input type="text" placeholder="如：广州市白云区白云大道北2号" id="receiverAddress"><br>
+        <p>收货手机号码</p>
+        <input type="text" placeholder="如：13800138000" id="receiverCellphone" maxlength="11"><br>
+    </div>
+    <div class="address_btn">
+        <button onclick="submit()">确认信息</button>
+    </div>
+    <div class="address_tips">
+    <p>信息登记时间为2015年11月18日-11月20日</p>
+    <p>如果重复提交则以最后一次提交信息为准</p>
+    </div>
+</div>
+<div id="area_ok" style="display: none" >
+    <div class="imgBox" style="height: 140px;text-align: center;margin-top: 10px" >
+        <img width="140px" height="140px" src="./img/addressReg/addressReg_ok.png">
+
+    </div>
+    <div class="address_ok">
+    <p>恭喜您登记成功！</p>
+    <p> 小薪薪会尽快核实信息，</p>
+    <p>  然后将礼物发出，请注意查收哦</p>
+    </div>
+</div>
+</body>
+<script src="js/tools/jquery-2.1.4.min.js"></script>
+<script src="js/tools/template.js"></script>
+<script src="js/control/addressReg.js?v=1.04"></script>
+
+
+</html>
