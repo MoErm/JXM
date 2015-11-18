@@ -601,11 +601,42 @@ text-align: right}
 .tabs_col5 .tabs_item,
 .tabs_col5 .slide_border{width: 20%;}
 
-.tabs_item:nth-of-type(1).cur~.slide_border{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}
-.tabs_item:nth-of-type(2).cur~.slide_border{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%)}
-.tabs_item:nth-of-type(3).cur~.slide_border{-webkit-transform:translateX(200%);-moz-transform:translateX(200%);-ms-transform:translateX(200%);transform:translateX(200%)}
-.tabs_item:nth-of-type(4).cur~.slide_border{-webkit-transform:translateX(300%);-moz-transform:translateX(300%);-ms-transform:translateX(300%);transform:translateX(300%)}
-.tabs_item:nth-of-type(5).cur~.slide_border{-webkit-transform:translateX(400%);-moz-transform:translateX(400%);-ms-transform:translateX(400%);transform:translateX(400%)}
+
+.tabs_item:nth-of-type(1).cur~.slide_border{
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+}
+.tabs_item:nth-of-type(2).cur~.slide_border{
+    transform: translate(100%, 0);
+    -webkit-transform: translate(100%, 0);
+    -moz-transform: translate(100%, 0);
+    -o-transform: translate(100%, 0);
+    -ms-transform: translate(100%, 0);
+}
+.tabs_item:nth-of-type(3).cur~.slide_border{
+    transform: translate(200%, 0);
+    -webkit-transform: translate(200%, 0);
+    -moz-transform: translate(200%, 0);
+    -o-transform: translate(200%, 0);
+    -ms-transform: translate(200%, 0);
+}
+.tabs_item:nth-of-type(4).cur~.slide_border{
+    transform: translate(300%, 0);
+    -webkit-transform: translate(300%, 0);
+    -moz-transform: translate(300%, 0);
+    -o-transform: translate(300%, 0);
+    -ms-transform: translate(300%, 0);    
+}
+.tabs_item:nth-of-type(5).cur~.slide_border{
+    transform: translate(400%, 0);
+    -webkit-transform: translate(400%, 0);
+    -moz-transform: translate(400%, 0);
+    -o-transform: translate(400%, 0);
+    -ms-transform: translate(400%, 0);
+}
 .tabs_con{margin-top:10px;}
 /*--end --*/
 
