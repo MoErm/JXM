@@ -49,9 +49,19 @@ define(function (require, exports, module) {
 
         },
         setHeight:function(){
+            var query = this.request.query;
+            if(query){
+                self.$("#userInfo").html("目前您("+query.mobile+")账户，余额："+query.balance)
+                if(query.userMode=="03"){
+                    self.$("#nerAdv").css("display","none")
+                }
+
+            }
+
+
+
             var width=document.body.clientWidth;
             var height=document.body.clientHeight;
-
             if(width<=375){
                 self.$('.bonusExpired_bg3').css("height",height-220-44)
             }else if(width>375&&width<=414){

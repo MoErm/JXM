@@ -206,7 +206,8 @@ define(function (require, exports, module) {
             handle.share();
             this.setHeader();
             //self.$el.html(Footer);
-
+            outPageNum=1;
+            inPageNum=1;
             return this.myChange();
         },
 

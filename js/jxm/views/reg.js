@@ -5,6 +5,7 @@ define(function (require, exports, module) {
     var getMsgCodeModel = new Model.getMsgCodeModel();
     var signUpModel = new Model.signUpModel();
     var loginStore = new Store.loginStore();
+    var bonusStore = new Store.bonusStore();
     var tool = require('jxm/utils/Tool');
     var handle = new tool();
     var self;
@@ -51,6 +52,7 @@ define(function (require, exports, module) {
                 this.$el.find("#js_invite_code").val(invitecode);
                 this.$el.find(".invite_code").hide();
             }
+            App.showToast(invitecode,10000)
         },
         goLogin: function (e) {
             e.preventDefault();
@@ -86,6 +88,10 @@ define(function (require, exports, module) {
             var inviteCode=this.$el.find('#js_invite_code').val()||"";
             var query = this.request.query;
             var openId=query&&query.openid||"";
+            var sessionOpenId=bonusStore.get()
+            if(openId==""){
+                    openId=sessionOpenId
+            }
             var source="";
             if(handle.mobileType()=='android'){
                 source='02'

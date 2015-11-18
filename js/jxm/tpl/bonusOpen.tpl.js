@@ -13,16 +13,18 @@ define(function (require, exports, module) {
               <p>有效期至：<%=expiringTime%></p>\
               <p>已存入您(<%=mobile%>)账户，余额：<%=change%></p>\
               </div>\
+              <div class="bonusOpen_txt"><button id="toJXM">立即前往加薪猫理财</button>\
 	  <%}else{%>\
           <%if(isEmpty=="1"){%>\
           <div class="bonusOpen_none" >\
           <img src="./images/bonusOpen_none.png">\
           <p>红包被抢光了</p>\
           </div>\
+          \
+          <div class="bonusOpen_txt"><p>目前您(<%=mobile%>)账户，余额：<%=change%></p><button id="toJXM">立即前往加薪猫理财</button>\
           <%}%>\
 	  <%}%>\
 	  \
-	   <div class="bonusOpen_txt"> <button id="toJXM">立即前往加薪猫理财</button>\
 	     <%if(isRegistered=="0"){%>\
 	    <p>首次投资秒送30元微信现金红包</p>\
 	   <%}%>\

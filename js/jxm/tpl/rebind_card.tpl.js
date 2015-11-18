@@ -3,7 +3,7 @@ define(function (require, exports, module) {
         <ul>\
         <div class="rebind_div">\
         <li class="frm_item" style="margin-top: 0">\
-        <p class="frm_inpt2_title">交易密码</p><input type="password" class="frm_inpt2 js_password"  value="" maxlength="12" placeholder="请输入交易密码" />\
+        <p class="frm_inpt2_title">交易密码</p><input type="password" class="frm_inpt2 js_password"  maxlength="12" placeholder="请输入交易密码" />\
         <span class="btn_eye" data-tips="show" id="js_password_eye"></span>\
         </li>\
         </div>\

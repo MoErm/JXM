@@ -33,8 +33,12 @@ define(function (require, exports, module) {
         },
         onShow: function () {
             self.showBonus();
-            handle.share();
+            //handle.share();
             this.setHeader();
+            self.sendChange()
+            var invitecode=sessionStorage.getItem("invitecode")
+            App.showToast("invitecode:"+invitecode+"openid:"+bonusStore.get(),10000)
+
 
             return;
         },
@@ -78,7 +82,22 @@ define(function (require, exports, module) {
 
 
         },
+        sendChange:function(){
+            var query = this.request.query;
+            var url="http://test.jiaxinmore.com/index.html#bonus?appid="+query.appid+"&cid="+query.cid;
 
+            if(handle.mobileType()=='android'){
+                var shareConfig={'title': '我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！','url':url,'desc':'红包来了！加薪猫理财，怎么开心怎么来!',"imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
+                window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {
+                    //TODO
+                })
+            }else {
+
+                var shareConfig = {"link": url, "title": "我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！","desc":"红包来了！加薪猫理财，怎么开心怎么来!","imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
+                handle.share(shareConfig);
+            }
+
+        },
         setHeader: function () {
             var header = new App.UI.UIHeader();
             header.set({

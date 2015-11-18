@@ -369,7 +369,7 @@ body{background-color: #f2f2f2;}
 .bonusExpired_txt{position: absolute;z-index: 20;width: 90%;margin: 480px 5% 0 5%;text-align: center}
 .bonusExpired_txt button{color: #f95d4e;background-color: #fff9e6;border-radius: 8px;height: 50px;width: 80%;font-size: 2.2rem}
 .bonusExpired_txt p{color: #fff9e6;font-size: 1.6rem;margin-top: 10px}
-
+.bonusExpired_txt .bonusExpired_txt1{font-size: 1.6rem}
 .bonusOpen_bg{width: 100%;margin: 0}
 .bonusOpen_get{text-align: center;background-color: #f95d4e;margin: 0;color: #fff9e6;padding: 30px 0 20px 0}
 .bonusOpen_get .amount{font-size: 3.4rem;color: #ffdd3d}
@@ -449,6 +449,7 @@ body{background-color: #f2f2f2;}
     .bonusExpired_txt{position: absolute;z-index: 20;width: 90%;margin: 440px 5% 0 5%;text-align: center}
     .bonusExpired_txt button{color: #f95d4e;background-color: #fff9e6;border-radius: 8px;height: 50px;width: 80%;font-size: 2.2rem}
     .bonusExpired_txt p{color: #fff9e6;font-size: 1.6rem;margin-top: 10px}
+    .bonusExpired_txt .bonusExpired_txt1{font-size: 1.6rem}
     .bonusOpen_friend::before{position:absolute;z-index:11;left:10px;top:9px;width:24%;height:1px;content:'';background-color: #fff9e6;overflow:hidden;}
     .bonusOpen_friend::after{position:absolute;z-index:11;right:10px;top:9px;width:24%;height:1px;content:'';background-color: #fff9e6;overflow:hidden;}
 
@@ -481,6 +482,7 @@ body{background-color: #f2f2f2;}
     .bonusExpired_txt{position: absolute;z-index: 20;width: 90%;margin: 340px 5% 0 5%;text-align: center}
     .bonusExpired_txt button{color: #f95d4e;background-color: #fff9e6;border-radius: 8px;height: 50px;width: 80%;font-size: 2.2rem}
     .bonusExpired_txt p{color: #fff9e6;font-size: 1.6rem;margin-top: 10px}
+    .bonusExpired_txt .bonusExpired_txt1{font-size: 1.2rem}
     .bonusOpen_friend::before{position:absolute;z-index:11;left:10px;top:9px;width:20%;height:1px;content:'';background-color: #fff9e6;overflow:hidden;}
     .bonusOpen_friend::after{position:absolute;z-index:11;right:10px;top:9px;width:20%;height:1px;content:'';background-color: #fff9e6;overflow:hidden;}
 

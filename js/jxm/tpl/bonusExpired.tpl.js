@@ -9,8 +9,8 @@ define(function (require, exports, module) {
 	    <div class="bonusExpired_img2"> <img src="./images/bonusExpired_cry.png" ></div>\
 	    <div class="bonusExpired_info">哎呀来晚了，红包已经失效!</div>\
 	    \
-	    <div class="bonusExpired_txt"><button id="toJXM" style="margin-top: 5px">立即前往加薪猫理财</button>\
-	    <p>首次投资秒送30元微信现金红包</p>\
+	    <div class="bonusExpired_txt"><p id="userInfo" class="bonusExpired_txt1" ></p><button id="toJXM" style="margin-top: 5px">立即前往加薪猫理财</button>\
+	    <p id="nerAdv">首次投资秒送30元微信现金红包</p>\
 	    </div>\
 	 </div>\
 	  \

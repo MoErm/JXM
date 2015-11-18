@@ -69,8 +69,8 @@ function submit(){
     $.ajax({
 
         type: 'GET',
-//        url: "../../apps/api/activity/receiverInfo",
-            url: "http://test.jiaxinmore.com/apps/api/activity/receiverInfo",
+        url: "../../apps/api/activity/receiverInfo",
+//            url: "http://test.jiaxinmore.com/apps/api/activity/receiverInfo",
         data: {
             "jxmAccount":jxmAccount,
             "receiverName":receiverName,

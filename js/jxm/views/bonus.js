@@ -61,17 +61,23 @@ define(function (require, exports, module) {
                 type: "get",
                 success: function (data){
 
-
                     if(data.ret == 0 ){
                         sessionStorage.setItem("bonusLoginUrl",data.data.wechatAuthUrl)
 
+                        sessionStorage.setItem("invitecode",data.data.invitationCode);
 
-//                        sessionStorage.setItem("invitecode",data.data.invitecode);
+                        App.showToast(JSON.stringify(data)+"invitecode:  "+sessionStorage.getItem("invitecode"),10000)
+                        return
                         if(data.data.status==00){
-                            App.goTo("bonusExpired")
-//                            App.goTo("bonusExpired?mobile="+data.data.mobile+"&mobile="+data.data.mobile)
+//                            App.goTo("bonusExpired")
+                           if( _.isUndefined(data.data.mobile)){
+                               App.goTo("bonusExpired")
+                           }else{
+                               App.goTo("bonusExpired?mobile="+data.data.mobile+"&balance="+data.data.balance+"&userMode="+data.data.userMode)
+                           }
+
                         }else if(data.data.status==02||data.data.status==01){
-                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile)
+                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&appid="+query.appid)
                         }
                         else if(data.data.status==99){
                             var url="http://"+location.hostname+"/apps/api/user/shareAuthrize?cid="+query.cid
