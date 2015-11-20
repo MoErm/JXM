@@ -39,64 +39,69 @@ define(function (require, exports, module) {
             require(
                 [
                     'echarts',
-                    'echarts/chart/pie'
+                    'echarts/chart/pie',
+                    'echarts/chart/line'
                 ],
                 function (ec) {
                     var myChart = ec.init(document.getElementById('main'));
                     var option = {
-                        legend: {
-                            orient : 'vertical',
-                            x : 'center',
-                            y:'70%',
-                            data:['新手10%','新手20%','新手30%'],
-                            formatter:function (params,ticket,callback) {
-                                console.log(params)
-                                return "新手投资产品：1000.00元，占总投资比例10%"
-                            }
-//                                (function(params){
-//                                console.log(params)
-//
-//                            }())
+                        title: {
+                            text: "对数轴示例",
+                            x: "center"
                         },
-                        series : [
-
+                        tooltip: {
+                            trigger: "item",
+                            formatter: "{a} <br/>{b} : {c}"
+                        },
+                        legend: {
+                            x: 'left',
+                            data: ["2的指数", "3的指数"]
+                        },
+                        xAxis: [
                             {
-                                name:'访问来源',
-                                center:['50%','30%'],
-                                type:'pie',
-                                radius : ['35%', '50%'],
+                                type: "category",
+                                name: "x",
+                                splitLine: {show: false},
+                                data: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: "log",
+                                name: "y"
+                            }
+                        ],
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: {
+                                    show: true
+                                },
+                                dataView: {
+                                    show: true,
+                                    readOnly: true
+                                },
+                                restore: {
+                                    show: true
+                                },
+                                saveAsImage: {
+                                    show: true
+                                }
+                            }
+                        },
+                        calculable: true,
+                        series: [
+                            {
+                                name: "3的指数",
+                                type: "line",
+                                data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669]
 
-                                data:[
+                            },
+                            {
+                                name: "2的指数",
+                                type: "line",
+                                data: [1, 2, 4, 8, 16, 32, 64, 128, 256]
 
-                                    {value:200, name:'新手10%'},
-                                    {value:200, name:'新手20%'},
-                                    {value:200, name:'新手30%'},
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {labelLine: {show: true, length : 2}}}},
-//                                    {value:200, name:'新手10%', itemStyle: {
-//                                                                        normal: {
-//                                                                            color:"#000000",
-//                                                                            label : {
-//                                                                                textStyle : {
-//                                                                                    color : '#f0f'
-//                                                                                }
-//                                                                            },
-//                                                                            labelLine: {
-//                                                                                show: true,
-//                                                                                length : 2,
-//                                                                                lineStyle : {
-//                                                                                    color : '#f0f'
-//                                                                                              }
-//                                                                                         }
-//                                                                                    }
-//                                                                                }
-//                                     },
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {color:"#ad9813",labelLine: {show: true, length : 2}}}},
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {color:"#aaaaaa",labelLine: {show: true, length : 2}}}},
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {color:"#bbbbbb",labelLine: {show: true, length : 2}}}},
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {color:"#453561",labelLine: {show: true, length : 2}}}}
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {color:"#000000",labelLine: {show: true, length : 2}}}},
-//                                    {value:200, name:'新手10%', itemStyle: {normal: {labelLine: {show: true, length : 2}}}}
-                                ]
                             }
                         ]
                     }
