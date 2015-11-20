@@ -185,10 +185,10 @@ window.global_config = {
             "url": "error",
             "controller": "error"
         },
-        {
-            "url": "test_pie",
-            "controller": "test_pie"
-        },
+//        {
+//            "url": "test_pie",
+//            "controller": "test_pie"
+//        },
         {
             "url": "contract_three",
             "controller": "contract_three"
@@ -245,7 +245,7 @@ requirejs.config({
         'rebind_card': 'jxm/views/rebind_card',
         'invest_finish_regular': 'jxm/views/invest_finish_regular',
         'invest_finish_float': 'jxm/views/invest_finish_float',
-        'test_pie': 'jxm/views/test_pie',
+//        'test_pie': 'jxm/views/test_pie',
         'contract_one': 'jxm/views/contract_one',
         'contract_two': 'jxm/views/contract_two',
         'contract_three': 'jxm/views/contract_three'

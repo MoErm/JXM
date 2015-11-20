@@ -11,7 +11,7 @@ define(function (require, exports, module) {
               <div class="bonusOpen_get"  >\
               <p class="amount">￥<%=amount%></p>\
               <p>有效期至：<%=expiringTime%></p>\
-              <p>已存入您(<%=mobile%>)账户，余额：<%=change%></p>\
+              <p>已存入您(<%=mobile%>)账户，余额：<%=change%>元</p>\
               </div>\
               <div class="bonusOpen_txt"><button id="toJXM">立即前往加薪猫理财</button>\
 	  <%}else{%>\
@@ -21,7 +21,7 @@ define(function (require, exports, module) {
           <p>红包被抢光了</p>\
           </div>\
           \
-          <div class="bonusOpen_txt"><p>目前您(<%=mobile%>)账户，余额：<%=change%></p><button id="toJXM">立即前往加薪猫理财</button>\
+          <div class="bonusOpen_txt" ><%if(mobile!=""){%><p>目前您(<%=mobile%>)账户，余额：<%=change%>元</p><%}%><button id="toJXM">立即前往加薪猫理财</button>\
           <%}%>\
 	  <%}%>\
 	  \

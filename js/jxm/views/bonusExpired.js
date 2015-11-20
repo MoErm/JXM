@@ -19,12 +19,15 @@ define(function (require, exports, module) {
 
         },
         toJXM:function(){
-
-            if(sessionStorage.getItem("bonusLoginUrl")&&sessionStorage.getItem("bonusLoginUrl")!=""){
-
-                window.location.href=sessionStorage.getItem("bonusLoginUrl")
-            }else{
+            var query = this.request.query;
+            if(query.userMode=="01"){
                 App.goTo("index")
+            }else{
+                if(sessionStorage.getItem("bonusLoginUrl")&&sessionStorage.getItem("bonusLoginUrl")!=""){
+                    window.location.href=sessionStorage.getItem("bonusLoginUrl")
+                }else{
+                    App.goTo("index")
+                }
             }
         },
         initialize: function () {
@@ -51,7 +54,7 @@ define(function (require, exports, module) {
         setHeight:function(){
             var query = this.request.query;
             if(query){
-                self.$("#userInfo").html("目前您("+query.mobile+")账户，余额："+query.balance)
+                self.$("#userInfo").html("目前您("+query.mobile+")账户，余额："+query.balance+"元")
                 if(query.userMode=="03"){
                     self.$("#nerAdv").css("display","none")
                 }

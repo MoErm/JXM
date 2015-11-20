@@ -106,7 +106,7 @@ define(function (require, exports, module) {
 				    },
 				    callback: function () {
                         if (window.WebViewJavascriptBridge){
-                            var shareConfig={'title': '能送现金红包的理财平台，你听说过吗？','url':handle.inviteCode(),'desc':'加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送30元微信现金红包,身边的好友都抢疯了!'};
+                            var shareConfig={'title': '能送现金红包的理财平台，你听说过吗？','url':handle.inviteCode(),'desc':'加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送最高35元微信现金红包,身边的好友都抢疯了!'};
                             window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {
                                 //TODO
                             })

@@ -13,6 +13,7 @@ define(function (require, exports, module) {
     var oldPhoneflag=false;
     var openFlag=false;
     var finishFlag=false;
+    var appid;
     //接口
     module.exports = App.Page.extend({
         template: bonus,
@@ -66,18 +67,22 @@ define(function (require, exports, module) {
 
                         sessionStorage.setItem("invitecode",data.data.invitationCode);
 
-                        App.showToast(JSON.stringify(data)+"invitecode:  "+sessionStorage.getItem("invitecode"),10000)
-                        return
+//                        App.showToast(JSON.stringify(data)+"invitecode:  "+sessionStorage.getItem("invitecode"),10000)
+//                        return
                         if(data.data.status==00){
 //                            App.goTo("bonusExpired")
                            if( _.isUndefined(data.data.mobile)){
-                               App.goTo("bonusExpired")
+                               App.goTo("bonusExpired?userMode="+data.data.userMode)
                            }else{
                                App.goTo("bonusExpired?mobile="+data.data.mobile+"&balance="+data.data.balance+"&userMode="+data.data.userMode)
                            }
 
                         }else if(data.data.status==02||data.data.status==01){
-                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&appid="+query.appid)
+//                            var urlstr="bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&appid="+query.appid+"&userMode="+data.data.userMode
+//                            App.showToast(JSON.stringify(data)+urlstr,10000)
+//                            return
+                            appid=data.data.appid;
+                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&appid="+query.appid+"&userMode="+data.data.userMode+"&appid="+data.data.appid)
                         }
                         else if(data.data.status==99){
                             var url="http://"+location.hostname+"/apps/api/user/shareAuthrize?cid="+query.cid
@@ -158,13 +163,13 @@ define(function (require, exports, module) {
                 openFlag=false;
                 App.hideLoading();
                 if(data&&data.ret==0){
-                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId)
+                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+appid)
                 }else if(data.ret==100203) {
                     self.promptAlert = handle.alert(data.msg);
                     self.promptAlert.show();
                     self.$el.find(".bonus_img3").removeClass("bonus_rotate")
                 }else if(data.ret==100201) {
-                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId)
+                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+appid)
                 }else{
                         App.hideLoading();
                         App.showToast(data.msg || '网络错误')

@@ -278,7 +278,7 @@ define(function(require, exports, module) {
                    var defaultTitle = loginData ? '我正式邀请你加入加薪猫理财,秒拿微信现金红包' : '能送微信红包的理财平台，你听说过吗？';
                    var title = shareConfig && shareConfig.title || defaultTitle;
                    var link =  shareConfig && shareConfig.link || self.inviteCode();
-                   var desc = shareConfig && shareConfig.desc || '加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送30元微信现金红包,身边的好友都抢疯了!';//描述
+                   var desc = shareConfig && shareConfig.desc || '加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送最高35元微信现金红包,身边的好友都抢疯了!';//描述
                    var imgUrl =shareConfig && shareConfig.imgUrl || 'http://m.jiaxinmore.com/images/wx.png';//分享图标
                    wx.config({
                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

@@ -52,7 +52,6 @@ define(function (require, exports, module) {
                 this.$el.find("#js_invite_code").val(invitecode);
                 this.$el.find(".invite_code").hide();
             }
-            App.showToast(invitecode,10000)
         },
         goLogin: function (e) {
             e.preventDefault();
