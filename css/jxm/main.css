@@ -1118,7 +1118,7 @@ text-align: right}
 
 .mod_guide img{ vertical-align:top;}
 .mod_guide .guide_img{text-align:right;}
-.mod_guide .guide_img img{height: 102px;}
+.mod_guide .guide_img img{width: 100%;}
 .mod_guide .guide_info{}
 .mod_guide .guide_info img{height: 178px;}
 .mod_guide .guide_btn{margin-top:20px;}

@@ -319,9 +319,7 @@ define(function (require, exports, module) {
             var popwin = new App.UI.UIPopWin({
                 maskToHide: true,
                 weixin: '<div class="mod_guide js_share_info" style="position:fixed;top:0px;right:0px;">\
-                            <div class="guide_img"><img src="images/guide_img.png" alt=""></div>\
-                            <div class="guide_info"><img src="images/guide_info.png" alt=""></div>\
-                            <div class="guide_btn js_share_close"><img src="images/guide_btn.png" alt=""></div>\
+                            <div class="guide_img js_share_close"><img src="images/invite.png" alt=""></div>\
                         </div>',
                 dimension: '<div class="mod_popup js_qrcode" style="position:fixed;right:0px;">\
                         <div class="pop_cont">\
