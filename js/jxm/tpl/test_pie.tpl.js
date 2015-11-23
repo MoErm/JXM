@@ -11,11 +11,12 @@ define(function (require, exports, module) {
                         <p>123456.00</p></div>\
                         </div>\
                     \
-                    <div class="tradeAmount">\
+                    <div class="tradeAmount" id="tradeAmount">\
                     <p style="color:#4f4f4f;">8月已获收益：1234.00元</p>\
                     <p>8月回款金额：1234.00元</p>\
                     <p>8月投资总额：1234.00元</p>\
                     </div>\
+                    <div id="debug"></div>\
                     <div class="tradeTitle"  >8月投资往来</div>\
                     <div class="tradeListTitle">\
                     <span style="width: 13%">时间</span>\

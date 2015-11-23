@@ -204,6 +204,8 @@ requirejs.config({
         'echarts': 'jxm/utils/echart',
         'echarts/chart/pie': 'jxm/utils/chart/pie',
         'echarts/chart/line': 'jxm/utils/chart/line',
+        'echarts/chart/gauge': 'jxm/utils/chart/gauge',
+        'hammer': 'jxm/utils/hammer',
         'login': 'jxm/views/login',
         'error': 'jxm/views/error',
         'index': 'jxm/views/index',

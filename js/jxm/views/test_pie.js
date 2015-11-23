@@ -1,24 +1,58 @@
 //我的银行卡
 define(function (require, exports, module) {
     var test_pie = require('jxm/tpl/test_pie.tpl');
+    var hammer = require('hammer');
     var Model = require("jxm/model/model");
     var getAddrModel = new Model.getAddrModel();
     var tool = require('jxm/utils/Tool');
     var handle = new tool();
     var message = '网络错误，请稍后重试';
     var self;
+
     module.exports = App.Page.extend({
         events: {
-            'click .js_add_card': 'goAddCard'
+            'click .js_add_card': 'goAddCard',
+            'click #abcd': 'test',
+            'click #abc': 'test1'
+        },
+        test:function(){
+
+        },
+        test1:function(){
+            console.log("asd11")
         },
         onShow: function () {
             self.setHeader()
             self.$el.html(test_pie);
             self.showPie();
 //            self.showAddress();
+            console.log(hammer)
+
+            var hit = document.querySelector("#tradeAmount");
+            var mc = new hammer(hit);
+
+            mc.get('pinch').set({ enable: true });
+            var debug = document.querySelector("#debug");
+            mc.on("hammer.input", function(ev) {
+                console.log([ev.srcEvent.type, ev.pointers.length, ev.isFinal, ev.deltaX, ev.deltaY].join("<br>"))
+                if(ev.deltaX>0){
+                    if(ev.deltaY>0){
+                        debug.innerHTML="右下滚"
+                    }else{
+                        debug.innerHTML="右上滚"
+                    }
+                }else{
+                    if(ev.deltaY>0){
+                        debug.innerHTML="左下滚"
+                    }else{
+                        debug.innerHTML="左上滚"
+                    }
+                }
+            });
             return
         },
         showPie:function(){
+            console.log(App)
             var dataStyle = {
                 normal: {
                     label: {show:false},
@@ -40,72 +74,128 @@ define(function (require, exports, module) {
                 [
                     'echarts',
                     'echarts/chart/pie',
-                    'echarts/chart/line'
+                    'echarts/chart/line',
+                    'echarts/chart/gauge'
                 ],
                 function (ec) {
                     var myChart = ec.init(document.getElementById('main'));
                     var option = {
-                        title: {
-                            text: "对数轴示例",
-                            x: "center"
+                        tooltip : {
+                            formatter: "{a} <br/>{b} : {c}%"
                         },
-                        tooltip: {
-                            trigger: "item",
-                            formatter: "{a} <br/>{b} : {c}"
-                        },
-                        legend: {
-                            x: 'left',
-                            data: ["2的指数", "3的指数"]
-                        },
-                        xAxis: [
-                            {
-                                type: "category",
-                                name: "x",
-                                splitLine: {show: false},
-                                data: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
-                            }
-                        ],
-                        yAxis: [
-                            {
-                                type: "log",
-                                name: "y"
-                            }
-                        ],
-                        toolbox: {
-                            show: true,
-                            feature: {
-                                mark: {
-                                    show: true
-                                },
-                                dataView: {
-                                    show: true,
-                                    readOnly: true
-                                },
-                                restore: {
-                                    show: true
-                                },
-                                saveAsImage: {
-                                    show: true
-                                }
-                            }
-                        },
-                        calculable: true,
-                        series: [
-                            {
-                                name: "3的指数",
-                                type: "line",
-                                data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669]
 
-                            },
+                        series : [
                             {
-                                name: "2的指数",
-                                type: "line",
-                                data: [1, 2, 4, 8, 16, 32, 64, 128, 256]
-
+                                name:'业务指标',
+                                type:'gauge',
+                                startAngle: 180,
+                                endAngle: 0,
+                                center : ['50%', '90%'],    // 默认全局居中
+                                radius : 200,
+                                axisLine: {            // 坐标轴线
+                                    lineStyle: {       // 属性lineStyle控制线条样式
+                                        width: 150
+                                    }
+                                },
+                                axisTick: {            // 坐标轴小标记
+                                    splitNumber: 2,   // 每份split细分多少段
+                                    length :12        // 属性length控制线长
+                                },
+                                axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                                    formatter: function(v){
+                                        switch (v+''){
+                                            case '10': return '低';
+                                            case '50': return '中';
+                                            case '90': return '高';
+                                            default: return '';
+                                        }
+                                    },
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        color: '#fff',
+                                        fontSize: 15,
+                                        fontWeight: 'bolder'
+                                    }
+                                },
+                                pointer: {
+                                    width:10,
+                                    length: '90%',
+                                    color: 'rgba(255, 255, 255, 0.8)'
+                                },
+                                title : {
+                                    show : true,
+                                    offsetCenter: [0, '-60%'],       // x, y，单位px
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        color: '#fff',
+                                        fontSize: 30
+                                    }
+                                },
+                                detail : {
+                                    show : true,
+                                    backgroundColor: 'rgba(0,0,0,0)',
+                                    borderWidth: 0,
+                                    borderColor: '#ccc',
+                                    width: 100,
+                                    height: 40,
+                                    offsetCenter: [0, -40],       // x, y，单位px
+                                    formatter:'{value}%',
+                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                        fontSize : 20
+                                    }
+                                },
+                                data:[{value: 50, name: '完成率'}]
                             }
                         ]
                     }
-                myChart.setOption(option);
+
+
+                    var ecConfig = require('echarts/config');
+                    function eConsole(param) {
+                        var mes = '【' + param.type + '】';
+                        if (typeof param.seriesIndex != 'undefined') {
+                            mes += '  seriesIndex : ' + param.seriesIndex;
+                            mes += '  dataIndex : ' + param.dataIndex;
+                        }
+                        if (param.type == 'hover') {
+                         console.log( 'Event Console : ' + mes);
+                        }
+                        else {
+                            console.log( 'Event Console : ' + mes);
+
+                        }
+                        console.log(param);
+                    }
+                    /*
+                     // -------全局通用
+                     REFRESH: 'refresh',
+                     RESTORE: 'restore',
+                     RESIZE: 'resize',
+                     CLICK: 'click',
+                     DBLCLICK: 'dblclick',
+                     HOVER: 'hover',
+                     MOUSEOUT: 'mouseout',
+                     // -------业务交互逻辑
+                     DATA_CHANGED: 'dataChanged',
+                     DATA_ZOOM: 'dataZoom',
+                     DATA_RANGE: 'dataRange',
+                     DATA_RANGE_HOVERLINK: 'dataRangeHoverLink',
+                     LEGEND_SELECTED: 'legendSelected',
+                     LEGEND_HOVERLINK: 'legendHoverLink',
+                     MAP_SELECTED: 'mapSelected',
+                     PIE_SELECTED: 'pieSelected',
+                     MAGIC_TYPE_CHANGED: 'magicTypeChanged',
+                     DATA_VIEW_CHANGED: 'dataViewChanged',
+                     TIMELINE_CHANGED: 'timelineChanged',
+                     MAP_ROAM: 'mapRoam',
+                     */
+                    myChart.on(ecConfig.EVENT.CLICK, eConsole);
+                    myChart.on(ecConfig.EVENT.DBLCLICK, eConsole);
+//myChart.on(ecConfig.EVENT.HOVER, eConsole);
+                    myChart.on(ecConfig.EVENT.DATA_ZOOM, eConsole);
+                    myChart.on(ecConfig.EVENT.LEGEND_SELECTED, eConsole);
+                    myChart.on(ecConfig.EVENT.MAGIC_TYPE_CHANGED, eConsole);
+                    myChart.on(ecConfig.EVENT.DATA_VIEW_CHANGED, eConsole);
+
+                    myChart.setOption(option);
             }
         );
 
@@ -233,7 +323,10 @@ define(function (require, exports, module) {
                 view: this,
                 title: '加薪猫月度对账单',
                 back: {
-                    // 'tagname': 'back',
+                    'tagname': 'invite', 'value': '',
+                    itemFn: function () {
+                        return '<span class="right_txt_btn user js_invite" id="abcd">邀请好友</span><span id="abc">absssc</span>';
+                    },
                     callback: function () {
                         //      App.goBack()
                     }
