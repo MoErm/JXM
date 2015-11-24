@@ -2,7 +2,7 @@ define(function (require, exports, module) {
     var tpl = '<article class="mod_page page_invest">\
                     <ul class="listing">\
                         <li class="item">\
-                            <%=showTag(incomeType,isForNew)%><h3 class="item_title"><%if(productName.length <=20){%><%=productName%><%}else{%><%=productName.substr(0,20)%>...<%}%></h3>\
+                            <%=showTag(incomeType,isForNew,investDeadline)%><h3 class="item_title"><%if(productName.length <=20){%><%=productName%><%}else{%><%=productName.substr(0,20)%>...<%}%></h3>\
                                 <div class="item_cont v_item">\
                                     <div class="v_item_hd"><span class="v_item_title webtxt"><%if(incomeType != "03"){%><%=comeType(incomeType, incomeRateCeiling, activityIncomeRate, incomeRateFloor)%><i class="unit">%</i><%}else{%>浮动<%}%></span><span class="v_item_cont">预期年化收益</span></div>\
                                      <%if(!_.isNull(investDeadline)){%><div class="v_item_hd dd"><span class="v_item_title"><i class="webtxt" style="color:#d34013; font-size:2rem"><%=investDeadline%></i></span><span class="v_item_cont">投资期限</span></div><%}%>\

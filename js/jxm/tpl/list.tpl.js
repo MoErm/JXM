@@ -6,7 +6,7 @@ define(function (require, exports, module) {
                     <ul class="listing js_listing" data-history="<%=showhistory%>">\
                         <%_.each(items, function(item){%>\
                             <li id="<%=item.productNo%>" class="item js_list_item"  data-time="<%=item.saleStartTime%>" data-sale="<%=item.saleStatus%>">\
-                                <%=showTag(item.incomeType,item.isForNew) %><h3 class="item_title"><%if(item.productName.length <=20){%><%=item.productName%><%}else{%><%=item.productName.substr(0,20)%>...<%}%></h3>\
+                                <%=showTag(item.incomeType,item.isForNew,item.investDeadline) %><h3 class="item_title"><%if(item.productName.length <=20){%><%=item.productName%><%}else{%><%=item.productName.substr(0,20)%>...<%}%></h3>\
                                     <div class="item_cont v_item">\
                                     <div class="v_item_hd"><span class="v_item_title webtxt" style="position:relative"><%=comeType(item.incomeType, item.incomeRateCeiling, item.activityIncomeRate, item.incomeRateFloor)%><%if(item.incomeType != "03"&&item.incomeType != "02"){%><i class="unit">%</i><%}%><%if(item.incomeType == "02"){%><i class="unit">%</i><%}%></span><span class="v_item_cont">预期年化收益</span></div>\
                                     <%if(!_.isNull(item.investDeadline)){%><div class="v_item_hd dd" ><span class="v_item_title" ><i class="webtxt" style="color:#d34013; font-size:2rem"><%=item.investDeadline%></i></span><span class="v_item_cont" >投资期限</span></div><%}%>\
