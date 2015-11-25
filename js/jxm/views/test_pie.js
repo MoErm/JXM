@@ -8,7 +8,7 @@ define(function (require, exports, module) {
     var handle = new tool();
     var message = '网络错误，请稍后重试';
     var self;
-
+    var timeTemp=0;
     module.exports = App.Page.extend({
         events: {
             'click .js_add_card': 'goAddCard',
@@ -26,15 +26,28 @@ define(function (require, exports, module) {
             self.$el.html(test_pie);
             self.showPie();
 //            self.showAddress();
-            console.log(hammer)
+            console.log(Date.now())
 
             var hit = document.querySelector("#tradeAmount");
             var mc = new hammer(hit);
+            var cycle=window.document.getElementById("cycle")
 
             mc.get('pinch').set({ enable: true });
             var debug = document.querySelector("#debug");
             mc.on("hammer.input", function(ev) {
-                console.log([ev.srcEvent.type, ev.pointers.length, ev.isFinal, ev.deltaX, ev.deltaY].join("<br>"))
+//                console.log([ev.srcEvent.type, ev.pointers.length, ev.isFinal, ev.deltaX, ev.deltaY].join("<br>"))
+                if(ev.deltaX!=0){
+                    var deg=cycle.style.webkitTransform;
+                    deg=deg.substring(7,deg.length-4)
+                    console.log(cycle.style.webkitTransform+"  "+deg)
+                    var mathDeg=parseInt(deg)
+//                    cycle.style.transition="-webkit-transform 1500ms ease-out";
+
+                    cycle.style.webkitTransform="rotate(" + (mathDeg+parseInt(ev.deltaX)/5) + "deg)";
+//                    cycle.style.webkitTransform="rotate(" + (mathDeg+parseInt(500)) + "deg)";
+                }
+
+                self.checkSpeed(ev.srcEvent.type,ev.deltaX,ev.deltaY)
                 if(ev.deltaX>0){
                     if(ev.deltaY>0){
                         debug.innerHTML="右下滚"
@@ -50,6 +63,22 @@ define(function (require, exports, module) {
                 }
             });
             return
+        },
+        checkSpeed:function(stauts,crossX,crossY){
+            var touchTime;
+            var speed;
+             if(stauts=="touchstart"){
+                 timeTemp=Date.now()
+                 return 0
+             }else  if(stauts=="touchend"){
+                 touchTime=Date.now()-timeTemp
+                 speed=-Math.sqrt(crossX*crossX+crossY*crossY)/touchTime
+                 console.log(speed)
+                 return speed
+             }else{
+                 return 0
+             }
+
         },
         showPie:function(){
             console.log(App)
@@ -74,77 +103,76 @@ define(function (require, exports, module) {
                 [
                     'echarts',
                     'echarts/chart/pie',
-                    'echarts/chart/line',
-                    'echarts/chart/gauge'
+                    'echarts/chart/line'
                 ],
                 function (ec) {
                     var myChart = ec.init(document.getElementById('main'));
                     var option = {
-                        tooltip : {
-                            formatter: "{a} <br/>{b} : {c}%"
-                        },
-
-                        series : [
-                            {
-                                name:'业务指标',
-                                type:'gauge',
-                                startAngle: 180,
-                                endAngle: 0,
-                                center : ['50%', '90%'],    // 默认全局居中
-                                radius : 200,
-                                axisLine: {            // 坐标轴线
-                                    lineStyle: {       // 属性lineStyle控制线条样式
-                                        width: 150
-                                    }
-                                },
-                                axisTick: {            // 坐标轴小标记
-                                    splitNumber: 2,   // 每份split细分多少段
-                                    length :12        // 属性length控制线长
-                                },
-                                axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
-                                    formatter: function(v){
-                                        switch (v+''){
-                                            case '10': return '低';
-                                            case '50': return '中';
-                                            case '90': return '高';
-                                            default: return '';
-                                        }
-                                    },
-                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                                        color: '#fff',
-                                        fontSize: 15,
-                                        fontWeight: 'bolder'
-                                    }
-                                },
-                                pointer: {
-                                    width:10,
-                                    length: '90%',
-                                    color: 'rgba(255, 255, 255, 0.8)'
-                                },
-                                title : {
-                                    show : true,
-                                    offsetCenter: [0, '-60%'],       // x, y，单位px
-                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                                        color: '#fff',
-                                        fontSize: 30
-                                    }
-                                },
-                                detail : {
-                                    show : true,
-                                    backgroundColor: 'rgba(0,0,0,0)',
-                                    borderWidth: 0,
-                                    borderColor: '#ccc',
-                                    width: 100,
-                                    height: 40,
-                                    offsetCenter: [0, -40],       // x, y，单位px
-                                    formatter:'{value}%',
-                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                                        fontSize : 20
-                                    }
-                                },
-                                data:[{value: 50, name: '完成率'}]
-                            }
-                        ]
+//                        tooltip : {
+//                            formatter: "{a} <br/>{b} : {c}%"
+//                        },
+//
+//                        series : [
+//                            {
+//                                name:'业务指标',
+//                                type:'gauge',
+//                                startAngle: 180,
+//                                endAngle: 0,
+//                                center : ['50%', '90%'],    // 默认全局居中
+//                                radius : 200,
+//                                axisLine: {            // 坐标轴线
+//                                    lineStyle: {       // 属性lineStyle控制线条样式
+//                                        width: 150
+//                                    }
+//                                },
+//                                axisTick: {            // 坐标轴小标记
+//                                    splitNumber: 2,   // 每份split细分多少段
+//                                    length :12        // 属性length控制线长
+//                                },
+//                                axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+//                                    formatter: function(v){
+//                                        switch (v+''){
+//                                            case '10': return '低';
+//                                            case '50': return '中';
+//                                            case '90': return '高';
+//                                            default: return '';
+//                                        }
+//                                    },
+//                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+//                                        color: '#fff',
+//                                        fontSize: 15,
+//                                        fontWeight: 'bolder'
+//                                    }
+//                                },
+//                                pointer: {
+//                                    width:10,
+//                                    length: '90%',
+//                                    color: 'rgba(255, 255, 255, 0.8)'
+//                                },
+//                                title : {
+//                                    show : true,
+//                                    offsetCenter: [0, '-60%'],       // x, y，单位px
+//                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+//                                        color: '#fff',
+//                                        fontSize: 30
+//                                    }
+//                                },
+//                                detail : {
+//                                    show : true,
+//                                    backgroundColor: 'rgba(0,0,0,0)',
+//                                    borderWidth: 0,
+//                                    borderColor: '#ccc',
+//                                    width: 100,
+//                                    height: 40,
+//                                    offsetCenter: [0, -40],       // x, y，单位px
+//                                    formatter:'{value}%',
+//                                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+//                                        fontSize : 20
+//                                    }
+//                                },
+//                                data:[{value: 50, name: '完成率'}]
+//                            }
+//                        ]
                     }
 
 

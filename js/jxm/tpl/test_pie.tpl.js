@@ -10,12 +10,14 @@ define(function (require, exports, module) {
                         <div class="tradeTotal_2" >预期收益(元)\
                         <p>123456.00</p></div>\
                         </div>\
-                    \
+                     <div style="height: 300px;width: 300px;background-color: gold;border-radius: 100%;border-bottom: 5px solid #000000;-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s" id="cycle"></div>\
                     <div class="tradeAmount" id="tradeAmount">\
                     <p style="color:#4f4f4f;">8月已获收益：1234.00元</p>\
                     <p>8月回款金额：1234.00元</p>\
+                    <p>8月回款金额：1234.00元</p>\
                     <p>8月投资总额：1234.00元</p>\
                     </div>\
+                   \
                     <div id="debug"></div>\
                     <div class="tradeTitle"  >8月投资往来</div>\
                     <div class="tradeListTitle">\
