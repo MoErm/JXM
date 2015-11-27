@@ -1285,3 +1285,19 @@ text-align: right}
 .contract_two .supplement h1{font-size: 1.5rem;}
 .contract_two .supplement p{color: #333;line-height: 20px; }
 .contract_two .supplement span{display: block;float:right;color: #333; }
+
+
+.cycleTest{font-size: 20px;margin: 5px;display: none}
+.cycle_1{position: absolute;top: 12.5%;left: 12.5%;-webkit-transform:rotate(-45deg);}
+.cycle_2{position: absolute;top: 0;right: 50%;-webkit-transform:rotate(0deg);}
+.cycle_3{position: absolute;top: 12.5%;right: 12.5%;-webkit-transform:rotate(45deg);}
+.cycle_4{position: absolute;bottom: 50%;right: 0%;-webkit-transform:rotate(90deg);}
+.cycle_5{position: absolute;bottom: 12.5%;right: 12.5%;-webkit-transform:rotate(135deg);}
+.cycle_6{position: absolute;bottom: 0;right: 50%;-webkit-transform:rotate(180deg);}
+.cycle_7{position: absolute;bottom: 12.5%;left: 12.5%;-webkit-transform:rotate(225deg);}
+.cycle_8{position: absolute;top: 50%;left: 0%;-webkit-transform:rotate(270deg);}
+.cycleTestRed{color: #ff0000;display: block!important;}
+.cycle_bg{height: 150px;width: 300px;position: relative;margin: 0 auto;overflow: hidden}
+/*.cycle_rotate{-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;}*/
+.cycle_rotate{background: url("../../images/cycle.png") no-repeat;background-size: 300px 300px;background-color:rgba(0,0,0,0); }
+
