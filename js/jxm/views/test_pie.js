@@ -9,9 +9,13 @@ define(function (require, exports, module) {
     var message = '网络错误，请稍后重试';
     var self;
     var timeTemp=0;
+    var pool= new Array(1,2,3);
+    var hidePool= new Array(4,5,6,7,8);
+    var turnNum=0;
     module.exports = App.Page.extend({
         events: {
             'click .js_add_card': 'goAddCard',
+            'click .tradeTotal_1': 'setCycle',
             'click #abcd': 'test',
             'click #abc': 'test1'
         },
@@ -37,32 +41,72 @@ define(function (require, exports, module) {
             mc.on("hammer.input", function(ev) {
 //                console.log([ev.srcEvent.type, ev.pointers.length, ev.isFinal, ev.deltaX, ev.deltaY].join("<br>"))
                 if(ev.deltaX!=0){
-                    var deg=cycle.style.webkitTransform;
-                    deg=deg.substring(7,deg.length-4)
-                    console.log(cycle.style.webkitTransform+"  "+deg)
-                    var mathDeg=parseInt(deg)
+                  //  var deg=cycle.style.webkitTransform;
+                   // deg=deg.substring(7,deg.length-4)
+                   // console.log(cycle.style.webkitTransform+"  "+deg)
+                   // var mathDeg=parseInt(deg)
 //                    cycle.style.transition="-webkit-transform 1500ms ease-out";
 
-                    cycle.style.webkitTransform="rotate(" + (mathDeg+parseInt(ev.deltaX)/5) + "deg)";
+
 //                    cycle.style.webkitTransform="rotate(" + (mathDeg+parseInt(500)) + "deg)";
                 }
-
-                self.checkSpeed(ev.srcEvent.type,ev.deltaX,ev.deltaY)
-                if(ev.deltaX>0){
-                    if(ev.deltaY>0){
-                        debug.innerHTML="右下滚"
-                    }else{
-                        debug.innerHTML="右上滚"
-                    }
-                }else{
-                    if(ev.deltaY>0){
-                        debug.innerHTML="左下滚"
-                    }else{
-                        debug.innerHTML="左上滚"
-                    }
+                self.cycleTime(ev.deltaX)
+                if(ev.srcEvent.type=="touchend"){
+                    turnNum=0
                 }
             });
             return
+        },
+        cycleTime:function(deg){
+            var num=Math.floor(deg/60)
+            if(num==0){
+                return
+            }else if(num!=turnNum){
+                if(num>turnNum){
+                    console.log("+1")
+                    self.showRed(1)
+                }else{
+                    console.log("-1")
+                    self.showRed(-1)
+                }
+
+                turnNum=num;
+            }else{
+                return
+            }
+
+        },
+        setCycle:function(){
+//          var key= -3;
+//            self.showRed(key)
+        },
+        showRed:function(key){
+            if(key<0){
+                console.log("转-1")
+                pool.push(hidePool.shift())
+                hidePool.push(pool.shift())
+            }else{
+                console.log("转+1")
+                pool.reverse()
+                hidePool.reverse()
+                pool.push(hidePool.shift())
+                hidePool.push(pool.shift())
+                pool.reverse()
+                hidePool.reverse()
+            }
+            console.log(pool)
+            console.log(hidePool)
+            for(var i=0;i<pool.length;i++){
+                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
+            }
+            for(var i=0;i<hidePool.length;i++){
+                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
+            }
+            var cycle=window.document.getElementById("cycle")
+            var deg=cycle.style.webkitTransform;
+            deg=deg.substring(7,deg.length-4)
+            var mathDeg=parseInt(deg)
+            cycle.style.webkitTransform="rotate(" + (mathDeg+key*45) + "deg)";
         },
         checkSpeed:function(stauts,crossX,crossY){
             var touchTime;
@@ -176,22 +220,22 @@ define(function (require, exports, module) {
                     }
 
 
-                    var ecConfig = require('echarts/config');
-                    function eConsole(param) {
-                        var mes = '【' + param.type + '】';
-                        if (typeof param.seriesIndex != 'undefined') {
-                            mes += '  seriesIndex : ' + param.seriesIndex;
-                            mes += '  dataIndex : ' + param.dataIndex;
-                        }
-                        if (param.type == 'hover') {
-                         console.log( 'Event Console : ' + mes);
-                        }
-                        else {
-                            console.log( 'Event Console : ' + mes);
-
-                        }
-                        console.log(param);
-                    }
+//                    var ecConfig = require('echarts/config');
+//                    function eConsole(param) {
+//                        var mes = '【' + param.type + '】';
+//                        if (typeof param.seriesIndex != 'undefined') {
+//                            mes += '  seriesIndex : ' + param.seriesIndex;
+//                            mes += '  dataIndex : ' + param.dataIndex;
+//                        }
+//                        if (param.type == 'hover') {
+//                         console.log( 'Event Console : ' + mes);
+//                        }
+//                        else {
+//                            console.log( 'Event Console : ' + mes);
+//
+//                        }
+//                        console.log(param);
+//                    }
                     /*
                      // -------全局通用
                      REFRESH: 'refresh',
@@ -214,14 +258,14 @@ define(function (require, exports, module) {
                      DATA_VIEW_CHANGED: 'dataViewChanged',
                      TIMELINE_CHANGED: 'timelineChanged',
                      MAP_ROAM: 'mapRoam',
-                     */
-                    myChart.on(ecConfig.EVENT.CLICK, eConsole);
-                    myChart.on(ecConfig.EVENT.DBLCLICK, eConsole);
-//myChart.on(ecConfig.EVENT.HOVER, eConsole);
-                    myChart.on(ecConfig.EVENT.DATA_ZOOM, eConsole);
-                    myChart.on(ecConfig.EVENT.LEGEND_SELECTED, eConsole);
-                    myChart.on(ecConfig.EVENT.MAGIC_TYPE_CHANGED, eConsole);
-                    myChart.on(ecConfig.EVENT.DATA_VIEW_CHANGED, eConsole);
+//                     */
+//                    myChart.on(ecConfig.EVENT.CLICK, eConsole);
+//                    myChart.on(ecConfig.EVENT.DBLCLICK, eConsole);
+////myChart.on(ecConfig.EVENT.HOVER, eConsole);
+//                    myChart.on(ecConfig.EVENT.DATA_ZOOM, eConsole);
+//                    myChart.on(ecConfig.EVENT.LEGEND_SELECTED, eConsole);
+//                    myChart.on(ecConfig.EVENT.MAGIC_TYPE_CHANGED, eConsole);
+//                    myChart.on(ecConfig.EVENT.DATA_VIEW_CHANGED, eConsole);
 
                     myChart.setOption(option);
             }
@@ -353,7 +397,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'invite', 'value': '',
                     itemFn: function () {
-                        return '<span class="right_txt_btn user js_invite" id="abcd">邀请好友</span><span id="abc">absssc</span>';
+                        return '<span class="right_txt_btn user js_invite" id="abcd">邀请好友</span>';
                     },
                     callback: function () {
                         //      App.goBack()
