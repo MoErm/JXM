@@ -192,6 +192,10 @@ window.global_config = {
         {
             "url": "contract_three",
             "controller": "contract_three"
+        },
+        {
+            "url": "recommend",
+            "controller": "recommend"
         }
     ],
     loader: requirejs
@@ -250,7 +254,8 @@ requirejs.config({
         'test_pie': 'jxm/views/test_pie',
         'contract_one': 'jxm/views/contract_one',
         'contract_two': 'jxm/views/contract_two',
-        'contract_three': 'jxm/views/contract_three'
+        'contract_three': 'jxm/views/contract_three',
+        'recommend':'jxm/views/recommend'
     }
 })
 
