@@ -77,16 +77,16 @@ span{margin: 0;padding: 0}
     box-sizing: border-box
 }
 .heroList_img_box_2{
-    padding: 0px 10px 0px 10px;background-color: #b70239;
+    padding: 0px 10px 0px 10px;background-color: #90111d;
 }
 .heroList_img_box{
-   padding: 0px 10px 0px 10px;background-color: #b70239;
+   padding: 0px 10px 0px 10px;background-color: #90111d;
     margin-top: 20px;
 }
 .img_height{
-    height:280px;
+    height:430px;
 }
-
+.backColor{background-color: #90111d}
 
 body{
     font-family: Microsoft YaHei;
@@ -128,7 +128,7 @@ body{
 
     width:90%;
     margin: 0 5%;
-    background-color: #b70239;
+    background-color: #90111d;
     font-size: 14px;
 }
 
@@ -277,23 +277,32 @@ body{
     font-weight:normal;
 }
 .rank{
-    position: absolute;
 
     z-index: 500;
-    top: 240px;
+    position: relative;
     text-align: center;
     font-size: 12px;
     color: #333333;
     width: 80%;
     padding: 15px 0;
-    margin: 0 10%;
+    margin: -10px 10% 0 10%;
     white-space:nowrap;
     background: url("../img/heroList_cloud.png") no-repeat;
     background-size: 100% 100%;
 
 }
+.noticeTitle{
+    position: absolute;
+    font-size: 2.6rem!important;
+    top: 0;
+    margin-top: -18px;
+    color: #fbc40f;
+    font-weight: 900;
+    margin-left: 30px;
+    text-shadow: 2px 2px 1px #5c031e,-2px -2px 1px #5c031e,2px -2px 1px #5c031e,-2px 2px 1px #5c031e,-2px 0px 1px #5c031e,0px 2px 1px #5c031e,2px 0px 1px #5c031e,0px -2px 1px #5c031e;
+}
 .notice{
-
+    position: relative;
     height: 100%;
     width: 92%;
     margin:0 auto;
@@ -304,7 +313,7 @@ body{
 .noticeText{
 
     /* margin-top: -375px; */
-    padding: 60px 22px 30px 22px;
+    padding: 50px 22px 10px 22px;
     background: url("../img/heroList_bg.png");
     background-size: 100% 100%;
 
@@ -315,8 +324,9 @@ body{
 	min-height:960px;
 }
 .infostep{
-	text-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
-	color:#f7d136;
+	/*text-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;*/
+	color:#90111d;
+    font-weight: 700;
 }
 
 .Countdown h1{
@@ -328,13 +338,12 @@ body{
     font-weight:normal;
 }
 .Countdown{
-    position: absolute;
+
     color: #ffffff;
     z-index: 500;
-    top: 300px;
+
     text-align: center;
     font-size:1.5rem;
-    height: 0px;
     width: 80%;
     margin: 0 10%;
     white-space:nowrap;
@@ -423,7 +432,7 @@ body{
     margin-left: 3%;
 }
 .rankTitle{
-    background-color: #d22b3f;
+    background-color: #69080f;
     color: #fbc40f;
     height: 30px;
     line-height: 30px;
@@ -432,19 +441,20 @@ body{
 }
 .rankList{
     position: relative;
-    color: #333333;
+    color: #ffffff;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
 }
 .odd{
-    background-color: #fec9c8;
+    background-color: #a02d34;
 }
 .even{
-    background-color:#feb1af;
+    background-color:#c34c53;
 }
 .you{
     background-color: #fbc40f;
+    color: #69080f;
 }
 .heroList span{
     display: inline-block;
@@ -490,21 +500,62 @@ body{
     background-size: 100%;
     -webkit-animation:ani2 0.3s linear 0s infinite alternate;
 }
-.bindInfo{
+.gongshiInfo{
     color: white;
     z-index: 500;
-    /* top: 260px; */
     text-align: left;
     font-size: 1.2rem;
     margin: 0 auto;
     width: 90%;
+}
+.bindText{
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 5%;
+    color: #90111d;
+    width: 90%;
+    font-size: 1.4rem;
+}
+.bindInfo{
+    position: relative;
+    color: white;
+    z-index: 500;
+    text-align: left;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    width: 90%;
+    background: url("../img/heroList_jiangpin.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.laba:before{
+    content: "";
+    background: url("../img/heroList_laba.png") no-repeat;
+    height: 30px;
+    width: 40px;
+    display: block;
+    position: absolute;
+    left: 0;
+    margin-left: -40px;
+    top: 0;
+    margin-top: -10px;
+    background-size: 100% 100%;
+}
+.laba{
+    position: relative;
+    color: #fbc40f;
 
-
+    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+.labaText{
+    font-size: 1.8rem!important;
 }
 .redShadow{
     font-size: 1.4rem;
     text-shadow: 1px 1px 1px #5c031e,-1px -1px 1px #5c031e,1px -1px 1px #5c031e,-1px 1px 1px #5c031e,-1px 0px 1px #5c031e,0px 1px 1px #5c031e,1px 0px 1px #5c031e,0px -1px 1px #5c031e;
 }
+
 .company_info:before{
     content: "";
     position: absolute;
@@ -520,7 +571,6 @@ body{
 .company_info{
     font-size:12px;;color: #ffc1c0;
     position: relative;
-    background-color: #b70239;
     margin: 0px auto;
     padding: 20px 0;
     text-align: center;
@@ -629,14 +679,21 @@ body{
 .address_input:-ms-input-placeholder {
     color: #721fc9;
 }
+.bannerHeight{height: 180px}
 /*iphone6*/
 @media screen and (min-width: 371px) and (max-width: 400px) {
-    .img_height{height:260px;}
+    .bindText{ position: absolute; margin-top: 302px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.4rem;}
+    .labaText{font-size: 1.6rem!important; }
+    .img_height{height:380px;}
     .imgHeight_1{height: 390px}
+    .bannerHeight{height: 160px}
 }
 
 /*iphone4 5*/
 @media screen  and (max-width: 370px) {
-    .img_height{height:240px;}
+    .bindText{ position: absolute; margin-top: 270px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.2rem;}
+    .labaText{font-size: 1.4rem!important; }
+    .img_height{height:340px;}
     .imgHeight_1{height: 335px}
+    .bannerHeight{height: 140px}
 }

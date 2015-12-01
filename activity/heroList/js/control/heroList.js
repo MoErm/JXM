@@ -20,7 +20,7 @@
         var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60);
         var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
 
-        cc.innerHTML = "  活动还有:<h1>"+day1+"</h1>天<h1>"+hour+"</h1>小时<h1>"+minute+"</h1>分<h1>"+second+"</h1>秒结束";
+        cc.innerHTML = "  距离活动结束:<h1>"+day1+"</h1>天<h1>"+hour+"</h1>小时<h1>"+minute+"</h1>分<h1>"+second+"</h1>秒";
     }
     function isLeapYear (Year) {
 
@@ -147,7 +147,7 @@
 
 
 
-        window.setInterval(function(){ShowCountDown(2015,12,1,'Countdown');}, interval);//更新倒计时endMonth+1下月1日0点之前
+        window.setInterval(function(){ShowCountDown(2016,1,1,'Countdown');}, interval);//更新倒计时endMonth+1下月1日0点之前
 
 
 
@@ -159,28 +159,29 @@
 			url: "../../apps/api/activity/activityRank",
 
 
+
             success: function(data) {
+                console.log(data)
                 if(typeof data==="string"){
                     data=eval("("+data+")");
                 }
+
                 if(data.ret==0){
                     var rankText;
-                    if(data.currentUserName==null||data.currentUserName==""){
+                    if(data.data.currentUserName==null||data.data.currentUserName==""){
                         rankText="亲爱的用户，您还没有上榜哦！"
-                    }else if(data.currentUserRank==99){
-                        rankText="亲爱的<h1>"+data.currentUserName+"</h1>，您还没有上榜哦！"
+                    }else if(data.data.currentUserRank==0){
+                        rankText="亲爱的<h1>"+data.data.currentUserName+"</h1>，您还没有上榜哦！"
                     }else{
-                        rankText="亲爱的<h1>"+data.currentUserName+"</h1>,您的排名是第<h1>"+data.currentUserRank+"</h1>名,加油哦！"
+                        rankText="亲爱的<h1>"+data.data.currentUserName+"</h1>,您的排名是第<h1>"+data.data.currentUserRank+"</h1>名,加油哦！"
                     }
 
 
                     $("#rank").html(rankText);
-                    userRanking=data.currentUserRank;
-                    var heroList=data.data;
+                    userRanking=data.data.currentUserRank;
+                    var heroList=data.data.rankList;
                     var data = {
-                        list : heroList,
-                        userRanking:userRanking,
-						userName:data.currentUserName
+                        list : heroList
                     };
                     template.helper("fmtAmount", fmtAmount);
                     var html = template('showList', data);
@@ -293,9 +294,9 @@ var wxshare = function(shareConfig){
         type: 'get',
         success: function(data){
             if(!_.isNull(data)){
-                var title =  "加薪猫11月邀请争霸赛排行榜";
+                var title =  "加薪猫12月邀请争霸赛排行榜";
                 var link =  window.location.href;
-                var desc = '狂欢升级，更加刺激！iPhone6S plus、iPhone6S……还有更多豪礼等着你！';//描述
+                var desc = '狂欢升级，更加刺激！Mac pro、Ipad pro……还有更多豪礼等着你！';//描述
                 var imgUrl = 'http://m.jiaxinmore.com/activity/818hero/img/heroList_outImg.png';//分享图标
                 wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

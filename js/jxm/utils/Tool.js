@@ -47,23 +47,36 @@ define(function(require, exports, module) {
         }
       ;
     }
-    Tool.prototype.showTag = function(type,isNew,time){
+    Tool.prototype.showTag = function(type,isNew,time,saleStartTime){
         var str=""
+        var month=saleStartTime.split("/")
+//        console.log(month[1])
        var time1=time.substring(0,time.length-1)
         time1=parseInt(time1)
-        console.log(time1+"  "+(time1>80&&time1<100))
+//        console.log(time1+"  "+(time1>80&&time1<100))
         if(isNew=="1"){
             str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">新手专享</div></div>'
         }else{
             if(type=='02'){
-                str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
-            }else{
                 if(time1>80&&time1<100){
-                    str='<div style="position: relative;display: inline-block;width: 80px"><div class="listTag">11月争霸赛</div></div>'
+                    if(month[1]=='11'){
+                        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
+                    }else{
+                        str=""
+                    }
                 }else{
                     str=""
                 }
-
+            }else{
+                if(time1>80&&time1<100){
+                    if(month[1]=='11'){
+                        str='<div style="position: relative;display: inline-block;width: 80px"><div class="listTag">11月争霸赛</div></div>'
+                    }else{
+                        str=""
+                    }
+                }else{
+                    str=""
+                }
             }
         }
         return str;

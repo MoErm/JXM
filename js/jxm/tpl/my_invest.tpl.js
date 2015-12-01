@@ -2,7 +2,7 @@ define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page mod_my_invest">\
 	<div class="new_active" >\
-	11月全面邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
+	12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
 	</div>\
 	  <div class="v_mod invest_base_info">\
 	    <div class="item">\
