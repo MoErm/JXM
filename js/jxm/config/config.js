@@ -64,6 +64,10 @@ window.global_config = {
             "controller": "my_invest"
         },
         {
+            "url": "my_invest_record",
+            "controller": "my_invest_record"
+        },
+        {
             "url": "my_invite",
             "controller": "my_invite"
         },
@@ -194,6 +198,10 @@ window.global_config = {
             "controller": "contract_three"
         },
         {
+            "url": "redeem",
+            "controller": "redeem"
+        },
+        {
             "url": "recommend",
             "controller": "recommend"
         }
@@ -231,6 +239,7 @@ requirejs.config({
         'forget_password_tips': 'jxm/views/forget_password_tips',
         'account': 'jxm/views/account',
         'my_invest': 'jxm/views/my_invest',
+        'my_invest_record': 'jxm/views/my_invest_record',
         'bonus': 'jxm/views/bonus',
         'bonusOpen': 'jxm/views/bonusOpen',
         'bonusExpired': 'jxm/views/bonusExpired',
@@ -255,6 +264,7 @@ requirejs.config({
         'contract_one': 'jxm/views/contract_one',
         'contract_two': 'jxm/views/contract_two',
         'contract_three': 'jxm/views/contract_three',
+        'redeem': 'jxm/views/redeem',
         'recommend':'jxm/views/recommend'
     }
 })

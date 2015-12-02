@@ -38,7 +38,7 @@ define(function (require, exports, module) {
                 self.setHeader();
                 handle.share();
                 handle.orientationTips();
-                self.$el.html('<div class="mod_focus js_show_ad" style="height:188px"></div><div class="js_content"></div>' + footer);
+                self.$el.html('<div class="js_content"></div>' + footer);
                 self.$('.js_product_list').addClass('cur');
 
                     self.getUserInfo();
@@ -54,7 +54,7 @@ define(function (require, exports, module) {
                     success: function(data){
                         if(data.ret == 0){
                             loginStore.set(data.data);
-                            self.showAd();
+//                            self.showAd();
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else{

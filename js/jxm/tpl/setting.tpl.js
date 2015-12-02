@@ -23,16 +23,9 @@ define(function (require, exports, module) {
                     </div>\
                 </article>\
                 <footer class="foot_copyright foot_fixed">\
-                <div class="fixed">\
+                <div class="fixed" style="margin-bottom: 55px">\
                     <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
                     <p class="copyright">&copy;2015 加薪猫 jiaxinmore.com</p>\
-                    <div class="foot_nav">\
-                    <ul>\
-                        <li class="item ico_f_list js_product_list">产品列表</li>\
-                        <li class="item ico_f_invest js_my_invest">我的投资</li>\
-                        <li class="item ico_f_setting cur">设置</li>\
-                    </ul>\
-                    </div>\
                 </div>\
                 </footer> ';
     module.exports = tpl;

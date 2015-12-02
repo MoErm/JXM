@@ -1,6 +1,7 @@
 define(function (require, exports, module) {
     var setting = require("jxm/tpl/setting.tpl");
     var tool = require('jxm/utils/Tool');
+    var Footer = require("jxm/tpl/footer.tpl");
     var handle = new tool();
     var self;
     var tel = '4008-339-869';
@@ -10,7 +11,7 @@ define(function (require, exports, module) {
         },
         afterMount: function(){
 
-                self.$el.html(_.template(setting)({tel: tel, customer: tel.replace(/-/g, '')}));
+                self.$el.html(_.template(setting+Footer)({tel: tel, customer: tel.replace(/-/g, '')}));
 
         },
         events: {
@@ -47,6 +48,7 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             self.setHeader();
+            self.$('.js_setting').addClass('cur')
         },
         list: function(){
             App.goTo('list');
@@ -60,8 +62,10 @@ define(function (require, exports, module) {
                 view: this,
                 title: '设置',
                 back: {
-                    'tagname': '',
-                    callback: function () {}
+                    'tagname': 'back',
+                    callback: function () {
+                        App.goTo('my_invest')
+                    }
                 },
                 right: null
             });
