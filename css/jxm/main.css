@@ -1301,3 +1301,43 @@ text-align: right}
 /*.cycle_rotate{-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;}*/
 .cycle_rotate{background: url("../../images/cycle.png") no-repeat;background-size: 300px 300px;background-color:rgba(0,0,0,0); }
 
+
+/*-- 天添利 推荐页 --*/
+
+.recommend_ad{height: 120px;}
+.recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 15px 0;background: #ffffff; }
+.recommend_total_l,.recommend_total_r{display: inline-block;width: 49%;text-indent: 4rem;}
+.recommend_total_r{border-left: 1px solid #E6E6E6;}
+.recommend_total_l .title,.recommend_total_r .title{font-size: 1.4rem;color: #9b9b9b;}
+.recommend_total_l .number,.recommend_total_r .number{font-size: 2rem; color: #db3710;}
+.recommend_detail{border-top:1px solid #E6E6E6; background: #ffffff;}
+.recommend_detail_t .head{width: 80%;height: 60px;line-height: 60px; border-bottom: 1px dashed #E6E6E6; margin: 0 auto;color:#9b9b9b;}
+.recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
+.recommend_detail_m{padding: 10px  0  0 0}
+.recommend_detail_m .chart{height: 140px;width: 85%; margin:0 auto 10px auto; border-bottom: 1px solid #E0E0E0;position: relative;
+}
+.recommend_detail_m .chart_min,.recommend_detail_m .chart_max{color: #9b9b9b;font-size: 1.4rem;}
+.recommend_detail_m .chart_min em,.recommend_detail_m .chart_max em{color: #fe6400;font-size: 1.4rem;margin: 0 5px 0 0;}
+.recommend_detail_m .chart_min {position: absolute;bottom: 20px;left: 40px;}
+.recommend_detail_m .chart_max {position: absolute;top: 20px;right: 40px;}
+.recommend_detail_m .info{width: 85%; margin:0 auto 10px auto;overflow: hidden; }
+.recommend_detail_m .info_list li{display: inline-block;width: 24%; color:#9b9b9b;text-align: center; }
+.recommend_detail_m .info_list em{display: block;width: 50px;height: 50px;margin: 0 auto;}
+.recommend_detail_m .info_list .list_one {background: url(../../images/recommend.png) -7px -7px; }
+.recommend_detail_m .info_list .list_two {background: url(../../images/recommend.png) -71px -7px;  }
+.recommend_detail_m .info_list .list_three {background: url(../../images/recommend.png) -142px -7px;  }
+.recommend_detail_m .info_list .list_four { background: url(../../images/recommend.png) -227px -7px; }
+.recommend_detail_b{ margin:0 0 10px 0;}
+.recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+
+
+
+
+
+
+
+
+
+
+
+
