@@ -51,12 +51,12 @@ define(function (require, exports, module) {
         initAD:function(){
             var container=this.$el.find(".img_box");
             var minHeight=$(window).width()/3.2;
+
             container.css({
                 "max-height": minHeight,
                 "min-height": minHeight,
                 "height": minHeight
             });
-
             var imgs=[
 //                { id: 6, src: './images/hnjh.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400861107&idx=1&sn=0c871833c6cadd1cb7e546f2de22da5c#rd' },
                 { id: 4, src: './images/zbs11.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400413790&idx=1&sn=ef4e9f3d4ac84b9d09f6d3671833cd1a#wechat_redirect' },

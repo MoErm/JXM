@@ -2,8 +2,7 @@ define(function (require, exports, module) {
     var Model = require("jxm/model/model");
     var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
-    var Template = require("jxm/tpl/my_invest.tpl");
-    var Footer = require("jxm/tpl/footer.tpl");
+    var Template = require("jxm/tpl/my_invest_record.tpl");
     var myProperty = new Model.myProperty();
     var historyOrder = new Model.historyOrder();
 
@@ -17,7 +16,6 @@ define(function (require, exports, module) {
     module.exports = App.Page.extend({
         events: {
             'click .js_history': 'goHistory',
-            'click .triangle': 'goHistory',
             'click .my_change': 'goWallet',
             'click .js_float': 'goFloat',
             'click .js_regular': 'goRegular',
@@ -25,7 +23,6 @@ define(function (require, exports, module) {
             'click .js_product_list': 'list',
             'click .js_close': 'goClose',
             'click .invest_invite': 'goInvite',
-            'click .invest_record': 'goRecord',
             'click .js_situation':'goHeroList'
         },
         initialize: function () {
@@ -37,24 +34,10 @@ define(function (require, exports, module) {
         goInvite:function(){
             App.goTo("my_invite")
         },
-        goRecord:function(){
-            App.goTo("my_invest_record")
-        },
-        goHeroList:function(){
-//            window.location.href="./activity/818hero/heroList.html"
-            window.location.href="./activity/818hero/heroList.html"
-//            if(window.WebViewJavascriptBridge){
-//                window.WebViewJavascriptBridge.callHandler('openUrl',{"url": window.location.origin+"/activity/818hero/heroList.html"},function(response) {})
-//            }else{
-//                window.location.href="./activity/818hero/heroList.html"
-//            }
-        },
         onShow: function () {
             handle.share();
             this.setHeader();
 
-            self.$el.html(Footer);
-            self.$('#js_my_invest').addClass('cur');
             self.regQR();
             return this.render();
         },
@@ -93,7 +76,7 @@ define(function (require, exports, module) {
                         self.data.fixedPropRate = (self.data.fixedPropRate * 100).toFixed(2)
 
 
-                        self.$el.html(_.template(Template + Footer)(self.data));
+                        self.$el.html(_.template(Template)(self.data));
                         //self.history()
                         //self.newAcitve();
                         self.$('.js_my_invest').addClass('cur');
@@ -116,10 +99,7 @@ define(function (require, exports, module) {
             })
         },
         setChart: function () {
-
-
             if (parseFloat(self.data.fixedProp) == 0 && parseFloat(self.data.floatProp) == 0) {
-
                 var data = [
                     {
                         value: 10000,
@@ -130,16 +110,11 @@ define(function (require, exports, module) {
                         color: "#b5b5b5"
                     }
                 ]
-
             } else {
                 var fixedProp = parseFloat(self.data.fixedProp.split(",").join('')).toFixed(2)
                 var floatProp = parseFloat(self.data.floatProp.split(",").join('')).toFixed(2)
-
-
                 fixedProp == "0.00" ? fixedProp = floatProp / 0.9999 - floatProp : fixedProp
                 floatProp == "0.00" ?  floatProp = fixedProp / 0.9999 - fixedProp :  floatProp
-
-
                 var data = [
                     {
                         value: fixedProp,
@@ -181,38 +156,21 @@ define(function (require, exports, module) {
                     'click .js_setting': 'setting'
                 },
                 back: {
-                    'tagname': '',
+                    'tagname': 'back',
                     callback: function () {
+                        App.goTo("my_invest")
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['我']
+                    'tagname': 'title', 'value': ['加薪系列']
                 },
-
-                right: [{
-                    'tagname': 'invite', 'value': '',
-                    itemFn: function () {
-                        return '<span class="right_txt_btn user js_invite">邀请好友</span>';
-
-//                        return '<span class="right_tow_btn1 js_setting"></span><span class="right_tow_btn2 js_invite"></span>';
-                    },
-                    callback: function () {
-                        if (window.WebViewJavascriptBridge){
-                    //        var shareConfig={'title': '我正式邀请你加入加薪猫理财,秒拿微信现金红包','url':handle.inviteCode()};
-                            var shareConfig={'title': '能送现金红包的理财平台，你听说过吗？','url':handle.inviteCode(),'desc':'加薪猫提供7%-13%年化收益率的理财产品,首次投资秒送最高35元微信现金红包,身边的好友都抢疯了!'};
-                            window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {
-                                //TODO
-                            })
-                        }else{
-                            payLayer.inviteFriends();
-                        }
-                    }
-                }]
+                setting: function () {
+                    App.goTo('setting');
+                },
+                right: null
             });
         },
-        setting: function () {
-            App.goTo('setting');
-        },
+
         list: function () {
             App.goTo('list');
         },

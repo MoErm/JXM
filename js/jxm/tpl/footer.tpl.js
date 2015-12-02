@@ -3,10 +3,11 @@ define(function (require, exports, module) {
                     '<div class="fixed">' +
                         '<div class="foot_nav">' +
                             '<ul>' +
-                                '<li class="item ico_f_list js_product_list">产品列表</li>' +
-                                '<li class="item ico_f_invest js_my_invest">我的投资</li>' +
+                                '<li class="item ico_f_list">推荐</li>' +
+                                '<li class="item ico_f_invest js_product_list">理财</li>' +
+                                '<li class="item ico_f_invest js_my_invest">我</li>' +
                                 '<li class="item ico_f_setting js_setting">设置</li>' +
-                            '</ul>' +
+        '</ul>' +
                         '</div>' +
                     '</div>' +
                 '</footer>';

@@ -125,7 +125,7 @@ define(function (require, exports, module) {
 				back: {
 					'tagname': 'back',
 					callback: function () {
-						App.goTo("my_invest")
+                        App.goBack()
 					}
 				},
 				right: showContract?[{

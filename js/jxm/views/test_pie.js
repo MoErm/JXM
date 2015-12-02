@@ -28,16 +28,18 @@ define(function (require, exports, module) {
         onShow: function () {
             self.setHeader()
             self.$el.html(test_pie);
-            self.showPie();
+//            self.showPie();
 //            self.showAddress();
             console.log(Date.now())
 
             var hit = document.querySelector("#tradeAmount");
+
             var mc = new hammer(hit);
+
             var cycle=window.document.getElementById("cycle")
 
             mc.get('pinch').set({ enable: true });
-            var debug = document.querySelector("#debug");
+//            var debug = document.querySelector("#debug");
             mc.on("hammer.input", function(ev) {
 //                console.log([ev.srcEvent.type, ev.pointers.length, ev.isFinal, ev.deltaX, ev.deltaY].join("<br>"))
                 if(ev.deltaX!=0){
