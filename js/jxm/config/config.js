@@ -168,11 +168,11 @@ window.global_config = {
             "url": "ttl_buy_two",
             "controller": "ttl_buy_two"
         }, {
-            "url": "ttl_buy_three",
-            "controller": "ttl_buy_three"
+            "url": "ttl_pay_test",
+            "controller": "ttl_pay_test"
         }, {
-            "url": "ttl_buy_success",
-            "controller": "ttl_buy_success"
+            "url": "ttl_pay_success",
+            "controller": "ttl_pay_success"
         }
     ],
     loader: requirejs
@@ -239,6 +239,7 @@ requirejs.config({
         'ttl_buy_one': 'jxm/views/ttl_buy_one',
         'ttl_buy_two': 'jxm/views/ttl_buy_two',
         'ttl_buy_three': 'jxm/views/ttl_buy_three',
-        'ttl_buy_success': 'jxm/views/ttl_buy_success',
+        'ttl_pay_test': 'jxm/views/ttl_pay_test',
+        'ttl_pay_success': 'jxm/views/ttl_pay_success',
     }
 })
