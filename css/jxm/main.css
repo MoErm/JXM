@@ -1340,7 +1340,6 @@ text-align: right}
 
 
 /*-- 天添利 推荐页 --*/
-
 .ttl_recommend_ad{height: 120px;}
 .ttl_recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 15px 0;background: #ffffff; }
 .ttl_recommend_total_l,
@@ -1431,6 +1430,7 @@ text-align: right}
 .ttl_buy_two_action{position: fixed;bottom: 0;left: 0;width: 100%;}
 .ttl_buy_two_action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
 .ttl_buy_two_action .disagree{color: #9b9b9b;}
+
 /*-- 天添利 支付验证 --*/
 .ttl_pay_test{position: fixed;bottom: 0;left: 0;width: 100%;border-radius: 5px 5px 0 0 ;background: #fff;}
 .ttl_pay_test_t{height:45px;line-height: 45px;font-size: 1.8rem; text-align: center;border-bottom: 2px solid #CD1B02; position: relative;}
@@ -1449,18 +1449,22 @@ right: 5px;top:15px;color: #9b9b9b;}
 .ttl_pay_test_b .action .gopay{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 .ttl_pay_test_b .action .tip{text-align: center;margin: 10px auto 0 auto;color: #9b9b9b;}
 .ttl_pay_test_b .action .tip_num{color: #000;}
+
 /*-- 天添利 支付成功 --*/
-
-
-
-
-
-
-
-
-
-
-
+.ttl_pay_success{}
+.ttl_pay_success_t .success_list{width: 80%;margin: 40px auto 0 auto;}
+.ttl_pay_success_t .success_list li{position: relative;height: 80px; padding: 0 0 10px 0;}
+.ttl_pay_success_t .success_list .icon{display: inline-block;width: 60px;height: 60px;position: absolute;left: -30px;top:0;}
+.ttl_pay_success_t .success_list .info{position: absolute;
+left: 50px;top:8px;color:#9b9b9b;}
+.ttl_pay_success_t .success_list .card{border-left: 2px solid #F88C08;}
+.ttl_pay_success_t .success_list .time{border-left: 2px solid #E1E1E1;}
+.ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -74px -71px;}
+.ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -74px -153px;}
+.ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -74px -233px;}
+.ttl_pay_success_t .success_list .sub_total{font-size: 2.5rem;color: #d21c00;}
+.ttl_pay_success_t .success_list .sub_time{font-size: 1.8rem;color: #000;}
+.ttl_pay_success_t .success_list .sub_show{font-size: 2rem;color: #000;}
 
 
 
