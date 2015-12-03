@@ -4,28 +4,23 @@ window.global_config = {
         "root": '/',
         "pushState": false
     },
-    "modules": [
-        {
+    "modules": [{
             "url": "",
             "controller": "index",
             "showLoading": true
-        },
-        {
+        }, {
             "url": "index(/:id)",
             "controller": "index"
         }, {
             "url": "reg",
             "controller": "reg"
-        },
-        {
+        }, {
             "url": "regYY",
             "controller": "regYY"
-        },
-        {
+        }, {
             "url": "login",
             "controller": "login"
-        },
-        {
+        }, {
             "url": "get_password",
             "controller": "get_password"
         }, {
@@ -34,56 +29,43 @@ window.global_config = {
         }, {
             "url": "detail",
             "controller": "detail"
-        },
-        {
+        }, {
             "url": "setting",
             "controller": "setting"
-        },
-        {
+        }, {
             "url": "change_password",
             "controller": "change_password"
-        },
-        {
+        }, {
             "url": "translate_password",
             "controller": "translate_password"
-        },
-        {
+        }, {
             "url": "forget_password",
             "controller": "forget_password"
-        },
-        {
+        }, {
             "url": "forget_password_tips",
             "controller": "forget_password_tips"
-        },
-        {
+        }, {
             "url": "account",
             "controller": "account"
-        },
-        {
+        }, {
             "url": "my_invest",
             "controller": "my_invest"
-        },
-        {
+        }, {
             "url": "my_invest_record",
             "controller": "my_invest_record"
-        },
-        {
+        }, {
             "url": "my_invite",
             "controller": "my_invite"
-        },
-        {
+        }, {
             "url": "bonus",
             "controller": "bonus"
-        },
-        {
+        }, {
             "url": "bonusOpen",
             "controller": "bonusOpen"
-        },
-        {
+        }, {
             "url": "bonusExpired",
             "controller": "bonusExpired"
-        },
-        {
+        }, {
             "url": "my_wallet",
             "controller": "my_wallet"
         },
@@ -91,119 +73,106 @@ window.global_config = {
         {
             "url": "invest_history",
             "controller": "invest_history"
-        },
-        {
+        }, {
             "url": "detail_regular",
             "controller": "detail_regular"
-        },
-        {
+        }, {
             "url": "detail_float",
             "controller": "detail_float"
-        },
-        {
+        }, {
             "url": "bind_card_new",
             "controller": "bind_card_new"
-        },
-        {
+        }, {
             "url": "bind_card_new_step2",
             "controller": "bind_card_new_step2"
-        },
-        {
+        }, {
             "url": "bind_card_new_step3",
             "controller": "bind_card_new_step3"
-        },
-        {
+        }, {
             "url": "rebind_card_step3",
             "controller": "rebind_card_step3"
-        },
-        {
+        }, {
             "url": "rebind_card_step2",
             "controller": "rebind_card_step2"
-        },
-        {
+        }, {
             "url": "rebind_confirm_card",
             "controller": "rebind_confirm_card"
-        },
-        {
+        }, {
             "url": "amount_check",
             "controller": "amount_check"
-        },
-        {
+        }, {
             "url": "add_card",
             "controller": "add_card"
-        },
-        {
+        }, {
             "url": "bind_card",
             "controller": "bind_card"
-        },
-        {
+        }, {
             "url": "rebind_card",
             "controller": "rebind_card"
-        },
-        {
+        }, {
             "url": "confirm_card",
             "controller": "confirm_card"
-        },
-        {
+        }, {
             "url": "info_card",
             "controller": "info_card"
-        },
-        {
+        }, {
             "url": 'set_card_psw',
             'controller': 'set_card_psw'
-        },
-        {
+        }, {
             "url": "get_contract",
             "controller": "get_contract"
-        },
-        {
+        }, {
             "url": "invest_confirm",
             "controller": "invest_confirm"
-        },
-        {
+        }, {
             "url": "about_us",
             "controller": "about_us"
-        },
-        {
+        }, {
             "url": "bind",
             "controller": "bind"
-        },
-        {
+        }, {
             "url": "invest_finish_regular",
             "controller": "invest_finish_regular"
-        },
-        {
+        }, {
             "url": "invest_finish_float",
             "controller": "invest_finish_float"
 
-        },
-        {
+        }, {
             "url": "contract_one",
             "controller": "contract_one"
-        },
-        {
+        }, {
             "url": "contract_two",
             "controller": "contract_two"
-        },
-        {
+        }, {
             "url": "error",
             "controller": "error"
-        },
-        {
+        }, {
             "url": "test_pie",
             "controller": "test_pie"
-        },
-        {
+        }, {
             "url": "contract_three",
             "controller": "contract_three"
-        },
-        {
+        }, {
             "url": "redeem",
             "controller": "redeem"
-        },
-        {
-            "url": "recommend",
-            "controller": "recommend"
+        }, {
+            "url": "ttl_recommend",
+            "controller": "ttl_recommend"
+        }, {
+            "url": "ttl_introduce",
+            "controller": "ttl_introduce"
+        }, {
+            "url": "ttl_buy_one",
+            "controller": "ttl_buy_one"
+        }, {
+            "url": "ttl_buy_two",
+            "controller": "ttl_buy_two"
+        }, {
+            "url": "ttl_buy_three",
+            "controller": "ttl_buy_three"
+        }, {
+            "url": "ttl_buy_success",
+            "controller": "ttl_buy_success"
         }
     ],
     loader: requirejs
@@ -226,12 +195,12 @@ requirejs.config({
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
         'bind_card_new': 'jxm/views/bind_card_new',
-//        'bind_card_new_step2': 'jxm/views/bind_card_new_step2',
-//        'bind_card_new_step3': 'jxm/views/bind_card_new_step3',
+        //        'bind_card_new_step2': 'jxm/views/bind_card_new_step2',
+        //        'bind_card_new_step3': 'jxm/views/bind_card_new_step3',
         'rebind_card_step2': 'jxm/views/rebind_card_step2',
         'rebind_card_step3': 'jxm/views/rebind_card_step3',
         'rebind_confirm_card': 'jxm/views/rebind_confirm_card',
-//        'amount_check': 'jxm/views/amount_check',
+        //        'amount_check': 'jxm/views/amount_check',
         'setting': 'jxm/views/setting',
         'change_password': 'jxm/views/change_password',
         'translate_password': 'jxm/views/translate_password',
@@ -265,7 +234,11 @@ requirejs.config({
         'contract_two': 'jxm/views/contract_two',
         'contract_three': 'jxm/views/contract_three',
         'redeem': 'jxm/views/redeem',
-        'recommend':'jxm/views/recommend'
+        'ttl_recommend': 'jxm/views/ttl_recommend',
+        'ttl_introduce': 'jxm/views/ttl_introduce',
+        'ttl_buy_one': 'jxm/views/ttl_buy_one',
+        'ttl_buy_two': 'jxm/views/ttl_buy_two',
+        'ttl_buy_three': 'jxm/views/ttl_buy_three',
+        'ttl_buy_success': 'jxm/views/ttl_buy_success',
     }
 })
-

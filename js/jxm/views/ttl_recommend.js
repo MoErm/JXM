@@ -1,6 +1,6 @@
-//推荐页面
+//天添利 推荐页
 define(function(require, exports, module) {
-    var recommend = require('jxm/tpl/recommend.tpl');
+    var recommend = require('jxm/tpl/ttl_recommend.tpl');
     var footer = require('jxm/tpl/footer.tpl');
     var snapSvg= require("jxm/utils/snap.svg-min");
     var imageSlider = null;
@@ -65,7 +65,7 @@ define(function(require, exports, module) {
             imageSlider.show();
         },
         initChart: function(){
-            var chartLine= Snap("#chart_line");
+            // var chartLine= Snap("#chart_line");
         }
     })
 })
