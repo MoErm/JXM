@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
     var tpl = 
-    	'<article class="ttl_recommend">\
+    	'<article class="ttl_recommend" id="ttl_recommend">\
     		<div class="ttl_recommend_ad">\
 				<div class="mod_focus">\
 			        <div class="img_box">\
@@ -23,9 +23,7 @@ define(function (require, exports, module) {
 				</div>\
 				<div class="ttl_recommend_detail_m">\
 					<div class="chart">\
-						<svg id="chart_line" width="300" height="100">\
-						    <path d="M0 300 C0 0,80 14,300 1" stroke="#000" fill="none" style="stroke-width: 3px;"></path>\
-						</svg>\
+						<svg id="chart_line" class="chart_line"></svg>\
 						<p class="chart_min"><em>5%</em>起天天加息</p> \
 						<p class="chart_max"><em>12%</em>最高年化收益率</p>\
 					</div>\
@@ -39,7 +37,7 @@ define(function (require, exports, module) {
 					</div>\
 				</div>\
 				<div class="ttl_recommend_detail_b">\
-					<a href="#" class="godetail">查看详情</a>\
+					<a href="#" class="godetail" id="godetail">查看详情</a>\
 				</div>\
             </div>\
         </article>';

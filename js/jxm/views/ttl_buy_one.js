@@ -8,6 +8,9 @@ define(function(require, exports, module) {
         initialize: function() {
             return this;
         },
+        events: {
+            'click #action_buy': 'goBuyTipPage',
+        },
         onShow: function() {
             self = this.initialize();
             //添加内容
@@ -30,5 +33,9 @@ define(function(require, exports, module) {
                 right: null
             });
         },
+        goBuyTipPage: function(e){
+            e.preventDefault(e);
+            App.goTo("ttl_buy_two");
+        }
     })
 })

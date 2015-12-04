@@ -28,7 +28,7 @@ define(function (require, exports, module) {
 			</div>\
 			<div class="ttl_buy_one_b">\
 				<div class="action">\
-					<input type="button" value="确认投资" class="action_buy" id="确认投资"/>\
+					<input type="button" value="确认投资" class="action_buy" id="action_buy"/>\
 					<div class="action_tip">投资并同意<a href="#">《风险提示书》、</a><a href="#">《产品收益权转让及服务协议》</a>所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
 				</div>\
 				<div class="time_tip">\

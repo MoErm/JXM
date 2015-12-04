@@ -8,6 +8,10 @@ define(function(require, exports, module) {
         initialize: function() {
             return this;
         },
+        events: {
+            'click #disagree': 'goDisAgreePage',
+            'click #agree': 'goAgreePage'
+        },
         onShow: function() {
             //隐藏header
             var header = document.querySelector("#header");
@@ -32,7 +36,15 @@ define(function(require, exports, module) {
                     callback: function () {}
                 },
                 right: null
-            });
+            });        
         },
+        goDisAgreePage: function(e){
+            e.preventDefault(e);
+            App.goTo("ttl_buy_one");
+        },
+        goAgreePage: function(e){
+            e.preventDefault(e);
+            App.goTo("ttl_pay_test");
+        }
     })
 })

@@ -7,13 +7,16 @@ define(function(require, exports, module) {
     var self = null;
     module.exports = App.Page.extend({
         initialize: function() {
+            this.header = document.querySelector("#header");
             return this;
+        },
+        events: {
+            'click #godetail': 'goDetailPage',
         },
         onShow: function() {
             self = this.initialize();
             //隐藏header
-            var header = document.querySelector("#header");
-            $(header).hide();
+            $(self.header).hide();
             //添加内容
             self.$el.html(recommend + footer);
             //轮播滚动
@@ -65,7 +68,20 @@ define(function(require, exports, module) {
             imageSlider.show();
         },
         initChart: function(){
-            // var chartLine= Snap("#chart_line");
-        }
+            var chartLine= Snap("#chart_line");
+            var path= 'M0 320 C0 50,0 40,320 0';
+            var drawLine= chartLine.paper.path(path).attr({
+                stroke:"red",
+                strokeWidth:2
+            });
+            // path.animate({
+            //      cx: path.attr("cx") == 50? 150 : 50
+            //  },1000,mina.easeout);
+
+        }, 
+        goDetailPage: function (e) {
+            e.preventDefault();
+            App.goTo("ttl_introduce");
+        },
     })
 })

@@ -1368,9 +1368,9 @@ text-align: right}
 .ttl_recommend_detail_m .info_list .list_two {background: url(../../images/ttl_icon.png) -71px -7px;  }
 .ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon.png) -142px -7px;  }
 .ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon.png) -227px -7px; }
+.ttl_recommend_detail_m .chart_line{height: 140px;width: 100%;}
 .ttl_recommend_detail_b{ margin:0 0 10px 0;}
 .ttl_recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
-
 /*-- 天添利 介绍页 --*/
 .ttl_introduce{}
 .ttl_introduce_t{height: 140px;text-align: center; background: -webkit-linear-gradient(#D01B02, #FD6200);background: -o-linear-gradient(#D01B02, #FD6200);background: linear-gradient(#D01B02, #FD6200);
