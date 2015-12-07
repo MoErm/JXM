@@ -534,7 +534,13 @@ body{background-color: #f2f2f2;}
 .ico_tuijian:before{background-position: -25px -60px; }
 .ico_licai:before{background-position: -81px -60px; }
 .ico_wode:before{background-position: -133px -60px; width: 28px}
-.ico_setting:before{background-position: -192px -60px;width: 24px}
+.ico_setting:before{background-position: -192px -60px;width: 24px;height: 22px}
+
+.ico_tuijian.cur:before{background-position: -25px -91px; }
+.ico_licai.cur:before{background-position: -81px -91px; }
+.ico_wode.cur:before{background-position: -133px -91px; width: 28px}
+.ico_setting.cur:before{background-position: -192px -91px;width: 24px;height: 22px}
+
 .ico_redbao:before{background-position: -45px -38px; }
 .ico_ttl:before{background-position: -80px -38px; }
 .ico_jiaxin:before{background-position: -115px -38px; }

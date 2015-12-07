@@ -29,6 +29,7 @@ define(function (require, exports, module) {
             'click .js_float': 'goFloat',
             'click .ico_arrow': 'goTop',
             'click .redeem_list': 'listBtn',
+            'click .investList': 'invest',
             'click .change_btn': 'sendChange'
         },
         initialize: function () {
@@ -54,11 +55,18 @@ define(function (require, exports, module) {
                 }
             })
         },
+        invest: function(e){
+            e.stopImmediatePropagation();
+            var closest = $(e.currentTarget).closest('.investList');
+            var status = $(closest).data('id');
+           console.log(status)
+        },
         listBtn: function(e){
             e.stopImmediatePropagation();
             var closest = $(e.currentTarget).closest('.redeem_list');
             var status = $(closest).data('id');
-           console.log(status)
+            App.goTo("redemption_detail?ransomId="+status)
+            console.log(status)
         },
         showMoreIn: function () {
             var self = this;
@@ -171,6 +179,13 @@ define(function (require, exports, module) {
                         outPageNum++;
                         outPageTotal=data.data.totalPages;
                         self.data.sended = data.data
+                        var shuhuiFlag=1;
+                        if(data.data.records.length==0){
+                            shuhuiFlag==0;
+                        }else{
+                            shuhuiFlag==1;
+                        }
+                        self.data.shuhuiFlag=shuhuiFlag
                         console.log(self.data)
                         self.$el.html(_.template(Template)(self.data));
                         self.scrollTopListener()
@@ -200,6 +215,15 @@ define(function (require, exports, module) {
 
                     if (data.ret == 0) {
                         self.data = data.data
+                        console.log(1)
+                        console.log(data.data)
+                        var touziFlag=0;
+                        if(data.data.records.length==0){
+                            touziFlag==1;
+                        }else{
+                            touziFlag==1;
+                        }
+                        self.data.touziFlag=touziFlag
                         self.sendedChange()
                         inPageNum++;
                         inPageTotal=data.data.totalPages;

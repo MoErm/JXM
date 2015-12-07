@@ -12,17 +12,32 @@ define(function(require, exports, module) {
         },
         events: {
             'click #godetail': 'goDetailPage',
+            'click .js_setting': 'setting',
+            'click .js_my_invest': 'my_invest',
+            'click .js_product_list': 'list'
         },
         onShow: function() {
             self = this.initialize();
             //隐藏header
             $(self.header).hide();
+
             //添加内容
             self.$el.html(recommend + footer);
+
             //轮播滚动
             self.initAD();
             self.initChart();
-            self.initFooter();            
+            self.initFooter();
+            self.$('.ico_tuijian').addClass('cur');
+        },
+        my_invest:function(){
+          App.goTo("my_invest")
+        },
+        setting: function () {
+            App.goTo('setting');
+        },
+        list: function () {
+            App.goTo('list');
         },
         initAD: function() {
             var container = self.$el.find(".img_box");
@@ -47,7 +62,6 @@ define(function(require, exports, module) {
                 "height": minHeight
             });
 
-            if (!imageSlider) {
                 imageSlider = new App.UI.UIImageSlider({
                     datamodel: {
                         data: imgs,
@@ -62,10 +76,6 @@ define(function(require, exports, module) {
                         window.location.href = e.href;
                     }
                 });
-            } else {
-                imageSlider.datamodel.data = imgs;
-                imageSlider.refresh();
-            }
             imageSlider.show();
         },
         initChart: function(){

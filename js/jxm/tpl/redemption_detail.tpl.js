@@ -7,9 +7,6 @@ define(function (require, exports, module) {
 	    </div>\
 	    <div class="item  ico_chart">\
 	      <p class="txt">到账时间</p>\
-	      <%if(ransomStatus==01){%>\
-	      <p class="tips">T+3个工作日</p>\
-	      <%}else if(ransomStatus==02){%>\
 	      <p class="tips"><%=arrivedDate%></p>\
 	    </div>\
 	  </div>\

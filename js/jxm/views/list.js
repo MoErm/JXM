@@ -25,8 +25,12 @@ define(function (require, exports, module) {
             events: {
                 'click .js_my_invest': 'myInvest',//我的投资
                 'click .js_setting': 'setting',//设置
+                'click .js_ttl': 'js_ttl',//设置
                 'click .js_list_btn': 'listBtn',//购买
                 'click .js_list_item': 'listItem'//产品跳转
+            },
+            js_ttl:function(){
+              App.goTo("ttl_recommend")
             },
             onShow: function () {
                 var query = this.request.query;

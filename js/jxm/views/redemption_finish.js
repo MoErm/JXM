@@ -20,7 +20,7 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             this.setHeader();
-            self.showPage()
+            this.showPage();
 
         },
         showPage:function(){

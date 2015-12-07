@@ -23,6 +23,7 @@ define(function (require, exports, module) {
             'click .js_regular': 'goRegular',
             'click .js_setting': 'setting',
             'click .js_product_list': 'list',
+            'click .js_ttl': 'ttl_recommend',
             'click .invest_tiantian': 'goRedeem',
             'click .js_close': 'goClose',
             'click .invest_invite': 'goInvite',
@@ -32,7 +33,9 @@ define(function (require, exports, module) {
         initialize: function () {
             self = this;
         },
-
+        ttl_recommend:function(){
+            App.goTo("ttl_recommend")
+        },
         goWallet:function(){
             App.goTo("my_wallet")
         },

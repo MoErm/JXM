@@ -390,7 +390,8 @@ define(function (require, exports, module) {
                     this.hide();
                 },
                 doPay:function(){
-                    var tradePassword =self.$('#redeemPwd').val();
+                    App.showLoading()
+                    var tradePassword =$('#redeemPwd').val();
                     var data={
                         'tradePassword':tradePassword,
                         'redeemAmount':redeemValue
@@ -401,7 +402,7 @@ define(function (require, exports, module) {
                         success: function(data){
                             if(data.ret == 0){
                                 App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
-
+                                App.hideLoading();
 
                             }else if(data.ret == 999001) {
                                 handle.goLogin();

@@ -10,6 +10,8 @@ define(function(require, exports, module) {
         },
         events: {
             'click #action_buy': 'goBuyPage',
+            'click #action_get': 'toRedemption'
+
         },
         onShow: function() {
             self = this.initialize();
@@ -20,6 +22,9 @@ define(function(require, exports, module) {
         },        
         initChart: function(){
             // var chartLine= Snap("#chart_line");
+        },
+        toRedemption:function(){
+          App.goTo('redemption')
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();
