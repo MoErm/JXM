@@ -27,7 +27,8 @@ define(function (require, exports, module) {
                 'click .js_setting': 'setting',//设置
                 'click .js_ttl': 'js_ttl',//设置
                 'click .js_list_btn': 'listBtn',//购买
-                'click .js_list_item': 'listItem'//产品跳转
+                'click .js_list_item': 'listItem',//产品跳转
+                'click .ico_f_list': 'goRecommend',//推荐
             },
             js_ttl:function(){
               App.goTo("ttl_recommend")
@@ -447,7 +448,11 @@ define(function (require, exports, module) {
                 if(self.promptAlert){self.promptAlert.hide();}
                 if(self.passAlert){self.passAlert.hide();}
                 self.$el.html('');
-            }
+            },
+            goRecommend: function(){
+
+                App.goTo('ttl_recommend');
+            },
         })
 })
 

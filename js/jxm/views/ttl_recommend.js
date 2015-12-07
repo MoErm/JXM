@@ -1,8 +1,12 @@
 //天添利 推荐页
 define(function(require, exports, module) {
+    var Model = require("jxm/model/model");
     var recommend = require('jxm/tpl/ttl_recommend.tpl');
     var footer = require('jxm/tpl/footer.tpl');
     var snapSvg= require("jxm/utils/snap.svg-min");
+    var getTtlCulInvest = new Model.getTtlCulInvest();
+    var tool = require('jxm/utils/Tool');
+    var handle = new tool();
     var imageSlider = null;
     var self = null;
     module.exports = App.Page.extend({
@@ -11,33 +15,23 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #godetail': 'goDetailPage',
-            'click .js_setting': 'setting',
-            'click .js_my_invest': 'my_invest',
-            'click .js_product_list': 'list'
+            'click #godetail': 'goDetailPage',//查看详情
+            'click .ico_f_list': 'goRecommend',//推荐
+            'click .js_my_invest': 'goMyInvest',//我的投资
+            'click .js_setting': 'goSetting',//设置
         },
         onShow: function() {
             self = this.initialize();
             //隐藏header
             $(self.header).hide();
-
             //添加内容
             self.$el.html(recommend + footer);
-
             //轮播滚动
             self.initAD();
             self.initChart();
-            self.initFooter();
-            self.$('.ico_tuijian').addClass('cur');
-        },
-        my_invest:function(){
-          App.goTo("my_invest")
-        },
-        setting: function () {
-            App.goTo('setting');
-        },
-        list: function () {
-            App.goTo('list');
+            self.initFooter();  
+
+            self.initInvest()          ;
         },
         initAD: function() {
             var container = self.$el.find(".img_box");
@@ -61,39 +55,74 @@ define(function(require, exports, module) {
                 "min-height": minHeight,
                 "height": minHeight
             });
-
-                imageSlider = new App.UI.UIImageSlider({
-                    datamodel: {
-                        data: imgs,
-                        itemFn: function(item) {
-                            return item.src ? '<img width=100% src="' + item.src + '" data-href="' + item.href + '">' : '</img>';
-                        }
-                    },
-                    displayNum: 1,
-                    wrapper: container,
-                    autoPlay: true,
-                    itemClick: function(e) {
-                        window.location.href = e.href;
+            imageSlider = new App.UI.UIImageSlider({
+                datamodel: {
+                    data: imgs,
+                    itemFn: function(item) {
+                        return item.src ? '<img width=100% src="' + item.src + '" data-href="' + item.href + '">' : '</img>';
                     }
-                });
+                },
+                displayNum: 1,
+                wrapper: container,
+                autoPlay: true,
+                itemClick: function(e) {
+                    window.location.href = e.href;
+                }
+            });
             imageSlider.show();
         },
         initChart: function(){
             var chartLine= Snap("#chart_line");
-            var pathPoint= 'M30 110C129 93, 0 11 300 1';
+            var pathPoint= 'M30 110C129 93, 0 11 280 1';
+            var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             var drawLine= chartLine.paper.path(pathPoint).attr({
-                stroke:"#FFB83B",
+                stroke:lineGrad,
                 strokeWidth:2,
                 fill:"none"
             });
+            var tSpanMin= chartLine.paper.text(30,125,["5%","起天天加息"]);
+
+            var tSpanMax= chartLine.paper.text(160,30,["12%","最高年化收益率"]);
         },
         initFooter: function(){
             $(".foot_nav .item").removeClass('cur');
             $(".foot_nav .ico_f_list").addClass('cur');
         },
-        goDetailPage: function (e) {
-            e.preventDefault();
+        initInvest: function(){
+            getTtlCulInvest.exec({
+                type: 'get',
+                success: function(data){
+                    App.hideLoading();
+
+                    if(data.ret == 0){
+                       console.log(data);
+                        App.showLoading();
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                }
+            });
+        },
+        goDetailPage: function () {
+
             App.goTo("ttl_introduce");
-        }
+        },
+        goMyInvest: function(){
+
+            App.goTo('my_invest');
+        },
+        goSetting: function(){
+
+            App.goTo('setting');
+        },
+        goRecommend: function(){
+
+            App.goTo('ttl_recommend');
+        },
     })
 })

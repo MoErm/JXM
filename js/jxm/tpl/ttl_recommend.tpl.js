@@ -24,10 +24,6 @@ define(function (require, exports, module) {
 				<div class="ttl_recommend_detail_m">\
 					<div class="chart">\
 						<svg id="chart_line"></svg>\
-						<em class="start_piont"></em>\
-						<em class="stop_piont"></em>\
-						<p class="chart_min"><em>5%</em>起天天加息</p> \
-						<p class="chart_max"><em>12%</em>最高年化收益率</p>\
 					</div>\
 					<div class="info">\
 						<ul class="info_list">\
@@ -39,7 +35,7 @@ define(function (require, exports, module) {
 					</div>\
 				</div>\
 				<div class="ttl_recommend_detail_b">\
-					<a href="#" class="godetail" id="godetail">查看详情</a>\
+					<input type="button" value="查看详情" class="godetail" id="godetail" />\
 				</div>\
             </div>\
         </article>';
