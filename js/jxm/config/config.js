@@ -4,8 +4,7 @@ window.global_config = {
         "root": '/',
         "pushState": false
     },
-    "modules": [
-        {
+    "modules": [{
             "url": "",
             "controller": "index",
             "showLoading": true
@@ -218,7 +217,25 @@ window.global_config = {
         {
             "url": "recommend",
             "controller": "recommend"
-        }
+        }, {
+            "url": "ttl_recommend",
+            "controller": "ttl_recommend"
+        }, {
+            "url": "ttl_introduce",
+            "controller": "ttl_introduce"
+        }, {
+            "url": "ttl_buy_one",
+            "controller": "ttl_buy_one"
+        }, {
+            "url": "ttl_buy_two",
+            "controller": "ttl_buy_two"
+        }, {
+            "url": "ttl_pay_test",
+            "controller": "ttl_pay_test"
+        }, {
+            "url": "ttl_pay_success",
+            "controller": "ttl_pay_success"}
+
     ],
     loader: requirejs
 }
@@ -241,12 +258,12 @@ requirejs.config({
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
         'bind_card_new': 'jxm/views/bind_card_new',
-//        'bind_card_new_step2': 'jxm/views/bind_card_new_step2',
-//        'bind_card_new_step3': 'jxm/views/bind_card_new_step3',
+        //        'bind_card_new_step2': 'jxm/views/bind_card_new_step2',
+        //        'bind_card_new_step3': 'jxm/views/bind_card_new_step3',
         'rebind_card_step2': 'jxm/views/rebind_card_step2',
         'rebind_card_step3': 'jxm/views/rebind_card_step3',
         'rebind_confirm_card': 'jxm/views/rebind_confirm_card',
-//        'amount_check': 'jxm/views/amount_check',
+        //        'amount_check': 'jxm/views/amount_check',
         'setting': 'jxm/views/setting',
         'change_password': 'jxm/views/change_password',
         'translate_password': 'jxm/views/translate_password',
@@ -280,10 +297,16 @@ requirejs.config({
         'contract_two': 'jxm/views/contract_two',
         'contract_three': 'jxm/views/contract_three',
         'redeem': 'jxm/views/redeem',
+        'ttl_recommend': 'jxm/views/ttl_recommend',
+        'ttl_introduce': 'jxm/views/ttl_introduce',
+        'ttl_buy_one': 'jxm/views/ttl_buy_one',
+        'ttl_buy_two': 'jxm/views/ttl_buy_two',
+        'ttl_buy_three': 'jxm/views/ttl_buy_three',
+        'ttl_pay_test': 'jxm/views/ttl_pay_test',
+        'ttl_pay_success': 'jxm/views/ttl_pay_success',
         'redemption': 'jxm/views/redemption',
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',
         'recommend':'jxm/views/recommend'
     }
 })
-

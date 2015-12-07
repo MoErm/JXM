@@ -1392,3 +1392,147 @@ text-align: right}
 /*.cycle_rotate{-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;}*/
 .cycle_rotate{background: url("../../images/cycle.png") no-repeat;background-size: 300px 300px;background-color:rgba(0,0,0,0); }
 
+
+/*-- 天添利 推荐页 --*/
+.ttl_recommend_ad{height: 120px;}
+.ttl_recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 15px 0;background: #ffffff; }
+.ttl_recommend_total_l,
+.ttl_recommend_total_r{display: inline-block;width: 49%;text-indent: 4rem;}
+.ttl_recommend_total_r{border-left: 1px solid #E6E6E6;}
+.ttl_recommend_total_l .title,
+.ttl_recommend_total_r .title{font-size: 1.5rem;color: #9b9b9b;}
+.ttl_recommend_total_l .number,
+.ttl_recommend_total_r .number{font-size: 2rem; color: #db3710;}
+.ttl_recommend_detail{border-top:1px solid #ECECEC; background: #ffffff;}
+.ttl_recommend_detail_t .head{width: 80%;height: 60px;line-height: 60px; border-bottom: 1px dashed #E6E6E6; margin: 0 auto;color:#9b9b9b;}
+.ttl_recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
+.ttl_recommend_detail_m{padding: 10px  0  0 0}
+.ttl_recommend_detail_m .chart{height: 140px;width: 85%; margin:0 auto 10px auto; border-bottom: 1px solid #E0E0E0;position: relative;}
+.ttl_recommend_detail_m .chart_min,
+.ttl_recommend_detail_m .chart_max{color: #9b9b9b;font-size: 1.4rem;}
+.ttl_recommend_detail_m .chart_min em,
+.ttl_recommend_detail_m .chart_max em{color: #fe6400;font-size: 1.4rem;margin: 0 5px 0 0;}
+.ttl_recommend_detail_m .chart_min {position: absolute;bottom: 10px;left: 40px;}
+.ttl_recommend_detail_m .chart_max {position: absolute;top: 10px;right: 10px;}
+.ttl_recommend_detail_m .start_piont,
+.ttl_recommend_detail_m .stop_piont{position: absolute;display: block; width: 4px;height: 4px;background: #FE6400;border-radius: 4px;}
+.ttl_recommend_detail_m .start_piont{left: 29px;bottom: 28px;}
+.ttl_recommend_detail_m .stop_piont{right: 16px;top: -1px;}
+
+.ttl_recommend_detail_m .info{width: 85%; margin:0 auto 10px auto;overflow: hidden; }
+.ttl_recommend_detail_m .info_list li{display: inline-block;width: 24%; color:#9b9b9b;text-align: center; }
+.ttl_recommend_detail_m .info_list em{display: block;width: 50px;height: 50px;margin: 0 auto;}
+.ttl_recommend_detail_m .info_list .list_one {background: url(../../images/ttl_icon.png) -7px -7px; }
+.ttl_recommend_detail_m .info_list .list_two {background: url(../../images/ttl_icon.png) -71px -7px;  }
+.ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon.png) -142px -7px;  }
+.ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon.png) -227px -7px; }
+.ttl_recommend_detail_m .chart_line{height: 140px;width: 100%;}
+.ttl_recommend_detail_b{ margin:0 0 10px 0;}
+.ttl_recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+/*-- 天添利 介绍页 --*/
+.ttl_introduce{}
+.ttl_introduce_t{height: 140px;text-align: center; background: -webkit-linear-gradient(#D01B02, #FD6200);background: -o-linear-gradient(#D01B02, #FD6200);background: linear-gradient(#D01B02, #FD6200);
+}
+.ttl_introduce_t .earn{display: inline-block;color: #fff;font-size: 1.5rem;padding: 20px 0 0 0;}
+.ttl_introduce_t .earn h2{font-size: 4rem;}
+.ttl_introduce_m{background: #fff;margin: 0 0 10px 0;padding: 10px 0; border-bottom: 1px solid #E6E6E6;}
+.ttl_introduce_m .total,
+.ttl_introduce_m .history{display: inline-block;width: 49%;font-size: 1.5rem;color: #9b9b9b;text-indent: 4rem;}
+.ttl_introduce_m .total h2,
+.ttl_introduce_m .history h2{font-size: 2rem; color: #db3710;}
+.ttl_introduce_b{border-top:1px solid #ECECEC; background: #ffffff;}
+.ttl_introduce_b .title{height: 30px; font-size: 1.5rem;color: #9b9b9b;padding: 10px 0 0 0;}
+.ttl_introduce_b .title em{display: inline-block;width: 30px;height: 30px;margin: 0 0 0 10px; background: url(../../images/ttl_icon.png) -9px -231px;}
+.ttl_introduce_b .chart{padding: 20px 0;}
+.ttl_introduce_b .chart_head{text-align: center;}
+.ttl_introduce_b .chart_head p{font-size: 1.5rem;}
+.ttl_introduce_b .chart_head h2{font-size: 2.5rem;color: #fe6400;}
+.ttl_introduce_b .chart_content{height: 160px;}
+.ttl_introduce_b .action {position: fixed;bottom: 0;left: 0;width: 100%;}
+.ttl_introduce_b .action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
+.ttl_introduce_b .action .action_get{color: #9b9b9b;}
+
+/*-- 天添利 购买页 --*/
+.ttl_buy_one{}
+.ttl_buy_one_t{padding: 10px 0;}
+.ttl_buy_one_t .info_add li{display: inline-block;width: 32%;text-align: center;color: #9b9b9b;}
+.ttl_buy_one_t .info_add .percent{font-size: 2.5rem;color: #db3710;}
+.ttl_buy_one_t .info_add .title,
+.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;}
+.ttl_buy_one_m{padding: 10px 0;background: #fff;border-top: 1px solid #ECECEC;}
+.ttl_buy_one_m .mycard,
+.ttl_buy_one_m .imoney{height: 50px;line-height: 50px; border-bottom: 1px solid #ECECEC;}
+.ttl_buy_one_m .head,
+.ttl_buy_one_m .mycard_info,
+.ttl_buy_one_m .imoney_content{display: inline-block;}
+.ttl_buy_one_m .head{width: 28%;text-indent: 1em;}
+.ttl_buy_one_m .mycard_info,
+.ttl_buy_one_m .imoney_content{width: 70%;}
+.ttl_buy_one_m .imoney_num{width: 100%;height: 50px;}
+.ttl_buy_one_m .mycard {font-size: 1.5rem;}
+.ttl_buy_one_b .action{padding: 20px 0 0 0;}
+.ttl_buy_one_b .action_buy{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+.ttl_buy_one_b .action_tip{width: 80%;margin: 15px auto; color: #9b9b9b;font-size: 1.2rem;}
+.ttl_buy_one_b .action_tip a{color: #b46a25;}
+.ttl_buy_one_b .time_tip{width: 70%;margin: 20px auto;color: #9b9b9b;}
+.ttl_buy_one_b .time_tip .tip_icon{display: inline-block;width: 45px;height: 45px;background: url(../../images/ttl_icon.png) -9px -279px;}
+.ttl_buy_one_b .time_tip .time_tiplist{display: inline-block;float: right; margin: 5px 0 0 0;}
+
+/*-- 天添利 购买提醒页 --*/
+.ttl_buy_two{}
+.ttl_buy_two_tip{width: 85%;margin: 0 auto;text-align: center;}
+.ttl_buy_two_tip .head{padding: 30px 0;font-size: 2.5rem;}
+.ttl_buy_two_tip .list{color: #9b9b9b;line-height: 2;font-size: 1.5rem;}
+.ttl_buy_two_tip .list .cat{width: 157px;height: 50px;margin: 10px auto 0 auto;
+    background: url(../../images/ttl_icon.png) -142px -145px;}
+.ttl_buy_two_action{position: fixed;bottom: 0;left: 0;width: 100%;}
+.ttl_buy_two_action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
+.ttl_buy_two_action .disagree{color: #9b9b9b;}
+
+/*-- 天添利 支付验证 --*/
+.ttl_pay_test{position: fixed;bottom: 0;left: 0;width: 100%;border-radius: 5px 5px 0 0 ;background: #fff;}
+.ttl_pay_test_t{height:45px;line-height: 45px;font-size: 1.8rem; text-align: center;border-bottom: 2px solid #CD1B02; position: relative;}
+.ttl_pay_test_t .close{position: absolute;right: 5px;top: 5px;display: block;width: 26px;height: 26px;border-radius: 26px;background: url(../../images/ttl_icon.png) -314px -17px;}
+.ttl_pay_test_m .paycontent {padding: 20px 0; }
+.ttl_pay_test_m .paycontent li{padding: 15px 0 0 0;}
+.ttl_pay_test_m .paycontent .head{display: inline-block;width: 30%;height: 50px;line-height: 50px; text-indent: 2em;}
+.ttl_pay_test_m .paycontent .test_code,
+.ttl_pay_test_m .paycontent .test_password{display: inline-block;width: 65%;height: 48px;float: right;margin:0 2% 0 0; border:1px solid #E5E5E5;border-radius: 5px;position: relative;}
+.ttl_pay_test_m .paycontent .forget{text-align: right;}
+.ttl_pay_test_m .paycontent .forget_password{margin: 0 20px 0 0;color: #fe6400;}
+.ttl_pay_test_m .paycontent .test_code .title{position: absolute;right: 5px;top:15px;color: #9b9b9b;}
+.ttl_pay_test_m .paycontent .test_code .code,
+.ttl_pay_test_m .paycontent .test_password .password{float: left;}
+.ttl_pay_test_m .paycontent input{line-height: 48px;}
+.ttl_pay_test_b{padding: 0 0 25px 0;}
+.ttl_pay_test_b .action .gopay{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+.ttl_pay_test_b .action .tip{text-align: center;margin: 10px auto 0 auto;color: #9b9b9b;}
+.ttl_pay_test_b .action .tip_num{color: #000;}
+
+/*-- 天添利 支付成功 --*/
+.ttl_pay_success{}
+.ttl_pay_success_t .success_list{width: 80%;margin: 40px auto 0 auto;}
+.ttl_pay_success_t .success_list li{position: relative;height: 80px; padding: 0 0 10px 0;}
+.ttl_pay_success_t .success_list .icon{display: inline-block;width: 60px;height: 60px;position: absolute;left: -30px;top:0;}
+.ttl_pay_success_t .success_list .info{position: absolute;
+left: 50px;top:8px;color:#9b9b9b;}
+.ttl_pay_success_t .success_list .card{border-left: 2px solid #F88C08;}
+.ttl_pay_success_t .success_list .time{border-left: 2px solid #E1E1E1;}
+.ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -74px -71px;}
+.ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -74px -153px;}
+.ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -74px -233px;}
+.ttl_pay_success_t .success_list .sub_total{font-size: 2.5rem;color: #d21c00;}
+.ttl_pay_success_t .success_list .sub_time{font-size: 1.8rem;color: #000;}
+.ttl_pay_success_t .success_list .sub_show{font-size: 2rem;color: #000;}
+
+
+
+
+
+
+
+
+
+
+
+
