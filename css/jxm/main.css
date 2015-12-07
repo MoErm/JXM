@@ -505,6 +505,7 @@ body{background-color: #f2f2f2;}
     
     /*ttl 适配*/
     .page .ttl_recommend_ad{height: 100px;}
+    .page .ttl_recommend_detail_m .info{width: 100%;}
 }
 .redemption_box{background:#ffffff;border-top: 1px #cecece solid;border-bottom: 1px #cecece solid;margin-top: 10px;}
 .redemption_div{font-size: 1.6rem;padding: 15px 20px}
@@ -1451,7 +1452,7 @@ text-align: right}
 .ttl_introduce_b .chart_content{height: 160px;}
 .ttl_introduce_b .action {position: fixed;bottom: 0;left: 0;width: 100%;}
 .ttl_introduce_b .action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
-.ttl_introduce_b .action .action_get{color: #9b9b9b;}
+.ttl_introduce_b .action .lock{color: #9b9b9b;}
 
 /*-- 天添利 购买页 --*/
 .ttl_buy_one{}
