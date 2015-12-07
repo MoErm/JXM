@@ -1,7 +1,7 @@
 //产品列表
 define(function (require, exports, module) {
         var footer = require('jxm/tpl/footer.tpl');
-        var list = require('jxm/tpl/list.tpl');
+        var list = require('jxm/tpl/listForApp.tpl');
         var model = require('jxm/model/model');
         var store = require('jxm/model/store');
         var tool = require('jxm/utils/Tool');
@@ -38,7 +38,8 @@ define(function (require, exports, module) {
                 self.setHeader();
                 handle.share();
                 handle.orientationTips();
-                self.$el.html('<div class="js_content"></div>' + footer);
+                self.$el.html('<div class="mod_focus js_show_ad" style="height:188px"></div><div class="js_content"></div>');
+
                 self.$('.js_product_list').addClass('cur');
 
                     self.getUserInfo();
@@ -54,7 +55,7 @@ define(function (require, exports, module) {
                     success: function(data){
                         if(data.ret == 0){
                             loginStore.set(data.data);
-//                            self.showAd();
+                            self.showAd();
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else{

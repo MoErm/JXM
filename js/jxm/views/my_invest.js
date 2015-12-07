@@ -23,6 +23,7 @@ define(function (require, exports, module) {
             'click .js_regular': 'goRegular',
             'click .js_setting': 'setting',
             'click .js_product_list': 'list',
+            'click .invest_tiantian': 'goRedeem',
             'click .js_close': 'goClose',
             'click .invest_invite': 'goInvite',
             'click .invest_record': 'goRecord',
@@ -31,8 +32,12 @@ define(function (require, exports, module) {
         initialize: function () {
             self = this;
         },
+
         goWallet:function(){
             App.goTo("my_wallet")
+        },
+        goRedeem:function(){
+            App.goTo("redeem")
         },
         goInvite:function(){
             App.goTo("my_invite")

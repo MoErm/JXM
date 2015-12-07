@@ -440,7 +440,6 @@ body{background-color: #f2f2f2;}
 /*iphone6*/
 @media screen and (min-width: 370px) and (max-width: 400px) {
 
-
     .foot_copyright .fixed2{position:fixed;z-index:99;left:0;bottom:0;width:100%;min-height:40px;background-color:#FFF;padding-top: 5px;padding-bottom:5px;}
     .bonus_toast{width: 100%;background-color: #fffae7;height: 110px}
     .bonusExpired_bg1{background-color: #fff9e6;width: 100%;height: 280px;position: absolute}
@@ -473,7 +472,6 @@ body{background-color: #f2f2f2;}
 /*iphone4 5*/
 @media screen  and (max-width: 370px) {
 
-
     .foot_copyright .fixed2{position:static;z-index:99;left:0;bottom:0;width:100%;min-height:40px;background-color:#FFF;padding-top: 5px;padding-bottom:5px;}
     .bonus_toast{width: 100%;background-color: #fffae7;height: 110px}
     .bonusExpired_bg1{background-color: #fff9e6;width: 100%;height: 250px;position: absolute}
@@ -502,7 +500,45 @@ body{background-color: #f2f2f2;}
     .bonus_text{color: #ffffff;text-align: center;position: absolute;width: 70%;margin: 0 15% 0 15%;z-index: 10;font-size: 1.4rem;line-height: 30px;top:240px}
     .bonus_open{text-align: center;position: absolute;width:18%;height:58px;margin: 0 41% 0 41%;z-index: 10;border-radius: 100%;line-height: 58px;font-size: 1.4rem;top:355px}
 }
+.redemption_box{background:#ffffff;border-top: 1px #cecece solid;border-bottom: 1px #cecece solid;margin-top: 10px;}
+.redemption_div{font-size: 1.6rem;padding: 15px 20px}
+.redemption_div:first-child{border-bottom:1px #cecece solid }
+.redemption_div span{display: inline-block;}
+.redemption_div span input{width: 80%;text-align: right}
+.redemption_div span:first-child{width: 30%}
+.redemption_div span:last-child{width: 70%;text-align: right}
+.redemption_tip1{width: 90%;margin: 5px auto;font-size: 1.2rem;  color: #a1a1a1;}
+.redemption_tip1 small{font-size: 1.2rem;color: #d01b02}
+.redemption_tip2{width: 70%;margin: 5px auto;font-size: 1.2rem;  color: #a1a1a1;position: relative}
+.redemption_tip2:before{ background-image:url(../../images/sprite.png);background-repeat:no-repeat;background-size:200px auto;overflow:hidden;background-position: 0px -60px;    content: "";  display: block;    position: absolute;    height: 20px;    width: 20px;    left: 0;    margin-left: -25px;}
+.redemption_btn{color: #ffffff;background:#d01b02;width: 80%;margin: 40px 10% 20px 10%;height:48px;line-height:48px;font-size:2.2rem;text-align:center;border-radius:5px;}
 
+.redemption_title{padding: 5px 3% 5px 3%;color: #333333}
+.redemption_finish_bg{background: #ffffff;border-bottom: 1px solid #cecece;padding-bottom: 20px!important;}
+.investList .redemption_span1{width: 30%;padding: 6px 0;margin: 0}
+.investList .redemption_span2{color: #000000;width: 30%;padding: 6px 0;margin: 0}
+.investList .redemption_span3{;width: 40%;padding: 6px 0;margin: 0;text-align: right}
+
+.payRedeem{border-top-left-radius: 5px;border-top-right-radius: 5px;position:fixed;bottom:0;z-index: 9999;background: #ffffff;width: 100%;right: 0}
+.payRedeem .payRedeem_title{width: 100%;text-align: center;position: relative;border-bottom: 1px solid #d01b02;height: 48px;line-height: 48px;font-size: 1.8rem}
+.payRedeem .payRedeem_close:after{ background-image:url(../../images/sprite.png);background-repeat:no-repeat;background-size:200px auto;overflow:hidden;background-position: -180px -199px;content: "";display: block;position: absolute;height: 21px;width: 20px;right: 0;margin-right: 20px;top: 0;margin-top: 12px}
+.payRedeem_input {width: 90%;margin: 40px auto 0 auto}
+.payRedeem_input input{padding: 10px;max-width: 100%;min-width:60%;border: 1px solid #a1a1a1;border-radius: 5px;margin-left: 20px}
+.payRedeem_forget{color: goldenrod;text-align: right;display: block;margin-right: 30px}
+.payRedeem_btn{color: #ffffff;background:#d01b02;width: 80%;height:48px;line-height:48px;font-size:2.2rem;text-align:center;border-radius:5px;}
+.payRedeem_margin{margin: 30px 10% 20px 10%;}
+
+.ico_card:before,.ico_redbao:before,.ico_ttl:before,.ico_jiaxin:before,.ico_yaoqing:before{content:'';background-image:url(../../images/sprite_2.png);background-repeat:no-repeat;background-size:400px auto;overflow:hidden;}
+.ico_redbao:before,.ico_ttl:before,.ico_jiaxin:before,.ico_yaoqing:before{display:inline-block;width:22px;height: 26px;vertical-align:middle;margin-right:6px;}
+.ico_tuijian:before,.ico_licai:before,.ico_wode:before,.ico_setting:before{width: 21px;height: 21px;vertical-align:middle;margin-right:6px;content:'';background-image:url(../../images/sprite_2.png);background-repeat:no-repeat;background-size:250px auto;overflow:hidden;}
+.ico_tuijian:before{background-position: -25px -60px; }
+.ico_licai:before{background-position: -81px -60px; }
+.ico_wode:before{background-position: -133px -60px; width: 28px}
+.ico_setting:before{background-position: -192px -60px;width: 24px}
+.ico_redbao:before{background-position: -45px -38px; }
+.ico_ttl:before{background-position: -80px -38px; }
+.ico_jiaxin:before{background-position: -115px -38px; }
+.ico_yaoqing:before{background-position: -145px -38px; }
 /*-- start--*/
 .mod_page{position:relative;margin-top: 0;}
 .mod_page ~ .foot_copyright .fixed{background:#f2f2f2;}
@@ -756,14 +792,30 @@ text-align: right}
 .redeem_select .select_title_l{float: left;width: 49.5%;text-align: center;border-bottom: 1px solid #d01b02;border-top: 1px solid #d01b02;border-left: 1px solid #d01b02;padding: 5px 0;color: #d01b02;border-bottom-left-radius: 5px;border-top-left-radius: 5px;background-color: #ffffff}
 .redeem_select .select_title_r{float: left;width: 49.5%;text-align: center;border-bottom: 1px solid #d01b02;border-top: 1px solid #d01b02;border-right: 1px solid #d01b02;padding: 5px 0;color: #d01b02;border-bottom-right-radius: 5px;border-top-right-radius: 5px;background-color: #ffffff}
 .redeem_select .selected{color: #ffffff;background-color: #d01b02}
-.investList{padding:10px 3%!important;}
+.investList{padding:10px 3% 0 3%!important;}
 .investList .detail{color: #000000}
-.investList span{display: inline-block;font-size: 1.6rem;color: #a7a7a7;margin: 5px 3%;margin-left: 10px;width: 30%}
+.investList span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px 3%;margin-left: 10px;width: 30%}
 .investList .logo{width:88%;position: relative;padding-left: 30px;border-top: 1px dashed #cecece;padding-top: 5px}
-.investList .logo img{padding: 0;margin: 0;position: absolute;left: 0;width: 24px}
+.investList .logo img{padding: 0;margin: 0;position: absolute;left: 0;width: 20px}
 
-.redeem_list{padding:10px!important;}
-.redeem_list span{display: inline-block;font-size: 1.6rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 30%}
+.redeem_list{padding:10px!important;position: relative}
+.afterArrow::after{
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    margin-top: 38px;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    margin-right: 30px;
+    border-left: 2px solid #b5b5b5;
+    border-bottom: 2px solid #b5b5b5;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+.redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 30%}
 .redeem_list .detail{color: #000000}
 
 .my_invest{margin: 0 0;padding: 0 10px 10px 10px;border-bottom:dashed 1px #cecece}
@@ -1013,8 +1065,10 @@ text-align: right}
 .finish_regular > .item{position:relative;padding-left:60px;padding-top:4px;}
 .finish_regular > .item::before,.finish_regular > .item::after{position:absolute;content:'';overflow:hidden;}
 .finish_regular .item_finish{height:90px;font-size:2.4rem;color: #d21c00;padding-top:6px;}
+.finish_regular .item_redeem{height:90px;font-size:1.8rem;color: #d21c00;padding-top:6px;}
+.finish_regular .item_redeem p{font-size: 1.4rem; color: #999;}
 .finish_regular .item_start{height:92px;}
-.finish_regular .item_finish::after,
+.finish_regular .item_finish::after,.finish_regular .item_redeem::after,
 .finish_regular .item_start::after{left:23px;top: 48px;bottom:2px;width:1px;background-color: #dcdcdc;}
 .finish_regular .item_end{height:46px;}
 .finish_regular .item_end::after{display:none;}

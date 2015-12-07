@@ -1,15 +1,27 @@
 define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page">\
-	<div class="redemption_box">\
-        <div class="redemption_div"><span>总资产</span><span>1000&ensp;元</span></div>\
-        <div class="redemption_div"><span>赎回金额</span><span><input type="tel" placeholder="100元起赎">&ensp;元</span></div>\
-	</div>\
-	<p class="redemption_tip1">今日还可以赎回<small>1000</small>元&ensp;&ensp;剩余赎回次数<small>2</small>次</p>\
-	<button class="redemption_btn">确认赎回</button>\
-	<div class="redemption_tip2">余额小于100元需一次性全额赎回<br>\
-    预计赎回金额t+3个工作日返回至银行账户<br>\
-    实际到账时间根据银行而定</div>\
+	  <div class="finish_regular redemption_finish_bg" style="">\
+	    <div class="item item_redeem ico_finish ">赎回金额<i class="numb"><%=redeemAmount%>元&ensp; <%if(ransomId==-1){%>等待银行处理中<%}%></i><br>\
+	    <p><%=redeemTime%></p>\
+	    </div>\
+	    <div class="item  ico_chart">\
+	      <p class="txt">到账时间</p>\
+	      <p class="tips">T+3个工作日</p>\
+	    </div>\
+	  </div>\
+	  <%if(ransomId!=-1){%>\
+	  <h3 class="redemption_title">从以下订单赎回:</h3>\
+	 <div id="invest_page">\
+       <ul class="invest_list" id="invest_record">\
+	    <li  class="v_mod item investList">\
+	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2">2014/11/11</span><span class="redemption_span3" style="color: #000000">-10000.00</span><br>\
+	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2">5.007%</span><span class="redemption_span3">1000.00+100.00</span><br>\
+	    	<span class="logo"><img src="http://test.jiaxinmore.com/resource/bankLogo/guangda.png"   alt="">招商银行(尾号1233)</span>\
+   		</li>\
+	  </ul>\
+        </div>\
+        <%}%>\
 	</article>';
 	module.exports = tpl;
 })

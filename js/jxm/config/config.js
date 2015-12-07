@@ -32,6 +32,9 @@ window.global_config = {
             "url": "list",
             "controller": "list"
         }, {
+            "url": "listForApp",
+            "controller": "listForApp"
+        }, {
             "url": "detail",
             "controller": "detail"
         },
@@ -202,6 +205,17 @@ window.global_config = {
             "controller": "redeem"
         },
         {
+            "url": "redemption",
+            "controller": "redemption"
+        },
+        {
+            "url": "redemption_finish",
+            "controller": "redemption_finish"
+        },  {
+            "url": "redemption_detail",
+            "controller": "redemption_detail"
+        },
+        {
             "url": "recommend",
             "controller": "recommend"
         }
@@ -222,6 +236,7 @@ requirejs.config({
         'index': 'jxm/views/index',
         'detail': 'jxm/views/detail',
         'list': 'jxm/views/list',
+        'listForApp': 'jxm/views/listForApp',
         'reg': 'jxm/views/reg',
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
@@ -265,6 +280,9 @@ requirejs.config({
         'contract_two': 'jxm/views/contract_two',
         'contract_three': 'jxm/views/contract_three',
         'redeem': 'jxm/views/redeem',
+        'redemption': 'jxm/views/redemption',
+        'redemption_finish': 'jxm/views/redemption_finish',
+        'redemption_detail': 'jxm/views/redemption_detail',
         'recommend':'jxm/views/recommend'
     }
 })

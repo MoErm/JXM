@@ -1,33 +1,17 @@
 define(function (require, exports, module) {
     var Model = require("jxm/model/model");
-    var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
-    var Template = require("jxm/tpl/redeem.tpl");
-    var redeem_invest = require("jxm/tpl/redeem_invest.tpl");
-    var redeem_back= require("jxm/tpl/redeem_back.tpl");
-    var Footer = require("jxm/tpl/footer.tpl");
-    var myChange = new Model.myChange();
-    var sendedChange = new Model.sendedChange();
-    var Store = require("jxm/model/store");
-    var loginStore = new Store.loginStore();
+    var Template = require("jxm/tpl/redemption.tpl");
     var tool = require('jxm/utils/Tool')
+    var toRedeem = new Model.toRedeem();
     var handle = new tool();
     var payLayer = require("jxm/common/common");
-    var showPageFlag=1;
-    var self;
-    var outPageNum=1;
-    var outPageTotal;
-    var inPageTotal;
-    var inPageNum=1;
+    var message = '网络错误，请稍后重试';
     //接口
     module.exports = App.Page.extend({
         events: {
-            'click #invest': 'chang2',
-            'click #redeem': 'chang',
-            'click .js_float': 'goFloat',
-            'click .ico_arrow': 'goTop',
-            'click .redeem_list': 'listBtn',
-            'click .change_btn': 'sendChange'
+            'input #redeemValue': 'autoInput',//获取开户行信息
+            'click .redemption_btn': 'payRedeem'
         },
         initialize: function () {
             self = this;
@@ -35,187 +19,67 @@ define(function (require, exports, module) {
         goTop:function(){
             $(window).scrollTop(0)
         },
-        scrollTopListener:function(){
-            $(window).bind('scroll', function(){
-                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-                    if(showPageFlag==1){
-                        if(inPageNum>inPageTotal){
-                            return
-                        }
-                        self.showMoreIn()
-                    }else{
-                        if(outPageNum>outPageTotal){
-                            return
-                        }
-                        self.showMoreOut()
-                    }
-                }
-            })
-        },
-        listBtn: function(e){
-            e.stopImmediatePropagation();
-            var closest = $(e.currentTarget).closest('.redeem_list');
-            var status = $(closest).data('id');
-           console.log(status)
-        },
-        showMoreIn: function () {
-            var self = this;
-            myChange.set({
-                'page':inPageNum
-            });
-            return myChange.exec({
-                type: 'get',
-                success: function (data) {
-
-                    if (data.ret == 0) {
-                        inPageNum++;
-
-                        var inHtml=_.template(redeem_invest)(data.data)
-                        var html=self.$('#invest_record')[0].innerHTML
-                        html=html+inHtml
-                        self.$('#invest_record').html(html)
-
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || '网络错误');
-                    }
-                },
-                error: function () {
-                    App.hideLoading();
-                    App.showToast('网络错误');
-                }
-            })
-        },
-        showMoreOut:function(){
-
-            sendedChange.set({
-                'page':outPageNum
-            });
-            return sendedChange.exec({
-                type: 'get',
-                success: function (data) {
-
-                    if (data.ret == 0) {
-                        outPageNum++;
-
-                       var outHtml= _.template(redeem_back)(data.data)
-                        var html=self.$('#redeem_record')[0].innerHTML
-                        html=html+outHtml
-                        self.$('#redeem_record').html(html)
-
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || '网络错误');
-                    }
-                },
-                error: function () {
-                    App.hideLoading();
-                    App.showToast('网络错误');
-                }
-            })
-        },
-
-
-        invest: function(){
-            App.goTo('my_invest');
-        },
-        chang:function(){
-            var className=document.getElementById('invest').className;
-            if(className.indexOf("selected")>0){
-                showPageFlag=0
-                $(window).scrollTop(0)
-                self.$('#redeem').addClass("selected");
-                self.$('#invest').removeClass("selected");
-                self.$('#redeem_page').css("display","block")
-                self.$('#invest_page').css("display","none")
-            }
-        },
-        chang2:function(){
-            var className=document.getElementById('redeem').className;
-            if(className.indexOf("selected")>0){
-                showPageFlag=1
-                $(window).scrollTop(0)
-                self.$('#invest').addClass("selected");
-                self.$('#redeem').removeClass("selected");
-                self.$('#redeem_page').css("display","none")
-                self.$('#invest_page').css("display","block")
-            }
-        },
-
-
 
         onShow: function () {
             handle.share();
             this.setHeader();
-            outPageNum=1;
-            inPageNum=1;
-            return this.myChange();
+            self.showUser()
+
+
         },
-
-
-        sendedChange:function(){
-            App.showLoading();
-            sendedChange.set({
-                'page':outPageNum
-            });
-            return sendedChange.exec({
+        autoInput:function(){
+            var redeemValue = handle.deleteAllBlank(self.$('#redeemValue').val());
+            if(redeemValue>self.data.totalAmount){
+                self.$('#redeemValue').val(self.data.totalAmount)
+            }
+        },
+        showUser:function(){
+            toRedeem.exec({
                 type: 'get',
-                success: function (data) {
-                    App.hideLoading();
-                    if (data.ret == 0) {
-                        outPageNum++;
-                        outPageTotal=data.data.totalPages;
-                        self.data.sended = data.data
-                        console.log(self.data)
-                        self.$el.html(_.template(Template)(self.data));
-                        self.scrollTopListener()
-                        if(self.data.sended.items){
+                success: function(data){
+                    console.log(data)
+                    if(data.ret == 0){
+                        self.data=data.data
+                        self.$el.html(_.template(Template)(data.data));
 
-
-                        }
-                    } else if (data.ret == 999001) {
+                    }else if(data.ret == 999001) {
                         handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || '网络错误');
                     }
+
+
                 },
-                error: function () {
+                error: function(){
                     App.hideLoading();
-                    App.showToast('网络错误');
+                    App.showToast(message);
                 }
             })
         },
-        myChange: function () {
-            var self = this;
-            App.showLoading();
-            myChange.set({
-                'page':inPageNum
-            });
-            return myChange.exec({
-                type: 'get',
-                success: function (data) {
+        payRedeem:function(){
+//            if(self.data.totalAmount==0){
+//                App.showToast("您可赎回金额为零，请先投资")
+//                return
+//            }
+            if(self.data.todaySurplusTimes==0){
+                App.showToast("今日赎回次数已用完，请明日再来")
+                return
+            }
+            if(self.data.todaySurplusAmount==0){
+                App.showToast("今日赎回限额已用完，请明日再来")
+                return
+            }
+            var redeemValue = handle.deleteAllBlank(self.$('#redeemValue').val());
+            if(redeemValue==""){
+                App.showToast("请输入赎回金额")
+                return
+            }
+            if(self.data.totalAmount-redeemValue<100&&self.data.totalAmount-redeemValue!=0){
+                self.promptAlert = handle.alert("当前赎回金额将导致剩余总资产小于100元， 请务必一次性全部赎回");
+                self.promptAlert.show();
+                return
+            }
 
-                    if (data.ret == 0) {
-                        self.data = data.data
-                        self.sendedChange()
-                        inPageNum++;
-                        inPageTotal=data.data.totalPages;
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || '网络错误');
-                    }
-                },
-                error: function () {
-                    App.hideLoading();
-                    App.showToast('网络错误');
-                }
-            })
+            payLayer.payRedeem(redeemValue)
         },
-
-
         setHeader: function () {
             var header = new App.UI.UIHeader();
             header.set({
@@ -227,7 +91,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['我的红包']
+                    'tagname': 'title', 'value': ['赎回']
                 },
                 right:null
             });
