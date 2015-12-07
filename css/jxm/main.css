@@ -468,6 +468,9 @@ body{background-color: #f2f2f2;}
     .bonus_page {width: 100%;height: 583px;position: relative;background-color: #fff9e6}
     .bonus_text{color: #ffffff;text-align: center;position: absolute;width: 70%;margin: 0 15% 0 15%;z-index: 10;font-size: 1.6rem;line-height: 40px;top:280px}
     .bonus_open{text-align: center;position: absolute;width:18%;height:68px;margin: 0 41% 0 41%;z-index: 10;border-radius: 100%;line-height: 68px;font-size: 1.8rem;top:410px}
+    
+    /*ttl 适配*/
+    .page .ttl_recommend_ad{height: 120px;}
 }
 
 /*iphone4 5*/
@@ -501,6 +504,9 @@ body{background-color: #f2f2f2;}
     .bonus_page {width: 100%;height: 524px;position: relative;background-color: #fff9e6}
     .bonus_text{color: #ffffff;text-align: center;position: absolute;width: 70%;margin: 0 15% 0 15%;z-index: 10;font-size: 1.4rem;line-height: 30px;top:240px}
     .bonus_open{text-align: center;position: absolute;width:18%;height:58px;margin: 0 41% 0 41%;z-index: 10;border-radius: 100%;line-height: 58px;font-size: 1.4rem;top:355px}
+    
+    /*ttl 适配*/
+    .page .ttl_recommend_ad{height: 100px;}
 }
 
 /*-- start--*/
@@ -1340,7 +1346,7 @@ text-align: right}
 
 
 /*-- 天添利 推荐页 --*/
-.ttl_recommend_ad{height: 120px;}
+.ttl_recommend_ad{height: 130px;}
 .ttl_recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 15px 0;background: #ffffff; }
 .ttl_recommend_total_l,
 .ttl_recommend_total_r{display: inline-block;width: 49%;text-indent: 4rem;}
@@ -1354,17 +1360,6 @@ text-align: right}
 .ttl_recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
 .ttl_recommend_detail_m{padding: 10px  0  0 0}
 .ttl_recommend_detail_m .chart{height: 140px;width: 85%; margin:0 auto 10px auto; border-bottom: 1px solid #E0E0E0;position: relative;}
-.ttl_recommend_detail_m .chart_min,
-.ttl_recommend_detail_m .chart_max{color: #9b9b9b;font-size: 1.4rem;}
-.ttl_recommend_detail_m .chart_min em,
-.ttl_recommend_detail_m .chart_max em{color: #fe6400;font-size: 1.4rem;margin: 0 5px 0 0;}
-.ttl_recommend_detail_m .chart_min {position: absolute;bottom: 10px;left: 40px;}
-.ttl_recommend_detail_m .chart_max {position: absolute;top: 10px;right: 10px;}
-.ttl_recommend_detail_m .start_piont,
-.ttl_recommend_detail_m .stop_piont{position: absolute;display: block; width: 4px;height: 4px;background: #FE6400;border-radius: 4px;}
-.ttl_recommend_detail_m .start_piont{left: 29px;bottom: 28px;}
-.ttl_recommend_detail_m .stop_piont{right: 16px;top: -1px;}
-
 .ttl_recommend_detail_m .info{width: 85%; margin:0 auto 10px auto;overflow: hidden; }
 .ttl_recommend_detail_m .info_list li{display: inline-block;width: 24%; color:#9b9b9b;text-align: center; }
 .ttl_recommend_detail_m .info_list em{display: block;width: 50px;height: 50px;margin: 0 auto;}

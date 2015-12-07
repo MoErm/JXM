@@ -26,7 +26,8 @@ define(function (require, exports, module) {
                 'click .js_my_invest': 'myInvest',//我的投资
                 'click .js_setting': 'setting',//设置
                 'click .js_list_btn': 'listBtn',//购买
-                'click .js_list_item': 'listItem'//产品跳转
+                'click .js_list_item': 'listItem',//产品跳转
+                'click .ico_f_list': 'goRecommend',//推荐
             },
             onShow: function () {
                 var query = this.request.query;
@@ -443,7 +444,11 @@ define(function (require, exports, module) {
                 if(self.promptAlert){self.promptAlert.hide();}
                 if(self.passAlert){self.passAlert.hide();}
                 self.$el.html('');
-            }
+            },
+            goRecommend: function(){
+
+                App.goTo('ttl_recommend');
+            },
         })
 })
 

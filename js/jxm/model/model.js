@@ -236,7 +236,14 @@
         checkTradePwdChinaPay:initModel({
             url:host+"/api/chinapay/checkTradePwd"
         }),
-
+        //获取累计投资信息
+        getTtlCulInvest: initModel({
+        	url:host+"/api/demand"
+        }),
+        //获取收益率接口
+        getTtlRate: initModel({
+        	url:host+"/api/rate"
+        }),
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
