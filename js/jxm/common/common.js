@@ -2,6 +2,7 @@ define(function (require, exports, module) {
     var Model = require("jxm/model/model");
     var store = require('jxm/model/store');
     var payOrderMode = new Model.payOrder();
+    var confirmRedeem = new Model.confirmRedeem();
     var getMsgCodeModel= new Model.getMsgCodeModel();
     var checkOrder= new Model.checkOrder();
     var abortChange= new Model.abortChange();
@@ -371,6 +372,59 @@ define(function (require, exports, module) {
             });
             popwin.show();
             },
+        payRedeem: function(redeemValue){
+            var tem='<div class="payRedeem">\
+                        <div class="payRedeem_title">交易密码<div class="payRedeem_close"></div></div>\
+                        <div class="payRedeem_input">交易密码<input type="password" id="redeemPwd" maxlength="12"></div>\
+                        <p class="payRedeem_forget">忘记交易密码？</p>\
+                        <button class="payRedeem_btn payRedeem_margin">确认赎回</button>\
+                    </div>';
+            var popwin = new App.UI.UIPopWin({
+                events:{
+                    "click .payRedeem_close":"onHideLayer",
+                    "click .payRedeem_btn":"doPay"
+                },
+                maskToHide: false,
+                template:tem,
+                onHideLayer: function () {
+                    this.hide();
+                },
+                doPay:function(){
+                    var tradePassword =self.$('#redeemPwd').val();
+                    var data={
+                        'tradePassword':tradePassword,
+                        'redeemAmount':redeemValue
+                    }
+                    confirmRedeem.set(data)
+                    confirmRedeem.exec({
+                        type: 'post',
+                        success: function(data){
+                            if(data.ret == 0){
+                                App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
+
+
+                            }else if(data.ret == 999001) {
+                                handle.goLogin();
+                            }else{
+                                self.promptAlert = handle.alert(data.msg);
+                                self.promptAlert.show();
+                            }
+                        },
+                        error: function(){
+                            App.hideLoading();
+                            App.showToast(message);
+                        }
+                    })
+
+                    this.hide();
+                },
+                onShow: function(){
+
+                }
+            });
+            popwin.show();
+        },
+
         //邀请好友
         sendBonus: function(isHideShareBar,url){
             var popwin = new App.UI.UIPopWin({

@@ -236,6 +236,30 @@
         checkTradePwdChinaPay:initModel({
             url:host+"/api/chinapay/checkTradePwd"
         }),
+        //赎回页跳转接口
+        toRedeem:initModel({
+            url:host+"/api/demand/toRedeem"
+        }),
+        //赎回页跳转接口
+        confirmRedeem:initModel({
+            url:host+"/api/demand/confirmRedeem"
+        }),
+           //投资记录查询接口
+        getUserOrderRecords:initModel({
+            url:host+"/api/demand/getUserOrderRecords"
+        }),
+        //赎回记录查询接口
+        getUserRansomRecords:initModel({
+            url:host+"/api/demand/getUserRansomRecords"
+        }),
+           //订单详情接口
+        getOrderDetails:initModel({
+            url:host+"/api/demand/getOrderDetails"
+        }),
+        //赎回详情接口
+        getRansomDetails:initModel({
+            url:host+"/api/demand/getRansomDetails"
+        }),
         //获取累计投资信息
         getTtlCulInvest: initModel({
         	url:host+"/api/demand"
@@ -244,6 +268,7 @@
         getTtlRate: initModel({
         	url:host+"/api/rate"
         }),
+
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"

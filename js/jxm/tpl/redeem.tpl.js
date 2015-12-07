@@ -8,36 +8,38 @@ define(function (require, exports, module) {
        </div>\
        <div style="clear: both;height: 42px"></div>\
        <div id="invest_page">\
-       <ul class="invest_list" >\
-	  	<% _.each(items, function(order){%>\
+       <ul class="invest_list" id="invest_record">\
+	  	<% _.each(records, function(order){%>\
 	    <li  class="v_mod item investList">\
-	        <p class="status status2 <%if(order.status != "01") {%>status_fail<% } %>"><%=order.statusDesc%></p>\
-	    	<span >投资金额</span><span class="detail">1000元</span><br>\
-	    	<span >预计到期日</span><span class="detail">2015/11/15</span><br>\
-	    	<span >今日收益率</span><span class="detail">5.000%</span><br>\
-	    	<span class="logo"><img src="http://test.jiaxinmore.com/resource/bankLogo/guangda.png"   alt="">招商银行(尾号1233)</span>\
+	        <p class="status status2 <%if(order.orderStatus == "08") {%>status_fail<% } %>"><%=order.orderStatusDesc%></p>\
+	    	<span >投资金额</span><span class="detail"><%=order.investAmount%></span><br>\
+	    	<span >预计到期日</span><span class="detail"><%=order.orderDate%></span><br>\
+	    	<span >今日收益率</span><span class="detail"><%=order.currentRate%>%</span><br>\
+	    	<span class="logo"><img src="<%=order.bankLogo%>"   alt=""><%=order.bankName%>(尾号<%=order.cardTailNo%>)</span>\
    		</li>\
    		<% })%>\
 	  </ul>\
         </div>\
        <div id="redeem_page" style="display: none">\
 	  \
-	  <% if(isEmpty==0) {%>\
-	   <ul class="invest_list" id="inList">\
-	  	<% _.each(items, function(order){%>\
-	    <li  class="v_mod item redeem_list">\
-	        <p class="status status2 <%if(order.status != "01") {%>status_fail<% } %>"><%=order.statusDesc%></p>\
-	    	<span >赎回金额</span><span class="detail">1000元</span><br>\
-	    	<span >赎回日期</span><span class="detail">2015/11/15</span><br>\
+	 \
+	   <ul class="invest_list" id="redeem_record">\
+	  	<% _.each(sended.records, function(order){%>\
+	    <li  class="v_mod item redeem_list" data-id="<%=order.ransomId%>">\
+	        <div class="afterArrow">\
+	        <p class="status status2"><%=order.orderStatusDesc%></p>\
+	    	<span >赎回金额</span><span class="detail"><%=order.ransomAmount%></span><br>\
+	    	<span >赎回日期</span><span class="detail"><%=order.ransomDate%></span><br>\
+	    	</div>\
    		</li>\
    		<% })%>\
 	  </ul>\
-	  <%} else{%>\
+	 \
 	  	\
 	  	\
 	  <div class="no_products ico_logo">暂无投资记录</div>\
 	  \
-	  <% } %>\
+	  \
 	  </div>\
 	</article>';
 	module.exports = tpl;

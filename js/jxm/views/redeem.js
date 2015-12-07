@@ -3,11 +3,13 @@ define(function (require, exports, module) {
     var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
     var Template = require("jxm/tpl/redeem.tpl");
-    var TemplateSent = require("jxm/tpl/my_walletSent.tpl");
-    var TemplateGotton= require("jxm/tpl/my_walletGotton.tpl");
+    var redeem_invest = require("jxm/tpl/redeem_invest.tpl");
+    var redeem_back= require("jxm/tpl/redeem_back.tpl");
     var Footer = require("jxm/tpl/footer.tpl");
     var myChange = new Model.myChange();
     var sendedChange = new Model.sendedChange();
+    var getUserOrderRecords = new Model.getUserOrderRecords();
+    var getUserRansomRecords = new Model.getUserRansomRecords();
     var Store = require("jxm/model/store");
     var loginStore = new Store.loginStore();
     var tool = require('jxm/utils/Tool')
@@ -26,6 +28,7 @@ define(function (require, exports, module) {
             'click #redeem': 'chang',
             'click .js_float': 'goFloat',
             'click .ico_arrow': 'goTop',
+            'click .redeem_list': 'listBtn',
             'click .change_btn': 'sendChange'
         },
         initialize: function () {
@@ -51,22 +54,28 @@ define(function (require, exports, module) {
                 }
             })
         },
+        listBtn: function(e){
+            e.stopImmediatePropagation();
+            var closest = $(e.currentTarget).closest('.redeem_list');
+            var status = $(closest).data('id');
+           console.log(status)
+        },
         showMoreIn: function () {
             var self = this;
-            myChange.set({
+            getUserOrderRecords.set({
                 'page':inPageNum
             });
-            return myChange.exec({
+            return getUserOrderRecords.exec({
                 type: 'get',
                 success: function (data) {
 
                     if (data.ret == 0) {
                         inPageNum++;
 
-                        var inHtml=_.template(TemplateGotton)(data.data)
-                        var html=self.$('#inList')[0].innerHTML
+                        var inHtml=_.template(redeem_invest)(data.data)
+                        var html=self.$('#invest_record')[0].innerHTML
                         html=html+inHtml
-                        self.$('#inList').html(html)
+                        self.$('#invest_record').html(html)
 
                     } else if (data.ret == 999001) {
                         handle.goLogin();
@@ -82,29 +91,21 @@ define(function (require, exports, module) {
         },
         showMoreOut:function(){
 
-            sendedChange.set({
+            getUserRansomRecords.set({
                 'page':outPageNum
             });
-            return sendedChange.exec({
+            return getUserRansomRecords.exec({
                 type: 'get',
                 success: function (data) {
 
                     if (data.ret == 0) {
                         outPageNum++;
 
-                       var outHtml= _.template(TemplateSent)(data.data)
-                        var html=self.$('#outList')[0].innerHTML
+                       var outHtml= _.template(redeem_back)(data.data)
+                        var html=self.$('#redeem_record')[0].innerHTML
                         html=html+outHtml
-                        self.$('#outList').html(html)
-                        if(data.data.items){
+                        self.$('#redeem_record').html(html)
 
-
-                            for(var i=0;i<self.data.sended.items.length;i++){
-                                var item=self.data.sended.items[i]
-
-                                self.showChange(item.cid,item.totalCount,item.surplusCount)
-                            }
-                        }
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
@@ -117,36 +118,7 @@ define(function (require, exports, module) {
                 }
             })
         },
-        regQR:function(){
-            App.Bridge(function(bridge,scope){
-                //bridge.init();
-                //注册返回函数
-                bridge.registerHandler('showQR', function(data, responseCallback) {
-                    payLayer.sendBonus(true,self.shareUrl);
-                    //$(".js_two_dimension").click();
-                })
-            },self);
-        },
-        sendChange:function(e){
 
-            var url=$(e.currentTarget).attr('id');
-
-            e.preventDefault();
-
-            self.shareUrl=url;
-            self.regQR()
-            if(handle.mobileType()=='android'){
-                var shareConfig={'title': '我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！','url':url,'desc':'红包来了！加薪猫理财，怎么开心怎么来!',"imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
-                window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {
-                    //TODO
-                })
-            }else {
-                payLayer.sendBonus();
-                var shareConfig = {"link": url, "title": "我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！","desc":"红包来了！加薪猫理财，怎么开心怎么来!","imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
-                handle.share(shareConfig);
-            }
-
-        },
 
         invest: function(){
             App.goTo('my_invest');
@@ -187,24 +159,22 @@ define(function (require, exports, module) {
 
         sendedChange:function(){
             App.showLoading();
-            sendedChange.set({
+            getUserRansomRecords.set({
                 'page':outPageNum
             });
-            return sendedChange.exec({
+            return getUserRansomRecords.exec({
                 type: 'get',
                 success: function (data) {
+                    console.log(data)
                     App.hideLoading();
                     if (data.ret == 0) {
                         outPageNum++;
                         outPageTotal=data.data.totalPages;
                         self.data.sended = data.data
-
+                        console.log(self.data)
                         self.$el.html(_.template(Template)(self.data));
                         self.scrollTopListener()
-                        if(self.data.sended.items){
 
-
-                        }
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
@@ -220,12 +190,13 @@ define(function (require, exports, module) {
         myChange: function () {
             var self = this;
             App.showLoading();
-            myChange.set({
+            getUserOrderRecords.set({
                 'page':inPageNum
             });
-            return myChange.exec({
+            return getUserOrderRecords.exec({
                 type: 'get',
                 success: function (data) {
+                    console.log(data )
 
                     if (data.ret == 0) {
                         self.data = data.data
@@ -257,7 +228,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['我的红包']
+                    'tagname': 'title', 'value': ['交易详情']
                 },
                 right:null
             });
