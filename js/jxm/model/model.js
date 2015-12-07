@@ -262,13 +262,20 @@
         }),
         //获取累计投资信息
         getTtlCulInvest: initModel({
-        	url:host+"/api/demand"
+        	url:host+"/api/demand/all"
+        }),
+        //获取灵活宝资产信息接口
+        getTtlProperty: initModel({
+        	url:host+"/api/demand/property"
         }),
         //获取收益率接口
         getTtlRate: initModel({
-        	url:host+"/api/rate"
+            url:host+"/api/demand/rate"
         }),
-
+        //购买页面跳转
+        goTtlBuyPage: initModel({
+            url:host+"/api/demand/toBuy"
+        }),
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
