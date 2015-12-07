@@ -1,12 +1,12 @@
 define(function (require, exports, module) {
     var tpl ='<article class="ttl_pay_test">\
-		<div class="ttl_pay_test_t">支付验证<em class="close"></em></div>\
+		<div class="ttl_pay_test_t">支付验证<em class="close" id="payClose"></em></div>\
 		<div class="ttl_pay_test_m">\
 			<ul class="paycontent">\
 				<li>\
 					<p class="head">验证码</p>\
 					<div class="test_code">\
-						<input type="text" class="code" />\
+						<input type="text" class="code" maxLength=6/>\
 						<span class="title">已获取（<em class="num">22</em>）</span>\
 					</div>\
 				</li>\

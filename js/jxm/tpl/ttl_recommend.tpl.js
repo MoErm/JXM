@@ -23,7 +23,9 @@ define(function (require, exports, module) {
 				</div>\
 				<div class="ttl_recommend_detail_m">\
 					<div class="chart">\
-						<svg id="chart_line" class="chart_line"></svg>\
+						<svg id="chart_line"></svg>\
+						<em class="start_piont"></em>\
+						<em class="stop_piont"></em>\
 						<p class="chart_min"><em>5%</em>起天天加息</p> \
 						<p class="chart_max"><em>12%</em>最高年化收益率</p>\
 					</div>\

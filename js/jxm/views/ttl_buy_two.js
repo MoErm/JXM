@@ -1,7 +1,8 @@
 //天添利 购买页
 define(function(require, exports, module) {
-    var buyStepOne = require('jxm/tpl/ttl_buy_two.tpl');
+    var buyStepTwo = require('jxm/tpl/ttl_buy_two.tpl');
     var footer = require('jxm/tpl/footer.tpl');
+    var payTest = require('jxm/tpl/ttl_pay_test.tpl');
     var imageSlider = null;
     var self = null;
     module.exports = App.Page.extend({
@@ -19,7 +20,7 @@ define(function(require, exports, module) {
             
             self = this.initialize();
             //添加内容
-            self.$el.html(buyStepOne);
+            self.$el.html(buyStepTwo);
             self.initChart();
             self.setHeader();
         },        
@@ -44,7 +45,25 @@ define(function(require, exports, module) {
         },
         goAgreePage: function(e){
             e.preventDefault(e);
-            App.goTo("ttl_pay_test");
+            App.goTo("ttl_buy_one");
+            App.showAlert(payTest);
+            var payBtn= $('#gopay');
+            var cancelBtn= $('#payClose');
+            payBtn.on("click",function(){
+                self.goPayPage();
+            });
+            cancelBtn.on("click",function(){
+                self.cancelPay();
+            });
+        }, 
+        goPayPage: function(){
+
+            App.hideAlert(payTest);
+            App.goTo("ttl_pay_success");
+        },
+        cancelPay: function(){
+
+            App.hideAlert(payTest);
         }
-    })
-})
+    });
+});

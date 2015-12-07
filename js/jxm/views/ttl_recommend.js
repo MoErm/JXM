@@ -22,6 +22,7 @@ define(function(require, exports, module) {
             //轮播滚动
             self.initAD();
             self.initChart();
+            self.initFooter();            
         },
         initAD: function() {
             var container = self.$el.find(".img_box");
@@ -69,19 +70,20 @@ define(function(require, exports, module) {
         },
         initChart: function(){
             var chartLine= Snap("#chart_line");
-            var path= 'M0 320 C0 50,0 40,320 0';
-            var drawLine= chartLine.paper.path(path).attr({
-                stroke:"red",
-                strokeWidth:2
+            var pathPoint= 'M30 110C129 93, 0 11 300 1';
+            var drawLine= chartLine.paper.path(pathPoint).attr({
+                stroke:"#FFB83B",
+                strokeWidth:2,
+                fill:"none"
             });
-            // path.animate({
-            //      cx: path.attr("cx") == 50? 150 : 50
-            //  },1000,mina.easeout);
-
-        }, 
+        },
+        initFooter: function(){
+            $(".foot_nav .item").removeClass('cur');
+            $(".foot_nav .ico_f_list").addClass('cur');
+        },
         goDetailPage: function (e) {
             e.preventDefault();
             App.goTo("ttl_introduce");
-        },
+        }
     })
 })

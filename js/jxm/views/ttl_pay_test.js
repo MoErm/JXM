@@ -10,6 +10,7 @@ define(function(require, exports, module) {
         },
         events: {
             'click #gopay': 'goPayPage',
+            'click #payClose': 'cancelPay'
         },
         onShow: function() {
             //隐藏header
@@ -40,6 +41,10 @@ define(function(require, exports, module) {
         goPayPage: function(e){
             e.preventDefault(e);
             App.goTo("ttl_pay_success");
+        },
+        cancelPay: function(e){
+            e.preventDefault(e);
+            App.hideAlert(payTest);
         }
     })
 })
