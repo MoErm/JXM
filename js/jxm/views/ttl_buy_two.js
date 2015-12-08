@@ -1,8 +1,12 @@
 //天添利 购买页
 define(function(require, exports, module) {
+    var Model = require("jxm/model/model");
+    var buyStepOne = require('jxm/views/ttl_buy_one');
     var buyStepTwo = require('jxm/tpl/ttl_buy_two.tpl');
     var footer = require('jxm/tpl/footer.tpl');
-    var payTest = require('jxm/tpl/ttl_pay_test.tpl');
+    var tool = require('jxm/utils/Tool');
+    var agreeTtlContract= new Model.agreeTtlContract();
+    var handle = new tool();
     var imageSlider = null;
     var self = null;
     module.exports = App.Page.extend({
@@ -20,13 +24,10 @@ define(function(require, exports, module) {
             
             self = this.initialize();
             //添加内容
-            self.$el.html(buyStepTwo);
-            self.initChart();
             self.setHeader();
-        },        
-        initChart: function(){
-            // var chartLine= Snap("#chart_line");
-        },
+            self.$el.html(buyStepTwo);
+            App.hideLoading();
+        },  
         setHeader: function () {
             var header = new App.UI.UIHeader();
             header.set({
@@ -45,25 +46,28 @@ define(function(require, exports, module) {
         },
         goAgreePage: function(e){
             e.preventDefault(e);
-            App.goTo("ttl_buy_one");
-            App.showAlert(payTest);
-            var payBtn= $('#gopay');
-            var cancelBtn= $('#payClose');
-            payBtn.on("click",function(){
-                self.goPayPage();
-            });
-            cancelBtn.on("click",function(){
-                self.cancelPay();
+            App.showLoading();            
+           
+            agreeTtlContract.exec({
+                type: 'post',
+            }).then(function (data) {
+                if(data.ret == 0){
+                    self.goPayPage();
+                }else if(data.ret == 999001){
+                    //未登录
+                    handle.goLogin();
+                }else{
+
+                    App.showToast(data.msg  || message);
+                }
+                App.hideLoading();
+            }).catch(function (error) {
+                App.hideLoading();
+                App.showToast(error.msg || '网络错误');
             });
         }, 
         goPayPage: function(){
-
-            App.hideAlert(payTest);
-            App.goTo("ttl_pay_success");
-        },
-        cancelPay: function(){
-
-            App.hideAlert(payTest);
+            App.goTo("ttl_buy_one");
         }
     });
 });

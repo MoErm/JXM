@@ -1456,27 +1456,30 @@ text-align: right}
 
 /*-- 天添利 购买页 --*/
 .ttl_buy_one{}
-.ttl_buy_one_t{padding: 10px 0;}
-.ttl_buy_one_t .info_add li{display: inline-block;width: 32%;text-align: center;color: #9b9b9b;}
+.ttl_buy_one_t{padding: 15px 0;height: 70px;}
+.ttl_buy_one_t .info_add li{display: inline-block;width: 33%;text-align: center;color: #9b9b9b;float: left;}
 .ttl_buy_one_t .info_add .percent{font-size: 2.5rem;color: #db3710;}
 .ttl_buy_one_t .info_add .title,
 .ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;}
-.ttl_buy_one_m{padding: 10px 0;background: #fff;border-top: 1px solid #ECECEC;}
+.ttl_buy_one_m{padding: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard,
-.ttl_buy_one_m .imoney{height: 50px;line-height: 50px; border-bottom: 1px solid #ECECEC;}
-.ttl_buy_one_m .head,
+.ttl_buy_one_m .imoney{height: 50px;line-height: 50px; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
+
+.ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
 .ttl_buy_one_m .mycard_info,
-.ttl_buy_one_m .imoney_content{display: inline-block;}
-.ttl_buy_one_m .head{width: 28%;text-indent: 1em;}
-.ttl_buy_one_m .mycard_info,
-.ttl_buy_one_m .imoney_content{width: 70%;}
+.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;}
 .ttl_buy_one_m .imoney_num{width: 100%;height: 50px;}
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
+.ttl_buy_one_m .mycard .banklogo,
+.ttl_buy_one_m .mycard .card_detail{display: inline-block;color: #9b9b9b;height: 50px;float: left;}
+.ttl_buy_one_m .mycard .banklogo{width: 45px;}
+.ttl_buy_one_m .mycard .card_detail p{line-height: normal;margin:5px 0 0 5px;font-size: 1.3rem;}
+
 .ttl_buy_one_b .action{padding: 20px 0 0 0;}
 .ttl_buy_one_b .action_buy{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 .ttl_buy_one_b .action_tip{width: 80%;margin: 15px auto; color: #9b9b9b;font-size: 1.2rem;}
 .ttl_buy_one_b .action_tip a{color: #b46a25;}
-.ttl_buy_one_b .time_tip{width: 70%;margin: 20px auto;color: #9b9b9b;}
+.ttl_buy_one_b .time_tip{width: 80%;margin: 20px auto;color: #9b9b9b;}
 .ttl_buy_one_b .time_tip .tip_icon{display: inline-block;width: 45px;height: 45px;background: url(../../images/ttl_icon.png) -9px -279px;}
 .ttl_buy_one_b .time_tip .time_tiplist{display: inline-block;float: right; margin: 5px 0 0 0;}
 
@@ -1502,7 +1505,8 @@ text-align: right}
 .ttl_pay_test_m .paycontent .test_password{display: inline-block;width: 65%;height: 48px;float: right;margin:0 2% 0 0; border:1px solid #E5E5E5;border-radius: 5px;position: relative;}
 .ttl_pay_test_m .paycontent .forget{text-align: right;}
 .ttl_pay_test_m .paycontent .forget_password{margin: 0 20px 0 0;color: #fe6400;}
-.ttl_pay_test_m .paycontent .test_code .title{position: absolute;right: 5px;top:15px;color: #9b9b9b;}
+.ttl_pay_test_m .paycontent .test_code .get_code{position: absolute;right: 5px;top: 0;color: #9b9b9b;display: block;
+    height: 48px;line-height: 48px;color: #3E48CC;}
 .ttl_pay_test_m .paycontent .test_code .code,
 .ttl_pay_test_m .paycontent .test_password .password{float: left;}
 .ttl_pay_test_m .paycontent input{line-height: 48px;}
@@ -1514,16 +1518,15 @@ text-align: right}
 /*-- 天添利 支付成功 --*/
 .ttl_pay_success{}
 .ttl_pay_success_t .success_list{width: 80%;margin: 40px auto 0 auto;}
-.ttl_pay_success_t .success_list li{position: relative;height: 80px; padding: 0 0 10px 0;}
+.ttl_pay_success_t .success_list li{position: relative; padding: 0 0 10px 0;min-height: 80px;}
 .ttl_pay_success_t .success_list .icon{display: inline-block;width: 60px;height: 60px;position: absolute;left: -30px;top:0;}
-.ttl_pay_success_t .success_list .info{position: absolute;
-left: 50px;top:8px;color:#9b9b9b;}
+.ttl_pay_success_t .success_list .info{margin: 8px 0 0 50px; color: #9b9b9b;}
 .ttl_pay_success_t .success_list .card{border-left: 2px solid #F88C08;}
 .ttl_pay_success_t .success_list .time{border-left: 2px solid #E1E1E1;}
 .ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -74px -71px;}
 .ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -74px -153px;}
 .ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -74px -233px;}
-.ttl_pay_success_t .success_list .sub_total{font-size: 2.5rem;color: #d21c00;}
+.ttl_pay_success_t .success_list .sub_total{font-size: 2.2rem;color: #d21c00;}
 .ttl_pay_success_t .success_list .sub_time{font-size: 1.8rem;color: #000;}
 .ttl_pay_success_t .success_list .sub_show{font-size: 2rem;color: #000;}
 

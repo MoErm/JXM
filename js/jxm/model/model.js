@@ -272,10 +272,31 @@
         getTtlRate: initModel({
             url:host+"/api/demand/rate"
         }),
-        //购买页面跳转
-        goTtlBuyPage: initModel({
+        //购买页面初始化
+        initTtlBuyPage: initModel({
             url:host+"/api/demand/toBuy"
         }),
+        // 同意灵活宝协议
+        agreeTtlContract: initModel({
+            url:host+"/api/demand/agreeContract"
+        }),        
+        //购买灵活宝
+        goTtlBuyPageCheck: initModel({
+            url:host+"/api/demand/createDemandOrder"
+        }),
+        // 获取灵活宝支付验证码
+        getTtlPayCode: initModel({
+            url:host+"/api/demand/getDemandPayMsg"
+        }),
+        // 灵活宝支付
+        goTtlPayOrder: initModel({
+            url:host+"/api/demand/payDemandOrder"
+        }),
+        // 灵活宝支付结果检查接口
+        goTtlPayResult: initModel({
+            url:host+"/api/demand/checkDemandOrder"
+        }),
+        
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
