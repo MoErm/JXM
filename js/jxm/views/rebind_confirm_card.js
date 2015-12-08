@@ -50,6 +50,7 @@ define(function (require, exports, module) {
                 if(self.prevPage == 'rebind_card_step3'){
                     self.countDown();
                 }
+                App.hideLoading();
             },
             setHeader: function () {
                 var header = new App.UI.UIHeader();

@@ -400,14 +400,17 @@ define(function (require, exports, module) {
                     confirmRedeem.exec({
                         type: 'post',
                         success: function(data){
+                            App.hideLoading();
                             if(data.ret == 0){
                                 App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
-                                App.hideLoading();
+
 
                             }else if(data.ret == 999001) {
                                 handle.goLogin();
                             }else{
-                                self.promptAlert = handle.alert(data.msg);
+                                self.promptAlert = handle.alert(data.msg,function(){
+                                    this.hide();
+                                });
                                 self.promptAlert.show();
                             }
                         },

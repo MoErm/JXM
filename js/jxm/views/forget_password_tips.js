@@ -57,6 +57,7 @@ define(function (require, exports, module) {
             this.$el.find("#js_Confirm_password").val('');
             this.setHeader();
             this.regClear();
+            App.hideLoading();
         },
         regClear:function(){
             var mobile_new_password=this.$el.find("#js_new_password");

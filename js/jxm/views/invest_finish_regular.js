@@ -44,6 +44,7 @@ define(function (require, exports, module) {
 			this.setHeader()
 
 			this.render()
+            App.hideLoading();
 
 		},
 		render: function(){

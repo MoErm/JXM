@@ -30,6 +30,7 @@ define(function (require, exports, module) {
             this.$('.count').html(this.getCount());
             this.setHeader();
             this.regClear();
+            App.hideLoading();
         },
         onHide:function(){
             App.hideLoading();

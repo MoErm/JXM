@@ -63,6 +63,7 @@ define(function (require, exports, module) {
             this.$el.find("#js_affirmpassword").val('');
             this.setHeader();
             this.regClear();
+            App.hideLoading();
         },
         regClear:function(){
             var mobile_box=this.$el.find("#js_oldpassword");

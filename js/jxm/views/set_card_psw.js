@@ -25,6 +25,7 @@ define(function (require, exports, module) {
             },
             onShow: function () {
                 self.setHeader();
+                App.hideLoading();
             },
             clearBrank: function(e){
                 var val = $(e.target).val();

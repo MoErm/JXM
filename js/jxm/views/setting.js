@@ -11,7 +11,7 @@ define(function (require, exports, module) {
         },
         afterMount: function(){
 
-                self.$el.html(_.template(setting+Footer)({tel: tel, customer: tel.replace(/-/g, '')}));
+
 
         },
         events: {
@@ -52,7 +52,9 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             self.setHeader();
+            self.$el.html(_.template(setting+Footer)({tel: tel, customer: tel.replace(/-/g, '')}));
             self.$('.js_setting').addClass('cur')
+            App.hideLoading()
         },
         list: function(){
             App.goTo('list');

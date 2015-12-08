@@ -21,11 +21,10 @@ define(function (require, exports, module) {
             handle.share();
             this.setHeader();
             this.showPage();
-
+            App.hideLoading();
         },
         showPage:function(){
             var query = this.request.query;
-            console.log(query)
             var ransomId=query&&query.ransomId||"-1";
             if(ransomId==-1){
                 var data={

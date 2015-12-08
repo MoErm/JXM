@@ -59,14 +59,13 @@ define(function (require, exports, module) {
             e.stopImmediatePropagation();
             var closest = $(e.currentTarget).closest('.investList');
             var status = $(closest).data('id');
-           console.log(status)
+            App.goTo("redemption_investDetail?orderNo="+status)
         },
         listBtn: function(e){
             e.stopImmediatePropagation();
             var closest = $(e.currentTarget).closest('.redeem_list');
             var status = $(closest).data('id');
             App.goTo("redemption_detail?ransomId="+status)
-            console.log(status)
         },
         showMoreIn: function () {
             var self = this;
@@ -128,9 +127,9 @@ define(function (require, exports, module) {
         },
 
 
-        invest: function(){
-            App.goTo('my_invest');
-        },
+//        invest: function(){
+//            App.goTo('my_invest');
+//        },
         chang:function(){
             var className=document.getElementById('invest').className;
             if(className.indexOf("selected")>0){
@@ -173,20 +172,19 @@ define(function (require, exports, module) {
             return getUserRansomRecords.exec({
                 type: 'get',
                 success: function (data) {
-                    console.log(data)
                     App.hideLoading();
                     if (data.ret == 0) {
                         outPageNum++;
                         outPageTotal=data.data.totalPages;
                         self.data.sended = data.data
-                        var shuhuiFlag=1;
+                        var shuhuiFlag=0;
+
                         if(data.data.records.length==0){
-                            shuhuiFlag==0;
+                            shuhuiFlag=0;
                         }else{
-                            shuhuiFlag==1;
+                            shuhuiFlag=1;
                         }
                         self.data.shuhuiFlag=shuhuiFlag
-                        console.log(self.data)
                         self.$el.html(_.template(Template)(self.data));
                         self.scrollTopListener()
 
@@ -211,17 +209,14 @@ define(function (require, exports, module) {
             return getUserOrderRecords.exec({
                 type: 'get',
                 success: function (data) {
-                    console.log(data )
 
                     if (data.ret == 0) {
                         self.data = data.data
-                        console.log(1)
-                        console.log(data.data)
                         var touziFlag=0;
                         if(data.data.records.length==0){
-                            touziFlag==1;
+                            touziFlag=0;
                         }else{
-                            touziFlag==1;
+                            touziFlag=1;
                         }
                         self.data.touziFlag=touziFlag
                         self.sendedChange()

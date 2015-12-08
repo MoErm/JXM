@@ -15,6 +15,7 @@ define(function (require, exports, module) {
             self.setHeader()
             self.$el.html(error);
             self.showMsg()
+            App.hideLoading();
             return
         },
         backToIndex:function(){

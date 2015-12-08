@@ -1,60 +1,67 @@
 define(function (require, exports, module) {
     var Model = require("jxm/model/model");
-    var Chart = require("jxm/utils/Chart");
-    var Template = require("jxm/tpl/redemption_detail.tpl");
+    var Template = require("jxm/tpl/redemption_investDetail.tpl");
     var tool = require('jxm/utils/Tool')
     var handle = new tool();
     var payLayer = require("jxm/common/common");
-    var getRansomDetails = new Model.getRansomDetails();
-    //接口
+    var getOrderDetails = new Model.getOrderDetails();
+    //接口getOrderDetails
     module.exports = App.Page.extend({
         events: {
-            'click .redemption_btn': 'payRedeem'
+            'click .redemption_btn': 'payRedeem',
+            'click .ico_coin': 'test'
         },
         initialize: function () {
             self = this;
         },
-        goTop:function(){
-            $(window).scrollTop(0)
-        },
-
         onShow: function () {
-            handle.share();
-            this.setHeader();
-            self.showPage()
 
+            handle.share();
+
+
+            this.setHeader();
+
+            this.showPage();
+            this.test()
+//            self.$el.html(Template);
+        },
+        test:function(){
+            App.showLoading();
+//            window.setTimeout(function(){
+//                App.hideLoading();
+//            },20000)
+        },
+        format:function(num){
+            var temp_num=num*100
+            return temp_num.toFixed(3)+"%"
         },
         showPage:function(){
-            App.showLoading()
+
             var query = this.request.query;
-            var ransomId=query&&query.ransomId||"";
-            if(ransomId==""){
-                App.showToast("赎回编号错误")
+            var orderNo=query&&query.orderNo||"";
+            if(orderNo==""){
+                App.showToast("订单编号错误")
                 window.setTimeout(function(){
                     App.goTo("my_invest")
                 },2000)
                 return
             }
-            getRansomDetails.set({ransomId:ransomId})
-            getRansomDetails.exec({
+            getOrderDetails.set({orderNo:orderNo});
+             getOrderDetails.exec({
                 type: 'get',
                 success: function(data){
-                    App.hideLoading();
                     if(data.ret == 0){
                         self.data=data.data
-                        self.$el.html(_.template(Template)(data.data));
+                        self.data.format=self.format
+                        self.$el.html(_.template(Template)(self.data));
 
                     }else if(data.ret == 999001) {
                         handle.goLogin();
                     }else{
                         App.showToast(data.msg);
                     }
-
-
-                },
-                error: function(){
                     App.hideLoading();
-                    App.showToast("网络错误");
+
                 }
             })
         },
@@ -69,7 +76,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['赎回成功']
+                    'tagname': 'title', 'value': ['交易详情']
                 },
                 right: [{
                     'tagname': '', 'value': '完成&ensp;',

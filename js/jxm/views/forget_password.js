@@ -117,6 +117,7 @@ define(function (require, exports, module) {
             this.$el.find("#js_code").val('');
             this.setHeader();
             this.regClear();
+            App.hideLoading();
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();
