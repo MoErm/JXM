@@ -73,7 +73,7 @@ define(function (require, exports, module) {
                     if(self.request.query&&self.request.query.backurl){
                         window.location=window.decodeURIComponent(self.request.query.backurl)
                     }else{
-                        App.goTo("list");
+                        App.goTo("ttl_recommend");
                     }
 
                 }else{

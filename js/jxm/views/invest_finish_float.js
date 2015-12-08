@@ -12,6 +12,7 @@ define(function (require, exports, module) {
 		onShow: function () {
 			this.setHeader()
 			this.render()
+            App.hideLoading();
 		},
 		render: function(){
 			var data = JSON.parse(localStorage.getItem('float'))

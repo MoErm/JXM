@@ -44,6 +44,7 @@ define(function (require, exports, module) {
             this.setHeader();
             handle.orientationTips();
             this.initAD();
+            App.hideLoading();
         },
         onHide: function(){
             imageSlider=null;

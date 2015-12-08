@@ -213,6 +213,9 @@ window.global_config = {
         },  {
             "url": "redemption_detail",
             "controller": "redemption_detail"
+        }, {
+            "url": "redemption_investDetail",
+            "controller": "redemption_investDetail"
         },
         {
             "url": "recommend",
@@ -307,6 +310,7 @@ requirejs.config({
         'redemption': 'jxm/views/redemption',
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',
+        'redemption_investDetail': 'jxm/views/redemption_investDetail',
         'recommend':'jxm/views/recommend'
     }
 })

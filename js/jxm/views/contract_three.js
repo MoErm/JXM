@@ -7,6 +7,7 @@ define(function (require, exports, module) {
         },
         onShow: function () {
             this.setHeader();
+            App.hideLoading();
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();

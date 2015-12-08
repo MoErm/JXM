@@ -50,7 +50,6 @@ define(function (require, exports, module) {
 //                }
                 data.maskCard=self.maskCard
                 self.$el.html(_.template(bindCard_new_step2)(data)+footer);
-                console.log(_.template(bindCard_new_step2)(data)+footer)
                 self.regClear();
 
             },

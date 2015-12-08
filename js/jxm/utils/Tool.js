@@ -296,10 +296,10 @@ define(function(require, exports, module) {
                            link: link,
                            imgUrl: imgUrl,
                            success: function () {
-                               App.showToast('分享成功!');
+//                               App.showToast('分享成功!');
                            },
                            cancel: function () {
-                               App.showToast('分享取消!');
+//                               App.showToast('分享取消!');
                            }
                        });
                        //分享给朋友

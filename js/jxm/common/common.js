@@ -422,15 +422,19 @@ define(function(require, exports, module) {
                     confirmRedeem.set(data)
                     confirmRedeem.exec({
                         type: 'post',
-                        success: function(data) {
-                            if (data.ret == 0) {
-                                App.goTo("redemption_finish?redeemAmount=" + data.data.redeemAmount + "&redeemTime=" + data.data.redeemTime + "&ransomId=-1")
-                                App.hideLoading();
+                        success: function(data){
+                            App.hideLoading();
+                            if(data.ret == 0){
+                                App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
 
-                            } else if (data.ret == 999001) {
+
+                            }else if(data.ret == 999001) {
                                 handle.goLogin();
+                            }else{
                             } else {
-                                self.promptAlert = handle.alert(data.msg);
+                                self.promptAlert = handle.alert(data.msg,function(){
+                                    this.hide();
+                                });
                                 self.promptAlert.show();
                             }
                         },

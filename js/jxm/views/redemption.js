@@ -37,7 +37,7 @@ define(function (require, exports, module) {
             toRedeem.exec({
                 type: 'get',
                 success: function(data){
-                    console.log(data)
+                    App.hideLoading();
                     if(data.ret == 0){
                         self.data=data.data
                         self.$el.html(_.template(Template)(data.data));
@@ -98,6 +98,7 @@ define(function (require, exports, module) {
         },
 
         onHide: function () {
+            self.$('#redeemValue').val("")
         }
     })
 })

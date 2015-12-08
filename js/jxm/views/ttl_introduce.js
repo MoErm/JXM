@@ -62,7 +62,8 @@ define(function(require, exports, module) {
         initRate: function(){
             getTtlRate.exec({
                 type: 'get',
-                success: function(data){                    
+                success: function(data){
+                    App.hideLoading();
                     if(data.ret == 0){
                         self.pageData.getTtlRate = data.data; 
                         self.initTemple();
@@ -96,6 +97,6 @@ define(function(require, exports, module) {
                 // App.showAlert("不可赎回");
                 return;
             }
-        },        
+        }
     })
 })

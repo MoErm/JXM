@@ -4,6 +4,7 @@ define(function (require, exports, module) {
     module.exports = App.Page.extend({
         afterMount: function () {
             this.$el.html(aboutus + footer);
+            App.hideLoading()
         },
         onShow: function () {
             this.setHeader();
