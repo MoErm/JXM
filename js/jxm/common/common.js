@@ -542,7 +542,7 @@ define(function(require, exports, module) {
                                     <input type="password" class="password" id="checkPassword"/>\
                                 </div>\
                             </li>\
-                            <li class="forget"><a href="#" class="forget_password">忘记密码?</a></li>\
+                            <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记密码?</a></li>\
                         </ul>\
                     </div>\
                     <div class="ttl_pay_test_b">\
@@ -559,7 +559,8 @@ define(function(require, exports, module) {
                 events: {
                     'click #payClose': 'onHideLayer',
                     'click #gopay': 'payOrder',
-                    'click .js_code': 'getCode'
+                    'click .js_code': 'getCode',
+                    'click #forget_password':'goForgetPassword'
                 },
                 onHideLayer: function() {
 
@@ -784,7 +785,9 @@ define(function(require, exports, module) {
                             App.showToast('网络错误,请稍后重试');
                         }
                     });
-
+                },
+                goForgetPassword: function(){
+                    App.goTo("forget_password");
                 }
                 // showSelfToast: function(message) {
                 //     var self = this;
