@@ -431,7 +431,6 @@ define(function(require, exports, module) {
                             }else if(data.ret == 999001) {
                                 handle.goLogin();
                             }else{
-                            } else {
                                 self.promptAlert = handle.alert(data.msg,function(){
                                     this.hide();
                                 });
