@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     		<div class="ttl_buy_one_t">\
 				<ul class="info_add">\
 					<li>\
-						<p class="percent">5%~12%</p>\
+						<p class="percent"><%=cardData.initialRate%>~<%=cardData.maxRate%></p>\
 						<p>收益率递增</p>\
 					</li>\
 					<li>\
@@ -11,7 +11,7 @@ define(function (require, exports, module) {
 						<p>投资期限</p>\
 					</li>\
 					<li>\
-						<p><em class="num">980.3</em>万元</p>\
+						<p><em class="num"><%=cardData.surplusAmount%></em>万元</p>\
 						<p>剩余可投</p>\
 					</li>\
 				</ul>\
@@ -19,11 +19,17 @@ define(function (require, exports, module) {
 			<div class="ttl_buy_one_m">\
 				<div class="mycard">\
 					<p class="head">我的银行卡</p>\
-					<div class="mycard_info"></div>\
+					<div class="mycard_info">\
+						<img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\
+						<div class="card_detail">\
+							<p class="card_cur" data-cardid= "<%=cardData.cardId%>"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
+							<p><%=cardData.transactLimit%><%=cardData.dailyLimit%></p>\
+						</div>\
+					</div>\
 				</div>\
 				<div class="imoney">\
 					<p class="head">投资金额</p>\
-					<div class="imoney_content"><input type="text" class="imoney_num" placeholder="1000元起投，1000元递增"/></div>\
+					<div class="imoney_content"><input type="text" class="imoney_num" id="imoney_num" placeholder="<%=cardData.minInvestAmount%>元起投，<%=cardData.additionalAmount%>元递增"/></div>\
 				</div>\
 			</div>\
 			<div class="ttl_buy_one_b">\
