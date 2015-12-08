@@ -26,11 +26,11 @@ define(function (require, exports, module) {
             console.log("asd11")
         },
         onShow: function () {
+            App.hideLoading()
             self.setHeader()
             self.$el.html(test_pie);
 //            self.showPie();
 //            self.showAddress();
-            console.log(Date.now())
 
             var hit = document.querySelector("#tradeAmount");
 
@@ -60,7 +60,7 @@ define(function (require, exports, module) {
             return
         },
         cycleTime:function(deg){
-            var num=Math.floor(deg/60)
+            var num=Math.floor(deg/100)
             if(num==0){
                 return
             }else if(num!=turnNum){

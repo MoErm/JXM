@@ -24,6 +24,10 @@ define(function (require, exports, module) {
             self.showPage()
 
         },
+        format:function(num){
+            var temp_num=num*100
+            return temp_num.toFixed(3)+"%"
+        },
         showPage:function(){
             App.showLoading()
             var query = this.request.query;
@@ -42,7 +46,8 @@ define(function (require, exports, module) {
                     App.hideLoading();
                     if(data.ret == 0){
                         self.data=data.data
-                        self.$el.html(_.template(Template)(data.data));
+                        self.data.format=self.format
+                        self.$el.html(_.template(Template)(self.data));
 
                     }else if(data.ret == 999001) {
                         handle.goLogin();
@@ -69,14 +74,15 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['赎回成功']
+                    'tagname': 'title', 'value': ['赎回详情']
                 },
-                right: [{
-                    'tagname': '', 'value': '完成&ensp;',
-                    callback: function () {
-                        App.goTo("my_invest")
-                    }
-                }]
+                right: null
+//                    [{
+//                    'tagname': '', 'value': '完成&ensp;',
+//                    callback: function () {
+//                        App.goTo("my_invest")
+//                    }
+//                }]
             });
         },
 

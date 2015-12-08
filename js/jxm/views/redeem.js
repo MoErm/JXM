@@ -78,7 +78,7 @@ define(function (require, exports, module) {
 
                     if (data.ret == 0) {
                         inPageNum++;
-
+                        data.data.format=self.format
                         var inHtml=_.template(redeem_invest)(data.data)
                         var html=self.$('#invest_record')[0].innerHTML
                         html=html+inHtml
@@ -107,7 +107,7 @@ define(function (require, exports, module) {
 
                     if (data.ret == 0) {
                         outPageNum++;
-
+                        data.data.format=self.format
                        var outHtml= _.template(redeem_back)(data.data)
                         var html=self.$('#redeem_record')[0].innerHTML
                         html=html+outHtml
@@ -177,6 +177,7 @@ define(function (require, exports, module) {
                         outPageNum++;
                         outPageTotal=data.data.totalPages;
                         self.data.sended = data.data
+
                         var shuhuiFlag=0;
 
                         if(data.data.records.length==0){
@@ -184,6 +185,7 @@ define(function (require, exports, module) {
                         }else{
                             shuhuiFlag=1;
                         }
+                        self.data.format=self.format
                         self.data.shuhuiFlag=shuhuiFlag
                         self.$el.html(_.template(Template)(self.data));
                         self.scrollTopListener()
@@ -199,6 +201,10 @@ define(function (require, exports, module) {
                     App.showToast('网络错误');
                 }
             })
+        },
+        format:function(num){
+            var temp_num=num*100
+            return temp_num.toFixed(3)+"%"
         },
         myChange: function () {
             var self = this;

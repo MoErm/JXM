@@ -26,7 +26,18 @@ define(function (require, exports, module) {
 						<p>今日最高收益率</p>\
 						<h2><%=getTtlRate.todayYieldRate%>%</h2>\
 					</div>\
-					<div class="chart_content" id="chart_content">\
+					 <div class="cycle_bg"  id="tradeAmount">\
+                        <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
+                        <div class="cycleTest cycleTestRed cycle_1" id="cycle_1">1</div>\
+                    <div class="cycleTest cycleTestRed cycle_2" id="cycle_2">2</div>\
+                    <div class="cycleTest cycleTestRed cycle_3" id="cycle_3">3</div>\
+                    <div class="cycleTest cycle_4" id="cycle_4">4</div>\
+                    <div class="cycleTest cycle_5" id="cycle_5">5</div>\
+                    <div class="cycleTest cycle_6" id="cycle_6">6</div>\
+                    <div class="cycleTest cycle_7" id="cycle_7">7</div>\
+                    <div class="cycleTest cycle_8" id="cycle_8">8</div>\
+                        </div>\
+                        <div class="chart_content" id="chart_content">\
 					</div>\
 				</div>\
 				<div class="action">\

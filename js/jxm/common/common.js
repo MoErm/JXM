@@ -382,6 +382,7 @@ define(function (require, exports, module) {
             var popwin = new App.UI.UIPopWin({
                 events:{
                     "click .payRedeem_close":"onHideLayer",
+                    "click .payRedeem_close":"forget",
                     "click .payRedeem_btn":"doPay"
                 },
                 maskToHide: false,
@@ -389,9 +390,16 @@ define(function (require, exports, module) {
                 onHideLayer: function () {
                     this.hide();
                 },
+                forget:function(){
+                    App.goTo("get_password")
+                },
                 doPay:function(){
                     App.showLoading()
                     var tradePassword =$('#redeemPwd').val();
+                    if(tradePassword==""){
+                        App.showToast("请输入交易密码")
+                        return
+                    }
                     var data={
                         'tradePassword':tradePassword,
                         'redeemAmount':redeemValue
