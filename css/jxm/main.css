@@ -1526,13 +1526,13 @@ text-align: right}
 .ttl_pay_success{}
 .ttl_pay_success_t .success_list{width: 80%;margin: 40px auto 0 auto;}
 .ttl_pay_success_t .success_list li{position: relative; padding: 0 0 10px 0;min-height: 80px;}
-.ttl_pay_success_t .success_list .icon{display: inline-block;width: 60px;height: 60px;position: absolute;left: -30px;top:0;}
+.ttl_pay_success_t .success_list .icon{display: inline-block;width: 60px;height: 60px;  border-radius: 60px; position: absolute;left: -30px;top:0;}
 .ttl_pay_success_t .success_list .info{margin: 8px 0 0 50px; color: #9b9b9b;}
 .ttl_pay_success_t .success_list .card{border-left: 2px solid #F88C08;}
 .ttl_pay_success_t .success_list .time{border-left: 2px solid #E1E1E1;}
-.ttl_pay_success_t .success_list .card .icon{background: url(../../images/ttl_icon.png) -74px -71px;}
-.ttl_pay_success_t .success_list .time .icon{background: url(../../images/ttl_icon.png) -74px -153px;}
-.ttl_pay_success_t .success_list .show .icon{background: url(../../images/ttl_icon.png) -74px -233px;}
+.ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -74px -71px;}
+.ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -74px -153px;}
+.ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -74px -233px;}
 .ttl_pay_success_t .success_list .sub_total{font-size: 2.2rem;color: #d21c00;}
 .ttl_pay_success_t .success_list .sub_time{font-size: 1.8rem;color: #000;}
 .ttl_pay_success_t .success_list .sub_show{font-size: 2rem;color: #000;}
