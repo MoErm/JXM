@@ -174,8 +174,17 @@ define(function(require, exports, module) {
         goBuyTipPage: function(e){
             e.preventDefault(e);
             self.amountVal= $("#imoney_num").val();
-            self.cardId= $(".card_cur").data("cardid");            
+            self.cardId= $(".card_cur").data("cardid");
             self.goBuyData= {"amountVal":self.amountVal, "cardId":self.cardId};
+
+            if(self.amountVal== ""){
+                App.showToast("请输入投资金额");
+                return;
+            }else if(Number(self.amountVal)%1000!=0){
+                App.showToast("投资金额需是1,000元的整数倍");
+                return;
+            }
+            
             if(self.pageData.cardData.isContractAgreed==0){
                 sessionStorage.getItem("isagreedData",self.goBuyData);
                 App.goTo("ttl_buy_two");

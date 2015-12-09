@@ -78,14 +78,14 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = 'M10 110C139 95, 0 25 280 1';
+            var pathPoint = 'M15 110C159 105,20 75 300 1';
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
                 fill: "none"
             });
-            var tSpanMin = chartLine.paper.text(10, 130, ["5%", "起天天加息"]).attr({
+            var tSpanMin = chartLine.paper.text(15, 70, ["5%", "起天天加息"]).attr({
                 fill:'#9b9b9b'
             });
             //数字样式
@@ -93,7 +93,7 @@ define(function(require, exports, module) {
                 fill:'#FF6400',
                 "font-size": "2rem"
             });
-            var tSpanMax = chartLine.paper.text(150, 40, ["12%", "最高年化收益率"]).attr({
+            var tSpanMax = chartLine.paper.text(100, 15, ["12%", "最高年化收益率"]).attr({
                 fill:'#9b9b9b'
             });
             //数字样式

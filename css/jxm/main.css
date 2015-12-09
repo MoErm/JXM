@@ -1477,11 +1477,12 @@ text-align: right}
 .ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
 .ttl_buy_one_m .mycard_info,
 .ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;}
-.ttl_buy_one_m .imoney_num{width: 100%;height: 50px;}
+.ttl_buy_one_m .imoney_num{width: 80%;height: 50px;display: inline-block;}
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .banklogo,
-.ttl_buy_one_m .mycard .card_detail{display: inline-block;color: #9b9b9b;height: 50px;float: left;margin: 0 0 0 5px;}
-.ttl_buy_one_m .mycard .banklogo{width:50px;}
+.ttl_buy_one_m .mycard .card_detail{color: #9b9b9b;float: left;margin: 0 0 0 5px;}
+.ttl_buy_one_m .mycard .banklogo{display: inline-block;width:36px;height: 36px;padding: 7px 0 0 0;}
+.ttl_buy_one_m .mycard .card_detail{width: calc(100% - 50px);}
 .ttl_buy_one_m .mycard .card_detail p{line-height: normal;margin:5px 0 0 5px;font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .card_detail .limit_text{font-size: 1.1rem;}
 
