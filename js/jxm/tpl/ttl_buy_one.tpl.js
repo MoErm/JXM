@@ -11,7 +11,7 @@ define(function (require, exports, module) {
 						<p>投资期限</p>\
 					</li>\
 					<li>\
-						<p class="title"><em class="num"><%=cardData.surplusAmount%></em>万元</p>\
+						<p class="title"><em class="num"><%=cardData.surplusAmount%></em></p>\
 						<p>剩余可投</p>\
 					</li>\
 				</ul>\

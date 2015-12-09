@@ -556,22 +556,19 @@ define(function(require, exports, module) {
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">支付验证<em class="close" id="payClose"></em></div>\
                     <div class="ttl_pay_test_m">\
-                        <ul class="paycontent">\
-                            <li>\
-                                <p class="head">验证码</p>\
-                                <div class="test_code">\
-                                    <input type="text" class="code" id="checkCode" maxLength=6/>\
-                                    <span class="get_code js_code">获取验证码</span>\
-                                </div>\
-                            </li>\
-                            <li>\
-                                <p class="head">交易密码</p>\
-                                <div class="test_password">\
-                                    <input type="password" class="password" id="checkPassword"/>\
-                                </div>\
-                            </li>\
-                            <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记密码?</a></li>\
-                        </ul>\
+                        <div class="paycontent pay_form">\
+                            <ul>\
+                              <li class="frm_item frm_item_getcode">\
+                                <label for="inpt_code">验证码</label>\
+                                <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
+                                <span class="code js_code">获取验证码</span></li>\
+                              <li class="frm_item">\
+                                <label for="inpt_pssword">交易密码</label>\
+                                <input type="password" id="checkPassword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
+                              </li>\
+                              <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记密码?</a></li>\
+                            </ul>\
+                        </div>\
                     </div>\
                     <div class="ttl_pay_test_b">\
                         <div class="action">\

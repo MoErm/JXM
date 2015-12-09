@@ -1467,9 +1467,11 @@ text-align: right}
 .ttl_buy_one{}
 .ttl_buy_one_t{padding: 15px 0;height: 70px;}
 .ttl_buy_one_t .info_add li{display: inline-block;width: 33%;text-align: center;color: #9b9b9b;float: left;}
-.ttl_buy_one_t .info_add .percent{font-size: 2.5rem;color: #db3710;}
+.ttl_buy_one_t .info_add .percent{font-size: 2.6rem;color: #db3710;}
 .ttl_buy_one_t .info_add .title,
-.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;padding: 5px 0 0 0;}
+.ttl_buy_one_t .info_add .num{font-size: 1.5rem;color: #000;padding: 10px 0 0 0;}
+.ttl_buy_one_t .info_add .percent{height: 37px;}
+.ttl_buy_one_t .info_add .title{height: 27px;}
 .ttl_buy_one_m{margin: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard,
 .ttl_buy_one_m .imoney{line-height: 50px;padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
@@ -1512,17 +1514,11 @@ text-align: right}
 .ttl_pay_test_t{height:45px;line-height: 45px;font-size: 1.8rem; text-align: center;border-bottom: 2px solid #CD1B02; position: relative;}
 .ttl_pay_test_t .close{position: absolute;right: 5px;top: 5px;display: block;width: 26px;height: 26px;border-radius: 26px;background: url(../../images/ttl_icon.png) -314px -17px;}
 .ttl_pay_test_m .paycontent {padding: 20px 0; }
-.ttl_pay_test_m .paycontent li{padding: 15px 0 0 0;}
 .ttl_pay_test_m .paycontent .head{display: inline-block;width: 30%;height: 50px;line-height: 50px; text-indent: 2em;}
 .ttl_pay_test_m .paycontent .test_code,
 .ttl_pay_test_m .paycontent .test_password{display: inline-block;width: 65%;height: 48px;float: right;margin:0 2% 0 0; border:1px solid #E5E5E5;border-radius: 5px;position: relative;}
-.ttl_pay_test_m .paycontent .forget{text-align: right;}
+.ttl_pay_test_m .paycontent .forget{text-align: right;margin: 5px 0 0 0;}
 .ttl_pay_test_m .paycontent .forget_password{margin: 0 20px 0 0;color: #fe6400;}
-.ttl_pay_test_m .paycontent .test_code .get_code{position: absolute;right: 5px;top: 0;color: #9b9b9b;display: block;
-    height: 48px;line-height: 48px;color: #3E48CC;}
-.ttl_pay_test_m .paycontent .test_code .code,
-.ttl_pay_test_m .paycontent .test_password .password{float: left;}
-.ttl_pay_test_m .paycontent input{line-height: 48px;}
 .ttl_pay_test_b{padding: 0 0 25px 0;}
 .ttl_pay_test_b .action .gopay{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 .ttl_pay_test_b .action .tip{text-align: center;margin: 10px auto 0 auto;color: #9b9b9b;}
