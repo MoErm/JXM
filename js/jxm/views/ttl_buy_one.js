@@ -18,6 +18,7 @@ define(function(require, exports, module) {
         },
         events: {
             'click #action_buy': 'goBuyTipPage',
+            'click .js_contract': 'goContract',
         },
         onShow: function() {
             self = this.initialize();
@@ -193,6 +194,10 @@ define(function(require, exports, module) {
                 //进行数据传递
                 self.goBuyPagePost(self.goBuyData);
             }
+        },
+        goContract: function (e) {
+            
+            // App.goTo('get_contract?cid='+$(e.currentTarget).data('contractno')+'&pid='+$(e.currentTarget).data('productno'))
         },
         giveUp: function() {
             abortChange.exec({
