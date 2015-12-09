@@ -18,7 +18,7 @@ define(function(require, exports, module) {
             'click #godetail': 'goDetailPage', //查看详情
             'click .ico_f_list': 'goRecommend', //推荐
             'click .js_my_invest': 'goMyInvest', //我的投资
-            'click .js_setting': 'goSetting', //设置
+            'click .js_setting': 'goSetting' //设置
         },
         onShow: function() {
             self = this.initialize();

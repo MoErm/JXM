@@ -403,21 +403,30 @@ define(function(require, exports, module) {
                         <button class="payRedeem_btn payRedeem_margin">确认赎回</button>\
                     </div>';
             var popwin = new App.UI.UIPopWin({
-                events: {
-                    "click .payRedeem_close": "onHideLayer",
-                    "click .payRedeem_btn": "doPay"
+                events:{
+                    "click .payRedeem_close":"onHideLayer",
+                    "click .payRedeem_close":"forget",
+                    "click .payRedeem_btn":"doPay"
+
                 },
                 maskToHide: false,
                 template: tem,
                 onHideLayer: function() {
                     this.hide();
                 },
-                doPay: function() {
+                forget:function(){
+                    App.goTo("get_password")
+                },
+                doPay:function(){
                     App.showLoading()
-                    var tradePassword = $('#redeemPwd').val();
-                    var data = {
-                        'tradePassword': tradePassword,
-                        'redeemAmount': redeemValue
+                    var tradePassword =$('#redeemPwd').val();
+                    if(tradePassword==""){
+                        App.showToast("请输入交易密码")
+                        return
+                    }
+                    var data={
+                        'tradePassword':tradePassword,
+                        'redeemAmount':redeemValue
                     }
                     confirmRedeem.set(data)
                     confirmRedeem.exec({

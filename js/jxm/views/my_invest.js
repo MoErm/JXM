@@ -87,14 +87,6 @@ define(function (require, exports, module) {
                     if (data.ret == 0) {
                         self.data = data.data
                         self.data.currentIncome = data.data.currentIncome || 0
-                        self.data.orderListLength = self.data.orderList.length
-                        _.each(self.data.orderList, function (order) {
-                            if (order.expectExpiringDate) {
-                                order.expectExpire = order.expectExpiringDate.split(' ')[0]
-                            } else {
-                                order.expectExpire = ""
-                            }
-                        })
 
                         //百分位显示
                         self.data.floatPropRate = (self.data.floatPropRate * 100).toFixed(2)

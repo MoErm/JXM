@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 	<article class="mod_page">\
 	<div class="redemption_box">\
         <div class="redemption_div"><span>总资产</span><span><%=totalAmount%>&ensp;元</span></div>\
-        <div class="redemption_div"><span>赎回金额</span><span><input type="tel" placeholder="<%=minRedeemAmount%>元起赎" id="redeemValue">&ensp;元</span></div>\
+        <div class="redemption_div"><span>赎回金额</span><span><input type="text" placeholder="<%=minRedeemAmount%>元起赎" id="redeemValue">&ensp;元</span></div>\
 	</div>\
 	<p class="redemption_tip1">今日还可以赎回<small><%=todaySurplusAmount%></small>元&ensp;&ensp;剩余赎回次数<small><%=todaySurplusTimes%></small>次</p>\
 	<button class="redemption_btn">确认赎回</button>\
