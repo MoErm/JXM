@@ -94,7 +94,7 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.pageData.cardData.surplusAmount= handle.dealMoney(self.pageData.cardData.surplusAmount);
+            self.pageData.cardData.surplusAmount= handle.dealMoney(self.pageData.cardData.surplusAmount,1);
             //添加内容
             self.$el.html(_.template(buyStepOne)(self.pageData));
             self.initSession();

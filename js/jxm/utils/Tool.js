@@ -35,10 +35,11 @@ define(function(require, exports, module) {
         }
     }
     //Money
-    Tool.prototype.dealMoney = function(str){
+    Tool.prototype.dealMoney = function(str,fixNum){
         var money = str.toString().split('.');
+        var fixNum= fixNum ? fixNum : 2;
         if(parseInt(money[0], 10) > 9999){
-            var str = ((money[0]/10000).toFixed(2)).toString();
+            var str = ((money[0]/10000).toFixed(fixNum)).toString();
             var arr = str.split('.');
             var wang = arr[0].toString();
             return wang.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')  + (_.isUndefined(arr[1]) || !(parseInt(arr[1], 10)) ? '' : '.' + arr[1]) +'万元';

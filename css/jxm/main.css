@@ -14,6 +14,10 @@ textarea{resize:none;}
 .rmb{}
 html{-webkit-text-size-adjust:none;}
 body{background-color: #f2f2f2;}
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0;
+}
 .foot_copyright .security::before,.mod_pssword_comfort::before,.ico_s_account::before,.ico_s_card::before,.ico_s_invite::before,.ico_s_tel::before,.ico_s_logo::before,.ico_f_list::before,.ico_f_invest::before,.ico_f_setting::before,.tips_warning::before,.ico_add::before,.entrust_agreement::before,.ico_clock::before,.ico_hongbao::before,.ico_arrow::before,.ico_logo::before,.hiui-header .user::before,.hiui-header .refresh::before,.invest_list .status1,.invest_list .status2,.invest_list .status3,.invest_list .status4,.invest_tips .txt::before,.invest_tips .txt::after,.ico_query::before,.ico_finish::before,.ico_chart::before,.ico_clock2::before,.ico_tips::before,.pop_cont .btn_close::before,.btn_eye::after,.btn_clear::after{content:'';background-image:url(../../images/sprite.png);background-repeat:no-repeat;background-size:200px auto;overflow:hidden;}
 .btn_eye,.btn_clear{ position:absolute;right:0;top: 0;width: 40px;height:36px; text-align:center; overflow:hidden;}
 .btn_eye::after,.btn_clear::after{ position:absolute;right: 10px;}
@@ -1480,6 +1484,7 @@ text-align: right}
 .ttl_buy_one_m .mycard_info,
 .ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;}
 .ttl_buy_one_m .imoney_num{width: 80%;height: 50px;display: inline-block;}
+
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .banklogo,
 .ttl_buy_one_m .mycard .card_detail{color: #9b9b9b;float: left;margin: 0 0 0 5px;}
@@ -1513,12 +1518,12 @@ text-align: right}
 .ttl_pay_test{position: fixed;bottom: 0;left: 0;width: 100%;border-radius: 5px 5px 0 0 ;background: #fff;}
 .ttl_pay_test_t{height:45px;line-height: 45px;font-size: 1.8rem; text-align: center;border-bottom: 2px solid #CD1B02; position: relative;}
 .ttl_pay_test_t .close{position: absolute;right: 5px;top: 5px;display: block;width: 24px;height: 24px;border-radius: 24px;background: url(../../images/ttl_icon.png) -379px -173px}
-.ttl_pay_test_m .paycontent {padding: 20px 0; }
+.ttl_pay_test_m .paycontent {padding: 20px 0; width: 90%;margin: 0 auto;}
 .ttl_pay_test_m .paycontent .head{display: inline-block;width: 30%;height: 50px;line-height: 50px; text-indent: 2em;}
 .ttl_pay_test_m .paycontent .test_code,
 .ttl_pay_test_m .paycontent .test_password{display: inline-block;width: 65%;height: 48px;float: right;margin:0 2% 0 0; border:1px solid #E5E5E5;border-radius: 5px;position: relative;}
 .ttl_pay_test_m .paycontent .forget{text-align: right;margin: 5px 0 0 0;}
-.ttl_pay_test_m .paycontent .forget_password{margin: 0 20px 0 0;color: #fe6400;}
+.ttl_pay_test_m .paycontent .forget_password{margin: 0 20px 0 0;color: #B46A25;}
 .ttl_pay_test_b{padding: 0 0 25px 0;}
 .ttl_pay_test_b .action .gopay{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 .ttl_pay_test_b .action .tip{text-align: center;margin: 10px auto 0 auto;color: #9b9b9b;}
