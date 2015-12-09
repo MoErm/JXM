@@ -1456,7 +1456,7 @@ text-align: right}
 .ttl_introduce_b .chart_head p{font-size: 1.5rem;}
 .ttl_introduce_b .chart_head h2{font-size: 2.5rem;color: #fe6400;}
 .ttl_introduce_b .chart_content{height: 160px;}
-.ttl_introduce_b .action {position: fixed;bottom: 0;left: 0;width: 100%;}
+.ttl_introduce_b .action {position: fixed;bottom: 0;left: 0;width: 100%;background: #fff;}
 .ttl_introduce_b .action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
 .ttl_introduce_b .action .lock{color: #9b9b9b;}
 
