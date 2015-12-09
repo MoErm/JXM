@@ -1540,6 +1540,7 @@ text-align: right}
 .ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -264px -36px;}
 .ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -264px -247px;}
 .ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -264px -286px;}
+.ttl_pay_success_t .success_list .time .icon.nocur{background:#fff url(../../images/ttl_icon.png) -300px -287px}
 .ttl_pay_success_t .success_list .sub_total{font-size: 1.8rem;color: #d21c00;}
 .ttl_pay_success_t .success_list .sub_time,
 .ttl_pay_success_t .success_list .sub_show{font-size: 1.8rem;color: #000;}
