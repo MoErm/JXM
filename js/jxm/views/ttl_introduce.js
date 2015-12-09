@@ -106,13 +106,16 @@ define(function(require, exports, module) {
                 view: this,
                 title: '天添利',
                 back: {
-                    'tagname': '',
-                    callback: function () {}
+                    'tagname': 'back',
+                    callback: function () {
+                        App.goTo('ttl_recommend');
+                    }
                 },
                 right: null
             });
         },
         initProperty: function(){
+            App.showLoading();
             getTtlProperty.exec({
                 type: 'get',
                 success: function(data){
@@ -153,64 +156,13 @@ define(function(require, exports, module) {
         initTemple: function(){
             self.$el.html(_.template(introduce)(self.pageData));
             self.setCycle();
+            App.hideLoading();
             self.initChart();
         },
 
         goBuyPage: function(e){
             e.preventDefault(e);
-            var goBuyTest= {
-                testCard: function(){
-                    goTtlBuyPage.exec({
-                        type: 'get',
-                        success: function(data){                    
-                            if(data.ret == 0){
-                                App.goTo("ttl_buy_one");
-                            }else if(data.ret == 999001){
-                                //未登录
-                                handle.goLogin();
-                            }else if(data.ret == 110001){
-                                //未绑定银行卡
-                                if(!self.promptAlert){
-                                    self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
-                                        handle.setProductLink('list');
-                                        App.goTo('bind_card_new');
-                                    });
-                                }
-                                self.promptAlert.show();
-                            }else if(data.ret == 110009){
-                                //未设置交易密码
-                                if(!self.passAlert){
-                                    self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
-                                        handle.setProductLink('list');
-                                        App.goTo('set_card_psw');
-                                    });
-                                }
-                                self.passAlert.show();
-                            }else if(data.ret == 110203){
-
-                                self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
-                                    //解除锁定
-                                    self.giveUp()
-                                }, function(){
-                                    //继续更换
-                                    App.goTo("rebind_card")
-                                });
-                                self.promptAlert.show();
-                            }else{
-                                App.showToast(data.msg  || message);
-                            }
-                        },
-                        error: function(){
-                            App.hideLoading();
-                        }
-                    });
-                },
-                doBuyFirst: function(){
-
-                }
-            }
-
-            // App.goTo("ttl_buy_one");
+            App.goTo("ttl_buy_one");
         },
         goRedemPage: function(){
             var redemBtn= $("#action_redem");
