@@ -23,7 +23,7 @@ define(function (require, exports, module) {
 						<img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\
 						<div class="card_detail">\
 							<p class="card_cur" data-cardid= "<%=cardData.cardId%>"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
-							<p><%=cardData.transactLimit%><%=cardData.dailyLimit%></p>\
+							<p class="limit_text"><%=cardData.transactLimit%>，<%=cardData.dailyLimit%></p>\
 						</div>\
 					</div>\
 				</div>\

@@ -17,6 +17,7 @@ define(function(require, exports, module) {
         events: {
             'click #godetail': 'goDetailPage', //查看详情
             'click .ico_f_list': 'goRecommend', //推荐
+            'click .js_product_list': 'goInvest', //理财
             'click .js_my_invest': 'goMyInvest', //我的投资
             'click .js_setting': 'goSetting' //设置
         },
@@ -77,28 +78,28 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = 'M10 110C129 93, 0 11 280 1';
+            var pathPoint = 'M10 110C139 95, 0 25 280 1';
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
                 fill: "none"
             });
-            var tSpanMin = chartLine.paper.text(10, 125, ["5%", "起天天加息"]).attr({
+            var tSpanMin = chartLine.paper.text(10, 130, ["5%", "起天天加息"]).attr({
                 fill:'#9b9b9b'
             });
             //数字样式
             $(tSpanMin.node.childNodes[0]).attr({
                 fill:'#FF6400',
-                fontSize:"15"
+                "font-size": "2rem"
             });
-            var tSpanMax = chartLine.paper.text(155, 30, ["12%", "最高年化收益率"]).attr({
+            var tSpanMax = chartLine.paper.text(150, 40, ["12%", "最高年化收益率"]).attr({
                 fill:'#9b9b9b'
             });
             //数字样式
             $(tSpanMax.node.childNodes[0]).attr({
                 fill:'#FF6400',
-                fontSize:"2rem"
+                "font-size": "2rem"
             });
         },
         initFooter: function() {
@@ -134,6 +135,10 @@ define(function(require, exports, module) {
         goDetailPage: function() {
 
             App.goTo("ttl_introduce");
+        },
+        goInvest: function() {
+
+            App.goTo('list');
         },
         goMyInvest: function() {
 

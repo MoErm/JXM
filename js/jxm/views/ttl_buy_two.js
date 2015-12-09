@@ -1,7 +1,6 @@
 //天添利 购买页
 define(function(require, exports, module) {
     var Model = require("jxm/model/model");
-    var buyStepOne = require('jxm/views/ttl_buy_one');
     var buyStepTwo = require('jxm/tpl/ttl_buy_two.tpl');
     var footer = require('jxm/tpl/footer.tpl');
     var tool = require('jxm/utils/Tool');
@@ -41,17 +40,18 @@ define(function(require, exports, module) {
             });        
         },
         goDisAgreePage: function(e){
-            e.preventDefault(e);
-            App.goTo("ttl_buy_one");
+            e.preventDefault(e);           
+            self.goPayPage();
         },
         goAgreePage: function(e){
             e.preventDefault(e);
-            App.showLoading();            
-           
+            App.showLoading();
             agreeTtlContract.exec({
                 type: 'post',
             }).then(function (data) {
                 if(data.ret == 0){
+                    sessionStorage.setItem("isagreed",1);
+                    sessionStorage.setItem("isagreedAction",1);
                     self.goPayPage();
                 }else if(data.ret == 999001){
                     //未登录
@@ -65,6 +65,8 @@ define(function(require, exports, module) {
                 App.hideLoading();
                 App.showToast(error.msg || '网络错误');
             });
+
+           
         }, 
         goPayPage: function(){
             App.goTo("ttl_buy_one");
