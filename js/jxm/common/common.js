@@ -565,7 +565,7 @@ define(function(require, exports, module) {
                                 <label for="inpt_pssword">交易密码</label>\
                                 <input type="password" id="checkPassword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
                               </li>\
-                              <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记密码?</a></li>\
+                              <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记交易密码?</a></li>\
                             </ul>\
                         </div>\
                     </div>\
@@ -659,7 +659,9 @@ define(function(require, exports, module) {
                             } else if (data.ret == 0) {
                                 App.goTo("ttl_pay_success");
                                 localStorage.setItem('ttl_success_data', JSON.stringify(data));
+                                
                                 clearInterval(self.paytimer);
+                                clearInterval(self.ordertimer);                                
                             } else if (data.ret == 300001) {
                                 clearInterval(self.paytimer);
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
