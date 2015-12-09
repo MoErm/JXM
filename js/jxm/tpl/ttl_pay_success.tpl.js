@@ -5,7 +5,7 @@ define(function (require, exports, module) {
 				<li class="card">\
 					<em class="icon"></em>\
 					<div class="info">\
-						<p class="sub_total">成功支付  <%=successData.investAmount%> 元</p>\
+						<p class="sub_total">成功支付  <%=successData.investAmount%> </p>\
 						<p><%=successData.bankName%>（尾号<%=successData.cardNoTail%>）</p>\
 						<p><%=successData.investTime%></p>\
 					</div>\
@@ -14,7 +14,7 @@ define(function (require, exports, module) {
 					<em class="icon"></em>\
 					<div class="info">\
 						<p class="sub_time"><%=successData.valueDate%></p>\
-						<p>开始计算收益，今日收益率<%=successData.currentRate%></p>\
+						<p>开始计算收益，今日收益率<%=successData.currentRate%>%</p>\
 					</div>\
 				</li>\
 				<li class="show">\

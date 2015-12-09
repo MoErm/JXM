@@ -34,7 +34,15 @@ define(function(require, exports, module) {
                         App.goTo('ttl_introduce');
                     }
                 },
-                right: null
+                right: [{
+                    'tagname': 'invite', 'value': '',
+                    itemFn: function () {
+                        return '<span class="right_txt_btn js_invite">完成</span>';
+                    },
+                    callback: function () {
+                        App.goTo('ttl_introduce');
+                    }
+                }]
             });
         },
         initTemple: function(){

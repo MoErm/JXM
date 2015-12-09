@@ -23,13 +23,16 @@ define(function (require, exports, module) {
 						<img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\
 						<div class="card_detail">\
 							<p class="card_cur" data-cardid= "<%=cardData.cardId%>"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
-							<p class="limit_text"><%=cardData.transactLimit%>，<%=cardData.dailyLimit%></p>\
+							<p class="limit_text">单笔限额<%=cardData.transactLimit%>，单日限额<%=cardData.dailyLimit%></p>\
 						</div>\
 					</div>\
 				</div>\
 				<div class="imoney">\
 					<p class="head">投资金额</p>\
-					<div class="imoney_content"><input type="text" class="imoney_num" id="imoney_num" placeholder="<%=cardData.minInvestAmount%>元起投，<%=cardData.additionalAmount%>元递增"/></div>\
+					<div class="imoney_content">\
+						<input type="number" class="imoney_num" id="imoney_num" placeholder="<%=cardData.minInvestAmount%>元起投，<%=cardData.additionalAmount%>元递增"/>\
+						<span class="imoney_text">元</span>\
+					</div>\
 				</div>\
 			</div>\
 			<div class="ttl_buy_one_b">\
