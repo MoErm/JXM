@@ -1466,10 +1466,10 @@ text-align: right}
 .ttl_buy_one_t .info_add li{display: inline-block;width: 33%;text-align: center;color: #9b9b9b;float: left;}
 .ttl_buy_one_t .info_add .percent{font-size: 2.5rem;color: #db3710;}
 .ttl_buy_one_t .info_add .title,
-.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;}
-.ttl_buy_one_m{padding: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
+.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;line-height: 3.1rem;}
+.ttl_buy_one_m{margin: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard,
-.ttl_buy_one_m .imoney{height: 50px;line-height: 50px; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
+.ttl_buy_one_m .imoney{line-height: 50px;padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
 
 .ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
 .ttl_buy_one_m .mycard_info,
@@ -1477,9 +1477,10 @@ text-align: right}
 .ttl_buy_one_m .imoney_num{width: 100%;height: 50px;}
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .banklogo,
-.ttl_buy_one_m .mycard .card_detail{display: inline-block;color: #9b9b9b;height: 50px;float: left;}
-.ttl_buy_one_m .mycard .banklogo{width: 45px;}
-.ttl_buy_one_m .mycard .card_detail p{line-height: normal;margin:5px 0 0 5px;font-size: 1.3rem;}
+.ttl_buy_one_m .mycard .card_detail{display: inline-block;color: #9b9b9b;height: 50px;float: left;margin: 0 0 0 5px;}
+.ttl_buy_one_m .mycard .banklogo{width:50px;}
+.ttl_buy_one_m .mycard .card_detail p{line-height: normal;margin:5px 0 0 5px;font-size: 1.5rem;}
+.ttl_buy_one_m .mycard .card_detail .limit_text{font-size: 1.1rem;}
 
 .ttl_buy_one_b .action{padding: 20px 0 0 0;}
 .ttl_buy_one_b .action_buy{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
@@ -1529,9 +1530,9 @@ text-align: right}
 .ttl_pay_success_t .success_list .info{margin: 8px 0 0 50px; color: #9b9b9b;}
 .ttl_pay_success_t .success_list .card{border-left: 2px solid #F88C08;}
 .ttl_pay_success_t .success_list .time{border-left: 2px solid #E1E1E1;}
-.ttl_pay_success_t .success_list .card .icon{background:#fff url(../../images/ttl_icon.png) -74px -71px;}
-.ttl_pay_success_t .success_list .time .icon{background:#fff url(../../images/ttl_icon.png) -74px -153px;}
-.ttl_pay_success_t .success_list .show .icon{background:#fff url(../../images/ttl_icon.png) -74px -233px;}
+.ttl_pay_success_t .success_list .card .icon{background: url(../../images/ttl_icon.png) -74px -71px;}
+.ttl_pay_success_t .success_list .time .icon{background: url(../../images/ttl_icon.png) -74px -153px;}
+.ttl_pay_success_t .success_list .show .icon{background: url(../../images/ttl_icon.png) -74px -233px;}
 .ttl_pay_success_t .success_list .sub_total{font-size: 2.2rem;color: #d21c00;}
 .ttl_pay_success_t .success_list .sub_time{font-size: 1.8rem;color: #000;}
 .ttl_pay_success_t .success_list .sub_show{font-size: 2rem;color: #000;}

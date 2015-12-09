@@ -22,8 +22,16 @@ define(function(require, exports, module) {
         onShow: function() {
             self = this.initialize();
             self.pageData= {};
+            self.isAgreeAction= sessionStorage.getItem("isagreedAction");
+            self.isagreedData= sessionStorage.getItem("isagreedData");
             self.setHeader();
-            self.initBuyPage();           
+            self.initBuyPage();
+            if(self.isAgreeAction==1 && self.isagreedData!=null){
+                //进行数据传递
+                self.goBuyPagePost(self.isagreedData);
+                sessionStorage.removeItem('isagreedAction');
+                sessionStorage.removeItem("isagreedData");
+            }
         },        
         setHeader: function () {
             var header = new App.UI.UIHeader();
@@ -100,14 +108,12 @@ define(function(require, exports, module) {
         goIntroducePage: function(){
             App.goTo('ttl_introduce');
         },
-        goBuyPagePost: function(){
-            //购买post数据并检测银行卡，交易密码
-            var amountVal= $("#imoney_num").val();
-            var cardId= $(".card_cur").data("cardid");
+        goBuyPagePost: function(goBuyData){
+            //购买post数据并检测银行卡，交易密码            
             App.showLoading();
             goTtlBuyPageCheck.set({
-                "amount": amountVal,
-                "cardId": cardId
+                "amount": goBuyData.amountVal,
+                "cardId": goBuyData.cardId
             });
             goTtlBuyPageCheck.exec({
                 type: 'post',
@@ -163,15 +169,20 @@ define(function(require, exports, module) {
                 }
                 App.hideLoading();
             });
+            return this;
         },
         goBuyTipPage: function(e){
             e.preventDefault(e);
+            self.amountVal= $("#imoney_num").val();
+            self.cardId= $(".card_cur").data("cardid");            
+            self.goBuyData= {"amountVal":self.amountVal, "cardId":self.cardId};
             if(self.pageData.cardData.isContractAgreed==0){
+                sessionStorage.getItem("isagreedData",self.goBuyData);
                 App.goTo("ttl_buy_two");
             }
             else{
                 //进行数据传递
-                self.goBuyPagePost();
+                self.goBuyPagePost(self.goBuyData);
             }
         },
         giveUp: function() {
@@ -191,6 +202,7 @@ define(function(require, exports, module) {
                     App.showToast(message);
                 }
             })
-        },
-    })
-})
+        }
+    });
+
+})  

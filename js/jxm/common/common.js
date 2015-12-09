@@ -561,7 +561,7 @@ define(function(require, exports, module) {
                         </div>\
                     </div>\
                 </article>';
-
+            var self = null;
             var popwin = new App.UI.UIPopWin({
                 maskToHide: false,
                 template: tem,
@@ -571,13 +571,15 @@ define(function(require, exports, module) {
                     'click .js_code': 'getCode',
                     'click #forget_password':'goForgetPassword'
                 },
-                onHideLayer: function() {
-
-                    this.hide();
+                initialize: function() {
+                    return this;
                 },
-                
+                onShow: function() {
+                    self = this.initialize();
+                    self.showOrderCountDown();
+                    self.showCodeCountDown(60);                    
+                },
                 showCodeCountDown: function(timer) {
-                    var self = this;
                     //获取验证码倒计时
                     var second = timer || 60;
                     clearInterval(self.codetimer);
@@ -595,7 +597,6 @@ define(function(require, exports, module) {
                     }, 1000);
                 },
                 showOrderCountDown: function() {
-                    var self = this;
                     //支付倒计时
                     var surplus = data.postData.surplusPayTime;
                     clearInterval(self.ordertimer);
@@ -611,24 +612,61 @@ define(function(require, exports, module) {
                         }
                     }, 1000);
                 },
-                onShow: function() {
-                    var self = this
-                    self.showOrderCountDown();
-                    self.showCodeCountDown(60);                    
+                showPayCountDown: function() {
+                    App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id=#js_pay_count_down">10</span>秒', 10000);
+                    var second = 9;
+                    self.paytimer = setInterval(function() {
+                        $('#js_pay_count_down').html(second);
+                        second -= 1;
+                        if (second == -1) {
+                            clearInterval(self.paytimer);
+                            self.payCountAlert = handle.alert('支付确认中，请到"我的投资"查看支付结果', function() {
+                                App.goTo("my_invest")
+                            });
+                            self.payCountAlert.show();
+                            self.showResult = false;
+                        }
+                    }, 1000);
                 },
-                // onHide: function() {
-                //     var self = this;
-                //     clearInterval(self.paytimer);
-                //     clearInterval(self.codetimer);
-                //     clearInterval(self.ordertimer);
-                //     self.$el.find('.js_code').data("hascode", 0);
-                //     self.$el.find('.js_code').removeClass("code_disabled");
-                //     //alert隐藏
-                //     self.payCountAlert && self.payCountAlert.hide();
-                //     self.payCountAlert && self.orderCountAlert.hide();
-                // },
+                showCountToast: function(orderNo) {
+                    self.hide();
+                    self.showPayCountDown();
+                    self.showResult = true;
+                    goTtlPayResult.set({
+                        "orderNo": orderNo
+                    })
+                    goTtlPayResult.exec({
+                        type: 'get',
+                        success: function(data) {
+                            App.hideToast();
+                            if (data.ret == 999001) {
+                                App.goTo('login');
+                            } else if (data.ret == 0) {
+                                App.goTo("ttl_pay_success");
+                                localStorage.setItem('ttl_success_data', JSON.stringify(data));
+                                clearInterval(self.paytimer);
+                            } else if (data.ret == 300001) {
+                                clearInterval(self.paytimer);
+                                self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
+                                    App.goTo("my_invest");
+                                });
+                                    self.payCountAlert.show();
+                            }else{
+                                clearInterval(self.paytimer);                                
+                            }
+                                
+                        },
+                        error: function() {
+                            App.hideLoading();
+                            App.showToast('网络错误,请稍后重试');
+                        }
+                    });
+                },
+                onHideLayer: function() {
+
+                    self.hide();
+                },
                 getCode: function() {
-                    var self = this;
                     if (self.$el.find('.js_code').data("hascode")) {
                         return;
                     }
@@ -671,7 +709,6 @@ define(function(require, exports, module) {
                     })
                 },
                 payOrder: function() {
-                    var self = this;
                     var code = $('#checkCode').val();
                     var psw = $('#checkPassword').val();
                     var orderNo= data.postData.orderNo;
@@ -743,78 +780,11 @@ define(function(require, exports, module) {
                         }
                     })
                 },                
-                showPayCountDown: function() {
-                    var self = this;
-                    App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id=#js_pay_count_down">10</span>秒', 10000);
-                    var second = 9;
-                    self.paytimer = setInterval(function() {
-                        $('#js_pay_count_down').html(second);
-                        second -= 1;
-                        if (second == -1) {
-                            clearInterval(self.paytimer);
-                            self.payCountAlert = handle.alert('支付确认中，请到"我的投资"查看支付结果', function() {
-                                App.goTo("my_invest")
-                            });
-                            self.payCountAlert.show();
-                            self.showResult = false;
-                        }
-                    }, 1000);
-                },
-                showCountToast: function(orderNo) {
-                    var self = this;
-                    self.hide();
-                    self.showPayCountDown();
-                    self.showResult = true;
-                    goTtlPayResult.set({
-                        "orderNo": orderNo
-                    })
-                    goTtlPayResult.exec({
-                        type: 'get',
-                        success: function(data) {
-                            App.hideToast();
-                            if (data.ret == 999001) {
-                                App.goTo('login');
-                            } else if (data.ret == 0) {
-                                App.goTo("ttl_pay_success");
-                                localStorage.setItem('ttl_success_data', JSON.stringify(data));
-                                clearInterval(self.paytimer);
-                            } else if (data.ret == 300001) {
-                                clearInterval(self.paytimer);
-                                self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
-                                    App.goTo("my_invest");
-                                });
-                                    self.payCountAlert.show();
-                            }else{
-                                clearInterval(self.paytimer);                                
-                            }
-                                
-                        },
-                        error: function() {
-                            App.hideLoading();
-                            App.showToast('网络错误,请稍后重试');
-                        }
-                    });
-                },
+                
                 goForgetPassword: function(){
+                    self.hide();
                     App.goTo("forget_password");
                 }
-                // showSelfToast: function(message) {
-                //     var self = this;
-                //     self.$el.find('.mod_popup_toast').html(message);
-                //     self.$el.find('.mod_popup_mask').toggleClass('hidden')
-                //     self.$el.find('.mod_popup_toast').toggleClass('hidden')
-
-                //     var left = self.$el.find('.mod_popup_toast').width() / 2
-                //     self.$el.find('.mod_popup_toast').css('margin-left', '-' + left + 'px')
-                //     self.hideSelfToast();
-                // },
-                // hideSelfToast: function() {
-                //     var self = this;
-                //     setTimeout(function() {
-                //         self.$el.find('.mod_popup_mask').toggleClass('hidden');
-                //         self.$el.find('.mod_popup_toast').toggleClass('hidden');
-                //     }, 3000)
-                // },
             });
             popwin.show();
         }
