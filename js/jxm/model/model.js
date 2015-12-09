@@ -102,6 +102,9 @@
 		//我的投资
 		myProperty: initModel({
 			url: host+'/api/userInfo/myProperty'
+		}),//我的投资
+        orderList: initModel({
+			url: host+'/api/userInfo/orderList'
 		}),
         //我的零钱
         myChange: initModel({

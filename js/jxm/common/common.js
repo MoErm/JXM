@@ -455,7 +455,6 @@ define(function(require, exports, module) {
                             if(data.ret == 0){
                                 App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
 
-
                             }else if(data.ret == 999001) {
                                 handle.goLogin();
                             }else{
