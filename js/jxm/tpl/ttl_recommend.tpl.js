@@ -9,12 +9,12 @@ define(function (require, exports, module) {
     		</div>\
             <div class="ttl_recommend_total">\
 				<div class="ttl_recommend_total_l">\
-					<span class="title">累计投资用户</span>\
-					<p class="number"><%=investCount%>/人次</p>\
+					<span class="title">累计投资用户(人次)</span>\
+					<p class="number"><%=investCount%></p>\
 				</div>\
 				<div class="ttl_recommend_total_r">\
-					<span class="title">累计投资金额</span>\
-					<p class="number"><%=investAmount%>万元</p>\
+					<span class="title">累计投资金额(万元)</span>\
+					<p class="number"><%=investAmount%></p>\
 				</div>\
             </div>\
             <div class="ttl_recommend_detail">\

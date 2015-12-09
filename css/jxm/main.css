@@ -1419,12 +1419,12 @@ text-align: right}
 .ttl_recommend_ad{height: 130px;}
 .ttl_recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 15px 0;background: #ffffff; }
 .ttl_recommend_total_l,
-.ttl_recommend_total_r{display: inline-block;width: 49%;text-indent: 4rem;}
+.ttl_recommend_total_r{display: inline-block;width: 49%;text-align: center;}
 .ttl_recommend_total_r{border-left: 1px solid #E6E6E6;}
 .ttl_recommend_total_l .title,
-.ttl_recommend_total_r .title{font-size: 1.5rem;color: #9b9b9b;}
+.ttl_recommend_total_r .title{font-size: 1.2rem;color: #9b9b9b;}
 .ttl_recommend_total_l .number,
-.ttl_recommend_total_r .number{font-size: 2rem; color: #db3710;}
+.ttl_recommend_total_r .number{font-size: 2.5rem; color: #db3710;}
 .ttl_recommend_detail{border-top:1px solid #ECECEC; background: #ffffff;}
 .ttl_recommend_detail_t .head{width: 80%;height: 60px;line-height: 60px; border-bottom: 1px dashed #E6E6E6; margin: 0 auto;color:#9b9b9b;}
 .ttl_recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
@@ -1469,7 +1469,7 @@ text-align: right}
 .ttl_buy_one_t .info_add li{display: inline-block;width: 33%;text-align: center;color: #9b9b9b;float: left;}
 .ttl_buy_one_t .info_add .percent{font-size: 2.5rem;color: #db3710;}
 .ttl_buy_one_t .info_add .title,
-.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;line-height: 3.1rem;}
+.ttl_buy_one_t .info_add .num{font-size: 1.8rem;color: #000;padding: 5px 0 0 0;}
 .ttl_buy_one_m{margin: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard,
 .ttl_buy_one_m .imoney{line-height: 50px;padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
