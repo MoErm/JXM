@@ -400,14 +400,14 @@ define(function(require, exports, module) {
                         <div class="payRedeem_title">交易密码<div class="payRedeem_close"></div></div>\
                         <div class="payRedeem_input">交易密码<input type="password" id="redeemPwd" maxlength="12"></div>\
                         <p class="payRedeem_forget"><a id="payRedeem_forget_a">忘记交易密码？</a></p>\
-                        <button class="payRedeem_btn payRedeem_margin payRedeem_bgGrey" id="payRedeem_btn">确认赎回</button>\
+                        <button class="payRedeem_btn payRedeem_margin payRedeem_bgRed" id="payRedeem_btn">确认赎回</button>\
                     </div>';
             var payFlag=false;
             var popwin = new App.UI.UIPopWin({
                 events:{
                     "click .payRedeem_close":"onHideLayer",
                     "click #payRedeem_forget_a":"forget",
-                    "input #redeemPwd":"canPay",
+//                    "input #redeemPwd":"canPay",
                     "click .payRedeem_btn":"doPay"
 
                 },
