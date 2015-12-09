@@ -25,6 +25,15 @@ define(function (require, exports, module) {
    		</li>\
    		<% })%>\
 	  </ul>\
-	</article>';
+	</article>\
+	<footer class="mod_footer_btn">\
+	  <div class="fixed">\
+	    <div class="v_item btn_box">\
+	      <div class="v_item_hd">请在<span class="webtxt js_time">-分-秒</span>内完成支付！</div>\
+	      <div class="v_item_bd"><span class="btn_link btn_link1 js_pay">立即支付</span></div>\
+	    </div>\
+	  </div>\
+	</footer>\
+	';
 	module.exports = tpl;
 })

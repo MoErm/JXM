@@ -2,17 +2,17 @@ define(function (require, exports, module) {
     var tpl ='<article class="ttl_introduce">\
     		<div class="ttl_introduce_t">\
 				<div class="earn">\
-					<p>昨日收益/元</p>\
+					<p>昨日收益(元)</p>\
 					<h2><%=getTtlProperty.yestIncome%></h2>\
 				</div>\
     		</div>\
     		<div class="ttl_introduce_m">\
 				<div class="total">\
-					<p>总金额/元</p>\
+					<p>总金额(元)</p>\
 					<h2><%=getTtlProperty.allProperty%></h2>\
 				</div>\
 				<div class="history">\
-					<p>历史收益/元</p>\
+					<p>历史收益(元)</p>\
 					<h2><%=getTtlProperty.historyIncome%></h2>\
 				</div>\
     		</div>\
@@ -24,18 +24,18 @@ define(function (require, exports, module) {
 				<div class="chart">\
 					<div class="chart_head">\
 						<p>今日最高收益率</p>\
-						<h2><%=getTtlRate.todayYieldRate%>%</h2>\
+						<h2 id="todayYieldRate">0.000%</h2>\
 					</div>\
 					 <div class="cycle_bg"  id="tradeAmount">\
                         <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
-                        <div class="cycleTest cycleTestRed cycle_1" id="cycle_1">1</div>\
-                    <div class="cycleTest cycleTestRed cycle_2" id="cycle_2">2</div>\
-                    <div class="cycleTest cycleTestRed cycle_3" id="cycle_3">3</div>\
-                    <div class="cycleTest cycle_4" id="cycle_4">4</div>\
-                    <div class="cycleTest cycle_5" id="cycle_5">5</div>\
-                    <div class="cycleTest cycle_6" id="cycle_6">6</div>\
-                    <div class="cycleTest cycle_7" id="cycle_7">7</div>\
-                    <div class="cycleTest cycle_8" id="cycle_8">8</div>\
+                        <div class="cycleTest cycleTestRed cycle_1" id="cycle_1">12/11</div>\
+                    <div class="cycleTest cycleTestRed cycle_2" id="cycle_2">12/12</div>\
+                    <div class="cycleTest cycleTestRed cycle_3" id="cycle_3">12/13</div>\
+                    <div class="cycleTest cycle_4" id="cycle_4">12/14</div>\
+                    <div class="cycleTest cycle_5" id="cycle_5">12/15</div>\
+                    <div class="cycleTest cycle_6" id="cycle_6">12/16</div>\
+                    <div class="cycleTest cycle_7" id="cycle_7">12/17</div>\
+                    <div class="cycleTest cycle_8" id="cycle_8">12/18</div>\
                         </div>\
                         <div class="chart_content" id="chart_content">\
 					</div>\
