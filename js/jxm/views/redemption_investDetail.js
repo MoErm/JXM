@@ -5,31 +5,37 @@ define(function (require, exports, module) {
     var handle = new tool();
     var payLayer = require("jxm/common/common");
     var getOrderDetails = new Model.getOrderDetails();
+    var surplus=0;
     //接口getOrderDetails
     module.exports = App.Page.extend({
         events: {
-            'click .redemption_btn': 'payRedeem',
+            'click .js_pay': 'pay',
             'click .ico_coin': 'test'
         },
         initialize: function () {
             self = this;
         },
         onShow: function () {
-
+            App.showLoading();
             handle.share();
 
 
             this.setHeader();
 
             this.showPage();
-            this.test()
 //            self.$el.html(Template);
         },
-        test:function(){
-            App.showLoading();
-//            window.setTimeout(function(){
-//                App.hideLoading();
-//            },20000)
+        pay:function(){
+            var query = this.request.query;
+            var orderNo=query&&query.orderNo||"";
+
+            var data={
+                postData:{
+                    surplusPayTime:self.surplus,
+                    orderNo:orderNo
+                }
+            }
+            payLayer.ttlPayWin(data)
         },
         format:function(num){
             var temp_num=num*100
@@ -52,9 +58,27 @@ define(function (require, exports, module) {
                 success: function(data){
                     if(data.ret == 0){
                         self.data=data.data
+                        console.log(data.data)
                         self.data.format=self.format
                         self.$el.html(_.template(Template)(self.data));
+                        if(data.data.orderStatus == "01") {
+                            self.surplus = data.data.surplusPayTime;
+                            self.timer = setInterval(function () {
+                                var minute = Math.floor(surplus / 60);
+                                var second = self.surplus - minute * 60;
+                                $('.js_time').html(minute + '分' + second + '秒');
+                                self.surplus -= 1;
+                                self.data.surplusPayTime = self.surplus - 1;
+                                if (self.surplussurplus == -1) {
+                                    clearInterval(self.timer);
+                                    self.hide()
+                                    self.getOrderInfoAlert = handle.alert('订单已关闭，请重新购买', function () {
 
+                                        App.goTo("my_invest")
+                                    }).show();
+                                }
+                            }, 1000);
+                        }
                     }else if(data.ret == 999001) {
                         handle.goLogin();
                     }else{

@@ -16,7 +16,7 @@ define(function (require, exports, module) {
                 <span >投资金额</span><span class="detail"><%=order.investAmount%></span><br>\
                 <span >预计到期日</span><span class="detail"><%=order.orderDate%></span><br>\
                 <span >今日收益率</span><span class="detail"><%=format(order.currentRate)%><%if(order.isUp==1){%><i class="ico_up"></i><%}%></span><br>\
-                <span class="logo"><img src="<%=order.bankLogo%>"   alt=""><%=order.bankName%>(尾号<%=order.cardTailNo%>)</span>\
+                \
             </li>\
             <% })%>\
           </ul>\
@@ -50,4 +50,6 @@ define(function (require, exports, module) {
 	  </div>\
 	</article>';
 	module.exports = tpl;
+
+//    <span class="logo"><img src="<%=order.bankLogo%>"   alt=""><%=order.bankName%>(尾号<%=order.cardTailNo%>)</span>
 })
