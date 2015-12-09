@@ -7,20 +7,27 @@ define(function (require, exports, module) {
     var handle = new tool();
     var payLayer = require("jxm/common/common");
     var message = '网络错误，请稍后重试';
+    var totalAmount=0
+    var todaySurplusTimes=0
+    var todaySurplusAmount=0
     //接口
     module.exports = App.Page.extend({
         events: {
-            'input #redeemValue': 'autoInput',//获取开户行信息
+            'input #redeemValue': 'autoInput',
             'click .redemption_btn': 'payRedeem'
         },
         initialize: function () {
-            self = this;
+
+
         },
-        goTop:function(){
-            $(window).scrollTop(0)
+        beforeIn:  function () {
+            self = this;
+            self.$el.html("");
+
         },
 
         onShow: function () {
+
             handle.share();
             this.setHeader();
             this.showUser()
@@ -29,20 +36,27 @@ define(function (require, exports, module) {
         },
         autoInput:function(){
             var redeemValue = handle.deleteAllBlank(self.$('#redeemValue').val());
-            if(redeemValue>self.data.totalAmount){
-                self.$('#redeemValue').val(self.data.totalAmount)
+            if(redeemValue>totalAmount){
+                self.$('#redeemValue').val(totalAmount)
             }
         },
         showUser:function(){
+            App.showLoading()
             toRedeem.exec({
                 type: 'get',
                 success: function(data){
+
                     App.hideLoading();
                     if(data.ret == 0){
-                        self.data=data.data
-                        self.data.todaySurplusAmount=handle.dealMoney2(self.data.todaySurplusAmount)
-                        self.$el.html(_.template(Template)(self.data));
+                        totalAmount=data.data.totalAmount
+                        todaySurplusTimes=data.data.todaySurplusTimes
+                        todaySurplusAmount=data.data.todaySurplusAmount
 
+                        data.data.todaySurplusAmount=handle.dealMoney2(data.data.todaySurplusAmount)
+
+                        self.$el.html(_.template(Template)(data.data));
+                        self.$('#redeemValue').val("")
+                        self.$('#totalAmount').html(data.data.totalAmount+"元")
                     }else if(data.ret == 999001) {
                         handle.goLogin();
                     }
@@ -60,11 +74,11 @@ define(function (require, exports, module) {
 //                App.showToast("您可赎回金额为零，请先投资")
 //                return
 //            }
-            if(self.data.todaySurplusTimes==0){
+            if(todaySurplusTimes==0){
                 App.showToast("今日赎回次数已用完，请明日再来")
                 return
             }
-            if(self.data.todaySurplusAmount==0){
+            if(todaySurplusAmount==0){
                 App.showToast("今日赎回限额已用完，请明日再来")
                 return
             }
@@ -77,7 +91,7 @@ define(function (require, exports, module) {
                 App.showToast("赎回金额必须大于100元")
                 return
             }
-            if(self.data.totalAmount-redeemValue<100&&self.data.totalAmount-redeemValue!=0){
+            if(totalAmount-redeemValue<100&&totalAmount-redeemValue!=0){
                 self.promptAlert = handle.alert("当前赎回金额将导致剩余总资产小于100元， 请务必一次性全部赎回");
                 self.promptAlert.show();
                 return
@@ -103,7 +117,7 @@ define(function (require, exports, module) {
         },
 
         onHide: function () {
-            self.$('#redeemValue').val("")
+            self.$el.html("")
         }
     })
 })

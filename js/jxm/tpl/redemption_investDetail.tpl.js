@@ -1,5 +1,6 @@
 define(function (require, exports, module) {
 	var tpl = '\
+	<%if(true){%>\
 	<article class="mod_page">\
 	  <div class="finish_regular redemption_finish_bg" style="">\
 	   <div class="item item_redeem ico_finish cur">成功支付<i class="numb"><%=investAmount%></i><br>\
@@ -12,7 +13,7 @@ define(function (require, exports, module) {
 	    </div>\
 	    <div class="item item_end ico_coin cur">\
 	      <p class="txt"><%=currentDate%></p>\
-	      <p class="tips ">以获得收益<%=income%>元，今日收益率<%=format(currentRate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
+	      <p class="tips ">已获得收益<%=income%>元，今日收益率<%=format(currentRate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
 	    </div>\
 	    <p style="text-align: right;margin-top: 30px">当前余额：<%=currentAmount%>元</p>\
 	  </div>\
@@ -34,6 +35,24 @@ define(function (require, exports, module) {
 	    </div>\
 	  </div>\
 	</footer>\
+	<%}%>\
+	<%if(false){%>\
+	<article class="mod_page page_details_regular">\
+	  <div class="v_mod">\
+	    <ul class="invest_list">\
+	      <li class="v_mod item">\
+	        <p class="status status2 ">\
+	        支付失败\
+	        </p>\
+	        <h3 class="hd_title">天添利</h3>\
+	            <p class="info">支付超时</p>\
+        		<p class="v_tips ico_tips">由于您在时限内未完成支付，该笔订单被强制关闭</p>\
+	      </li>\
+	    </ul>\
+	    <div style="height:20px"></div>\
+	  </div>\
+	</article>\
+	<%}%>\
 	';
 	module.exports = tpl;
 })

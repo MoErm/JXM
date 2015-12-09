@@ -39,17 +39,29 @@ define(function (require, exports, module) {
             $(window).scrollTop(0)
         },
         scrollTopListener:function(){
+            console.log("高度监听")
             $(window).bind('scroll', function(){
+
+                console.log($(window).scrollTop() >= $(document).height() - $(window).height())
+                console.log($(window).scrollTop()+"  "+$(document).height() +"  "+ $(window).height())
+                console.log("inPageNum   "+inPageNum+"inPageTotal   "+inPageTotal)
+                console.log("outPageNum   "+outPageNum+"outPageTotal   "+outPageTotal)
+
                 if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+                    console.log(showPageFlag)
                     if(showPageFlag==1){
+                        console.log("查询")
                         if(inPageNum>inPageTotal){
                             return
                         }
+
                         self.showMoreIn()
                     }else{
+                        console.log("showMoreOut")
                         if(outPageNum>outPageTotal){
                             return
                         }
+
                         self.showMoreOut()
                     }
                 }
@@ -67,7 +79,7 @@ define(function (require, exports, module) {
             var status = $(closest).data('id');
             App.goTo("redemption_detail?ransomId="+status)
         },
-        showMoreIn: function () {
+        showMoreIn : function () {
             var self = this;
             getUserOrderRecords.set({
                 'page':inPageNum
@@ -96,7 +108,7 @@ define(function (require, exports, module) {
                 }
             })
         },
-        showMoreOut:function(){
+         showMoreOut:function(){
 
             getUserRansomRecords.set({
                 'page':outPageNum
@@ -188,7 +200,7 @@ define(function (require, exports, module) {
                         self.data.format=self.format
                         self.data.shuhuiFlag=shuhuiFlag
                         self.$el.html(_.template(Template)(self.data));
-                        self.scrollTopListener()
+                        self.scrollTopListener();
 
                     } else if (data.ret == 999001) {
                         handle.goLogin();

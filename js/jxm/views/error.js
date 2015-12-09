@@ -48,7 +48,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("list")
+                        App.goTo("ttl_recommend")
                     }
                 },
                 right: null

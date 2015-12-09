@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
     var Template = require("jxm/tpl/my_invest_record.tpl");
-    var myProperty = new Model.myProperty();
+    var orderList = new Model.orderList();
     var historyOrder = new Model.historyOrder();
 
     var Store = require("jxm/model/store");
@@ -55,7 +55,7 @@ define(function (require, exports, module) {
             $(".mod_my_invest").html("")
             var self = this;
             App.showLoading();
-            return myProperty.exec({
+            return orderList.exec({
                 type: 'get',
                 success: function (data) {
                     App.hideLoading();
