@@ -399,13 +399,15 @@ define(function(require, exports, module) {
             var tem = '<div class="payRedeem">\
                         <div class="payRedeem_title">交易密码<div class="payRedeem_close"></div></div>\
                         <div class="payRedeem_input">交易密码<input type="password" id="redeemPwd" maxlength="12"></div>\
-                        <p class="payRedeem_forget">忘记交易密码？</p>\
-                        <button class="payRedeem_btn payRedeem_margin">确认赎回</button>\
+                        <p class="payRedeem_forget"><a id="payRedeem_forget_a">忘记交易密码？</a></p>\
+                        <button class="payRedeem_btn payRedeem_margin payRedeem_bgGrey" id="payRedeem_btn">确认赎回</button>\
                     </div>';
+            var payFlag=false;
             var popwin = new App.UI.UIPopWin({
                 events:{
                     "click .payRedeem_close":"onHideLayer",
-                    "click .payRedeem_forget":"forget",
+                    "click #payRedeem_forget_a":"forget",
+                    "input #redeemPwd":"canPay",
                     "click .payRedeem_btn":"doPay"
 
                 },
@@ -414,11 +416,26 @@ define(function(require, exports, module) {
                 onHideLayer: function() {
                     this.hide();
                 },
+                canPay:function(){
+                    var tradePassword =$('#redeemPwd').val();
+                    if(tradePassword.length>0){
+                        payFlag=true;
+                        $('#payRedeem_btn').removeClass("payRedeem_bgGrey")
+                        $('#payRedeem_btn').addClass("payRedeem_bgRed")
+                    }else{
+                        payFlag=false;
+                        $('#payRedeem_btn').addClass("payRedeem_bgGrey")
+                        $('#payRedeem_btn').removeClass("payRedeem_bgRed")
+                    }
+                },
                 forget:function(){
                     App.goTo("forget_password")
                     this.hide();
                 },
                 doPay:function(){
+                    if(!payFlag){
+                        return
+                    }
 
                     var tradePassword =$('#redeemPwd').val();
                     if(tradePassword==""){
