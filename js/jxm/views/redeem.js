@@ -260,6 +260,7 @@ define(function (require, exports, module) {
         },
 
         onHide: function () {
+            self.$el.html("")
         }
     })
 })

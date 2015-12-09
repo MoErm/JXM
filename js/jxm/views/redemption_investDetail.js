@@ -72,22 +72,24 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("my_invest")
+                        App.goTo("redeem")
                     }
                 },
                 center: {
                     'tagname': 'title', 'value': ['交易详情']
                 },
-                right: [{
-                    'tagname': '', 'value': '完成&ensp;',
-                    callback: function () {
-                        App.goTo("my_invest")
-                    }
-                }]
+                right:null
+//                    [{
+//                    'tagname': '', 'value': '完成&ensp;',
+//                    callback: function () {
+//                        App.goTo("my_invest")
+//                    }
+//                }]
             });
         },
 
         onHide: function () {
+            self.$el.html("")
         }
     })
 })

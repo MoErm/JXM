@@ -40,7 +40,8 @@ define(function (require, exports, module) {
                     App.hideLoading();
                     if(data.ret == 0){
                         self.data=data.data
-                        self.$el.html(_.template(Template)(data.data));
+                        self.data.todaySurplusAmount=handle.dealMoney2(self.data.todaySurplusAmount)
+                        self.$el.html(_.template(Template)(self.data));
 
                     }else if(data.ret == 999001) {
                         handle.goLogin();
@@ -72,6 +73,10 @@ define(function (require, exports, module) {
                 App.showToast("请输入赎回金额")
                 return
             }
+            if(redeemValue<100){
+                App.showToast("赎回金额必须大于100元")
+                return
+            }
             if(self.data.totalAmount-redeemValue<100&&self.data.totalAmount-redeemValue!=0){
                 self.promptAlert = handle.alert("当前赎回金额将导致剩余总资产小于100元， 请务必一次性全部赎回");
                 self.promptAlert.show();
@@ -87,7 +92,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("my_invest")
+                        App.goTo("ttl_introduce")
                     }
                 },
                 center: {

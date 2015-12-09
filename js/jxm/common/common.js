@@ -405,7 +405,7 @@ define(function(require, exports, module) {
             var popwin = new App.UI.UIPopWin({
                 events:{
                     "click .payRedeem_close":"onHideLayer",
-                    "click .payRedeem_close":"forget",
+                    "click .payRedeem_forget":"forget",
                     "click .payRedeem_btn":"doPay"
 
                 },
@@ -415,10 +415,11 @@ define(function(require, exports, module) {
                     this.hide();
                 },
                 forget:function(){
-                    App.goTo("get_password")
+                    App.goTo("forget_password")
+                    this.hide();
                 },
                 doPay:function(){
-                    App.showLoading()
+
                     var tradePassword =$('#redeemPwd').val();
                     if(tradePassword==""){
                         App.showToast("请输入交易密码")
@@ -428,6 +429,7 @@ define(function(require, exports, module) {
                         'tradePassword':tradePassword,
                         'redeemAmount':redeemValue
                     }
+                    App.showLoading()
                     confirmRedeem.set(data)
                     confirmRedeem.exec({
                         type: 'post',

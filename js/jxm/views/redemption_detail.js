@@ -70,7 +70,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("my_invest")
+                        App.goTo("redeem")
                     }
                 },
                 center: {
@@ -87,6 +87,7 @@ define(function (require, exports, module) {
         },
 
         onHide: function () {
+            self.$el.html("")
         }
     })
 })

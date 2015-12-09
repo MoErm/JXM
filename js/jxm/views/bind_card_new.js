@@ -321,7 +321,7 @@ define(function (require, exports, module) {
                 self.setHeader();
 //                self.cityData=null;
                 self.bankData=null;
-
+                App.hideLoading()
 
             },
             agreementLink: function(e){
