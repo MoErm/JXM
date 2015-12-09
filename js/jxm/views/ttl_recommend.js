@@ -82,12 +82,24 @@ define(function(require, exports, module) {
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
-                fill: "none",
-                background:"red"
+                fill: "none"
             });
-            var tSpanMin = chartLine.paper.text(10, 125, ["5%", "起天天加息"]);
-
-            var tSpanMax = chartLine.paper.text(155, 30, ["12%", "最高年化收益率"]);
+            var tSpanMin = chartLine.paper.text(10, 125, ["5%", "起天天加息"]).attr({
+                fill:'#9b9b9b'
+            });
+            //数字样式
+            $(tSpanMin.node.childNodes[0]).attr({
+                fill:'#FF6400',
+                fontSize:"15"
+            });
+            var tSpanMax = chartLine.paper.text(155, 30, ["12%", "最高年化收益率"]).attr({
+                fill:'#9b9b9b'
+            });
+            //数字样式
+            $(tSpanMax.node.childNodes[0]).attr({
+                fill:'#FF6400',
+                fontSize:"2rem"
+            });
         },
         initFooter: function() {
             $(".foot_nav .item").removeClass('cur');
