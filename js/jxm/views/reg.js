@@ -103,7 +103,7 @@ define(function (require, exports, module) {
                 if(data&&data.ret==0){
                     App.showToast("注册成功");
                     loginStore.set(data.data);//设置LocalStorge
-                    window.setTimeout(function(){App.goTo("list")},2000);
+                    window.setTimeout(function(){App.goTo("ttl_recommend")},2000);
                 }else{
                     var msg=data.msg||"error"
                     App.showToast(msg);

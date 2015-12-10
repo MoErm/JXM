@@ -20,7 +20,7 @@ define(function (require, exports, module) {
 	    \
 	  </div>\
 	    <div class="my_change ico_redbao">\
-	    <span>我的红包</span>\
+	    <span>加薪红包</span>\
 	    <span class="change"><%=change%></span>\
 	    </div>\
 	    <div class="invest_tiantian ico_ttl">\

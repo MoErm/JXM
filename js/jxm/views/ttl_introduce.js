@@ -13,8 +13,9 @@ define(function(require, exports, module) {
     var turnNum=0;
     var RoundNum=2;
     var cycleRound=0;
-    var self = null;
     var nowRoundNum=0;
+    var self = null;
+
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -78,6 +79,21 @@ define(function(require, exports, module) {
         };
     }
     var map = new Map();
+
+    function addDate(date,days){
+        var d=new Date(date);
+        d.setDate(d.getDate()+days);
+        var m=d.getMonth()+1;
+        m=m+""
+        if(m.length==1){
+            m="0"+m
+        }
+        var day=d.getDate()+""
+        if(day.length==1){
+            day="0"+day
+        }
+        return d.getFullYear()+''+m+''+day;
+    }
     module.exports = App.Page.extend({
         initialize: function() {
             return this;
@@ -87,6 +103,12 @@ define(function(require, exports, module) {
             'click #action_redem': 'goRedemPage'            
         },
         onShow: function() {
+            pool= new Array(1,2,3);
+            hidePool= new Array(4,5,6,7,8);
+            turnNum=0;
+            RoundNum=2;
+            cycleRound=0;
+            nowRoundNum=0;
             self = this.initialize();
             handle.share();
             self.pageData= {};
@@ -130,12 +152,12 @@ define(function(require, exports, module) {
         showRed:function(key){
             if(key<0){
                 RoundNum++;
-                console.log("转+1")
+//                console.log("转+1")
                 pool.push(hidePool.shift())
                 hidePool.push(pool.shift())
             }else{
                 RoundNum--;
-                console.log("转-1")
+//                console.log("转-1")
                 pool.reverse()
                 hidePool.reverse()
                 pool.push(hidePool.shift())
@@ -154,14 +176,25 @@ define(function(require, exports, module) {
 
             cycleRound=cycleRoundTemp
 
-            console.log("RoundNum="+RoundNum+"  cycleRoundTemp="+cycleRoundTemp+"   nowRoundNum="+nowRoundNum)
-//            console.log(pool)
-//            console.log(hidePool)
+//            console.log("RoundNum="+RoundNum+"  cycleRoundTemp="+cycleRoundTemp+"   nowRoundNum="+nowRoundNum)
+            var nowDate=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()
+            var showDate_1=self.addDate(nowDate,RoundNum-3)
+            var showDate_2=self.addDate(nowDate,RoundNum-2)
+            var showDate_3=self.addDate(nowDate,RoundNum-1)
+//            console.log(showDate_1+"  "+showDate_2+"  "+showDate_3)
+            self.setRate(showDate_2)
             for(var i=0;i<pool.length;i++){
-                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
+//                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
+                if(i==0){
+                    self.$("#cycle_"+pool[i]).html(showDate_1.substr(4,2)+"/"+showDate_1.substr(6,2))
+                }else if(i==1){
+                    self.$("#cycle_"+pool[i]).html(showDate_2.substr(4,2)+"/"+showDate_2.substr(6,2))
+                }else if(i==2){
+                    self.$("#cycle_"+pool[i]).html(showDate_3.substr(4,2)+"/"+showDate_3.substr(6,2))
+                }
             }
             for(var i=0;i<hidePool.length;i++){
-                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
+//                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
             }
             var cycle=window.document.getElementById("cycle")
             var deg=cycle.style.webkitTransform;
@@ -169,7 +202,40 @@ define(function(require, exports, module) {
             var mathDeg=parseInt(deg)
             cycle.style.webkitTransform="rotate(" + (mathDeg+key*45) + "deg)";
         },
+        setRate:function(key){
+            var rate=map.get(key)
+//            console.log("rate"+rate+" key"+key)
+            if(rate==null){
 
+                self.$("#cycle_num_1").html("转")
+                self.$("#cycle_num_2").html("你")
+                self.$("#cycle_num_3").html("妹")
+                self.$("#cycle_num_4").html("转")
+                self.$("#cycle_num_5").html("啊")
+
+            }else{
+                self.$("#cycle_num_1").html(rate.substr(2,1))
+                self.$("#cycle_num_2").html(rate.substr(3,1))
+                self.$("#cycle_num_3").html(rate.substr(4,1))
+                self.$("#cycle_num_4").html(rate.substr(5,1))
+                self.$("#cycle_num_5").html(rate.substr(6,1))
+            }
+
+        },
+        addDate:function (date,days){
+            var d=new Date(date);
+            d.setDate(d.getDate()+days);
+            var m=d.getMonth()+1;
+            m=m+""
+            if(m.length==1){
+                m="0"+m
+            }
+            var day=d.getDate()+""
+            if(day.length==1){
+                day="0"+day
+            }
+            return d.getFullYear()+''+m+''+day;
+        },
 
         initChart: function(){
             // var chartLine= Snap("#chart_line");
@@ -224,12 +290,31 @@ define(function(require, exports, module) {
                     App.hideLoading();
                     if(data.ret == 0){
 
-                        var temp=data.data
-                        console.log(data)
-                        for(var i=0;i<temp.length-2;i++){
-                            console.log("key="+(temp[temp.length-1]-i)+";value="+temp[i])
-                            map.put(temp[temp.length-1])
+                        self.data=data.data
+//                        console.log(self.data.rateList)
+                        for(var i=0;i<self.data.rateList.length;i++){
+//                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
+                            map.put(self.data.rateList[i].date,(self.data.rateList[i].rate).toFixed(5))
                         }
+                        var initNowDate=data.data.todayYieldRate.toFixed(5)
+                        self.$("#cycle_num_1").html(initNowDate.substr(2,1))
+                        self.$("#cycle_num_2").html(initNowDate.substr(3,1))
+                        self.$("#cycle_num_3").html(initNowDate.substr(4,1))
+                        self.$("#cycle_num_4").html(initNowDate.substr(5,1))
+                        self.$("#cycle_num_5").html(initNowDate.substr(6,1))
+                        var nowDate=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()
+                        var showDate_1=self.addDate(nowDate,-1)
+                        var showDate_2=self.addDate(nowDate,0)
+                        var showDate_3=self.addDate(nowDate,1)
+                        var showDate_4=self.addDate(nowDate,2)
+                        var showDate_5=self.addDate(nowDate,-2)
+                        self.$("#cycle_1").html(showDate_1.substr(4,2)+"/"+showDate_1.substr(6,2))
+                        self.$("#cycle_2").html(showDate_2.substr(4,2)+"/"+showDate_2.substr(6,2))
+                        self.$("#cycle_3").html(showDate_3.substr(4,2)+"/"+showDate_3.substr(6,2))
+                        self.$("#cycle_4").html(showDate_4.substr(4,2)+"/"+showDate_4.substr(6,2))
+                        self.$("#cycle_8").html(showDate_5.substr(4,2)+"/"+showDate_5.substr(6,2))
+
+
                         self.$("#todayYieldRate").html(self.format(data.data.todayYieldRate))
 
                     }else if(data.ret == 999001){
