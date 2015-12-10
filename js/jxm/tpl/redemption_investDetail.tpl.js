@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
 	var tpl = '\
-	<%if(orderStatus=="05"||orderStatus=="07"||orderStatus=="08"){%>\
+	<%if(orderStatus=="05"||orderStatus=="07"||orderStatus=="08"||orderStatus=="04"){%>\
 	<article class="mod_page">\
 	  <div class="finish_regular redemption_finish_bg" style="">\
 	   <div class="item item_redeem ico_finish cur">成功支付<i class="numb"><%=investAmount%></i><br>\
@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 	    </div>\
 	    <div class="item item_end ico_coin cur">\
 	      <p class="txt"><%=currentDate%></p>\
-	      <p class="tips ">已获得收益<%=income%>元，今日收益率<%=format(currentRate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
+	      <p class="tips" style="color:#f88c08">已获得收益<%=income%>元，今日收益率<%=format(currentRate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
 	    </div>\
 	    <p style="text-align: right;margin-top: 30px">当前余额：<%=currentAmount%>元</p>\
 	  </div>\
