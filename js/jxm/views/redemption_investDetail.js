@@ -64,7 +64,7 @@ define(function (require, exports, module) {
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;
                             self.timer = setInterval(function () {
-                                var minute = Math.floor(surplus / 60);
+                                var minute = Math.floor(self.surplus / 60);
                                 var second = self.surplus - minute * 60;
                                 $('.js_time').html(minute + '分' + second + '秒');
                                 self.surplus -= 1;
