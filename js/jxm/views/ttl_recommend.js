@@ -4,9 +4,12 @@ define(function(require, exports, module) {
     var recommend = require('jxm/tpl/ttl_recommend.tpl');
     var footer = require('jxm/tpl/footer.tpl');
     var snapSvg = require("jxm/utils/snap.svg-min");
-    var getTtlCulInvest = new Model.getTtlCulInvest();
+    var store = require('jxm/model/store');
     var tool = require('jxm/utils/Tool');
+    var getTtlCulInvest = new Model.getTtlCulInvest();
     var handle = new tool();
+    var loginStore = new store.loginStore();
+    var getUserInfo = new Model.getUserInfo();
     var imageSlider = null;
     var self = null;
     module.exports = App.Page.extend({
@@ -23,10 +26,18 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
-            
+
+            var query = self.request.query;
+            var openid= query&&query.openid||"";
+            if(openid!=""){
+                sessionStorage.setItem("openid",openid);
+            }
+
             handle.share();
+            handle.orientationTips();
             self.setHeader();
             self.initInvest();
+            self.getUserInfo();
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();
@@ -39,6 +50,24 @@ define(function(require, exports, module) {
                 },
                 right: null
             });
+        },
+        getUserInfo:function(){
+            getUserInfo.exec({
+                type: 'get',
+                success: function(data){
+                    if(data.ret == 0){
+                        loginStore.set(data.data);
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
         },
         initAD: function() {
             var container = self.$el.find(".img_box");
