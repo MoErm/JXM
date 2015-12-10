@@ -57,7 +57,7 @@ define(function (require, exports, module) {
 
                         self.$el.html(_.template(Template)(data.data));
                         self.$('#redeemValue').val("")
-                        self.$('#totalAmount').html(data.data.totalAmount+"元")
+                        self.$('#totalAmount').html(data.data.totalAmount)
                     }else if(data.ret == 999001) {
                         handle.goLogin();
                     }
@@ -88,7 +88,7 @@ define(function (require, exports, module) {
                 App.showToast("请输入赎回金额")
                 return
             }
-            if(redeemValue<redeemValue){
+            if(todaySurplusAmount<redeemValue){
                 App.showToast("赎回金额大于今日可赎回限额")
                 return
             }

@@ -2,7 +2,7 @@ define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page">\
 	  <div class="finish_regular redemption_finish_bg" style="">\
-	    <div class="item item_redeem ico_finish cur">成功赎回<i class="numb"><%=redeemAmount%>元&ensp; <%if(ransomId==-1){%>等待银行处理中<%}%></i><br>\
+	    <div class="item item_redeem ico_finish cur">成功赎回<i class="numb"><%=redeemAmount%>元&ensp; <%if(ransomId==-1){%>等待银行处理<%}%></i><br>\
 	    <p><%=redeemTime%></p>\
 	    </div>\
 	    <div class="item  ico_book">\

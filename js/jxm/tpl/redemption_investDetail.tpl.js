@@ -32,7 +32,7 @@ define(function (require, exports, module) {
 	  <div class="v_mod">\
 	    <ul class="invest_list">\
 	      <li class="v_mod item">\
-	        <p class="status status2 ">\
+	        <p class="status status2 <%if(orderStatus == "08"||orderStatus == "06"||orderStatus == "03"||orderStatus == "02") {%>status_fail<% } %>">\
 	        <%=orderStatusDesc%>\
 	        </p>\
 	        <h3 class="hd_title">天添利</h3>\
