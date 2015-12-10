@@ -31,7 +31,6 @@ define(function(require, exports, module) {
             self.initBuyPage();
 
             if(self.isAgreeAction==1 && self.isagreedData!=null){
-                $("#imoney_num").val(self.isagreedData.amountVal);
                 //进行数据传递
                 self.goBuyPagePost(self.isagreedData);
                 sessionStorage.removeItem('isagreedAction');
@@ -117,7 +116,7 @@ define(function(require, exports, module) {
         },
         goBuyPagePost: function(goBuyData){
             //购买post数据并检测银行卡，交易密码
-            App.showLoading();
+            App.showLoading();            
             goTtlBuyPageCheck.set({
                 "amount": goBuyData.amountVal,
                 "cardId": goBuyData.cardId
@@ -127,7 +126,8 @@ define(function(require, exports, module) {
             }).then(function (data) {
                 self.pageData.postData= data.data;
                 if(data.ret == 0){
-                   common.ttlPayWin(self.pageData);
+                    $("#imoney_num").val(goBuyData.amountVal);
+                    common.ttlPayWin(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录
                     handle.goLogin();
