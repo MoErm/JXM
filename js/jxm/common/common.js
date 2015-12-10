@@ -560,7 +560,7 @@ define(function(require, exports, module) {
                                 <label for="inpt_pssword">交易密码</label>\
                                 <input type="password" id="checkPassword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
                               </li>\
-                              <li class="forget"><a href="#" class="forget_password" id="forget_password">忘记交易密码?</a></li>\
+                              <li class="forget"><span class="forget_password" id="forget_password">忘记交易密码?</span></li>\
                             </ul>\
                         </div>\
                     </div>\
@@ -660,7 +660,7 @@ define(function(require, exports, module) {
                                 clearInterval(self.ordertimer);
                                 clearInterval(self.paytimer);
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
-                                    App.goTo("my_invest");
+                                    App.goTo("redeem");
                                 });
                                     self.payCountAlert.show();
                             }else{
@@ -793,8 +793,7 @@ define(function(require, exports, module) {
 
                         }
                     })
-                },                
-                
+                },
                 goForgetPassword: function(){
                     self.hide();
                     App.goTo("forget_password");
