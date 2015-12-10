@@ -8,7 +8,6 @@ define(function(require, exports, module) {
     var handle = new tool();
     var getTtlProperty = new Model.getTtlProperty();    //获取灵活宝资产信息接口
     var getTtlRate = new Model.getTtlRate();    //获取收益率接口
-    // var goTtlBuyPage = new Model.goTtlBuyPage();  //购买页面跳转
     var pool= new Array(1,2,3);
     var hidePool= new Array(4,5,6,7,8);
     var turnNum=0;
@@ -89,6 +88,7 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
+            handle.share();
             self.pageData= {};
             self.setHeader();
             self.initProperty();
