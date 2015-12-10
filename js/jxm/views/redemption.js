@@ -53,6 +53,7 @@ define(function (require, exports, module) {
                         todaySurplusAmount=data.data.todaySurplusAmount
 
                         data.data.todaySurplusAmount=handle.dealMoney2(data.data.todaySurplusAmount)
+                        data.data.totalAmount=handle.dealMoney2(data.data.totalAmount)
 
                         self.$el.html(_.template(Template)(data.data));
                         self.$('#redeemValue').val("")
@@ -87,7 +88,11 @@ define(function (require, exports, module) {
                 App.showToast("请输入赎回金额")
                 return
             }
-            if(redeemValue<100){
+            if(redeemValue<redeemValue){
+                App.showToast("赎回金额大于今日可赎回限额")
+                return
+            }
+            if(todaySurplusAmount<100){
                 App.showToast("赎回金额必须大于100元")
                 return
             }

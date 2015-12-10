@@ -402,7 +402,6 @@ define(function(require, exports, module) {
                         <p class="payRedeem_forget"><a id="payRedeem_forget_a">忘记交易密码？</a></p>\
                         <button class="payRedeem_btn payRedeem_margin payRedeem_bgRed" id="payRedeem_btn">确认赎回</button>\
                     </div>';
-            var payFlag=false;
             var popwin = new App.UI.UIPopWin({
                 events:{
                     "click .payRedeem_close":"onHideLayer",
@@ -433,10 +432,6 @@ define(function(require, exports, module) {
                     this.hide();
                 },
                 doPay:function(){
-                    if(!payFlag){
-                        return
-                    }
-
                     var tradePassword =$('#redeemPwd').val();
                     if(tradePassword==""){
                         App.showToast("请输入交易密码")
