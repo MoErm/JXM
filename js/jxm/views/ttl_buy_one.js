@@ -18,15 +18,17 @@ define(function(require, exports, module) {
         },
         events: {
             'click #action_buy': 'goBuyTipPage',
-            'click .js_contract': 'goContract',
+            'click .js_tips': 'goContractTip',//《风险提示书》
+            'click .js_transfer': 'goContractTransfer',//《产品收益权转让及服务协议》
         },
         onShow: function() {
             self = this.initialize();
             self.pageData= {};
             self.isAgreeAction= sessionStorage.getItem("isagreedAction");
-            self.isagreedData= sessionStorage.getItem("isagreedData");
+            self.isagreedData= JSON.parse(sessionStorage.getItem("isagreedData"));
             self.setHeader();
             self.initBuyPage();
+
             if(self.isAgreeAction==1 && self.isagreedData!=null){
                 //进行数据传递
                 self.goBuyPagePost(self.isagreedData);
@@ -108,10 +110,11 @@ define(function(require, exports, module) {
             }
         },
         goIntroducePage: function(){
+
             App.goTo('ttl_introduce');
         },
         goBuyPagePost: function(goBuyData){
-            //购买post数据并检测银行卡，交易密码            
+            //购买post数据并检测银行卡，交易密码
             App.showLoading();
             goTtlBuyPageCheck.set({
                 "amount": goBuyData.amountVal,
@@ -186,9 +189,8 @@ define(function(require, exports, module) {
                 App.showToast("投资金额需是1,000元的整数倍");
                 return;
             }
-            
             if(self.pageData.cardData.isContractAgreed==0){
-                sessionStorage.getItem("isagreedData",self.goBuyData);
+                sessionStorage.setItem("isagreedData",JSON.stringify(self.goBuyData));
                 App.goTo("ttl_buy_two");
             }
             else{
@@ -196,9 +198,13 @@ define(function(require, exports, module) {
                 self.goBuyPagePost(self.goBuyData);
             }
         },
-        goContract: function (e) {
+        goContractTip: function (e) {
             
-            // App.goTo('get_contract?cid='+$(e.currentTarget).data('contractno')+'&pid='+$(e.currentTarget).data('productno'))
+            App.goTo('get_contract');
+        },
+        goContractTransfer: function (e) {
+            
+            App.goTo('get_contract');
         },
         giveUp: function() {
             abortChange.exec({
