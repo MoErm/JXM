@@ -659,9 +659,9 @@ define(function(require, exports, module) {
                             } else if (data.ret == 0) {
                                 App.goTo("ttl_pay_success");
                                 localStorage.setItem('ttl_success_data', JSON.stringify(data));
-                                
+
                                 clearInterval(self.paytimer);
-                                clearInterval(self.ordertimer);                                
+                                clearInterval(self.ordertimer);
                             } else if (data.ret == 300001) {
                                 clearInterval(self.paytimer);
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
@@ -680,7 +680,8 @@ define(function(require, exports, module) {
                     });
                 },
                 onHideLayer: function() {
-
+                    clearInterval(self.paytimer);
+                    clearInterval(self.ordertimer);
                     self.hide();
                 },
                 getCode: function() {
