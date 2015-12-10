@@ -21,6 +21,8 @@ define(function (require, exports, module) {
     var outPageTotal;
     var inPageTotal;
     var inPageNum=1;
+    var onceIn=false
+    var onceOut=false
     //接口
     module.exports = App.Page.extend({
         events: {
@@ -39,25 +41,18 @@ define(function (require, exports, module) {
             $(window).scrollTop(0)
         },
         scrollTopListener:function(){
-            console.log("高度监听")
             $(window).bind('scroll', function(){
 
-                console.log($(window).scrollTop() >= $(document).height() - $(window).height())
-                console.log($(window).scrollTop()+"  "+$(document).height() +"  "+ $(window).height())
-                console.log("inPageNum   "+inPageNum+"inPageTotal   "+inPageTotal)
-                console.log("outPageNum   "+outPageNum+"outPageTotal   "+outPageTotal)
 
                 if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
                     console.log(showPageFlag)
                     if(showPageFlag==1){
-                        console.log("查询")
                         if(inPageNum>inPageTotal){
                             return
                         }
 
                         self.showMoreIn()
                     }else{
-                        console.log("showMoreOut")
                         if(outPageNum>outPageTotal){
                             return
                         }
@@ -80,14 +75,20 @@ define(function (require, exports, module) {
             App.goTo("redemption_detail?ransomId="+status)
         },
         showMoreIn : function () {
+            if(onceIn){
+                return
+            }
             var self = this;
             getUserOrderRecords.set({
                 'page':inPageNum
             });
+            onceIn=true
+            App.showLoading();
             return getUserOrderRecords.exec({
                 type: 'get',
                 success: function (data) {
-
+                    App.hideLoading();
+                    onceIn=false
                     if (data.ret == 0) {
                         inPageNum++;
                         data.data.format=self.format
@@ -109,14 +110,19 @@ define(function (require, exports, module) {
             })
         },
          showMoreOut:function(){
-
+             if(onceOut){
+                 return
+             }
             getUserRansomRecords.set({
                 'page':outPageNum
             });
+             onceOut=true;
+             App.showLoading();
             return getUserRansomRecords.exec({
                 type: 'get',
                 success: function (data) {
-
+                    App.hideLoading();
+                    onceOut=false
                     if (data.ret == 0) {
                         outPageNum++;
                         data.data.format=self.format
@@ -261,7 +267,13 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goBack()
+                        var query = this.request.query;
+                        var type=query&&query.type||"";
+                       if(type==1){
+                           App.goTo("ttl_introduce")
+                       }else{
+                           App.goTo("my_invest")
+                       }
                     }
                 },
                 center: {

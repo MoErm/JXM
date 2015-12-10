@@ -820,7 +820,7 @@ text-align: right}
 .redeem_select .selected{color: #ffffff;background-color: #d01b02}
 .investList{padding:10px 3% 0 3%!important;}
 .investList .detail{color: #000000}
-.investList span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px 3%;margin-left: 10px;width: 30%}
+.investList span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px 3%;margin-left: 10px;width: 25%}
 .investList .logo{width:88%;position: relative;padding-left: 30px;border-top: 1px dashed #cecece;padding-top: 5px}
 .investList .logo img{padding: 0;margin: 0;position: absolute;left: 0;width: 20px}
 
@@ -857,8 +857,9 @@ text-align: right}
     transform: rotate(-135deg);
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
-.redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 30%}
+.redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 25%}
 .redeem_list .detail{color: #000000}
+.redeem_shouyi{position: absolute;top: 0;right: 0;margin-top: 45px;margin-right: 50px}
 
 .my_invest{margin: 0 0;padding: 0 10px 10px 10px;border-bottom:dashed 1px #cecece}
 .my_invest .invest_title{color: #a7a7a7}

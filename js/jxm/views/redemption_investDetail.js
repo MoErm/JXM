@@ -13,12 +13,12 @@ define(function (require, exports, module) {
             'click .ico_coin': 'test'
         },
         initialize: function () {
-            self = this;
+
         },
         onShow: function () {
             App.showLoading();
             handle.share();
-
+            self = this;
 
             this.setHeader();
 
@@ -102,13 +102,13 @@ define(function (require, exports, module) {
                 center: {
                     'tagname': 'title', 'value': ['交易详情']
                 },
-                right:null
-//                    [{
-//                    'tagname': '', 'value': '完成&ensp;',
-//                    callback: function () {
-//                        App.goTo("my_invest")
-//                    }
-//                }]
+                right:
+                    [{
+                    'tagname': '', 'value': '协议&ensp;',
+                    callback: function () {
+
+                    }
+                }]
             });
         },
 

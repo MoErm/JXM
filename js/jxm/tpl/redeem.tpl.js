@@ -17,6 +17,8 @@ define(function (require, exports, module) {
                 <span >投资金额</span><span class="detail"><%=order.investAmount%></span><br>\
                 <span >投资到期日</span><span class="detail"><%=order.orderDate%></span><br>\
                 <span >今日收益率</span><span class="detail"><%=format(order.currentRate)%><%if(order.isUp==1){%><i class="ico_up"></i><%}%></span><br>\
+                <%if(order.income>0) {%> <div class="redeem_shouyi"><%=order.income%></div><% } %>\
+               \
                 <div>\
             </li>\
             <% })%>\
