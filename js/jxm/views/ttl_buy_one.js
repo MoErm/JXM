@@ -18,7 +18,8 @@ define(function(require, exports, module) {
         },
         events: {
             'click #action_buy': 'goBuyTipPage',
-            'click .js_contract': 'goContract',
+            'click .js_tips': 'goContractTip',//《风险提示书》
+            'click .js_transfer': 'goContractTransfer',//《产品收益权转让及服务协议》
         },
         onShow: function() {
             self = this.initialize();
@@ -109,6 +110,7 @@ define(function(require, exports, module) {
             }
         },
         goIntroducePage: function(){
+
             App.goTo('ttl_introduce');
         },
         goBuyPagePost: function(goBuyData){
@@ -196,9 +198,13 @@ define(function(require, exports, module) {
                 self.goBuyPagePost(self.goBuyData);
             }
         },
-        goContract: function (e) {
+        goContractTip: function (e) {
             
-            // App.goTo('get_contract?cid='+$(e.currentTarget).data('contractno')+'&pid='+$(e.currentTarget).data('productno'))
+            App.goTo('get_contract');
+        },
+        goContractTransfer: function (e) {
+            
+            App.goTo('get_contract');
         },
         giveUp: function() {
             abortChange.exec({
