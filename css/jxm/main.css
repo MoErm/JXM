@@ -1446,7 +1446,7 @@ text-align: right}
 .ttl_recommend_total_r .title{font-size: 1.2rem;color: #9b9b9b;}
 .ttl_recommend_total_l .number,
 .ttl_recommend_total_r .number{font-size: 2.5rem; color: #db3710;}
-.ttl_recommend_detail{border-top:1px solid #ECECEC; background: #ffffff;}
+.ttl_recommend_detail{border-top:1px solid #ECECEC; background: #ffffff;padding: 0 0 15px 0;}
 .ttl_recommend_detail_t .head{width: 80%;height: 60px;line-height: 60px; border-bottom: 1px dashed #E6E6E6; margin: 0 auto;color:#9b9b9b;}
 .ttl_recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
 .ttl_recommend_detail_m{padding: 10px  0  0 0}
