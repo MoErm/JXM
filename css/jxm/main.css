@@ -1523,9 +1523,8 @@ text-align: right}
 .ttl_buy_two{}
 .ttl_buy_two_tip{width: 85%;margin: 0 auto;text-align: center;}
 .ttl_buy_two_tip .head{padding: 30px 0;font-size: 2.5rem;}
-.ttl_buy_two_tip .list{color: #9b9b9b;line-height: 2;font-size: 1.5rem;}
-.ttl_buy_two_tip .list .cat{width: 157px;height: 50px;margin: 10px auto 0 auto;
-    background: url(../../images/ttl_icon.png) -142px -145px;}
+.ttl_buy_two_tip .list{color: #9b9b9b;line-height: 2;font-size: 1.4rem;}
+.ttl_buy_two_tip .list .cat{width: 84px;height: 26px;margin: 10px auto 0 auto;background: url(../../images/ttl_icon.png) -297px -241px;}
 .ttl_buy_two_action{position: fixed;bottom: 0;left: 0;width: 100%;}
 .ttl_buy_two_action input{height: 42px;display: inline-block; width: 49%; font-size: 1.8rem;background: #fff;}
 .ttl_buy_two_action .disagree{color: #9b9b9b;}

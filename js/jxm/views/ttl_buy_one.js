@@ -24,9 +24,10 @@ define(function(require, exports, module) {
             self = this.initialize();
             self.pageData= {};
             self.isAgreeAction= sessionStorage.getItem("isagreedAction");
-            self.isagreedData= sessionStorage.getItem("isagreedData");
+            self.isagreedData= JSON.parse(sessionStorage.getItem("isagreedData"));
             self.setHeader();
             self.initBuyPage();
+
             if(self.isAgreeAction==1 && self.isagreedData!=null){
                 //进行数据传递
                 self.goBuyPagePost(self.isagreedData);
@@ -111,7 +112,7 @@ define(function(require, exports, module) {
             App.goTo('ttl_introduce');
         },
         goBuyPagePost: function(goBuyData){
-            //购买post数据并检测银行卡，交易密码            
+            //购买post数据并检测银行卡，交易密码
             App.showLoading();
             goTtlBuyPageCheck.set({
                 "amount": goBuyData.amountVal,
@@ -186,9 +187,8 @@ define(function(require, exports, module) {
                 App.showToast("投资金额需是1,000元的整数倍");
                 return;
             }
-            
             if(self.pageData.cardData.isContractAgreed==0){
-                sessionStorage.getItem("isagreedData",self.goBuyData);
+                sessionStorage.setItem("isagreedData",JSON.stringify(self.goBuyData));
                 App.goTo("ttl_buy_two");
             }
             else{
