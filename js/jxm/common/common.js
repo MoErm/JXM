@@ -657,12 +657,14 @@ define(function(require, exports, module) {
                                 App.goTo("ttl_pay_success");
                                 localStorage.setItem('ttl_success_data', JSON.stringify(data));
                             } else if (data.ret == 300001) {
+                                clearInterval(self.ordertimer);
                                 clearInterval(self.paytimer);
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
                                     App.goTo("my_invest");
                                 });
                                     self.payCountAlert.show();
                             }else{
+                                clearInterval(self.ordertimer);
                                 clearInterval(self.paytimer);                                
                             }
                                 
