@@ -19,9 +19,10 @@ define(function(require, exports, module) {
         onShow: function() {
             //隐藏header
             var header = document.querySelector("#header");
-            $(header).hide();
-            
+            $(header).hide();            
             self = this.initialize();
+            
+            handle.share();
             //添加内容
             self.setHeader();
             self.$el.html(buyStepTwo);

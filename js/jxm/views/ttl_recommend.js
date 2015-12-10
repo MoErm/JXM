@@ -23,6 +23,8 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
+            
+            handle.share();
             self.setHeader();
             self.initInvest();
         },

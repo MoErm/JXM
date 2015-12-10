@@ -23,6 +23,7 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
+            handle.share();
             self.pageData= {};
             self.isAgreeAction= sessionStorage.getItem("isagreedAction");
             self.isagreedData= JSON.parse(sessionStorage.getItem("isagreedData"));
