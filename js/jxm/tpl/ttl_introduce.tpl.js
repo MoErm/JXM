@@ -37,7 +37,6 @@ define(function (require, exports, module) {
                     <div class="cycleTest cycle_7" id="cycle_7">12/17</div>\
                     <div class="cycleTest cycle_8" id="cycle_8">12/18</div>\
                         </div>\
-                        <div class="chart_content" id="chart_content">\
 					</div>\
 				</div>\
 				<div class="action">\

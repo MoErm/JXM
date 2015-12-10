@@ -45,7 +45,6 @@ define(function (require, exports, module) {
 
 
                 if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-                    console.log(showPageFlag)
                     if(showPageFlag==1){
                         if(inPageNum>inPageTotal){
                             return

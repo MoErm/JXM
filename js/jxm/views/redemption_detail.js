@@ -19,6 +19,7 @@ define(function (require, exports, module) {
         },
 
         onShow: function () {
+            self = this;
             handle.share();
             this.setHeader();
             self.showPage()
