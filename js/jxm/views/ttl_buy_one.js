@@ -31,6 +31,7 @@ define(function(require, exports, module) {
             self.initBuyPage();
 
             if(self.isAgreeAction==1 && self.isagreedData!=null){
+                $("#imoney_num").val(self.isagreedData.amountVal);
                 //进行数据传递
                 self.goBuyPagePost(self.isagreedData);
                 sessionStorage.removeItem('isagreedAction');
