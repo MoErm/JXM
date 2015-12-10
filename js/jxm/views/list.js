@@ -452,7 +452,7 @@ define(function (require, exports, module) {
             goRecommend: function(){
 
                 App.goTo('ttl_recommend');
-            },
+            }
         })
 })
 

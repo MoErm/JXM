@@ -12,10 +12,10 @@ define(function(require, exports, module) {
     var pool= new Array(1,2,3);
     var hidePool= new Array(4,5,6,7,8);
     var turnNum=0;
-    var oneRoundNum=0;
+    var RoundNum=2;
     var cycleRound=0;
     var self = null;
-    var nowTarget;
+    var nowRoundNum=0;
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -116,10 +116,8 @@ define(function(require, exports, module) {
                 return
             }else if(num!=turnNum){
                 if(num>turnNum){
-                    console.log("+1")
                     self.showRed(1)
                 }else{
-                    console.log("-1")
                     self.showRed(-1)
                 }
 
@@ -131,13 +129,13 @@ define(function(require, exports, module) {
         },
         showRed:function(key){
             if(key<0){
-                oneRoundNum--;
-                console.log("转-1")
+                RoundNum++;
+                console.log("转+1")
                 pool.push(hidePool.shift())
                 hidePool.push(pool.shift())
             }else{
-                oneRoundNum++;
-                console.log("转+1")
+                RoundNum--;
+                console.log("转-1")
                 pool.reverse()
                 hidePool.reverse()
                 pool.push(hidePool.shift())
@@ -145,14 +143,18 @@ define(function(require, exports, module) {
                 pool.reverse()
                 hidePool.reverse()
             }
-            var cycleRoundTemp=oneRoundNum/8;
-            if(oneRoundNum>0){
+            var cycleRoundTemp=RoundNum/8;
+            if(RoundNum>0){
                 cycleRoundTemp=Math.floor(cycleRoundTemp)
+                nowRoundNum=RoundNum-cycleRoundTemp*8
             }else{
                 cycleRoundTemp=Math.ceil(cycleRoundTemp)
+                nowRoundNum=Math.abs(RoundNum+Math.abs(cycleRoundTemp*8))
             }
+
             cycleRound=cycleRoundTemp
-            console.log(oneRoundNum+"  "+cycleRoundTemp)
+
+            console.log("RoundNum="+RoundNum+"  cycleRoundTemp="+cycleRoundTemp+"   nowRoundNum="+nowRoundNum)
 //            console.log(pool)
 //            console.log(hidePool)
             for(var i=0;i<pool.length;i++){
@@ -223,7 +225,7 @@ define(function(require, exports, module) {
                     if(data.ret == 0){
 
                         var temp=data.data
-                        console.log(temp)
+                        console.log(data)
                         for(var i=0;i<temp.length-2;i++){
                             console.log("key="+(temp[temp.length-1]-i)+";value="+temp[i])
                             map.put(temp[temp.length-1])

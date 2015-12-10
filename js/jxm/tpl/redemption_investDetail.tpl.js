@@ -20,7 +20,7 @@ define(function (require, exports, module) {
 	  <ul class="invest_list" id="invest_record">\
 	    <% _.each(records, function(order){%>\
 	    <li  class="v_mod item investList">\
-	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2" ><%=order.clearingTime%></span><span class="redemption_span3" style="color: #000000"><%=order.clearingAmount%></span><br>\
+	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2" ><%=order.clearingTime%></span><span class="redemption_span3" style="color: #000000">-<%=order.clearingAmount%></span><br>\
 	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.clearingRate)%></span><span class="redemption_span3"><%=order.clearingPrincipal%>+<%=order.clearingInterest%></span><br>\
 	    	<span class="logo"><img src="<%=bankLogo%>"   alt=""><%=bankName%>(尾号<%=cardTailNo%>)</span>\
    		</li>\
