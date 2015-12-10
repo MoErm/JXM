@@ -657,11 +657,10 @@ define(function(require, exports, module) {
                             if (data.ret == 999001) {
                                 App.goTo('login');
                             } else if (data.ret == 0) {
-                                App.goTo("ttl_pay_success");
-                                localStorage.setItem('ttl_success_data', JSON.stringify(data));
-
                                 clearInterval(self.paytimer);
                                 clearInterval(self.ordertimer);
+                                App.goTo("ttl_pay_success");
+                                localStorage.setItem('ttl_success_data', JSON.stringify(data));
                             } else if (data.ret == 300001) {
                                 clearInterval(self.paytimer);
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {

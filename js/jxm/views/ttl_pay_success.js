@@ -49,7 +49,6 @@ define(function(require, exports, module) {
             self.pageData.successData= JSON.parse(localStorage.getItem("ttl_success_data")).data;
             self.pageData.successData.payMoneyDate= new Date(self.pageData.successData.investTime).getDay();
             self.pageData.successData.getMoneyDate= new Date(self.pageData.successData.valueDate).getDay();
-
             self.$el.html(_.template(paySuccess)(self.pageData));
             App.hideLoading();
         },
