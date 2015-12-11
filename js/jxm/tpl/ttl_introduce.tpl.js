@@ -52,7 +52,7 @@ define(function (require, exports, module) {
 					</div>\
 				</div>\
 				<div class="action">\
-					<input type="button" value="购买" class="action_buy" id="action_buy" />\
+					<input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" />\
 					<input type="button" value="赎回" class="action_redem <%if(getTtlProperty.isCanRedeem!=1){%> lock<% } %>" id="action_redem" />\
 				</div>\
 			</div>\

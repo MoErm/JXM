@@ -332,11 +332,55 @@ define(function(require, exports, module) {
             App.hideLoading();
         },
         initBuyTime: function(){
-            console.log(self.pageData);
+            //初始化是否可购买
+            self.serverTime = self.pageData.getTtlProperty.serverTime.slice(-6);
+            self.saleStart = self.pageData.getTtlProperty.saleStartTime;
+            self.saleEnd = self.pageData.getTtlProperty.saleEndTime;
+            
+            // console.log(self.serverTime);
+            // console.log(self.saleStart);
+            // console.log(self.saleEnd);
+
+            //如果在售卖时间段内
+            if(self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd ){
+                self.pageData.getTtlProperty.isCanBuy= 1;
+            }
+            else{
+                self.pageData.getTtlProperty.isCanBuy= 0;
+            }
+
         },
         goBuyPage: function(e) {
             e.preventDefault(e);
-            App.goTo("ttl_buy_one");
+            getTtlProperty.exec({
+                type: 'get',
+                success: function(data) {
+                    if (data.ret == 0) {
+                        self.pageData.getTtlProperty = data.data;
+
+                    } else if (data.ret == 999001) {
+                        handle.goLogin();
+                    } else {
+                        App.showToast(data.msg || message);
+                    }
+                },
+                error: function() {
+                    App.hideLoading();
+                }
+            });
+
+            // console.log(self.serverTime);
+            // console.log(self.saleStart);
+            // console.log(self.saleEnd);
+
+             //如果在售卖时间段内
+            if(self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd ){
+                App.goTo("ttl_buy_one");
+            }
+            else{
+                App.showToast("产品开放购买时间为06:00 ~ 22:00，请到时再来哦！");
+                return;
+            }
         },
         goRedemPage: function() {
             var redemBtn = $("#action_redem");
