@@ -1550,7 +1550,7 @@ text-align: right}
 
 /*-- 天添利 支付成功 --*/
 .ttl_pay_success{background: #fff;border-bottom: 1px solid #ECECEC; }
-.ttl_pay_success_t .success_list{width: 75%;margin: 15px auto;}
+.ttl_pay_success_t .success_list{width: 75%;margin: 0 auto;padding: 15px 0;}
 .ttl_pay_success_t .success_list li{position: relative; padding: 0 0 10px 0;min-height: 80px;}
 .ttl_pay_success_t .success_list .icon{display: inline-block;width: 30px;height: 30px;border-radius: 30px;position: absolute;left: -15px;top: 0;}
 .ttl_pay_success_t .success_list .info{margin: 3px 0 0 34px; color: #9b9b9b;font-size: 1.3rem;}
