@@ -143,14 +143,14 @@ define(function(require, exports, module) {
                 return
             }else if(num!=turnNum){
                 if(num>turnNum){
-                    if(max==now&&now!="0.00000"){
+                    if(max==now){
                         return
                     }else{
                         self.showRed(1)
                     }
 
                 }else{
-                    if(min==now&&now!="0.00000"){
+                    if(min==now){
                         return
                     }else{
                         self.showRed(-1)
@@ -217,7 +217,7 @@ define(function(require, exports, module) {
         },
         setRate:function(key){
             var rate=map.get(key)
-            now=rate
+            now=key
 //            console.log("rate"+rate+" key"+key)
             if(rate==null){
 
@@ -304,16 +304,22 @@ define(function(require, exports, module) {
 //                        console.log(self.data.rateList)
                         for(var i=0;i<self.data.rateList.length;i++){
                             if(i==0){
-                                max=(self.data.rateList[i].rate).toFixed(5)
+                                max=self.data.rateList[i].date
                             }
                             if(i==self.data.rateList.length-1){
-                                min=(self.data.rateList[i].rate).toFixed(5)
+                                min=self.data.rateList[i].date
                             }
 //                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
                             map.put(self.data.rateList[i].date,(self.data.rateList[i].rate).toFixed(5))
 
                         }
-                        var initNowDate = data.data.todayYieldRate.toFixed(5)
+                        var initNowDate
+                        if(data.data.hasInvestingOrder==1){
+                            initNowDate = data.data.todayYieldRate.toFixed(5)
+                        }else{
+                            initNowDate = (self.data.rateList[0].rate).toFixed(5)
+                        }
+
                         self.$("#cycle_num_1").html(initNowDate.substr(2, 1))
                         self.$("#cycle_num_2").html(initNowDate.substr(3, 1))
                         self.$("#cycle_num_3").html(initNowDate.substr(4, 1))
