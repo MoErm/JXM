@@ -23,7 +23,7 @@ define(function (require, exports, module) {
 				</div>\
 				<div class="ttl_recommend_detail_m">\
 					<div class="chart">\
-						<svg id="chart_line"></svg>\
+						<svg id="chart_line" class="chart_line"></svg>\
 					</div>\
 					<div class="info">\
 						<ul class="info_list">\

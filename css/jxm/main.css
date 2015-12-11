@@ -1462,9 +1462,9 @@ text-align: right}
 .ttl_recommend_detail_m .info_list .list_two {background: url(../../images/ttl_icon.png) -37px -4px;  }
 .ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon.png) -73px -4px;  }
 .ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon.png) -342px -4px; }
-.ttl_recommend_detail_m .chart_line{height: 140px;width: 100%;}
 .ttl_recommend_detail_b{ margin:0 0 10px 0;}
 .ttl_recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+
 /*-- 天添利 介绍页 --*/
 .ttl_introduce{}
 .ttl_introduce_t{height: 140px;text-align: center; background: -webkit-linear-gradient(#D01B02, #FD6200);background: -o-linear-gradient(#D01B02, #FD6200);background: linear-gradient(#D01B02, #FD6200);
@@ -1536,7 +1536,7 @@ text-align: right}
 /*-- 天添利 支付验证 --*/
 .ttl_pay_test{position: fixed;bottom: 0;left: 0;width: 100%;border-radius: 5px 5px 0 0 ;background: #fff;}
 .ttl_pay_test_t{height:45px;line-height: 45px;font-size: 1.8rem; text-align: center;border-bottom: 2px solid #CD1B02; position: relative;}
-.ttl_pay_test_t .close{position: absolute;right: 5px;top: 5px;display: block;width: 24px;height: 24px;border-radius: 24px;background: url(../../images/ttl_icon.png) -379px -173px}
+.ttl_pay_test_t .close{position: absolute;right: 10px;top: 10px;display: block;width: 24px;height: 24px;border-radius: 24px;background: url(../../images/ttl_icon.png) -379px -173px}
 .ttl_pay_test_m .paycontent {padding: 20px 0; width: 90%;margin: 0 auto;}
 .ttl_pay_test_m .paycontent .head{display: inline-block;width: 30%;height: 50px;line-height: 50px; text-indent: 2em;}
 .ttl_pay_test_m .paycontent .test_code,

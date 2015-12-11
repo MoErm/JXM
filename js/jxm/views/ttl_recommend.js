@@ -115,9 +115,9 @@ define(function(require, exports, module) {
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
-                strokeLinecap: "round",
                 fill: "none",
             });
+
             var tSpanMin = chartLine.paper.text(15, 70, ["5%", "起天天加息"]).attr({
                 fill:'#9b9b9b'
             });
