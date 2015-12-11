@@ -529,6 +529,8 @@ input::-webkit-inner-spin-button{
 .investList .redemption_span1{width: 30%;padding: 6px 0;margin: 0}
 .investList .redemption_span2{color: #000000;width: 30%;padding: 6px 0;margin: 0;overflow: visible;white-space: nowrap}
 .investList .redemption_span3{;width: 40%;padding: 6px 0;margin: 0;text-align: right}
+.redemption_amount{position: absolute;right: 10px;top:50px;font-size: 2rem}
+
 
 .payRedeem{border-top-left-radius: 5px;border-top-right-radius: 5px;position:fixed;bottom:0;z-index: 9999;background: #ffffff;width: 100%;right: 0}
 .payRedeem .payRedeem_title{width: 100%;text-align: center;position: relative;border-bottom: 1px solid #d01b02;height: 48px;line-height: 48px;font-size: 1.8rem}
@@ -846,7 +848,7 @@ text-align: right}
     content: "";
     display: block;
     top: 0;
-    margin-top: 50px;
+    margin-top: 70px;
     width: 10px;
     height: 10px;
     right: 0;
