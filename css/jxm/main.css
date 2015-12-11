@@ -861,7 +861,7 @@ text-align: right}
     box-sizing: border-box; }
 .redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 25%}
 .redeem_list .detail{color: #000000}
-.redeem_shouyi{position: absolute;top: 0;right: 0;margin-top: 45px;margin-right: 50px}
+.redeem_shouyi{position: absolute;top: 0;right: 0;margin-top: 55px;margin-right: 50px}
 
 .my_invest{margin: 0 0;padding: 0 10px 10px 10px;border-bottom:dashed 1px #cecece}
 .my_invest .invest_title{color: #a7a7a7}

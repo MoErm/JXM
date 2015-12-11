@@ -142,14 +142,14 @@ define(function(require, exports, module) {
                 return
             }else if(num!=turnNum){
                 if(num>turnNum){
-                    if(max==now){
+                    if(max==now&&now!="0.00000"){
                         return
                     }else{
                         self.showRed(1)
                     }
 
                 }else{
-                    if(min==now){
+                    if(min==now&&now!="0.00000"){
                         return
                     }else{
                         self.showRed(-1)
