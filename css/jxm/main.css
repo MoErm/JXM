@@ -1442,7 +1442,7 @@ text-align: right}
 
 /*-- 天添利 推荐页 --*/
 .ttl_recommend_ad{height: 130px;}
-.ttl_recommend_total{padding: 10px 0; border-bottom: 1px solid #E6E6E6;margin: 0 0 5px 0;background: #ffffff; }
+.ttl_recommend_total{padding: 10px 0;height: 60px; border-bottom: 1px solid #E6E6E6;margin: 0 0 5px 0;background: #ffffff; }
 .ttl_recommend_total_l,
 .ttl_recommend_total_r{display: inline-block;width: 49%;text-align: center;}
 .ttl_recommend_total_r{border-left: 1px solid #E6E6E6;}

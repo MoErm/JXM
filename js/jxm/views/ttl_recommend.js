@@ -115,16 +115,16 @@ define(function(require, exports, module) {
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
-                strokeLinecap:"round",
                 fill: "none",
             });
 
-            var drawLine = chartLine.paper.circle(4,120,2).attr({                
+            var minPoint = chartLine.paper.circle(4,120,2).attr({                
                 fill: "#FF6500",
             });
-            var drawLine = chartLine.paper.circle(280,5,2).attr({
+            var maxPoint = chartLine.paper.circle(280,5,2).attr({
                 fill: "#FF6500",
             });
+
             var tSpanMin = chartLine.paper.text(5, 89, ["5%", "起天天加息"]).attr({
                 fill:'#9b9b9b'
             });
