@@ -1563,8 +1563,10 @@ text-align: right}
 .ttl_pay_success_t .success_list .sub_time,
 .ttl_pay_success_t .success_list .sub_show{font-size: 1.8rem;color: #000;}
 
-
-
+/*-- 天添利 收益提示 --*/
+.ttl_title_tip{}
+.ttl_title_tip .tip_list{width: 90%;margin: 15px auto;}
+.ttl_title_tip .tip_head{font-weight: bold;margin: 20px 0 3px 0;}
 
 
 

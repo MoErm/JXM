@@ -99,9 +99,9 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #action_buy': 'goBuyPage',
-            'click #action_redem': 'goRedemPage',
-            'click #title_tip': 'goTitleTipPage'
+            'click #action_buy': 'goBuyPage', //购买页面
+            'click #action_redem': 'goRedemPage', //赎回页面
+            'click #title_tip': 'goTitleTipPage' //收益助手提示
         },
         onShow: function() {
             pool = new Array(1, 2, 3);
@@ -115,7 +115,6 @@ define(function(require, exports, module) {
             self.pageData = {};
             self.setHeader();
             self.initProperty();
-
         },
         setCycle: function() {
 
@@ -256,6 +255,10 @@ define(function(require, exports, module) {
                 }]
             });
         },
+        format: function(num) {
+            var temp_num = num * 100
+            return temp_num.toFixed(3) + "%"
+        },
         initProperty: function() {
             App.showLoading();
             getTtlProperty.exec({
@@ -275,11 +278,7 @@ define(function(require, exports, module) {
                     App.hideLoading();
                 }
             });
-        },
-        format: function(num) {
-            var temp_num = num * 100
-            return temp_num.toFixed(3) + "%"
-        },
+        },       
         initRate: function() {
             getTtlRate.exec({
                 type: 'get',
@@ -326,10 +325,14 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function() {
+            self.initBuyTime();
             self.$el.html(_.template(introduce)(self.pageData));
             self.setCycle();
             self.initRate();
             App.hideLoading();
+        },
+        initBuyTime: function(){
+            console.log(self.pageData);
         },
         goBuyPage: function(e) {
             e.preventDefault(e);
@@ -345,6 +348,7 @@ define(function(require, exports, module) {
             }
         },
         goTitleTipPage: function() {
+
             App.goTo("ttl_title_tip");
         }
     })
