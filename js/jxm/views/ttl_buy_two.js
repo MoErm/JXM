@@ -21,7 +21,8 @@ define(function(require, exports, module) {
             var header = document.querySelector("#header");
             $(header).hide();            
             self = this.initialize();
-            
+            self.message = '网络错误，请稍后重试';
+
             handle.share();
             //添加内容
             self.setHeader();
@@ -59,7 +60,7 @@ define(function(require, exports, module) {
                     handle.goLogin();
                 }else{
 
-                    App.showToast(data.msg  || message);
+                    App.showToast(data.msg  || self.message);
                 }
                 App.hideLoading();
             }).catch(function (error) {

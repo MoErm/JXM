@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 						<p>收益率递增</p>\
 					</li>\
 					<li>\
-						<p class="title">随存随取</p>\
+						<p class="title">随时可赎</p>\
 						<p>投资期限</p>\
 					</li>\
 					<li>\
@@ -42,13 +42,6 @@ define(function (require, exports, module) {
 					<a href="javascript:void(0)" class="weblink js_tips">《风险提示书》</a>\
 					<a href="javascript:void(0)" class="weblink js_transfer ">《产品收益权转让及服务协议》</a>\
 					所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
-				</div>\
-				<div class="time_tip">\
-					<em class="tip_icon"></em>\
-					<ul class="time_tiplist">\
-						<li>00:00~15:00  投资成功，当日起息</li>\
-						<li>15:00~24:00  投资成功，次日起息</li>\
-					</ul>\
 				</div>\
 				<div class="same_card_tip">\
 					<h2 class="tip_head"><em class="icon"></em>什么是同卡进出？</h2>\
