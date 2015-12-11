@@ -28,7 +28,7 @@ define(function (require, exports, module) {
 	        <span class="change">昨日收益<%=demandYestIncome%>元</span>\
 	    </div>\
 	    <div class="invest_tiantian2 ico_jiaxin invest_record">\
-	        <span>加薪系列(<%=fixedPeriodOrderCount%>)</span>\
+	        <span>持有产品(<%=fixedPeriodOrderCount%>)</span>\
 	        <span class="change"></span>\
 	    </div>\
 	    <div class="invest_invite ico_yaoqing">\

@@ -29,7 +29,7 @@ define(function (require, exports, module) {
 						<ul class="info_list">\
 							<li><em class="list_one"></em><span>收益率递增</span></li>\
 							<li><em class="list_two"></em><span>当日起息</span></li>\
-							<li><em class="list_three"></em><span>24小时可赎</span></li>\
+							<li><em class="list_three"></em><span>随时可赎</span></li>\
 							<li><em class="list_four"></em><span>100%保障</span></li>\
 						</ul>\
 					</div>\

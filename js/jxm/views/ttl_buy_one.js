@@ -23,6 +23,7 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
+            self.message = '网络错误，请稍后重试';
             handle.share();
             self.pageData= {};
             self.isAgreeAction= sessionStorage.getItem("isagreedAction");
@@ -87,7 +88,7 @@ define(function(require, exports, module) {
                         });
                         self.promptAlert.show();
                     }else{
-                        App.showToast(data.msg  || message);
+                        App.showToast(data.msg  || self.message);
                     }
                     App.hideLoading();
                 },
@@ -172,7 +173,7 @@ define(function(require, exports, module) {
                     self.passAlert.show(); 
                 }else{
 
-                    App.showToast(data.msg  || message);
+                    App.showToast(data.msg  || self.message);
                 }
                 App.hideLoading();
             });
@@ -222,7 +223,7 @@ define(function(require, exports, module) {
                 },
                 error: function() {
                     App.hideLoading();
-                    App.showToast(message);
+                    App.showToast(self.message);
                 }
             })
         }

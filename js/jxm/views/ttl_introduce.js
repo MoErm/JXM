@@ -113,6 +113,7 @@ define(function(require, exports, module) {
             cycleRound = 0;
             nowRoundNum = 0;
             self = this.initialize();
+            self.message = '网络错误，请稍后重试';
             handle.share();
             self.pageData = {};
             self.setHeader();
@@ -285,7 +286,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
-                        App.showToast(data.msg || message);
+                        App.showToast(data.msg || self.message);
                     }
                 },
                 error: function() {
@@ -336,7 +337,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
-                        App.showToast(data.msg || message);
+                        App.showToast(data.msg || self.message);
                     }
                 },
                 error: function() {
@@ -381,7 +382,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
-                        App.showToast(data.msg || message);
+                        App.showToast(data.msg || self.message);
                     }
                 },
                 error: function() {

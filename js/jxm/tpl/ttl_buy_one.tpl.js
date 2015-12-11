@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 						<p>收益率递增</p>\
 					</li>\
 					<li>\
-						<p class="title">随存随取</p>\
+						<p class="title">随时可赎</p>\
 						<p>投资期限</p>\
 					</li>\
 					<li>\

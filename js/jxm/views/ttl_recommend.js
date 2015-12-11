@@ -26,6 +26,7 @@ define(function(require, exports, module) {
         },
         onShow: function() {
             self = this.initialize();
+            self.message = '网络错误，请稍后重试';
 
             var query = self.request.query;
             var openid= query&&query.openid||"";
@@ -60,12 +61,12 @@ define(function(require, exports, module) {
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{
-                        App.showToast(data.msg  || message);
+                        App.showToast(data.msg  || self.message);
                     }
                 },
                 error: function(){
                     App.hideLoading();
-                    App.showToast(message);
+                    App.showToast(self.message);
                 }
             })
         },
@@ -114,7 +115,8 @@ define(function(require, exports, module) {
             var drawLine = chartLine.paper.path(pathPoint).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
-                fill: "none"
+                strokeLinecap: "round",
+                fill: "none",
             });
             var tSpanMin = chartLine.paper.text(15, 70, ["5%", "起天天加息"]).attr({
                 fill:'#9b9b9b'
@@ -155,7 +157,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         handle.goLogin();
                     } else {
-                        App.showToast(data.msg || message);
+                        App.showToast(data.msg || self.message);
                     }
                 },
                 error: function() {
