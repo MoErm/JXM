@@ -15,7 +15,9 @@ define(function(require, exports, module) {
     var cycleRound = 0;
     var nowRoundNum = 0;
     var self = null;
-
+    var max;
+    var min;
+    var now;
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -138,11 +140,21 @@ define(function(require, exports, module) {
             var num = Math.round(deg / 100)
             if (num == 0) {
                 return
-            } else if (num != turnNum) {
-                if (num > turnNum) {
-                    self.showRed(1)
-                } else {
-                    self.showRed(-1)
+            }else if(num!=turnNum){
+                if(num>turnNum){
+                    if(max==now&&now!="0.00000"){
+                        return
+                    }else{
+                        self.showRed(1)
+                    }
+
+                }else{
+                    if(min==now&&now!="0.00000"){
+                        return
+                    }else{
+                        self.showRed(-1)
+                    }
+
                 }
 
                 turnNum = num;
@@ -202,16 +214,18 @@ define(function(require, exports, module) {
             var mathDeg = parseInt(deg)
             cycle.style.webkitTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
         },
-        setRate: function(key) {
-            var rate = map.get(key)
-                //            console.log("rate"+rate+" key"+key)
-            if (rate == null) {
+        setRate:function(key){
+            var rate=map.get(key)
+            now=rate
+//            console.log("rate"+rate+" key"+key)
+            if(rate==null){
 
-                self.$("#cycle_num_1").html("转")
-                self.$("#cycle_num_2").html("你")
-                self.$("#cycle_num_3").html("妹")
-                self.$("#cycle_num_4").html("转")
-                self.$("#cycle_num_5").html("啊")
+
+                self.$("#cycle_num_1").html(0)
+                self.$("#cycle_num_2").html(0)
+                self.$("#cycle_num_3").html(0)
+                self.$("#cycle_num_4").html(0)
+                self.$("#cycle_num_5").html(0)
 
             } else {
                 self.$("#cycle_num_1").html(rate.substr(2, 1))
@@ -285,12 +299,18 @@ define(function(require, exports, module) {
                 success: function(data) {
                     App.hideLoading();
                     if (data.ret == 0) {
+                        self.data=data.data
+//                        console.log(self.data.rateList)
+                        for(var i=0;i<self.data.rateList.length;i++){
+                            if(i==0){
+                                max=(self.data.rateList[i].rate).toFixed(5)
+                            }
+                            if(i==self.data.rateList.length-1){
+                                min=(self.data.rateList[i].rate).toFixed(5)
+                            }
+//                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
+                            map.put(self.data.rateList[i].date,(self.data.rateList[i].rate).toFixed(5))
 
-                        self.data = data.data
-                            //                        console.log(self.data.rateList)
-                        for (var i = 0; i < self.data.rateList.length; i++) {
-                            //                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
-                            map.put(self.data.rateList[i].date, (self.data.rateList[i].rate).toFixed(5))
                         }
                         var initNowDate = data.data.todayYieldRate.toFixed(5)
                         self.$("#cycle_num_1").html(initNowDate.substr(2, 1))

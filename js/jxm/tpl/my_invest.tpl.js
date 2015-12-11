@@ -28,11 +28,11 @@ define(function (require, exports, module) {
 	        <span class="change">昨日收益<%=demandYestIncome%>元</span>\
 	    </div>\
 	    <div class="invest_tiantian2 ico_jiaxin invest_record">\
-	        <span>加薪系列<%if(fixedPeriodOrderCount!=0){%>(<%=fixedPeriodOrderCount%>)<%}%></span>\
+	        <span>加薪系列(<%=fixedPeriodOrderCount%>)</span>\
 	        <span class="change"></span>\
 	    </div>\
 	    <div class="invest_invite ico_yaoqing">\
-	        <span>我的邀请<%if(inviteeCount!=0){%>(<%=inviteeCount%>)<%}%></span>\
+	        <span>我的邀请(<%=inviteeCount%>)</span>\
 	        <span class="change">已获返利<%=bonusAmount%>元</span>\
 	    </div>\
 	  \
