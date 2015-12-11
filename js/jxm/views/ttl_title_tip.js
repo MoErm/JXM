@@ -38,8 +38,8 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.$el.html(_.template(paySuccess)(self.pageData));
             App.hideLoading();
+            self.$el.html(_.template(paySuccess)(self.pageData));
         },
     })
 })
