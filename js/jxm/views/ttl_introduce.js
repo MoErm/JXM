@@ -100,7 +100,7 @@ define(function(require, exports, module) {
         },
         events: {
             'click #action_buy': 'goBuyPage',
-            'click #action_redem': 'goRedemPage'
+            'click #action_redem': 'goRedemPage',
             'click #title_tip': 'goTitleTipPage'
         },
         onShow: function() {
