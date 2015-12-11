@@ -43,13 +43,6 @@ define(function (require, exports, module) {
 					<a href="javascript:void(0)" class="weblink js_transfer ">《产品收益权转让及服务协议》</a>\
 					所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
 				</div>\
-				<div class="time_tip">\
-					<em class="tip_icon"></em>\
-					<ul class="time_tiplist">\
-						<li>00:00~15:00  投资成功，当日起息</li>\
-						<li>15:00~24:00  投资成功，次日起息</li>\
-					</ul>\
-				</div>\
 				<div class="same_card_tip">\
 					<h2 class="tip_head"><em class="icon"></em>什么是同卡进出？</h2>\
 					<p class="tip_text">为了您的资金安全， 您的银行卡绑定加薪猫账户后，  买入和赎回将为您同一张银行卡。</p>\

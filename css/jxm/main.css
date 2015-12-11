@@ -1518,11 +1518,6 @@ text-align: right}
 .ttl_buy_one_b .action_buy{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 .ttl_buy_one_b .action_tip{width: 80%;margin: 15px auto; color: #9b9b9b;font-size: 1.2rem;}
 .ttl_buy_one_b .action_tip a{color: #b46a25;}
-.ttl_buy_one_b .time_tip{width: 85%;height: 50px;margin: 20px auto;color: #9b9b9b;text-align: center;}
-.ttl_buy_one_b .time_tip .tip_icon{width: 23px;height: 23px; background: url(../../images/ttl_icon.png) -4px -310px;}
-.ttl_buy_one_b .time_tip .time_tiplist{ margin: 0px 0 0 5px;}
-.ttl_buy_one_b .time_tip .tip_icon,
-.ttl_buy_one_b .time_tip .time_tiplist{display: inline-block;padding: 5px 0  0 0;}
 .ttl_buy_one_b .same_card_tip {width: 85%;margin: 0 auto;}
 .ttl_buy_one_b .same_card_tip .tip_head{font-weight: bold;}
 .ttl_buy_one_b .same_card_tip .tip_head .icon{display: inline-block;width: 20px;height: 20px;float: left;background: url(../../images/ttl_icon.png) -113px -114px;}
