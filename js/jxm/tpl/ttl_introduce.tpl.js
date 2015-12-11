@@ -17,7 +17,7 @@ define(function (require, exports, module) {
 				</div>\
     		</div>\
 			<div class="ttl_introduce_b">\
-				<h3 class="title">\
+				<h3 class="title" id="title_tip">\
 					<em></em>\
 					<span>收益率小助手</span>\
 				</h3>\
