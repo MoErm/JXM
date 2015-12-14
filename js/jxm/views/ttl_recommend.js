@@ -133,7 +133,7 @@ define(function(require, exports, module) {
                     "font-size": "2rem"
                 });
             }
-            function drawMin(fn){
+            function drawMin(){
                 var minPoint = chartLine.paper.circle(4,120,2).attr({
                     fill: "#FF6500",
                 });
@@ -146,9 +146,9 @@ define(function(require, exports, module) {
                     fill:'#FF6400',
                     "font-size": "2rem"
                 });
-                fn();
             }
             function draw() {
+                drawMin();
                 var current_frame = 0;
                 var total_frames = 60;
                 var self = this;
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
                 path.style.strokeDashoffset = '0';
 
                 setTimeout(function(){
-                    drawMin(drawMax);
+                    drawMax();
                 }, 1300)
             };
             draw();
