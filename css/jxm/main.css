@@ -1505,7 +1505,7 @@ text-align: right}
 
 .ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
 .ttl_buy_one_m .mycard_info,
-.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;}
+.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;float: right;}
 .ttl_buy_one_m .imoney_num{width: 80%;height: 50px;display: inline-block;text-align: right;}
 
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
