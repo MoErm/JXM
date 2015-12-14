@@ -20,19 +20,19 @@ define(function (require, exports, module) {
 	    \
 	  </div>\
 	    <div class="my_change ico_redbao">\
-	    <span>加薪红包</span>\
+	    <span  class="fontBlack">加薪红包</span>\
 	    <span class="change"><%=change%></span>\
 	    </div>\
 	    <div class="invest_tiantian ico_ttl">\
-	        <span>天添利</span>\
+	        <span class="fontBlack">天添利</span>\
 	        <span class="change">昨日收益<%=demandYestIncome%>元</span>\
 	    </div>\
 	    <div class="invest_tiantian2 ico_jiaxin invest_record">\
-	        <span>持有产品(<%=fixedPeriodOrderCount%>)</span>\
+	        <span  class="fontBlack">持有产品(<%=fixedPeriodOrderCount%>)</span>\
 	        <span class="change"></span>\
 	    </div>\
 	    <div class="invest_invite ico_yaoqing">\
-	        <span>我的邀请(<%=inviteeCount%>)</span>\
+	        <span  class="fontBlack">我的邀请(<%=inviteeCount%>)</span>\
 	        <span class="change">已获返利<%=bonusAmount%>元</span>\
 	    </div>\
 	  \
