@@ -26,7 +26,8 @@ define(function (require, exports, module) {
 						<p>今日最高收益率</p>\
 						<h2 id="todayYieldRate">0.000%</h2>\
 					</div>\
-					 <div class="cycle_bg"  id="tradeAmount">\
+					<div style="width: 100%" id="tradeAmount">\
+					 <div class="cycle_bg"  >\
                         <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
                             <div class="cycleTest cycleTestRed cycle_1" id="cycle_1"></div>\
                             <div class="cycleTest cycleTestRed cycle_2" id="cycle_2"></div>\
@@ -37,19 +38,20 @@ define(function (require, exports, module) {
                             <div class="cycleTest cycleTestRed cycle_7" id="cycle_7"></div>\
                             <div class="cycleTest cycleTestRed cycle_8" id="cycle_8"></div>\
                         </div>\
-					<div class="cycle_num">\
-					    <div id="cycle_num_1">0</div>\
-					    <div id="cycle_num_2">0</div>\
-					    <div>.</div>\
-					    <div id="cycle_num_3">0</div>\
-					    <div id="cycle_num_4">0</div>\
-					    <div id="cycle_num_5">0</div>\
-					    <div>%</div>\
-					</div>\
-					<div style="position: absolute;top: 75px;right: 50%;margin-right: -8px"><img src="images/cycle_arrow.png" width="16px" alt=""></div>\
-					<div style="position: absolute;top: 15px;left: 2px;"><img src="images/cycle_leftArrow.png" width="50px" alt=""></div>\
-					<div style="position: absolute;top: 15px;right:2px;"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
-					</div>\
+                        <div class="cycle_num">\
+                            <div id="cycle_num_1">0</div>\
+                            <div id="cycle_num_2">0</div>\
+                            <div>.</div>\
+                            <div id="cycle_num_3">0</div>\
+                            <div id="cycle_num_4">0</div>\
+                            <div id="cycle_num_5">0</div>\
+                            <div>%</div>\
+                        </div>\
+                            <div style="position: absolute;top: 75px;right: 50%;margin-right: -8px"><img src="images/cycle_arrow.png" width="16px" alt=""></div>\
+                            <div style="position: absolute;top: 15px;left: 2px;"><img src="images/cycle_leftArrow.png" width="50px" alt=""></div>\
+                            <div style="position: absolute;top: 15px;right:2px;"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
+                        </div>\
+                     </div>\
 				</div>\
 				<div class="action">\
 					<input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" />\

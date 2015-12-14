@@ -553,15 +553,15 @@ input::-webkit-inner-spin-button{
 .ico_card:before,.ico_redbao:before,.ico_ttl:before,.ico_jiaxin:before,.ico_yaoqing:before{content:'';background-image:url(../../images/sprite_2.png);background-repeat:no-repeat;background-size:400px auto;overflow:hidden;}
 .ico_redbao:before,.ico_ttl:before,.ico_jiaxin:before,.ico_yaoqing:before{display:inline-block;width:22px;height: 26px;vertical-align:middle;margin-right:6px;}
 .ico_tuijian:before,.ico_licai:before,.ico_wode:before,.ico_setting:before{width: 21px;height: 21px;vertical-align:middle;margin-right:6px;content:'';background-image:url(../../images/sprite_2.png);background-repeat:no-repeat;background-size:250px auto;overflow:hidden;}
-.ico_tuijian:before{background-position: -25px -60px; }
+.ico_tuijian:before{background-position: -24px -60px; width: 24px;}
 .ico_licai:before{background-position: -81px -60px; }
 .ico_wode:before{background-position: -133px -60px; width: 28px}
-.ico_setting:before{background-position: -192px -60px;width: 24px;height: 22px}
+.ico_setting:before{background-position: -192px -59px;width: 24px;height: 24px}
 
-.ico_tuijian.cur:before{background-position: -25px -91px; }
+.ico_tuijian.cur:before{background-position: -24px -91px;width: 24px; }
 .ico_licai.cur:before{background-position: -81px -91px; }
 .ico_wode.cur:before{background-position: -133px -91px; width: 28px}
-.ico_setting.cur:before{background-position: -192px -91px;width: 24px;height: 22px}
+.ico_setting.cur:before{background-position: -192px -90px;width: 24px;height: 24px}
 
 .ico_redbao:before{background-position: -45px -38px; }
 .ico_ttl:before{background-position: -80px -38px; }
@@ -869,6 +869,7 @@ text-align: right}
 .my_change{background-color: #ffffff;border-bottom: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;}
 .invest_invite{background-color: #ffffff;border-bottom: 1px solid #cecece;border-top: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;margin-top: 10px}
 .invest_tiantian{background-color: #ffffff;border-bottom: 1px dashed #cecece;border-top: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;margin-top: 10px}
+ .fontBlack{color: #000000}
 .invest_tiantian2{background-color: #ffffff;border-bottom: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;}
 .my_change span,.invest_tiantian span,.invest_tiantian2 span,.invest_invite span{display: inline-block; }
 .my_change .change,.invest_tiantian .change,.invest_tiantian2 .change,.invest_invite .change{float: right;line-height: 30px; margin-top: -2px;}

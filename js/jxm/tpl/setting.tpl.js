@@ -8,9 +8,6 @@ define(function (require, exports, module) {
                             <li class="item v_arrow_r">\
                                 <div class="item_hd ico_s_card js_add_card">我的银行卡</div>\
                             </li>\
-                            <li class="item v_arrow_r">\
-                                <div class="item_hd ico_s_invite js_my_invite">我的邀请</div>\
-                            </li>\
                             <li class="item v_arrow_r js_phone">\
                                 <div class="item_hd ico_s_tel">客服电话</div>\
                                 <div class="item_bd"><%=tel%></div>\
