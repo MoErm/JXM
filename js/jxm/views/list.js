@@ -359,13 +359,13 @@ define(function (require, exports, module) {
                     App.goTo('detail?pid=' + pid);
                 }
             },
-            giveUp:function(){
+            giveUp:function(pid){
                 abortChange.exec({
                     type: "post",
                     success: function (data){
                         if(data.ret == 0){
                             //解锁成功
-//                            self.toInvestConfirm(pid);
+                            self.toInvestConfirm(pid);
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else{
@@ -407,20 +407,20 @@ define(function (require, exports, module) {
                             }
                             self.passAlert.show();
                         }else if(data.ret == 110203){
-//                            self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
-//                                //解除锁定
-//                                self.giveUp(pid)
-//                            });
-//                            self.promptAlert.show();
-
-                            self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+                            self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
                                 //解除锁定
-                                self.giveUp()
-                            }, function(){
-                                //继续更换
-                                App.goTo("rebind_card")
+                                self.giveUp(pid)
                             });
                             self.promptAlert.show();
+
+//                            self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+//                                //解除锁定
+//                                self.giveUp()
+//                            }, function(){
+//                                //继续更换
+//                                App.goTo("rebind_card")
+//                            });
+//                            self.promptAlert.show();
                         }
                         else if(data.ret == 999001){
                             self.clearTime();

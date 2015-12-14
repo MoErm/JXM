@@ -36,14 +36,16 @@ define(function (require, exports, module) {
                             self.setHeader2();
                             //console.log(self.data.cardList[0].status)
                             if(self.data.cardList[0].status==02){
-                                self.promptAlert = handle.prompt('您更换的新银行卡还没绑定完成，是否要继续更换？','放弃', '去更换',function(){
-                                    //解除锁定
-                                    self.giveUp()
-                                }, function(){
-                                    //继续更换
-                                    App.goTo("rebind_card")
-                                });
-                                self.promptAlert.show();
+                                self.giveUp()
+
+//                                self.promptAlert = handle.prompt('您更换的新银行卡还没绑定完成，是否要继续更换？','放弃', '去更换',function(){
+//                                    //解除锁定
+//                                    self.giveUp()
+//                                }, function(){
+//                                    //继续更换
+//                                    App.goTo("rebind_card")
+//                                });
+//                                self.promptAlert.show();
                             }
 
 //                            self.promptAlert = handle.alert("",function(){
@@ -108,15 +110,15 @@ define(function (require, exports, module) {
                         App.goTo('setting');
                     }
                 },
-                right://null
-                    [{
-                        'tagname': 'changeCard', 'value': '更换&nbsp;&nbsp;',
-                        callback: function () {
-
-                            self.checkUnBinding();
-
-                        }
-                    }]
+                right:null
+//                    [{
+//                        'tagname': 'changeCard', 'value': '更换&nbsp;&nbsp;',
+//                        callback: function () {
+//
+//                            self.checkUnBinding();
+//
+//                        }
+//                    }]
             });
         },
         giveUp:function(){

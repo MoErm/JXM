@@ -65,13 +65,29 @@ define(function (require, exports, module) {
             e.stopImmediatePropagation();
             var closest = $(e.currentTarget).closest('.investList');
             var status = $(closest).data('id');
-            App.goTo("redemption_investDetail?orderNo="+status)
+
+            var query = this.request.query;
+            var type=query&&query.type||"";
+            if(type==1){
+                App.goTo("redemption_investDetail?orderNo="+status+"&type=1")
+            }else{
+                App.goTo("redemption_investDetail?orderNo="+status)
+            }
+
         },
         listBtn: function(e){
             e.stopImmediatePropagation();
             var closest = $(e.currentTarget).closest('.redeem_list');
             var status = $(closest).data('id');
-            App.goTo("redemption_detail?ransomId="+status)
+            App.goTo("redemption_detail?ransomId="+status+"&type=1")
+
+            var query = this.request.query;
+            var type=query&&query.type||"";
+            if(type==1){
+                App.goTo("redemption_detail?ransomId="+status+"&type=1")
+            }else{
+                App.goTo("redemption_detail?ransomId="+status)
+            }
         },
         showMoreIn : function () {
             if(onceIn){

@@ -96,7 +96,13 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("redeem")
+                        var query = this.request.query;
+                        var type=query&&query.type||"";
+                        if(type==1){
+                            App.goTo("redeem?type=1")
+                        }else{
+                            App.goTo("redeem")
+                        }
                     }
                 },
                 center: {

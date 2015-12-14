@@ -321,19 +321,19 @@ define(function (require, exports, module) {
                         self.promptAlert.show();
                     }else if(data.ret==110203){
 
-//                        self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
-//                            //解除锁定
-//                            self.giveUp()
-//                        });
-//                        self.promptAlert.show();
-                        self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+                        self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
                             //解除锁定
                             self.giveUp()
-                        }, function(){
-                            //继续更换
-                            App.goTo("rebind_card")
                         });
                         self.promptAlert.show();
+//                        self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+//                            //解除锁定
+//                            self.giveUp()
+//                        }, function(){
+//                            //继续更换
+//                            App.goTo("rebind_card")
+//                        });
+//                        self.promptAlert.show();
                     }
                     else{
                         App.hideLoading();
