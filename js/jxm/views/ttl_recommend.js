@@ -110,37 +110,64 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = 'M4 120C159 105,220 75 280 5';
+            var pathPoint = [ 'M0 0','M4 120C159 105,220 75 280 5'];
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
-            var drawLine = chartLine.paper.path(pathPoint).attr({
+            
+            var drawLine = chartLine.paper.path(pathPoint[1]).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
                 fill: "none",
             });
 
-            var minPoint = chartLine.paper.circle(4,120,2).attr({                
-                fill: "#FF6500",
-            });
-            var maxPoint = chartLine.paper.circle(280,5,2).attr({
-                fill: "#FF6500",
-            });
+            
+            function drawMax(){                
+                var maxPoint = chartLine.paper.circle(280,5,2).attr({
+                    fill: "#FF6500"
+                });
+                var tSpanMax = chartLine.paper.text(120, 15, ["12%", "最高年化收益率"]).attr({
+                    fill:'#9b9b9b'
+                });
+                //数字样式
+                $(tSpanMax.node.childNodes[0]).attr({
+                    fill:'#FF6400',
+                    "font-size": "2rem"
+                });
+            }
+            function drawMin(fn){
+                var minPoint = chartLine.paper.circle(4,120,2).attr({
+                    fill: "#FF6500",
+                });
+               
+                var tSpanMin = chartLine.paper.text(5, 89, ["5%", "起天天加息"]).attr({
+                    fill:'#9b9b9b'
+                });
+                //数字样式
+                $(tSpanMin.node.childNodes[0]).attr({
+                    fill:'#FF6400',
+                    "font-size": "2rem"
+                });
+                fn();
+            }
+            function draw() {
+                var current_frame = 0;
+                var total_frames = 60;
+                var self = this;
+                var progress = current_frame/total_frames;
+                var path = document.querySelector('#chart_line path');
+                var pathLength = path.getTotalLength();
+                path.style.transition = path.style.WebkitTransition ='none';
+                path.style.strokeDasharray = pathLength + ' ' + pathLength;
+                path.style.strokeDashoffset = pathLength;
+                path.getBoundingClientRect();
+                path.style.transition = path.style.WebkitTransition='stroke-dashoffset 1.2s ease-in-out';
+                path.style.strokeDashoffset = '0';
 
-            var tSpanMin = chartLine.paper.text(5, 89, ["5%", "起天天加息"]).attr({
-                fill:'#9b9b9b'
-            });
-            //数字样式
-            $(tSpanMin.node.childNodes[0]).attr({
-                fill:'#FF6400',
-                "font-size": "2rem"
-            });
-            var tSpanMax = chartLine.paper.text(120, 15, ["12%", "最高年化收益率"]).attr({
-                fill:'#9b9b9b'
-            });
-            //数字样式
-            $(tSpanMax.node.childNodes[0]).attr({
-                fill:'#FF6400',
-                "font-size": "2rem"
-            });
+                setTimeout(function(){
+                    drawMin(drawMax);
+                }, 1300)
+            };
+            draw();
+
         },
         initFooter: function() {
             $(".foot_nav .item").removeClass('cur');
