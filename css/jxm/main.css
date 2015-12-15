@@ -474,6 +474,7 @@ input::-webkit-inner-spin-button{
     
     /*ttl 适配*/
     .page .ttl_recommend_ad{height: 120px;}
+    .page .ttl_buy_one_m .mycard .card_detail{width: 80%;}
 }
 
 /*iphone4 5*/
@@ -510,6 +511,7 @@ input::-webkit-inner-spin-button{
     /*ttl 适配*/
     .page .ttl_recommend_ad{height: 100px;}
     .page .ttl_recommend_detail_m .info{width: 100%;}
+    .page .ttl_buy_one_m .mycard .card_detail{width: 79%;}
 }
 .redemption_box{background:#ffffff;border-top: 1px #cecece solid;border-bottom: 1px #cecece solid;margin-top: 10px;}
 .redemption_div{font-size: 1.6rem;padding: 15px 20px}
@@ -1505,14 +1507,14 @@ text-align: right}
 
 .ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
 .ttl_buy_one_m .mycard_info,
-.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;}
+.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;float: right;}
 .ttl_buy_one_m .imoney_num{width: 80%;height: 50px;display: inline-block;text-align: right;}
 
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .banklogo,
 .ttl_buy_one_m .mycard .card_detail{color: #9b9b9b;float: left;margin: 0 0 0 5px;}
 .ttl_buy_one_m .mycard .banklogo{display: inline-block;width:36px;height: 36px;padding: 7px 0 0 0;}
-.ttl_buy_one_m .mycard .card_detail{width: calc(100% - 60px);}
+.ttl_buy_one_m .mycard .card_detail{width: 80%;}
 .ttl_buy_one_m .mycard .card_detail p{line-height: normal;margin:5px 0 0 5px;font-size: 1.5rem;}
 .ttl_buy_one_m .mycard .card_detail .limit_text{font-size: 1.1rem;}
 

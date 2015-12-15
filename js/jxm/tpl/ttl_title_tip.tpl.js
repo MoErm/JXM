@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     			<dt class="tip_head">四、何时可以赎回？是否需要手续费？</dt>\
     			<dl class="tip_content">24h随时可申请赎回，无任何手续费。</dl>\
     			<dt class="tip_head">五、赎回次数与金额限制？</dt>\
-    			<dl class="tip_content">每日赎回限额为3万元，次数为3次。</dl>\
+    			<dl class="tip_content">每日赎回限额为5万元，次数为3次。</dl>\
     			<dt class="tip_head">六、赎回的金额什么时候到账？</dt>\
     			<dl class="tip_content">提交赎回后（t 日），一般为（t + 3 ）个工作日到账，如遇节假日， 将往后顺延，具体时间视银行而定（请关注平台交易记录中的赎回状态）</dl>\
     			<dt class="tip_head">七、赎回到哪张银行卡？</dt>\
