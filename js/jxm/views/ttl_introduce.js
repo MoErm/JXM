@@ -18,6 +18,7 @@ define(function(require, exports, module) {
     var max;
     var min;
     var now;
+    var startPoint;
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -114,20 +115,7 @@ define(function(require, exports, module) {
             self.setHeader();
             self.initProperty();
         },
-        getMousePos:function() {
-        var e = window.event;
-        var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-        var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-        var x = e.pageX || e.clientX + scrollX;
-        var y = e.pageY || e.clientY + scrollY;
-        //alert('x: ' + x + '\ny: ' + y);
-            $(window).mousemove(function (e) {
-                console.log("X:" + e.pageX + "   Y:" + e.pageY)
-            });
-        console.log(window.event)
 
-        return { 'x': x, 'y': y };
-    },
         setCycle: function() {
 
             var hit = document.querySelector("#tradeAmount");
@@ -139,8 +127,10 @@ define(function(require, exports, module) {
                 enable: true
             });
             mc.on("hammer.input", function(ev) {
-                self.cycleTime(ev.deltaX)
-                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
+//                self.cycleTime(ev.deltaX)
+                self.cycleTime( self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type))
+
+//                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
                 if (ev.srcEvent.type == "touchend") {
                     turnNum = 0
                 }
@@ -148,20 +138,46 @@ define(function(require, exports, module) {
             return
         },
         routeCal:function(x,y,type){
-            console.log(type)
-            if(x>0){
+//            console.log(window.event.changedTouches[0].clientX)
+            var distance=0;
+            distance=Math.sqrt(x*x+y*y).toFixed(0)
+            console.log()
+//            if(type=="touchstart"){
+                startPoint=window.event.changedTouches[0].clientX
+//            }else if(type=="touchend"){
+//
+//            }
+            if(x>5){
                 if(y>0){
-
-                }else{
-
+//                    console.log("右下")
+                }else if(y<0){
+//                    console.log("右上")
+                }
+            }else if(x<-5){
+                if(y>0){
+                    distance= -distance
+//                    console.log("左下")
+                }else if(y<0){
+                    distance= -distance
+//                    console.log("左上")
                 }
             }else{
-                if(y>0){
+                if(startPoint>document.body.clientWidth/2){
+                    if(y>0){
 
+                    }else if(y<0){
+                        distance= -distance
+                    }
                 }else{
+                    if(y>0){
+                        distance= -distance
+                    }else if(y<0){
+
+                    }
 
                 }
             }
+            return distance
         },
         cycleTime: function(deg) {
             var num = Math.round(deg / 100)
@@ -174,16 +190,13 @@ define(function(require, exports, module) {
                     }else{
                         self.showRed(1)
                     }
-
                 }else{
                     if(min==now){
                         return
                     }else{
                         self.showRed(-1)
                     }
-
                 }
-
                 turnNum = num;
             } else {
                 return
