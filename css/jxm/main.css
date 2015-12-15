@@ -1503,7 +1503,7 @@ text-align: right}
 .ttl_buy_one_t .info_add .title{height: 27px;}
 .ttl_buy_one_m{margin: 10px 0;background: #fff;border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard,
-.ttl_buy_one_m .imoney{line-height: 50px;padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
+.ttl_buy_one_m .imoney{line-height: 50px;height: 50px; padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
 
 .ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;width: 28%;float: left;}
 .ttl_buy_one_m .mycard_info,
