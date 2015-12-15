@@ -81,20 +81,15 @@ define(function(require, exports, module) {
         };
     }
     var map = new Map();
-
-    function addDate(date, days) {
-        var d = new Date(date);
-        d.setDate(d.getDate() + days);
-        var m = d.getMonth() + 1;
-        m = m + ""
-        if (m.length == 1) {
-            m = "0" + m
-        }
-        var day = d.getDate() + ""
-        if (day.length == 1) {
-            day = "0" + day
-        }
-        return d.getFullYear() + '' + m + '' + day;
+    function getMousePos(event) {
+        var e = event || window.event;
+        var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+        var x = e.pageX || e.clientX + scrollX;
+        var y = e.pageY || e.clientY + scrollY;
+        //alert('x: ' + x + '\ny: ' + y);
+        console.log('x: ' + x + ' y: ' + y)
+        return { 'x': x, 'y': y };
     }
     module.exports = App.Page.extend({
         initialize: function() {
@@ -119,6 +114,20 @@ define(function(require, exports, module) {
             self.setHeader();
             self.initProperty();
         },
+        getMousePos:function() {
+        var e = window.event;
+        var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+        var x = e.pageX || e.clientX + scrollX;
+        var y = e.pageY || e.clientY + scrollY;
+        //alert('x: ' + x + '\ny: ' + y);
+            $(window).mousemove(function (e) {
+                console.log("X:" + e.pageX + "   Y:" + e.pageY)
+            });
+        console.log(window.event)
+
+        return { 'x': x, 'y': y };
+    },
         setCycle: function() {
 
             var hit = document.querySelector("#tradeAmount");
@@ -131,11 +140,28 @@ define(function(require, exports, module) {
             });
             mc.on("hammer.input", function(ev) {
                 self.cycleTime(ev.deltaX)
+                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
                 if (ev.srcEvent.type == "touchend") {
                     turnNum = 0
                 }
             });
             return
+        },
+        routeCal:function(x,y,type){
+            console.log(type)
+            if(x>0){
+                if(y>0){
+
+                }else{
+
+                }
+            }else{
+                if(y>0){
+
+                }else{
+
+                }
+            }
         },
         cycleTime: function(deg) {
             var num = Math.round(deg / 100)
