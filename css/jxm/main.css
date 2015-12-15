@@ -822,23 +822,23 @@ text-align: right}
 .redeem_select .select_title_l{float: left;width: 49.5%;text-align: center;border-bottom: 1px solid #d01b02;border-top: 1px solid #d01b02;border-left: 1px solid #d01b02;padding: 5px 0;color: #d01b02;border-bottom-left-radius: 5px;border-top-left-radius: 5px;background-color: #ffffff}
 .redeem_select .select_title_r{float: left;width: 49.5%;text-align: center;border-bottom: 1px solid #d01b02;border-top: 1px solid #d01b02;border-right: 1px solid #d01b02;padding: 5px 0;color: #d01b02;border-bottom-right-radius: 5px;border-top-right-radius: 5px;background-color: #ffffff}
 .redeem_select .selected{color: #ffffff;background-color: #d01b02}
-.investList{padding:10px 3% 0 3%!important;}
-.investList .detail{color: #000000}
-.investList span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px 3%;margin-left: 10px;width: 25%}
+.investList{padding:10px 10px 10px 20px!important;}
+.investList .detail{color: #575757}
+.investList span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;width:80px;padding: 0}
 .investList .logo{width:88%;position: relative;padding-left: 30px;border-top: 1px dashed #cecece;padding-top: 5px}
 .investList .logo img{padding: 0;margin: 0;position: absolute;left: 0;width: 20px}
 
-.redeem_list{padding:10px!important;position: relative}
+.redeem_list{padding:10px 10px 10px 20px!important;position: relative}
 .afterArrow::after{
     position: absolute;
     content: "";
     display: block;
     top: 0;
-    margin-top: 38px;
+    margin-top: 28px;
     width: 10px;
     height: 10px;
     right: 0;
-    margin-right: 30px;
+    margin-right: 20px;
     border-left: 2px solid #b5b5b5;
     border-bottom: 2px solid #b5b5b5;
     -webkit-transform: rotate(-135deg);
@@ -850,20 +850,20 @@ text-align: right}
     content: "";
     display: block;
     top: 0;
-    margin-top: 70px;
+    margin-top: 50px;
     width: 10px;
     height: 10px;
     right: 0;
-    margin-right: 30px;
+    margin-right: 20px;
     border-left: 2px solid #b5b5b5;
     border-bottom: 2px solid #b5b5b5;
     -webkit-transform: rotate(-135deg);
     transform: rotate(-135deg);
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
-.redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;margin: 5px;margin-left: 10px;width: 25%}
-.redeem_list .detail{color: #000000}
-.redeem_shouyi{position: absolute;top: 0;right: 0;margin-top: 55px;margin-right: 50px;text-align: center}
+.redeem_list span{display: inline-block;font-size: 1.4rem;color: #a7a7a7;width: 80px}
+.redeem_list .detail{color: #575757}
+.redeem_shouyi{position: absolute;top: 0;right: 0;margin-top: 35px;margin-right: 40px;text-align: center;color: #575757}
 
 .my_invest{margin: 0 0;padding: 0 10px 10px 10px;border-bottom:dashed 1px #cecece}
 .my_invest .invest_title{color: #a7a7a7}
