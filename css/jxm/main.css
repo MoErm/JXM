@@ -1505,9 +1505,9 @@ text-align: right}
 .ttl_buy_one_m .mycard,
 .ttl_buy_one_m .imoney{line-height: 50px;padding: 10px 0; border-bottom: 1px solid #ECECEC;display: -webkit-flex; display: flex;}
 
-.ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;}
+.ttl_buy_one_m .head{text-indent: 1em;-webkit-flex:1 0 28%;flex:1 0 28%;width: 28%;float: left;}
 .ttl_buy_one_m .mycard_info,
-.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;float: right;}
+.ttl_buy_one_m .imoney_content{-webkit-flex:1 0 70%;flex:1 0 70%;width: 70%;float: left;}
 .ttl_buy_one_m .imoney_num{width: 80%;height: 50px;display: inline-block;text-align: right;}
 
 .ttl_buy_one_m .mycard {font-size: 1.5rem;}
@@ -1569,7 +1569,7 @@ text-align: right}
 .ttl_pay_success_t .success_list .sub_show{font-size: 1.8rem;color: #000;}
 
 /*-- 天添利 收益提示 --*/
-.ttl_title_tip{}
+/*.ttl_title_tip{display: none;position: absolute;left: 0;top: 0;background: #fff;z-index: 100;}*/
 .ttl_title_tip .tip_list{width: 90%;margin: 15px auto;}
 .ttl_title_tip .tip_head{font-weight: bold;margin: 20px 0 3px 0;}
 
