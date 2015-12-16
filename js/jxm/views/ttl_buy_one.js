@@ -98,7 +98,7 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.pageData.cardData.surplusAmount= handle.dealMoney(self.pageData.cardData.surplusAmount,1);
+            self.pageData.cardData.surplusAmount= handle.dealMoney(self.pageData.cardData.surplusAmount,2);
             //添加内容
             self.$el.html(_.template(buyStepOne)(self.pageData));
             self.initSession();
@@ -188,7 +188,7 @@ define(function(require, exports, module) {
             if(self.amountVal== ""){
                 App.showToast("请输入投资金额");
                 return;
-            }else if(Number(self.amountVal)%1000!=0){
+            }else if(Number(self.amountVal)%100!=0){
                 App.showToast("投资金额需是1,000元的整数倍");
                 return;
             }
