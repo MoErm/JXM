@@ -55,15 +55,51 @@ define(function (require, exports, module) {
 				</div>\
                 <div class="detail">\
                     <div class="detail_a">\
+                        <em class="title"></em>\
+                        <h2 class="head">收益率按天增涨的活期理财</h2>\
+                        <ul class="list">\
+                            <li>5% 年化起</li>\
+                            <li>12% 年化最高</li>\
+                            <li>t+0 当日起息</li>\
+                        </ul>\
                     </div>\
                     <div class="detail_b">\
+                        <h2 class="head">用户定位</h2>\
+                        <ul class="list">\
+                            <li>\
+                                <em class="list_icon"></em>\
+                                <p class="list_head">低门槛</p>\
+                                <p class="list_test">100元 起投金额</p>\
+                            </li>\
+                            <li>\
+                                <em class="list_icon"></em>\
+                                <p class="list_head">灵活性</p>\
+                                <p class="list_test">在投资产 随时可赎</p>\
+                            </li>\
+                            <li>\
+                                <em class="list_icon"></em>\
+                                <p class="list_head">高收益</p>\
+                                <p class="list_test">收益率 按天增涨 </p>\
+                            </li>\
+                        </ul>\
                     </div>\
                     <div class="detail_c">\
+                        <h2 class="head">用户定位</h2>\
+                        <div class="content">\
+                            <ul class="list">\
+                                <li class="list_con_a">01 注册加薪猫</li>\
+                                <li class="list_con_b">02 购买天添利</li>\
+                                <li class="list_con_c">03 收益率按天增涨</li>\
+                                <li class="list_con_d">04 随时可赎</li>\
+                            </ul>\
+                        </div>\
                     </div>\
                 </div>\
 				<div class="action">\
-					<input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" />\
-					<input type="button" value="赎回" class="action_redem <%if(getTtlProperty.isCanRedeem!=1){%> lock<% } %>" id="action_redem" />\
+                    <ul class="action_list">\
+                        <li><input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" /></li>\
+                        <li><input type="button" value="赎回" class="action_redem <%if(getTtlProperty.isCanRedeem!=1){%> lock<% } %>" id="action_redem" /></li>\
+                    </ul>\
 				</div>\
 			</div>\
         </article>';
