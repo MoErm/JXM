@@ -19,6 +19,7 @@ define(function(require, exports, module) {
     var min;
     var now;
     var startPoint;
+    var today;
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -121,6 +122,31 @@ define(function(require, exports, module) {
             });
             mc.on("hammer.input", function(ev) {
 //                self.cycleTime(ev.deltaX)
+//                console.log(ev)
+                console.log(ev.deltaTime+"  "+ev.srcEvent.type)
+                console.log(ev.deltaTime<100&&ev.srcEvent.type=="touchend")
+
+
+                if(ev.deltaTime<100&&ev.srcEvent.type=="touchend"){
+                    console.log("循环起始"+Math.abs(RoundNum-2))
+                    var fuwei=RoundNum
+                    if(fuwei==2){
+
+                    }else if(fuwei>2){
+                        console.log("》2循环起始"+Math.abs(fuwei-2))
+                        for(var s=0;s<Math.abs(fuwei-2);s++){
+                            console.log("转-1  "+s)
+                            self.showRed(1)
+                        }
+                    }else if(fuwei<2){
+                        console.log("《2循环起始"+Math.abs(fuwei-2))
+                        for (var q = 0; q < Math.abs(fuwei-2);q++){
+                            self.showRed(-1)
+                            console.log("转+1  "+q)
+                        }
+                    }
+                    return
+                }
                 self.cycleTime( self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type))
 
 //                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
@@ -233,17 +259,18 @@ define(function(require, exports, module) {
                 //            console.log(showDate_1+"  "+showDate_2+"  "+showDate_3)
             self.setRate(showDate_2)
             for (var i = 0; i < pool.length; i++) {
-//                                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
+                                self.$("#cycle_"+pool[i]).removeClass("cycleToday")
                 if (i == 0) {
                     self.$("#cycle_" + pool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_1.substr(6, 2))
                 } else if (i == 1) {
+                    self.$("#cycle_"+pool[i]).addClass("cycleToday")
                     self.$("#cycle_" + pool[i]).html(showDate_2.substr(4, 2) + "/" + showDate_2.substr(6, 2))
                 } else if (i == 2) {
                     self.$("#cycle_" + pool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_3.substr(6, 2))
                 }
             }
             for (var i = 0; i < hidePool.length; i++) {
-//                                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
+                                self.$("#cycle_"+hidePool[i]).removeClass("cycleToday")
                 if (i == 0) {
                     self.$("#cycle_" + hidePool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_4.substr(6, 2))
                 } else if (i == hidePool.length-1) {
@@ -259,7 +286,6 @@ define(function(require, exports, module) {
         setRate:function(key){
             var rate=map.get(key)
             now=key
-//            console.log("rate"+rate+" key"+key)
             if(rate==null){
 
 
@@ -367,6 +393,8 @@ define(function(require, exports, module) {
                         self.$("#cycle_num_4").html(initNowDate.substr(5, 1))
                         self.$("#cycle_num_5").html(initNowDate.substr(6, 1))
                         var nowDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate()
+
+                        today=new Date().getFullYear() + "" + (new Date().getMonth() + 1) + "" + new Date().getDate()
                         var showDate_1 = self.addDate(nowDate, -1)
                         var showDate_2 = self.addDate(nowDate, 0)
                         var showDate_3 = self.addDate(nowDate, 1)
