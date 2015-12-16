@@ -28,7 +28,7 @@ define(function (require, exports, module) {
 			<span style = "font-size: 1rem;color: #9d9d9d;top: 3px;position: relative; float: left;width: 98%;padding-left: 2%">\
 			<span>投资并同意</span>\
 			<a href="javascript:void(0)" class="weblink js_contract" data-contractno="17" data-productno="<%=productNo%>">《风险提示书》</a>\
-			<a href="javascript:void(0)" class="weblink js_contract" data-contractno="19" data-productno="<%=productNo%>">《产品收益权转让及服务协议》</a>\
+			<a href="javascript:void(0)" class="weblink js_contract" data-contractno="19" data-productno="<%=productNo%>">《债权转让服务协议》</a>\
 			<span class="js_agree" style="">所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险.</span>\
 			</span>\
 	    </div>\
