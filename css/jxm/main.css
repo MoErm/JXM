@@ -871,7 +871,7 @@ text-align: right}
 .my_change{background-color: #ffffff;border-bottom: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;}
 .invest_invite{background-color: #ffffff;border-bottom: 1px solid #cecece;border-top: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;margin-top: 10px}
 .invest_tiantian{background-color: #ffffff;border-bottom: 1px dashed #cecece;border-top: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;margin-top: 10px}
- .fontBlack{color: #000000}
+ .fontBlack{color: #4f4f4f; }
 .invest_tiantian2{background-color: #ffffff;border-bottom: 1px solid #cecece;padding: 10px 20px;color:#a7a7a7;}
 .my_change span,.invest_tiantian span,.invest_tiantian2 span,.invest_invite span{display: inline-block; }
 .my_change .change,.invest_tiantian .change,.invest_tiantian2 .change,.invest_invite .change{float: right;line-height: 30px; margin-top: -2px;}
