@@ -82,16 +82,7 @@ define(function(require, exports, module) {
         };
     }
     var map = new Map();
-    function getMousePos(event) {
-        var e = event || window.event;
-        var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-        var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-        var x = e.pageX || e.clientX + scrollX;
-        var y = e.pageY || e.clientY + scrollY;
-        //alert('x: ' + x + '\ny: ' + y);
-        console.log('x: ' + x + ' y: ' + y)
-        return { 'x': x, 'y': y };
-    }
+
     module.exports = App.Page.extend({
         initialize: function() {
             return this;
@@ -108,6 +99,8 @@ define(function(require, exports, module) {
             RoundNum = 2;
             cycleRound = 0;
             nowRoundNum = 0;
+            max=0;
+            min=0;
             self = this.initialize();
             self.message = '网络错误，请稍后重试';
             handle.share();
@@ -180,18 +173,20 @@ define(function(require, exports, module) {
             return distance
         },
         cycleTime: function(deg) {
-            var num = Math.round(deg / 100)
+            var num = Math.round(deg / 130)
             if (num == 0) {
                 return
             }else if(num!=turnNum){
                 if(num>turnNum){
                     if(max==now){
+                        App.showToast("暂时只能查看7日内的收益率")
                         return
                     }else{
                         self.showRed(1)
                     }
                 }else{
                     if(min==now){
+                        App.showToast("暂时只能查看7日内的收益率")
                         return
                     }else{
                         self.showRed(-1)
@@ -230,13 +225,15 @@ define(function(require, exports, module) {
 
             //            console.log("RoundNum="+RoundNum+"  cycleRoundTemp="+cycleRoundTemp+"   nowRoundNum="+nowRoundNum)
             var nowDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate()
+            var showDate_0 = self.addDate(nowDate, RoundNum - 4)
             var showDate_1 = self.addDate(nowDate, RoundNum - 3)
             var showDate_2 = self.addDate(nowDate, RoundNum - 2)
             var showDate_3 = self.addDate(nowDate, RoundNum - 1)
+            var showDate_4 = self.addDate(nowDate, RoundNum )
                 //            console.log(showDate_1+"  "+showDate_2+"  "+showDate_3)
             self.setRate(showDate_2)
             for (var i = 0; i < pool.length; i++) {
-                //                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
+//                                self.$("#cycle_"+pool[i]).addClass("cycleTestRed")
                 if (i == 0) {
                     self.$("#cycle_" + pool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_1.substr(6, 2))
                 } else if (i == 1) {
@@ -246,7 +243,12 @@ define(function(require, exports, module) {
                 }
             }
             for (var i = 0; i < hidePool.length; i++) {
-                //                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
+//                                self.$("#cycle_"+hidePool[i]).removeClass("cycleTestRed")
+                if (i == 0) {
+                    self.$("#cycle_" + hidePool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_4.substr(6, 2))
+                } else if (i == hidePool.length-1) {
+                    self.$("#cycle_" + hidePool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_0.substr(6, 2))
+                }
             }
             var cycle = window.document.getElementById("cycle")
             var deg = cycle.style.webkitTransform;
@@ -456,6 +458,9 @@ define(function(require, exports, module) {
                 // App.showAlert("不可赎回");
                 return;
             }
+        },
+        onHide:function(){
+            now=0
         },
         goTitleTipPage: function() {
             var titleTip= '<article class="ttl_title_tip " id="ttl_title_tip">\

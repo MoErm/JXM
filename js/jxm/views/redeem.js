@@ -250,6 +250,7 @@ define(function (require, exports, module) {
                 success: function (data) {
 
                     if (data.ret == 0) {
+
                         self.data = data.data
                         var touziFlag=0;
                         if(data.data.records.length==0){

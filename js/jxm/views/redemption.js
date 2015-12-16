@@ -35,10 +35,22 @@ define(function (require, exports, module) {
 
         },
         autoInput:function(){
+            var showImput=""
+            var reg=/^\d+(\.\d{2})?$/
             var redeemValue = handle.deleteAllBlank(self.$('#redeemValue').val());
+
+//                showImput= parseInt(redeemValue)
+                //先把非数字的都替换掉，除了数字和.
+                self.$('#redeemValue').val(self.$('#redeemValue').val().replace(/[^\d.]/g, "").
+                    //只允许一个小数点
+                    replace(/^\./g, "").replace(/\.{2,}/g, ".").
+                    //只能输入小数点后两位
+                    replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
+
             if(redeemValue>totalAmount){
                 self.$('#redeemValue').val(totalAmount)
             }
+//
         },
         showUser:function(){
             App.showLoading()

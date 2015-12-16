@@ -7,7 +7,7 @@ define(function (require, exports, module) {
                 <span >剩余金额</span><span class="detail"><%=order.surplusAmount%>元</span><br>\
                 <span >投资日期</span><span class="detail"><%=order.orderDate%></span><br>\
                 <span >今日收益率</span><span class="detail"><%=format(order.currentRate)%></span><br>\
-                <%if(order.income!=0) {%> <div class="redeem_shouyi">+<%=order.income%>元<br>预期累计收益</div><% } %>\
+              <div class="redeem_shouyi"> <%if(order.income!=0) {%><p style="color: #d53925">+<%=order.income%>元<% }else{ %><p> - -<% } %></p>预期累计收益</div>\
                 </div>\
             </li>\
             <% })%>';

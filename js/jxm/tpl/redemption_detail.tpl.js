@@ -15,9 +15,12 @@ define(function (require, exports, module) {
        <ul class="invest_list" id="invest_record">\
 	    <% _.each(records, function(order){%>\
 	    <li  class="v_mod item investList">\
-	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2"><%=order.valueDate%></span><span class="redemption_span3" style="color: #000000">-<%=order.clearingAmount%></span><br>\
-	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.ransomRate)%></span><span class="redemption_span3"><%=order.clearingPrincipal%>+<%=order.clearingInterest%></span><br>\
+	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2"><%=order.valueDate%></span><span class="redemption_span3" style="color: #000000"></span><br>\
+	    	<span class="redemption_span1">赎回本金</span><span class="redemption_span2"><%=order.clearingPrincipal%></span><br>\
+	    	<span class="redemption_span1">赎回收益</span><span class="redemption_span2"><%=order.clearingInterest%></span><br>\
+	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.ransomRate)%></span><br>\
 	    	<span class="logo"><img src="<%=order.bankLogo%>"   alt=""><%=order.bankName%>(尾号<%=order.cardTailNo%>)</span>\
+   		<div class="redemption_amount" style="top:30px">-<%=order.clearingAmount%>元</div>\
    		</li>\
    		<% })%>\
 	  </ul>\

@@ -58,19 +58,18 @@ define(function (require, exports, module) {
                 success: function(data){
                     if(data.ret == 0){
                         self.data=data.data
-                        console.log(data.data)
                         self.data.format=self.format
                         self.$el.html(_.template(Template)(self.data));
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;
-                            self.timer = setInterval(function () {
+                            self.detailTimer = setInterval(function () {
                                 var minute = Math.floor(self.surplus / 60);
                                 var second = self.surplus - minute * 60;
                                 $('.js_time').html(minute + '分' + second + '秒');
                                 self.surplus -= 1;
                                 self.data.surplusPayTime = self.surplus - 1;
                                 if (self.surplussurplus == -1) {
-                                    clearInterval(self.timer);
+                                    clearInterval(self.detailTimer);
                                     self.hide()
                                     self.getOrderInfoAlert = handle.alert('订单已关闭，请重新购买', function () {
 
@@ -119,6 +118,7 @@ define(function (require, exports, module) {
         },
 
         onHide: function () {
+            clearInterval(self.detailTimer);
             self.$el.html("")
         }
     })
