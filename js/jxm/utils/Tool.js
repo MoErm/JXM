@@ -47,7 +47,7 @@ define(function(require, exports, module) {
         }
       ;
     }
-    Tool.prototype.showTag = function(type,isNew,time,saleStartTime){
+    Tool.prototype.showTag = function(type,isNew,time,saleStartTime,productTag){
         var str=""
         var month=saleStartTime.split("/")
 //        console.log(month[1])
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
         time1=parseInt(time1)
 //        console.log(time1+"  "+(time1>80&&time1<100))
         if(isNew=="1"){
-            str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">新手专享</div></div>'
+            str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
         }else{
             if(type=='02'){
                 if(time1>80&&time1<100){
@@ -64,8 +64,9 @@ define(function(require, exports, module) {
                     }else{
                         str=""
                     }
-                }else{
-                    str=""
+                }
+                if(productTag!=""){
+                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
                 }
             }else{
                 if(time1>80&&time1<100){
@@ -74,8 +75,9 @@ define(function(require, exports, module) {
                     }else{
                         str=""
                     }
-                }else{
-                    str=""
+                }
+                if(productTag!=""){
+                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
                 }
             }
         }
