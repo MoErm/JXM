@@ -35,7 +35,7 @@ define(function (require, exports, module) {
             'click .change_btn': 'sendChange'
         },
         initialize: function () {
-            self = this;
+
         },
         goTop:function(){
             $(window).scrollTop(0)
@@ -49,13 +49,13 @@ define(function (require, exports, module) {
                         if(inPageNum>inPageTotal){
                             return
                         }
-
+                        console.log("inPageNum")
                         self.showMoreIn()
                     }else{
-                        if(outPageNum>outPageTotal){
+                        if(outPageNum>=outPageTotal){
                             return
                         }
-
+                        console.log("outPageNum")
                         self.showMoreOut()
                     }
                 }
@@ -189,10 +189,13 @@ define(function (require, exports, module) {
 
 
         onShow: function () {
+            self = this;
             handle.share();
             this.setHeader();
             outPageNum=1;
             inPageNum=1;
+            self.data=null
+            self.$el.html("")
             return this.myChange();
         },
 
@@ -210,7 +213,6 @@ define(function (require, exports, module) {
                         outPageNum++;
                         outPageTotal=data.data.totalPages;
                         self.data.sended = data.data
-
                         var shuhuiFlag=0;
 
                         if(data.data.records.length==0){

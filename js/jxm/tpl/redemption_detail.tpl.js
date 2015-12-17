@@ -19,8 +19,9 @@ define(function (require, exports, module) {
 	    	<span class="redemption_span1">赎回本金</span><span class="redemption_span2"><%=order.clearingPrincipal%></span><br>\
 	    	<span class="redemption_span1">赎回收益</span><span class="redemption_span2"><%=order.clearingInterest%></span><br>\
 	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.ransomRate)%></span><br>\
+	    	<span class="redemption_span1">投资日期</span><span class="redemption_span2"><%=order.valueDate%></span><br>\
 	    	<span class="logo"><img src="<%=order.bankLogo%>"   alt=""><%=order.bankName%>(尾号<%=order.cardTailNo%>)</span>\
-   		<div class="redemption_amount" style="top:30px">-<%=order.clearingAmount%>元</div>\
+   		<div class="redemption_amount" style="top:42px;">-<%=order.clearingAmount%>元</div>\
    		</li>\
    		<% })%>\
 	  </ul>\
