@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 	    </div>\
 	    <div class="item item_end ico_coin cur">\
 	      <p class="txt"><%=currentDate%></p>\
-	      <p class="tips" style="color:#f88c08">预期累计收益<%=income%>元，今日收益率<%=format(currentRate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
+	      <p class="tips" style="color:#f88c08">昨日收益率<%=format(rate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
 	    </div>\
 	    <p style="text-align: right;margin-top: 30px">当前余额：<%=currentAmount%>元</p>\
 	  </div>\

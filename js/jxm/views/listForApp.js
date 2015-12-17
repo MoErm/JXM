@@ -343,16 +343,29 @@ define(function (require, exports, module) {
                 var status = $(closest).data('sale');
                 var pid = $(closest).attr('id');
                 var time  = $(closest).data('time');
+
                 if(status == 1){
                     //立即购买
-                    self.toInvestConfirm(pid);
+                    if (handle.mobileType()=='android'){
+                        App.showToast(handle.mobileType()+"立即购买 pid:"+pid)
+                        window.productList.buy(pid)
+                    }else{
+                        self.toInvestConfirm(pid);
+                    }
+
                 }else if(status == 2){
                     //即将开始
                     self.alert = handle.alert('该产品将于' + time + '准时开售，敬请期待');
                     self.alert.show();
                 }else{
                     //已结束跳转产品详情页
-                    App.goTo('detail?pid=' + pid);
+                    if (handle.mobileType()=='android'){
+                        App.showToast(handle.mobileType()+"显示详情 pid:"+pid)
+                        window.productList.detail(pid)
+                    }else{
+                        App.goTo('detail?pid=' + pid);
+                    }
+
                 }
             },
             giveUp:function(){
@@ -389,7 +402,13 @@ define(function (require, exports, module) {
                             if(!self.promptAlert){
                                 self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink('list');
-                                    App.goTo('bind_card_new');
+                                    if (handle.mobileType()=='android'){
+                                        window.productList.bindCard()
+                                    }else{
+                                        App.goTo('bind_card_new');
+
+                                    }
+
                                 });
                             }
                             self.promptAlert.show();
