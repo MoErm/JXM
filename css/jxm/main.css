@@ -1481,25 +1481,56 @@ text-align: right}
 .ttl_introduce_m .history{display: inline-block;width: 49%;font-size: 1.5rem;color: #9b9b9b;text-indent: 4rem;}
 .ttl_introduce_m .total h2,
 .ttl_introduce_m .history h2{font-size: 2rem; color: #db3710;}
-.ttl_introduce_b{border-top:1px solid #ECECEC; background: #ffffff;}
+.ttl_introduce_b{border-top:1px solid #ECECEC; background: #ffffff;margin: 0 0 10px 0;}
 .ttl_introduce_b .title{display: inline-block; height: 30px;color: #9b9b9b;padding: 10px 0 0 0;}
-.ttl_introduce_b .title em{    display: inline-block;width: 18px;height: 23px;float: left;margin: -4px 3px 0 15px; background: url(../../images/ttl_icon.png) -3px -285px;}
+.ttl_introduce_b .title em{    display: inline-block;width: 18px;height: 18px;float: left;margin: 0px 3px 0 15px; background: url(../../images/ttl_detail.png) -20px -25px;}
 .ttl_introduce_b .chart{padding: 15px 0;}
 .ttl_introduce_b .chart_head{text-align: center;}
 .ttl_introduce_b .chart_head p{font-size: 1.5rem;}
 .ttl_introduce_b .chart_head h2{font-size: 2.5rem;color: #fe6400;}
 .ttl_introduce_b .chart_content{height: 160px;}
-.ttl_introduce_b .action {position: fixed;bottom: 0;left: 0;width: 100%;height: 60px; background: #fff;border-top:1px solid #F0F0EF;}
-.ttl_introduce_b .action .action_list {margin: 15px 0;}
-.ttl_introduce_b .action .action_list li{display: inline-block;width: 49%;}
-.ttl_introduce_b .action input{display:block; height: 30px;width: 100px;margin: 0 auto;border-radius: 5px;color: #fff; font-size: 1.8rem;}
-.ttl_introduce_b .action .action_buy{background: #D21C00;}
-.ttl_introduce_b .action .lock{color: #9b9b9b;}
+/*ttl_introduce_d*/
+.ttl_introduce_d{background: #fff;padding: 20px 0 0 0;border-top: 1px solid #ECECEC;}
+.ttl_introduce_d .detail_a,
+.ttl_introduce_d .detail_b,
+.ttl_introduce_d .detail_c{width: 80%;margin: 0 auto; padding: 0 0 30px 0;}
+.ttl_introduce_d .detail_a .title{display: block;width: 63px;height: 53px;margin: 0 auto; background: url(../../images/ttl_detail.png) -202px -26px;}
+.ttl_introduce_d .detail_a .head{ margin: 10px 0; font-size:1.8rem;color:#d01b02;text-align: center;}
+.ttl_introduce_d .detail_a .list,
+.ttl_introduce_d .detail_b .list{width: 100%; display: flex;  justify-content: center;}
+.ttl_introduce_d .detail_a .list li,
+.ttl_introduce_d .detail_b .list li{width: 30%;margin: 0 10px 0 0;text-align: center;}
+.ttl_introduce_d .detail_a .list .list_txt{width: 60px;height: 60px;padding: 3px; border: 2px solid #F99822;border-radius: 66px;color: #F99822;font-size: 1.4rem;margin: 0 auto; display: flex;justify-content: center;align-items: center;text-align: center;line-height: 1.4rem; }
+.ttl_introduce_d .detail_b .head,
+.ttl_introduce_d .detail_c .head{font-size: 2rem;text-align: center;margin: 0 0 10px 0;}
 
-.ttl_introduce_b .detail_a,
-.ttl_introduce_b .detail_b,
-.ttl_introduce_b .detail_c{padding: 0 0 30px 0;}
-
+.ttl_introduce_d .detail_b .list_head{font-size: 1.8rem; color:#F99822;}
+.ttl_introduce_d .detail_b .list_txt{font-size: 1.2rem; color:#9b9b9b;}
+.ttl_introduce_d .detail_b .list_icon_a,
+.ttl_introduce_d .detail_b .list_icon_b,
+.ttl_introduce_d .detail_b .list_icon_c{display: inline-block;width: 40px;height: 40px;margin: 0 auto;}
+.ttl_introduce_d .detail_b .list_icon_a{background: url(../../images/ttl_detail.png) -52px -25px;}
+.ttl_introduce_d .detail_b .list_icon_b{background: url(../../images/ttl_detail.png) -102px -23px;}
+.ttl_introduce_d .detail_b .list_icon_c{background: url(../../images/ttl_detail.png) -145px -23px;}
+.ttl_introduce_d .detail_c {padding: 0 0 80px 0;}
+.ttl_introduce_d .detail_c .content{width: 210px;    height: 200px;margin: 0 auto;position: relative;background:  url(../../images/ttl_detail.png) -64px -100px;}
+.ttl_introduce_d .list_con_a,
+.ttl_introduce_d .list_con_b,
+.ttl_introduce_d .list_con_c,
+.ttl_introduce_d .list_con_d{position: absolute; color:#9b9b9b;font-size: 1.2rem; }
+.ttl_introduce_d .list_con_a{top:64px;left: 0;}
+.ttl_introduce_d .list_con_b{top:92px;right: 0;}
+.ttl_introduce_d .list_con_c{top:154px;left: 0;}
+.ttl_introduce_d .list_con_d{top:180px;right: 0;}
+/*action*/
+.ttl_introduce_d .action {position: fixed;bottom: 0;left: 0;width: 100%;height: 60px; background: #fff;border-top:1px solid #F0F0EF;}
+.ttl_introduce_d .action .action_list {margin: 15px 0;}
+.ttl_introduce_d .action .action_list li{display: inline-block;width: 49%;}
+.ttl_introduce_d .action input{display:block; height: 30px;width: 100px;margin: 0 auto;border-radius: 5px;color: #fff; font-size: 1.8rem;}
+.ttl_introduce_d .action .action_buy{background: #D21C00;}
+.ttl_introduce_d .action .action_redem{color: #D21C00;background: #fff; border:2px solid #D21C00;}
+.ttl_introduce_d .action .action_buy.lock{background: #A7A7A7;}
+.ttl_introduce_d .action .action_redem.lock{background: #fff;color: #A7A7A7;border:2px solid #A7A7A7;}
 /*-- 天添利 购买页 --*/
 .ttl_buy_one{}
 .ttl_buy_one_t{padding: 10px 0;height: 50px;}
