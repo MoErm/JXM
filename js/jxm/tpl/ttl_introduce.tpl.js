@@ -53,6 +53,8 @@ define(function (require, exports, module) {
                         </div>\
                      </div>\
 				</div>\
+			</div>\
+            <div class="ttl_introduce_d">\
                 <div class="detail">\
                     <div class="detail_a">\
                         <em class="title"></em>\
@@ -95,13 +97,13 @@ define(function (require, exports, module) {
                         </div>\
                     </div>\
                 </div>\
-				<div class="action">\
+                <div class="action">\
                     <ul class="action_list">\
                         <li><input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" /></li>\
                         <li><input type="button" value="赎回" class="action_redem <%if(getTtlProperty.isCanRedeem!=1){%> lock<% } %>" id="action_redem" /></li>\
                     </ul>\
-				</div>\
-			</div>\
+                </div>\
+            </div>\
         </article>';
 
     module.exports = tpl;
