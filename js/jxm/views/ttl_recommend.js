@@ -110,7 +110,7 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = [ 'M0 0','M4 120C159 105,220 75 280 5'];
+            var pathPoint = [ 'M0 0','M40 95C129 85,120 55 300 5'];
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             
             var drawLine = chartLine.paper.path(pathPoint[1]).attr({
@@ -119,26 +119,27 @@ define(function(require, exports, module) {
                 fill: "none",
             });
 
-            
-            function drawMax(){                
-                var maxPoint = chartLine.paper.circle(280,5,2).attr({
-                    fill: "#FF6500"
-                });
-                var tSpanMax = chartLine.paper.text(120, 15, ["12%", "最高年化收益率"]).attr({
+            function drawText(){
+                // 收益率
+                var tSpanText = chartLine.paper.text(150, 110, ["收益率", "按天增长"]).attr({
                     fill:'#9b9b9b'
                 });
-                //数字样式
+                // 数字样式
+                $(tSpanText.node.childNodes[0]).attr({
+                    fill:'#FF6400',
+                    "font-size": "1.8rem"
+                });
+                // 最高年化收益率
+                var tSpanMax = chartLine.paper.text(150,30, ["12%", "最高年化收益率"]).attr({
+                    fill:'#9b9b9b'
+                });
+                // 最高年化收益率 数字样式
                 $(tSpanMax.node.childNodes[0]).attr({
                     fill:'#FF6400',
                     "font-size": "2rem"
                 });
-            }
-            function drawMin(){
-                var minPoint = chartLine.paper.circle(4,120,2).attr({
-                    fill: "#FF6500",
-                });
-               
-                var tSpanMin = chartLine.paper.text(5, 89, ["5%", "起天天加息"]).attr({
+                // 气息文字
+                var tSpanMin = chartLine.paper.text(180,70, ["5%", "起天天加息"]).attr({
                     fill:'#9b9b9b'
                 });
                 //数字样式
@@ -146,9 +147,18 @@ define(function(require, exports, module) {
                     fill:'#FF6400',
                     "font-size": "2rem"
                 });
+            }             
+            function drawMaxPoint(){
+                var maxPoint = chartLine.paper.circle(300,5,2).attr({
+                    fill: "#FF6500"
+                });
+            }
+            function drawMinPoint(){
+                var minPoint = chartLine.paper.circle(40,95,2).attr({
+                    fill: "#FF6500",
+                });
             }
             function draw() {
-                drawMin();
                 var current_frame = 0;
                 var total_frames = 60;
                 var self = this;
@@ -162,8 +172,9 @@ define(function(require, exports, module) {
                 path.style.transition = path.style.WebkitTransition='stroke-dashoffset 1.2s ease-in-out';
                 path.style.strokeDashoffset = '0';
 
+                drawMinPoint();
                 setTimeout(function(){
-                    drawMax();
+                    drawMaxPoint();
                 }, 1300)
             };
             draw();

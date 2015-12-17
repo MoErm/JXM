@@ -511,7 +511,10 @@ input::-webkit-inner-spin-button{
     /*ttl 适配*/
     .page .ttl_recommend_ad{height: 100px;}
     .page .ttl_recommend_detail_m .info{width: 100%;}
+    .page .ttl_recommend_detail_m .chart_info_list{right: 0;}
+    .page .ttl_recommend_detail_m .chart{width: 90%;}
     .page .ttl_buy_one_m .mycard .card_detail{width: 79%;}
+
 }
 .redemption_box{background:#ffffff;border-top: 1px #cecece solid;border-bottom: 1px #cecece solid;margin-top: 10px;}
 .redemption_div{font-size: 1.6rem;padding: 15px 20px}
@@ -1453,20 +1456,30 @@ text-align: right}
 .ttl_recommend_total_l .title,
 .ttl_recommend_total_r .title{font-size: 1.2rem;color: #9b9b9b;}
 .ttl_recommend_total_l .number,
-.ttl_recommend_total_r .number{font-size: 2.5rem; color: #db3710;}
+.ttl_recommend_total_r .number{font-size: 2.5rem;}
 .ttl_recommend_detail{border-top:1px solid #ECECEC; background: #ffffff;padding: 0 0 15px 0;}
-.ttl_recommend_detail_t .head{width: 80%;height: 60px;line-height: 60px; border-bottom: 1px dashed #E6E6E6; margin: 0 auto;color:#9b9b9b;}
-.ttl_recommend_detail_t .head .title{font-size: 2rem;margin: 0 10px 0 0;color: #000;}
 .ttl_recommend_detail_m{padding: 10px  0  0 0}
-.ttl_recommend_detail_m .chart{height: 140px;width: 85%; margin:0 auto 10px auto; border-bottom: 1px solid #E0E0E0;position: relative;}
+.ttl_recommend_detail_m .chart{height: 275px;width: 85%; margin:0 auto 10px auto;position: relative;background: url(../../images/ttl_icon_b.png) no-repeat right bottom;background-size: 90%;border-bottom: 1px solid #DDD6CC;}
+.ttl_recommend_detail_m .chart_info{height: 150px;width:auto;margin: 0 auto;  position: relative;}
+.ttl_recommend_detail_m .chart_info_head{width: 150px;height: 130px;position: absolute;top:8px;left: 15px; border-radius: 150px;background: url(../../images/ttl_icon_a.png) no-repeat;background-size: 85%;}
+.ttl_recommend_detail_m .chart_info_head .head_content{display: inline-block;width: 115px; margin: auto;font-family: "微软雅黑";text-align: center;  position: absolute; top: 52%; left: 42%; -webkit-transform: translate(-52%,-42%); -ms-transform: translate(-52%,-42%);transform: translate(-52%,-42%);}
+.ttl_recommend_detail_m .chart_info_head .head_content .head{font-size: 2rem;color: #d01b02;line-height: 1.5rem;}
+.ttl_recommend_detail_m .chart_info_list{position: absolute;top: 14px;right: 10%;}
+.ttl_recommend_detail_m .chart_info_list li{margin: 0 0 20px 0;color:#9b9b9b; }
+.ttl_recommend_detail_m .chart_info_list li:nth-child(2){margin: 0 0 20px 30px;}
+.ttl_recommend_detail_m .chart_info_list .list_a,
+.ttl_recommend_detail_m .chart_info_list .list_b,
+.ttl_recommend_detail_m .chart_info_list .list_c{margin: 0 5px 0 0;color:#F9962D;font-size: 1.8rem; }
+.ttl_recommend_detail_m .chart_line{width: 100%;}
+.ttl_recommend_detail_m .chart_num {position: absolute;bottom: 5px;}
+.ttl_recommend_detail_m .chart_num li{font-size: 1.2rem;color:#9b9b9b;margin: 10px 0 0  0;text-align: right;}
 .ttl_recommend_detail_m .info{width: 85%; margin:0 auto 10px auto;overflow: hidden; }
 .ttl_recommend_detail_m .info_list li{display: inline-block;width: 24%; color:#9b9b9b;text-align: center; }
-.ttl_recommend_detail_m .info_list em{display: block;width: 24px;height: 24px;margin: 0 auto;}
-.ttl_recommend_detail_m .info_list .list_one {background: url(../../images/ttl_icon.png) -4px -4px; }
-.ttl_recommend_detail_m .info_list .list_two {background: url(../../images/ttl_icon.png) -37px -4px;  }
-.ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon.png) -73px -4px;  }
-.ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon.png) -342px -4px; }
-.ttl_recommend_detail_m .chart_line{width: 330px;}
+.ttl_recommend_detail_m .info_list em{display: block;width: 30px;height: 30px;margin: 0 auto 3px auto;}
+.ttl_recommend_detail_m .info_list .list_one {background: url(../../images/ttl_icon_c.png) no-repeat; background-size: 100%;}
+.ttl_recommend_detail_m .info_list .list_two {background: url(../../images/ttl_icon_d.png) no-repeat; background-size: 100%; }
+.ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon_e.png) no-repeat; background-size: 100%; }
+.ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon_f.png) no-repeat; background-size: 100%; }
 .ttl_recommend_detail_b{ margin:0 0 10px 0;}
 .ttl_recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 

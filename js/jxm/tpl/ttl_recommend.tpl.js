@@ -18,11 +18,28 @@ define(function (require, exports, module) {
 				</div>\
             </div>\
             <div class="ttl_recommend_detail">\
-				<div class="ttl_recommend_detail_t">\
-					<h2 class="head"><em class="title">天添利</em>收益率会涨的活期理财</h2>\
-				</div>\
 				<div class="ttl_recommend_detail_m">\
 					<div class="chart">\
+						<div class="chart_info">\
+							<div class="chart_info_head">\
+								<div class="head_content">\
+									<p class="title">活期理财产品</p>\
+									<h2 class="head">天添利</h2>\
+								</div>\
+							</div>\
+							<ul class="chart_info_list">\
+								<li><em class="list_a">12%</em>最高收益率</li>\
+								<li><em class="list_b">5%</em>起天天加息</li>\
+								<li><em class="list_c">收益率</em>按天增长</li>\
+							</ul>\
+						</div>\
+						<ul class="chart_num">\
+							<li>12.0%</li>\
+							<li>10.0%</li>\
+							<li>8.0%</li>\
+							<li>6.0%</li>\
+							<li>4.0%</li>\
+						</ul>\
 						<svg id="chart_line" class="chart_line"></svg>\
 					</div>\
 					<div class="info">\
