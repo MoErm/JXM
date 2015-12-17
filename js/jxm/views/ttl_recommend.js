@@ -110,7 +110,7 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = [ 'M0 0','M40 95C129 85,120 55 300 5'];
+            var pathPoint = [ 'M0 0','M40 95C129 85,120 55 320 3'];
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             
             var drawLine = chartLine.paper.path(pathPoint[1]).attr({
@@ -149,7 +149,7 @@ define(function(require, exports, module) {
                 });
             }             
             function drawMaxPoint(){
-                var maxPoint = chartLine.paper.circle(300,5,2).attr({
+                var maxPoint = chartLine.paper.circle(320,3,2).attr({
                     fill: "#FF6500"
                 });
             }
