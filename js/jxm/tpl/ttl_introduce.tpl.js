@@ -58,28 +58,28 @@ define(function (require, exports, module) {
                         <em class="title"></em>\
                         <h2 class="head">收益率按天增涨的活期理财</h2>\
                         <ul class="list">\
-                            <li>5% 年化起</li>\
-                            <li>12% 年化最高</li>\
-                            <li>t+0 当日起息</li>\
+                            <li><span>5% 年化起</span></li>\
+                            <li><span>12% 年化最高</span></li>\
+                            <li><span>t+0 当日起息</span></li>\
                         </ul>\
                     </div>\
                     <div class="detail_b">\
                         <h2 class="head">用户定位</h2>\
                         <ul class="list">\
                             <li>\
-                                <em class="list_icon"></em>\
+                                <em class="list_icon_a"></em>\
                                 <p class="list_head">低门槛</p>\
-                                <p class="list_test">100元 起投金额</p>\
+                                <p class="list_txt">100元<br/>起投金额</p>\
                             </li>\
                             <li>\
-                                <em class="list_icon"></em>\
+                                <em class="list_icon_b"></em>\
                                 <p class="list_head">灵活性</p>\
-                                <p class="list_test">在投资产 随时可赎</p>\
+                                <p class="list_txt">在投资产<br/>随时可赎</p>\
                             </li>\
                             <li>\
-                                <em class="list_icon"></em>\
+                                <em class="list_icon_c"></em>\
                                 <p class="list_head">高收益</p>\
-                                <p class="list_test">收益率 按天增涨 </p>\
+                                <p class="list_txt">收益率<br/>按天增涨 </p>\
                             </li>\
                         </ul>\
                     </div>\
