@@ -1507,7 +1507,7 @@ text-align: right}
 .ttl_introduce_b .detail_b .list{width: 100%; display: flex;  justify-content: center;}
 .ttl_introduce_b .detail_a .list li,
 .ttl_introduce_b .detail_b .list li{width: 30%;margin: 0 10px 0 0;text-align: center;}
-.ttl_introduce_b .detail_a .list .list_txt{width: 60px;height: 60px;padding: 3px; border: 2px solid #F99822;border-radius: 66px;color: #F99822;font-size: 1.4rem; display: flex;justify-content: center;align-items: center;text-align: center;line-height: 1.4rem; }
+.ttl_introduce_b .detail_a .list .list_txt{width: 60px;height: 60px;padding: 3px; border: 2px solid #F99822;border-radius: 66px;color: #F99822;font-size: 1.4rem;margin: 0 auto; display: flex;justify-content: center;align-items: center;text-align: center;line-height: 1.4rem; }
 .ttl_introduce_b .detail_b .head,
 .ttl_introduce_b .detail_c .head{font-size: 2rem;text-align: center;margin: 0 0 10px 0;}
 
