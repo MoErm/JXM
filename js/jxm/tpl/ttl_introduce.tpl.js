@@ -60,9 +60,9 @@ define(function (require, exports, module) {
                         <em class="title"></em>\
                         <h2 class="head">收益率按天增涨的活期理财</h2>\
                         <ul class="list">\
-                            <li><span class="list_txt">5% 年化起</span></li>\
-                            <li><span class="list_txt">12% 年化最高</span></li>\
-                            <li><span class="list_txt">t+0 当日起息</span></li>\
+                            <li><p class="list_box"><span>5%<br/>年化起</span></p></li>\
+                            <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
+                            <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
                         </ul>\
                     </div>\
                     <div class="detail_b">\
