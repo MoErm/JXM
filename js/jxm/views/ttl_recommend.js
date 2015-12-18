@@ -18,7 +18,7 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #godetail': 'goDetailPage', //查看详情
+            'click .godetail': 'goDetailPage', //查看详情
             'click .ico_f_list': 'goRecommend', //推荐
             'click .js_product_list': 'goInvest', //理财
             'click .js_my_invest': 'goMyInvest', //我的投资
@@ -68,7 +68,7 @@ define(function(require, exports, module) {
                     App.hideLoading();
                     App.showToast(self.message);
                 }
-            })
+            });
         },
         initAD: function() {
             var container = self.$el.find(".img_box");
@@ -116,7 +116,7 @@ define(function(require, exports, module) {
             var drawLine = chartLine.paper.path(pathPoint[1]).attr({
                 stroke: lineGrad,
                 strokeWidth: 2,
-                fill: "none",
+                fill: "none"
             });
 
             function drawText(){
@@ -138,7 +138,7 @@ define(function(require, exports, module) {
                     fill:'#FF6400',
                     "font-size": "2rem"
                 });
-                // 气息文字
+                // 起息文字
                 var tSpanMin = chartLine.paper.text(180,70, ["5%", "起天天加息"]).attr({
                     fill:'#9b9b9b'
                 });
@@ -155,7 +155,7 @@ define(function(require, exports, module) {
             }
             function drawMinPoint(){
                 var minPoint = chartLine.paper.circle(40,95,2).attr({
-                    fill: "#FF6500",
+                    fill: "#FF6500"
                 });
             }
             function draw() {
@@ -229,6 +229,6 @@ define(function(require, exports, module) {
         goRecommend: function() {
 
             App.goTo('ttl_recommend');
-        },
+        }
     })
 })

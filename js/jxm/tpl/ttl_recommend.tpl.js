@@ -19,7 +19,7 @@ define(function (require, exports, module) {
             </div>\
             <div class="ttl_recommend_detail">\
 				<div class="ttl_recommend_detail_m">\
-					<div class="chart">\
+					<div class="chart godetail">\
 						<div class="chart_info">\
 							<div class="chart_info_head">\
 								<div class="head_content">\
@@ -52,7 +52,7 @@ define(function (require, exports, module) {
 					</div>\
 				</div>\
 				<div class="ttl_recommend_detail_b">\
-					<input type="button" value="查看详情" class="godetail" id="godetail" />\
+					<input type="button" value="查看详情" class="godetail_btn godetail" />\
 				</div>\
             </div>\
         </article>';

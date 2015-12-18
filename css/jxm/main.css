@@ -1480,7 +1480,7 @@ text-align: right}
 .ttl_recommend_detail_m .info_list .list_three {background: url(../../images/ttl_icon_e.png) no-repeat; background-size: 100%; }
 .ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon_f.png) no-repeat; background-size: 100%; }
 .ttl_recommend_detail_b{ margin:0 0 10px 0;}
-.ttl_recommend_detail_b .godetail{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
+.ttl_recommend_detail_b .godetail_btn{display: block; width: 85%;height: 42px;font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02;color: #fff;text-align: center;border-radius: 5px;}
 
 /*-- 天添利 介绍页 --*/
 .ttl_introduce{}
@@ -1509,9 +1509,9 @@ text-align: right}
 .ttl_introduce_d .detail_a .title{display: block;width: 63px;height: 53px;margin: 0 auto; background: url(../../images/ttl_detail.png) -202px -26px;}
 .ttl_introduce_d .detail_a .head{ margin: 10px 0; font-size:1.8rem;color:#d01b02;text-align: center;}
 .ttl_introduce_d .detail_a .list,
-.ttl_introduce_d .detail_b .list{width: 100%; display: flex;  justify-content: center;}
+.ttl_introduce_d .detail_b .list{width: 100%; text-align: center;}
 .ttl_introduce_d .detail_a .list li,
-.ttl_introduce_d .detail_b .list li{width: 30%;margin: 0 10px 0 0;text-align: center;}
+.ttl_introduce_d .detail_b .list li{width: 30%;display: inline-block; margin: 0 2% 0 0;text-align: center;}
 .ttl_introduce_d .detail_a .list .list_txt{width: 60px;height: 60px;padding: 3px; border: 2px solid #F99822;border-radius: 66px;color: #F99822;font-size: 1.4rem;margin: 0 auto; display: flex;justify-content: center;align-items: center;text-align: center;line-height: 1.4rem; }
 .ttl_introduce_d .detail_b .head,
 .ttl_introduce_d .detail_c .head{font-size: 2rem;text-align: center;margin: 0 0 10px 0;}
