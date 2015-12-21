@@ -2,30 +2,29 @@ define(function (require, exports, module) {
 	var tpl = '\
 	<%if(orderStatus=="05"||orderStatus=="07"||orderStatus=="08"||orderStatus=="04"){%>\
 	<article class="mod_page">\
-	  <div class="finish_regular redemption_finish_bg" style="">\
-	   <div class="item item_redeem ico_finish cur">成功支付<i class="numb"><%=investAmount%></i><br>\
+	  <div class="redemption_item redemption_finish_bg" style="">\
+          <div class="redemption_total">\
+          <span class="span_1">当前余额</span><span class="span_3"><%=currentAmount%>元</span><br>\
+           <span class="span_2">累计收益</span><span class="span_4"> +10.00元</span>\
+          </div>\
+	   <div class="item icon_ok">成功支付 <i class="numb"><%=investAmount%></i><br>\
 	   <p><%=bankName%>(尾号<%=cardTailNo%>)</p>\
 	   <p><%=orderTime%></p>\
 	   </div>\
-	    <div class="item item_start ico_book cur">\
-	      <p class="txt"><%=valueDate%></p>\
-	      <p class="tips">开始计算收益，今日收益率<%=format(startRate)%></p>\
+	    <div class="item icon_coin">\
+	      <p class="redemption_tips">昨日收益率 <i class="redemption_rate"><%=format(rate)%></i><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
+	      <p class="redemption_rate_d"><%=currentDate%></p>\
 	    </div>\
-	    <div class="item item_end ico_coin cur">\
-	      <p class="txt"><%=currentDate%></p>\
-	      <p class="tips" style="color:#f88c08">昨日收益率<%=format(rate)%><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
-	    </div>\
-	    <p style="text-align: right;margin-top: 30px">当前余额：<%=currentAmount%>元</p>\
 	  </div>\
-	  <ul class="invest_list" id="invest_record">\
+	  <ul class="redemption_list" id="invest_record">\
+	    <li class="redemption_list_t">赎回明细</li>\
 	    <% _.each(records, function(order){%>\
-	    <li  class="v_mod item investList">\
+	    <li  class=" item investList">\
 	    <div style="position: relative">\
 	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2" ><%=order.clearingTime%></span><span class="redemption_span3" style="color: #000000"></span><br>\
 	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.clearingRate)%></span><br>\
 	    	<span class="redemption_span1">赎回本金</span><span class="redemption_span2" ><%=order.clearingPrincipal%>元</span><br>\
 	    	<span class="redemption_span1">赎回收益</span><span class="redemption_span2" ><%=order.clearingInterest%>元</span>\
-	    	<span class="logo"><img src="<%=bankLogo%>"   alt=""><%=bankName%>(尾号<%=cardTailNo%>)</span>\
 	    	<div class="redemption_amount">-<%=order.clearingAmount%>元</div>\
    		</div>\
    		</li>\
@@ -69,7 +68,7 @@ define(function (require, exports, module) {
 	    </div>\
 	  </div>\
 	</footer>\
-        <%}%>\
+    <%}%>\
 	';
 	module.exports = tpl;
 })
