@@ -389,9 +389,10 @@ body{background-color: #f2f2f2;}
 .bonusOpen_friendList .amount{float: left;width: 27%;text-align: center;line-height: 40px;font-size: 1.8rem}
 .bonusOpen_friendList{ color:#fff9e6;clear: both;border-bottom: dotted 1px #fff9e6;height: 40px;padding: 10px 0}
 
-.finish_hongbao{width: 70%;margin: 20px auto 0 auto;position: relative}
+.finish_hongbao{width: 40%;margin: 20px auto 0 auto;}
 .finish_hongbao img{width: 100%}
-.finish_text{text-align: center;position: absolute;top:20%;left: 20%;width: 70%;font-size: 1.6rem;color: #4f4f4f}
+.finish_text{text-align: center;width: 100%;font-size: 1.6rem;color: #4f4f4f;width: 85%;margin: 0 auto}
+.finish_hongbao_btn{margin: 10px auto;width: 70%;color: #ffffff;background-color: #d01a02;display:block;height:38px;line-height:38px;font-size:1.8rem;text-align:center;border-radius:5px;}
 
 .bonus_toast{width: 100%;background-color: #fffae7;height: 160px}
 

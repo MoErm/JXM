@@ -12,9 +12,12 @@ define(function (require, exports, module) {
 			self = this;
 		},
         events: {
-            'click .finish_hongbao': 'SeBonus'
+            'click .finish_hongbao_btn': 'SeBonus',
+            'click .js_notice': 'toAddressReg'
         },
-
+        toAddressReg:function(){
+            window.location.href=window.location.origin+'/activity/heroList/818hero/addressReg.html'
+        },
 
         regQR:function(){
             App.Bridge(function(bridge,scope){
@@ -70,9 +73,9 @@ define(function (require, exports, module) {
 
                             if(data.data.isGot=='0'){
                                 if(data.data.productSource=='00'){
-                                    self.$('.notice_tran').html("当日继续投资任意活动产品"+data.data.surplusAmount+"元，您即可获取双旦大礼")
+                                    self.$('.notice_tran').html("当日继续投资任意活动产品"+data.data.surplusAmount+"，您即可获取双旦大礼")
                                 }else if(data.data.productSource==01){
-                                    self.$('.notice_tran').html(data.data.zxEndDate+"前继续投资中信保理"+data.data.surplusAmount+"元，您即可获取双旦大礼")
+                                    self.$('.notice_tran').html(data.data.zxEndDate+"前继续投资中信保理"+data.data.surplusAmount+"，您即可获取双旦大礼")
                                 }
                                 self.$('.notice').css("display","block")
                                 self.$('.js_notice').css("display","block")
