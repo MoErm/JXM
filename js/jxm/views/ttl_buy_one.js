@@ -127,7 +127,10 @@ define(function(require, exports, module) {
             }).then(function (data) {
                 self.pageData.postData= data.data;
                 if(data.ret == 0){
+                    //渲染投资金额
                     $("#imoney_num").val(goBuyData.amountVal);
+                    self.pageData.amountVal= goBuyData.amountVal;
+                    //执行确认弹窗
                     common.ttlPayWin(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录

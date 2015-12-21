@@ -18,9 +18,8 @@ define(function (require, exports, module) {
     		</div>\
 			<div class="ttl_buy_one_m">\
 				<div class="mycard">\
-					<p class="head">我的银行卡</p>\
+					<p class="head"><img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\</p>\
 					<div class="mycard_info">\
-						<img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\
 						<div class="card_detail">\
 							<p class="card_cur" data-cardid= "<%=cardData.cardId%>"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
 							<p class="limit_text">单笔限额：<%=cardData.transactLimit%>，单日限额：<%=cardData.dailyLimit%></p>\
@@ -44,9 +43,9 @@ define(function (require, exports, module) {
 					所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
 				</div>\
 				<div class="same_card_tip">\
-					<h2 class="tip_head"><em class="icon"></em>什么是同卡进出？</h2>\
+					<h2 class="tip_head"><span class="text">Tips</span><em class="line"></em></h2>\
+					<em class="tip_icon"></em>\
 					<p class="tip_text">为了您的资金安全， 您的银行卡绑定加薪猫账户后，  买入和赎回将为您同一张银行卡。</p>\
-					<div class="tip_img"></div>\
 				</div>\
 			</div>\
         </article>';

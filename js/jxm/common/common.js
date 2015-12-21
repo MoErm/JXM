@@ -547,11 +547,16 @@ define(function(require, exports, module) {
             });
         },
         ttlPayWin: function(data){
+            console.log(data);
             var tem = '<article class="ttl_pay_test">\
-                    <div class="ttl_pay_test_t">支付验证<em class="close" id="payClose"></em></div>\
+                    <div class="ttl_pay_test_t">支付确认<em class="close" id="payClose"></em></div>\
                     <div class="ttl_pay_test_m">\
                         <div class="paycontent pay_form">\
-                            <ul>\
+                            <div class="pay_detail">\
+                                <p class="title">投资金额</p>\
+                                <h2 class="num" id="amount_num"></h2>\
+                            </div>\
+                            <ul class="pay_list">\
                               <li class="frm_item frm_item_getcode">\
                                 <label for="inpt_code">验证码</label>\
                                 <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
@@ -587,7 +592,8 @@ define(function(require, exports, module) {
                 onShow: function() {
                     self = this.initialize();
                     self.showOrderCountDown();
-                    self.showCodeCountDown(60);                    
+                    self.showCodeCountDown(60);                
+                    self.showAcountValue();                    
                 },
                 showCodeCountDown: function(timer) {
                     //获取验证码倒计时
@@ -674,6 +680,9 @@ define(function(require, exports, module) {
                             App.showToast('网络错误,请稍后重试');
                         }
                     });
+                },
+                showAcountValue: function(){
+                    $("#amount_num").text('￥'+data.amountVal);
                 },
                 onHideLayer: function() {
                     clearInterval(self.paytimer);
