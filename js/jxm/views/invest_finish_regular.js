@@ -63,16 +63,27 @@ define(function (require, exports, module) {
             activityCondition.exec({
                 type: 'get',
                 success: function(data){
+                    console.log(data)
                     if(data.ret == 0) {
-                        if(data.data.productSource==00||data.data.productSource==01){
-                            if(data.data.isGot==0){
-                                if(data.data.productSource==00){
+
+                        if(data.data.productSource=='00'||data.data.productSource=='01'){
+
+                            if(data.data.isGot=='0'){
+                                if(data.data.productSource=='00'){
                                     self.$('.notice_tran').html("当日继续投资任意活动产品"+data.data.surplusAmount+"元，您即可获取双旦大礼")
                                 }else if(data.data.productSource==01){
                                     self.$('.notice_tran').html(data.data.zxEndDate+"前继续投资中信保理"+data.data.surplusAmount+"元，您即可获取双旦大礼")
                                 }
                                 self.$('.notice').css("display","block")
+                                self.$('.js_notice').css("display","block")
+                            }else{
+                                self.$('.notice').css("display","block")
+                                self.$('.js_notice').css("display","block")
+                                self.$('.notice_tran').html(" 您已获得双旦活动奖品，立即前往填写您的收货地址信息")
                             }
+                        }else{
+                            self.$('.notice').css("display","none")
+                            self.$('.js_notice').css("display","none")
                         }
                     }else if(data.ret == 999001){
                         handle.goLogin();
