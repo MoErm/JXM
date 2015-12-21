@@ -1291,7 +1291,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_buy_one_b .same_card_tip .tip_head { font-size: 1.8rem; height: 30px; text-align: center; margin: 5px 0; position: relative; }
 .ttl_buy_one_b .same_card_tip .tip_head .text { display: inline-block; background: #F2F2F2; padding: 0 10px; z-index: 10;  position: absolute; top: 0; left: 40%;  }
 .ttl_buy_one_b .same_card_tip .tip_head .line { display: block; height: 1px; background: #C5C5C5; position: absolute; top: 50%; width: 100%; }
-.ttl_buy_one_b .same_card_tip .tip_text { display: inline-block; float: left; width: 80%; }
+.ttl_buy_one_b .same_card_tip .tip_text { display: inline-block; float: left; width: 85%;font-size: 1.2rem; }
 .ttl_buy_one_b .same_card_tip .tip_icon { display: inline-block; width: 20px; height: 20px; float: left; margin: 0 10px 0 10px; background: url(../../images/ttl_icon_m.png) no-repeat; background-size: 100%; }
 
 /*-- 天添利 购买提醒页 --*/
