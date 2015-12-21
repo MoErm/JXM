@@ -1,5 +1,6 @@
 define(function (require, exports, module) {
-	var tpl= '\
+	var tpl= ' \
+  \
 	<article class="mod_page v_mod page_invest_confim">\
 	    <ul class="invest_list invest_confim">\
 	      <li class="item invest_regular">\
@@ -42,3 +43,6 @@ define(function (require, exports, module) {
 	';
 	module.exports = tpl;
 })
+//滚动广告栏
+// <div class="notice "><div class="notice_tran">当日继续投资任意活动产品XXXX元，您即可获取双旦大礼</div></div><div class="notice_detail"><a class="js_notice">填写地址</a></div>\
+//<div style="clear: both"></div>

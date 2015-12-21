@@ -3,6 +3,8 @@ define(function (require, exports, module) {
 	var Template = require("jxm/tpl/invest_finish_regular.tpl");
 	var tool = require("jxm/utils/Tool");
 	var common = require("jxm/common/common")
+    var model = require('jxm/model/model');
+    var activityCondition = new model.activityCondition();
 	var handle = new tool();
 	var self;
 	module.exports = App.Page.extend({
@@ -53,9 +55,37 @@ define(function (require, exports, module) {
 			var investAmount=data.data.fixedProdInfo&&parseFloat((data.data.fixedProdInfo.investAmount).split(",").join(""));
 
 			self.$el.html(_.template(Template)(data.data));
+            self.checkUser()
 			//if(investAmount&&investAmount>=10000){common.showAD(self)};
 			//localStorage.removeItem('regular')
 		},
+        checkUser:function(){
+            activityCondition.exec({
+                type: 'get',
+                success: function(data){
+                    if(data.ret == 0) {
+                        if(data.data.productSource==00||data.data.productSource==01){
+                            if(data.data.isGot==0){
+                                if(data.data.productSource==00){
+                                    self.$('.notice_tran').html("当日继续投资任意活动产品"+data.data.surplusAmount+"元，您即可获取双旦大礼")
+                                }else if(data.data.productSource==01){
+                                    self.$('.notice_tran').html(data.data.zxEndDate+"前继续投资中信保理"+data.data.surplusAmount+"元，您即可获取双旦大礼")
+                                }
+                                self.$('.notice').css("display","block")
+                            }
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
+        },
 		setHeader: function(){
 			var header = new App.UI.UIHeader();
 			header.set({

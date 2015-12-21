@@ -5,11 +5,13 @@ define(function (require, exports, module) {
                     <%if(showhistory){%><h2 class="hd_title js_history_title"><span>历史优质产品</span></h2><%}%>\
                     <ul class="listing js_listing" data-history="<%=showhistory%>">\
                         <%_.each(items, function(item){%>\
-                            <li id="<%=item.productNo%>" class="<%if(item.productSource==01){%>Xmas<%}else{%>item<%}%> js_list_item"  data-time="<%=item.saleStartTime%>" data-sale="<%=item.saleStatus%>">\
+                            <li id="<%=item.productNo%>" class="<%if(item.productSubject!=00){%>skin_<%=item.productSubject%><%}else{%>item<%}%> js_list_item"  data-time="<%=item.saleStartTime%>" data-sale="<%=item.saleStatus%>">\
                                 <%=showTag(item.incomeType,item.isForNew,item.investDeadline,item.saleStartTime,item.productTag) %><h3 class="item_title"><%if(item.productName.length <=20){%><%=item.productName%><%}else{%><%=item.productName.substr(0,20)%>...<%}%></h3>\
-                                    <%if(item.productSource==01){%>\
-                                        <div class="bell_ZX"></div>\
-                                        <div class="logo_ZX"></div>\
+                                    <%if(item.productSubject!=00){%>\
+                                        <div class="img_<%=item.productSubject%>"></div>\
+                                       <%}%>\
+                                       <%if(item.productSource==01){%>\
+                                       <div class="logo_ZX"></div>\
                                     <%}%>\
                                     <div class="item_cont v_item">\
                                     <div class="v_item_hd"><span class="v_item_title webtxt" style="position:relative"><%=comeType(item.incomeType, item.incomeRateCeiling, item.activityIncomeRate, item.incomeRateFloor)%><%if(item.incomeType != "03"&&item.incomeType != "02"){%><i class="unit">%</i><%}%><%if(item.incomeType == "02"){%><i class="unit">%</i><%}%></span><span class="v_item_cont">预期年化收益</span></div>\
