@@ -105,7 +105,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['交易详情']
+                    'tagname': 'title', 'value': ['投资详情']
                 },
                 right:
                     [{
