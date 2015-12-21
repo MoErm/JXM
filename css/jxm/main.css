@@ -392,7 +392,7 @@ body{background-color: #f2f2f2;}
 .finish_hongbao{width: 40%;margin: 20px auto 0 auto;}
 .finish_hongbao img{width: 100%}
 .finish_text{text-align: center;width: 100%;font-size: 1.6rem;color: #4f4f4f;width: 85%;margin: 0 auto}
-.finish_hongbao_btn{margin: 10px auto;width: 70%;color: #ffffff;background-color: #d01a02;display:block;height:38px;line-height:38px;font-size:1.8rem;text-align:center;border-radius:5px;}
+.finish_hongbao_btn{margin: 10px auto;width: 70%;color: #ffffff;background-color: #d01a02;display:block;height:48px;line-height:48px;font-size:2.2rem;text-align:center;border-radius:5px;}
 
 .bonus_toast{width: 100%;background-color: #fffae7;height: 160px}
 
