@@ -96,6 +96,7 @@ define(function (require, exports, module) {
                                 <li class="list_con_d">04 随时可赎</li>\
                             </ul>\
                         </div>\
+                        <div class="detail_a_content"></div>\
                     </div>\
                 </div>\
                 <div class="action">\

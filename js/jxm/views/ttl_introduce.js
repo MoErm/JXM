@@ -100,8 +100,8 @@ define(function(require, exports, module) {
             RoundNum = 2;
             cycleRound = 0;
             nowRoundNum = 0;
-            max=0;
-            min=0;
+            max = 0;
+            min = 0;
             self = this.initialize();
             self.message = '网络错误，请稍后重试';
             handle.share();
@@ -121,76 +121,76 @@ define(function(require, exports, module) {
                 enable: true
             });
             mc.on("hammer.input", function(ev) {
-//                self.cycleTime(ev.deltaX)
-//                console.log(ev)
-                console.log(ev.deltaTime+"  "+ev.srcEvent.type)
-                console.log(ev.deltaTime<100&&ev.srcEvent.type=="touchend")
+                //                self.cycleTime(ev.deltaX)
+                //                console.log(ev)
+                console.log(ev.deltaTime + "  " + ev.srcEvent.type)
+                console.log(ev.deltaTime < 100 && ev.srcEvent.type == "touchend")
 
 
-                if(ev.deltaTime<100&&ev.srcEvent.type=="touchend"){
-                    console.log("循环起始"+Math.abs(RoundNum-2))
-                    var fuwei=RoundNum
-                    if(fuwei==2){
+                if (ev.deltaTime < 100 && ev.srcEvent.type == "touchend") {
+                    console.log("循环起始" + Math.abs(RoundNum - 2))
+                    var fuwei = RoundNum
+                    if (fuwei == 2) {
 
-                    }else if(fuwei>2){
-                        console.log("》2循环起始"+Math.abs(fuwei-2))
-                        for(var s=0;s<Math.abs(fuwei-2);s++){
-                            console.log("转-1  "+s)
+                    } else if (fuwei > 2) {
+                        console.log("》2循环起始" + Math.abs(fuwei - 2))
+                        for (var s = 0; s < Math.abs(fuwei - 2); s++) {
+                            console.log("转-1  " + s)
                             self.showRed(1)
                         }
-                    }else if(fuwei<2){
-                        console.log("《2循环起始"+Math.abs(fuwei-2))
-                        for (var q = 0; q < Math.abs(fuwei-2);q++){
+                    } else if (fuwei < 2) {
+                        console.log("《2循环起始" + Math.abs(fuwei - 2))
+                        for (var q = 0; q < Math.abs(fuwei - 2); q++) {
                             self.showRed(-1)
-                            console.log("转+1  "+q)
+                            console.log("转+1  " + q)
                         }
                     }
                     return
                 }
-                self.cycleTime( self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type))
+                self.cycleTime(self.routeCal(ev.deltaX, ev.deltaY, ev.srcEvent.type))
 
-//                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
+                //                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
                 if (ev.srcEvent.type == "touchend") {
                     turnNum = 0
                 }
             });
             return
         },
-        routeCal:function(x,y,type){
-//            console.log(window.event.changedTouches[0].clientX)
-            var distance=0;
-            distance=Math.sqrt(x*x+y*y).toFixed(0)
+        routeCal: function(x, y, type) {
+            //            console.log(window.event.changedTouches[0].clientX)
+            var distance = 0;
+            distance = Math.sqrt(x * x + y * y).toFixed(0)
             console.log()
-//            if(type=="touchstart"){
-                startPoint=window.event.changedTouches[0].clientX
-//            }else if(type=="touchend"){
-//
-//            }
-            if(x>5){
-                if(y>0){
-//                    console.log("右下")
-                }else if(y<0){
-//                    console.log("右上")
+                //            if(type=="touchstart"){
+            startPoint = window.event.changedTouches[0].clientX
+                //            }else if(type=="touchend"){
+                //
+                //            }
+            if (x > 5) {
+                if (y > 0) {
+                    //                    console.log("右下")
+                } else if (y < 0) {
+                    //                    console.log("右上")
                 }
-            }else if(x<-5){
-                if(y>0){
-                    distance= -distance
-//                    console.log("左下")
-                }else if(y<0){
-                    distance= -distance
-//                    console.log("左上")
+            } else if (x < -5) {
+                if (y > 0) {
+                    distance = -distance
+                        //                    console.log("左下")
+                } else if (y < 0) {
+                    distance = -distance
+                        //                    console.log("左上")
                 }
-            }else{
-                if(startPoint>document.body.clientWidth/2){
-                    if(y>0){
+            } else {
+                if (startPoint > document.body.clientWidth / 2) {
+                    if (y > 0) {
 
-                    }else if(y<0){
-                        distance= -distance
+                    } else if (y < 0) {
+                        distance = -distance
                     }
-                }else{
-                    if(y>0){
-                        distance= -distance
-                    }else if(y<0){
+                } else {
+                    if (y > 0) {
+                        distance = -distance
+                    } else if (y < 0) {
 
                     }
 
@@ -202,19 +202,19 @@ define(function(require, exports, module) {
             var num = Math.round(deg / 130)
             if (num == 0) {
                 return
-            }else if(num!=turnNum){
-                if(num>turnNum){
-                    if(max==now){
+            } else if (num != turnNum) {
+                if (num > turnNum) {
+                    if (max == now) {
                         App.showToast("暂时只能查看7日内的收益率")
                         return
-                    }else{
+                    } else {
                         self.showRed(1)
                     }
-                }else{
-                    if(min==now){
+                } else {
+                    if (min == now) {
                         App.showToast("暂时只能查看7日内的收益率")
                         return
-                    }else{
+                    } else {
                         self.showRed(-1)
                     }
                 }
@@ -255,25 +255,25 @@ define(function(require, exports, module) {
             var showDate_1 = self.addDate(nowDate, RoundNum - 3)
             var showDate_2 = self.addDate(nowDate, RoundNum - 2)
             var showDate_3 = self.addDate(nowDate, RoundNum - 1)
-            var showDate_4 = self.addDate(nowDate, RoundNum )
+            var showDate_4 = self.addDate(nowDate, RoundNum)
                 //            console.log(showDate_1+"  "+showDate_2+"  "+showDate_3)
             self.setRate(showDate_2)
             for (var i = 0; i < pool.length; i++) {
-                                self.$("#cycle_"+pool[i]).removeClass("cycleToday")
+                self.$("#cycle_" + pool[i]).removeClass("cycleToday")
                 if (i == 0) {
                     self.$("#cycle_" + pool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_1.substr(6, 2))
                 } else if (i == 1) {
-                    self.$("#cycle_"+pool[i]).addClass("cycleToday")
+                    self.$("#cycle_" + pool[i]).addClass("cycleToday")
                     self.$("#cycle_" + pool[i]).html(showDate_2.substr(4, 2) + "/" + showDate_2.substr(6, 2))
                 } else if (i == 2) {
                     self.$("#cycle_" + pool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_3.substr(6, 2))
                 }
             }
             for (var i = 0; i < hidePool.length; i++) {
-                                self.$("#cycle_"+hidePool[i]).removeClass("cycleToday")
+                self.$("#cycle_" + hidePool[i]).removeClass("cycleToday")
                 if (i == 0) {
                     self.$("#cycle_" + hidePool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_4.substr(6, 2))
-                } else if (i == hidePool.length-1) {
+                } else if (i == hidePool.length - 1) {
                     self.$("#cycle_" + hidePool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_0.substr(6, 2))
                 }
             }
@@ -283,10 +283,10 @@ define(function(require, exports, module) {
             var mathDeg = parseInt(deg)
             cycle.style.webkitTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
         },
-        setRate:function(key){
-            var rate=map.get(key)
-            now=key
-            if(rate==null){
+        setRate: function(key) {
+            var rate = map.get(key)
+            now = key
+            if (rate == null) {
 
 
                 self.$("#cycle_num_1").html(0)
@@ -360,30 +360,30 @@ define(function(require, exports, module) {
                     App.hideLoading();
                 }
             });
-        },       
+        },
         initRate: function() {
             getTtlRate.exec({
                 type: 'get',
                 success: function(data) {
                     App.hideLoading();
                     if (data.ret == 0) {
-                        self.data=data.data
-//                        console.log(self.data.rateList)
-                        for(var i=0;i<self.data.rateList.length;i++){
-                            if(i==0){
-                                max=self.data.rateList[i].date
+                        self.data = data.data
+                            //                        console.log(self.data.rateList)
+                        for (var i = 0; i < self.data.rateList.length; i++) {
+                            if (i == 0) {
+                                max = self.data.rateList[i].date
                             }
-                            if(i==self.data.rateList.length-1){
-                                min=self.data.rateList[i].date
+                            if (i == self.data.rateList.length - 1) {
+                                min = self.data.rateList[i].date
                             }
-//                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
-                            map.put(self.data.rateList[i].date,(self.data.rateList[i].rate).toFixed(5))
+                            //                            console.log("key="+self.data.rateList[i].date+";value="+self.data.rateList[i].rate)
+                            map.put(self.data.rateList[i].date, (self.data.rateList[i].rate).toFixed(5))
 
                         }
                         var initNowDate
-                        if(data.data.hasInvestingOrder==1){
+                        if (data.data.hasInvestingOrder == 1) {
                             initNowDate = data.data.todayYieldRate.toFixed(5)
-                        }else{
+                        } else {
                             initNowDate = (self.data.rateList[0].rate).toFixed(5)
                         }
 
@@ -394,7 +394,7 @@ define(function(require, exports, module) {
                         self.$("#cycle_num_5").html(initNowDate.substr(6, 1))
                         var nowDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate()
 
-                        today=new Date().getFullYear() + "" + (new Date().getMonth() + 1) + "" + new Date().getDate()
+                        today = new Date().getFullYear() + "" + (new Date().getMonth() + 1) + "" + new Date().getDate()
                         var showDate_1 = self.addDate(nowDate, -1)
                         var showDate_2 = self.addDate(nowDate, 0)
                         var showDate_3 = self.addDate(nowDate, 1)
@@ -427,22 +427,21 @@ define(function(require, exports, module) {
             self.initRate();
             App.hideLoading();
         },
-        initBuyTime: function(){
+        initBuyTime: function() {
             //初始化是否可购买
             self.serverTime = self.pageData.getTtlProperty.serverTime.slice(-6);
             self.saleStart = self.pageData.getTtlProperty.saleStartTime;
             self.saleEnd = self.pageData.getTtlProperty.saleEndTime;
-            
+
             // console.log(self.serverTime);
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
             //如果在售卖时间段内
-            if(self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd ){
-                self.pageData.getTtlProperty.isCanBuy= 1;
-            }
-            else{
-                self.pageData.getTtlProperty.isCanBuy= 0;
+            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
+                self.pageData.getTtlProperty.isCanBuy = 1;
+            } else {
+                self.pageData.getTtlProperty.isCanBuy = 0;
             }
 
         },
@@ -469,11 +468,10 @@ define(function(require, exports, module) {
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
-             //如果在售卖时间段内
-            if(self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd ){
+            //如果在售卖时间段内
+            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
                 App.goTo("ttl_buy_one");
-            }
-            else{
+            } else {
                 App.showToast("产品开放购买时间为06:00 ~ 22:00，请到时再来哦！");
                 return;
             }
@@ -487,11 +485,11 @@ define(function(require, exports, module) {
                 return;
             }
         },
-        onHide:function(){
-            now=0
+        onHide: function() {
+            now = 0
         },
         actionTitleTip: function() {
-            var titleTip= '<article class="ttl_title_tip " id="ttl_title_tip">\
+            var titleTip = '<article class="ttl_title_tip " id="ttl_title_tip">\
                     <h2 class="tip_head">收益率小助手</h2>\
                     <dl class="tip_list">\
                         <dt class="tip_list_title">一、天添利的收益率如何增长？</dt>\
@@ -516,9 +514,9 @@ define(function(require, exports, module) {
             $("body").append(titleTip);
             App.showToast($("#ttl_title_tip"));
             //隐藏收益小助手
-            $("#tip_close_btn").on("click",function(){
+            $("#tip_close_btn").on("click", function() {
                 $("#ttl_title_tip").remove();
             });
         }
     })
-})
+});
