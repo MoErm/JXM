@@ -513,11 +513,10 @@ define(function(require, exports, module) {
                 </article>';
             //显示收益小助手
             $("#ttl_title_tip").remove();
-            $("body").append(titleTip).removeClass('tip_cont').addClass('tip_cont');
+            $("body").append(titleTip);
             App.showToast($("#ttl_title_tip"));
             //隐藏收益小助手
             $("#tip_close_btn").on("click",function(){
-                $("body").removeClass('tip_cont');
                 $("#ttl_title_tip").remove();
             });
         }
