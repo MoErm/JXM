@@ -64,9 +64,9 @@ define(function (require, exports, module) {
                             <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
                             <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
                         </ul>\
-                        <div class="detail_a_content"></div>\
                     </div>\
                     <div class="detail_b">\
+                        <div class="detail_line_a"></div>\
                         <h2 class="head">用户定位</h2>\
                         <ul class="list">\
                             <li>\
@@ -85,6 +85,7 @@ define(function (require, exports, module) {
                                 <p class="list_txt">收益率<br/>按天增涨 </p>\
                             </li>\
                         </ul>\
+                        <div class="detail_line_b"></div>\
                     </div>\
                     <div class="detail_c">\
                         <h2 class="head">投资模式</h2>\
@@ -96,7 +97,6 @@ define(function (require, exports, module) {
                                 <li class="list_con_d">04 随时可赎</li>\
                             </ul>\
                         </div>\
-                        <div class="detail_a_content"></div>\
                     </div>\
                 </div>\
                 <div class="action">\
