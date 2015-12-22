@@ -517,6 +517,7 @@ define(function(require, exports, module) {
             App.showToast($("#ttl_title_tip"));
             //隐藏收益小助手
             $("#tip_close_btn").on("click",function(){
+                $("body").append(titleTip).removeClass('tip_cont');
                 $("#ttl_title_tip").remove();
             });
         }
