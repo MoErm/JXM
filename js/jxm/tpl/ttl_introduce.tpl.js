@@ -64,6 +64,7 @@ define(function (require, exports, module) {
                             <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
                             <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
                         </ul>\
+                        <i class="line"></i>\
                     </div>\
                     <div class="detail_b">\
                         <h2 class="head">用户定位</h2>\
@@ -86,7 +87,7 @@ define(function (require, exports, module) {
                         </ul>\
                     </div>\
                     <div class="detail_c">\
-                        <h2 class="head">用户定位</h2>\
+                        <h2 class="head">投资模式</h2>\
                         <div class="content">\
                             <ul class="list">\
                                 <li class="list_con_a">01 注册加薪猫</li>\
