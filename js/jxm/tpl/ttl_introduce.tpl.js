@@ -57,15 +57,14 @@ define(function (require, exports, module) {
             <div class="ttl_introduce_d">\
                 <div class="detail">\
                     <div class="detail_a">\
-                        <div class="detail_a_content">\
-                            <em class="title"></em>\
-                            <h2 class="head">收益率按天增涨的活期理财</h2>\
-                            <ul class="list">\
-                                <li><p class="list_box"><span>5%<br/>年化起</span></p></li>\
-                                <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
-                                <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
-                            </ul>\
-                        </div>\
+                        <em class="title"></em>\
+                        <h2 class="head">收益率按天增涨的活期理财</h2>\
+                        <ul class="list">\
+                            <li><p class="list_box"><span>5%<br/>年化起</span></p></li>\
+                            <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
+                            <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
+                        </ul>\
+                        <div class="detail_a_content"></div>\
                     </div>\
                     <div class="detail_b">\
                         <h2 class="head">用户定位</h2>\
