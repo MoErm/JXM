@@ -1342,4 +1342,4 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_title_tip .tip_list_content { margin: 0 0 0 20px; }
 .ttl_title_tip .tip_close { width: 100%; height: 50px; position: fixed; bottom: 0; background: #fff; }
 .ttl_title_tip .tip_close_btn { display: block; width: 30px; height: 30px; margin: 10px auto; background: url(../../images/ttl_icon_q.png) no-repeat; background-size: 100%; }
-.tip_cont { overflow: hidden; position: relative; }
+.tip_cont { overflow: hidden; position: relative; height: 100%;}

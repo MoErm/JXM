@@ -46,7 +46,7 @@ define(function(require, exports, module) {
                 view: this,
                 title: '推荐',
                 back: {
-                    'tagname': '',
+                    'tagname': null,
                     callback: function () {}
                 },
                 right: null
