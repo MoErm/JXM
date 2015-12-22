@@ -498,8 +498,8 @@ define(function(require, exports, module) {
                         <dl class="tip_list_content">投资当天的起始收益率为5%，随着投资时间按天递增，最高为12%。可滑动转盘查看未来7日的收益率。</dl>\
                         <dt class="tip_list_title">二、开放购买时间？</dt>\
                         <dl class="tip_list_content">每日06:00 ~ 22:00 开放购买。</dl>\
-                        <dt class="tip_list_title">三、何时起息？</dt>\
-                        <dl class="tip_list_content">何时能看到收益？投资成功后，当日起息；次日显示收益。（若收益少于0.01元，则不予显示）。</dl>\
+                        <dt class="tip_list_title">三、何时起息？何时能看到收益？</dt>\
+                        <dl class="tip_list_content">投资成功后，当日起息；次日显示收益。（若收益少于0.01元，则不予显示）。</dl>\
                         <dt class="tip_list_title">四、何时可以赎回？是否需要手续费？</dt>\
                         <dl class="tip_list_content">24h随时可申请赎回，无任何手续费。</dl>\
                         <dt class="tip_list_title">五、赎回次数与金额限制？</dt>\
