@@ -1186,7 +1186,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_recommend_total_r { border-left: 1px solid #E6E6E6; }
 .ttl_recommend_total_l .title, .ttl_recommend_total_r .title { font-size: 1.2rem; color: #9b9b9b; }
 .ttl_recommend_total_l .number, .ttl_recommend_total_r .number { font-size: 2.5rem; }
-.ttl_recommend_detail { border-top: 1px solid #ECECEC; background: #ffffff; padding: 0 0 15px 0; }
+.ttl_recommend_detail { border-top: 1px solid #ECECEC; background: #FCF9F2; padding: 0 0 15px 0; }
 .ttl_recommend_detail_m .chart { height: 275px; width: 100%; margin: 0 auto 10px auto; position: relative; background: url(../../images/ttl_icon_b.png) no-repeat right bottom; background-size: 100%; border-bottom: 1px solid #DDD6CC; }
 .ttl_recommend_detail_m .chart_info { height: 150px; width: auto; margin: 0 auto; position: relative; top: 10px; }
 .ttl_recommend_detail_m .chart_info_head { width: 150px; height: 130px; position: absolute; top: 8px; left: 15px; border-radius: 150px; background: url(../../images/ttl_icon_a.png) no-repeat; background-size: 85%; }
@@ -1346,3 +1346,26 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_title_tip .tip_list_content { margin: 0 0 0 20px; }
 .ttl_title_tip .tip_close { width: 100%; height: 50px; position: fixed;left: 0; bottom: 0; background: #fff; }
 .ttl_title_tip .tip_close_btn { display: block; width: 30px; height: 30px; margin: 10px auto; background: url(../../images/ttl_icon_q.png) no-repeat; background-size: 100%; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
