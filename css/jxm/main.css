@@ -1207,7 +1207,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_recommend_detail_m .info_list .list_three { background: url(../../images/ttl_icon_e.png) no-repeat; background-size: 100%; }
 .ttl_recommend_detail_m .info_list .list_four { background: url(../../images/ttl_icon_f.png) no-repeat; background-size: 100%; }
 .ttl_recommend_detail_b { margin: 0 0 10px 0; }
-.ttl_recommend_detail_b .godetail_btn { display: block; width: 95%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
+.ttl_recommend_detail_b .godetail_btn { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 
 /*-- 天添利 介绍页 --*/
 .ttl_introduce { }
@@ -1287,7 +1287,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_buy_one_m .mycard .card_detail p { line-height: normal; margin: 5px 0 0 5px; font-size: 1.5rem; }
 .ttl_buy_one_m .mycard .card_detail .limit_text { font-size: 1.1rem; }
 .ttl_buy_one_b { padding: 20px 0; }
-.ttl_buy_one_b .action_buy { display: block; width: 95%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
+.ttl_buy_one_b .action_buy { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 .ttl_buy_one_b .action_tip { width: 95%; margin: 15px auto; color: #9b9b9b; font-size: 1rem; }
 .ttl_buy_one_b .action_tip a { color: #b46a25; }
 .ttl_buy_one_b .same_card_tip { width: 85%; margin: 0 auto; color: #9b9b9b; }
@@ -1319,7 +1319,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_pay_test_m .paycontent .pay_detail { text-align: center; padding: 10px 0; }
 .ttl_pay_test_m .paycontent .pay_detail .num { font-size: 3rem; color: #db3710; }
 .ttl_pay_test_b { padding: 0 0 25px 0; }
-.ttl_pay_test_b .action .gopay { display: block; width: 95%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
+.ttl_pay_test_b .action .gopay { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 .ttl_pay_test_b .action .tip { text-align: center; margin: 10px auto 0 auto; color: #9b9b9b; }
 .ttl_pay_test_b .action .tip_num { color: #000; }
 
