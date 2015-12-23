@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/heroList_n.css?v=1.20">
+    <link rel="stylesheet" href="./css/base.css?v=201508132008">
+    <link rel="stylesheet" href="./css/main.css?v=201508132008">
+
+
+</head>
+<body  style=" background-color: #2d0d0c">
+<!--<body  style=" background-color: #ffffff">-->
+<div class="ui_header " id="eventTitle" style="height: 44px" >
+
+    <span class="ui_header-icon fl " onclick="backToIndex()">
+
+        <i class="icon-back"></i>
+
+    </span>
+
+    <h1 class="hiui-page-title " style="line-height: 44px;" >
+
+        加薪猫
+
+    </h1>
+</div>
+<div class="cover" id="cover"></div>
+<div class="coverText" id="coverText" onclick="closeCover()"></div>
+<div style="height: 44px;" id="padBox"></div>
+
+
+        <div class="imgBox " id="banner">
+
+                <img width="100%" src="./img/addressReg/addressReg_banner_Xmas.jpg">
+        <div class="address_banner_txt">
+            <p class="address_banner_top">圣诞来了，新年还远吗？</p>
+            <p> 翻开加薪猫魔法日历，每天都有大惊喜！</p>
+            <p> 点击日历，查看奖品和获取条件</p>
+            <p> 让礼品多多包围，让幸福紧紧依偎！</p>
+        </div>
+
+         </div>
+
+
+<div class="Xmas_calendar">
+    <div class="Xmas_line">
+        <span class="Xmas_active" onclick="showDetail(1)" id="Xmas_span_1">
+            <div>12月25日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_1.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(2)"  id="Xmas_span_2">
+            <div>12月26日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_2.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(3)"  id="Xmas_span_3">
+            <div>12月27日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_3.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(4)"  id="Xmas_span_4">
+            <div>12月28日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_4.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(5)"  id="Xmas_span_5">
+            <div>12月29日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_5.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(6)"  id="Xmas_span_6">
+            <div>12月30日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_6.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(7)"  id="Xmas_span_7">
+            <div>12月31日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_7.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(8)"  id="Xmas_span_8">
+            <div>1月1日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_8.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(9)"  id="Xmas_span_9">
+            <div>1月2日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_9.png"></div>
+        </span >
+        <span class="Xmas_normal" onclick="showDetail(10)"  id="Xmas_span_10">
+            <div>1月3日</div>
+            <div class="Xmas_img"><img src="img/addressReg/addressReg_gift_Xmas_10.png"></div>
+        </span >
+
+    </div>
+    <div class="Xmas_detail_box">
+        <div class="Xmas_cross_img"> <img width="70px" src="./img/addressReg/addressReg_cross_Xmas.png"></div>
+        <div class="Xmas_day">12月25日</div><div class="Xmas_giftName"></div>
+        <div class="Xmas_tiaojian">
+            <p> 获得条件：</p>
+            <p> 当天累计购买</p>
+            <p>  六六加薪 8000 元</p>
+        </div>
+        <div class="Xmas_tupian"><img  src="img/addressReg/addressReg_gift_Xmas_1.png"></div>
+        <div class="Xmas_amount">礼品价值 <strong class="Xmas_value">￥ 459</strong></div>
+    </div>
+
+</div>
+<div class="Xmas_rule">
+    <div class="Xmas_ruleTxt">
+    <p> 1.活动时间：2015年12月25日-2016年1月3日。</p>
+    <p> 2.活动对象：加薪猫理财平台所有用户。</p>
+    <p> 3.活动规则：每天魔法日历会显示当天活动礼品和对应的获得该礼品的条件，只要当日累计支付到购买条件标准即可获得该礼品。（每人每天限一个）<i style="color: #8c0b0c;">例如：12月25日，礼品为周大福小金猴转运珠，只要在25日当天支付季季加薪产品累计满5万元即可获得。</i></p>
+    <p style="color: #275b23;font-weight: 900;"> 4.满足条件后，当天需在本页下方填写收货地址，超出当日视为放弃。</p>
+    <p> 5.参加多日活动需在每次活动后填写一次地址。</p>
+    <p> 6.礼品在活动当日后5个工作日内寄出。</p>
+    </div>
+</div>
+<!--<div  id="test1" class="address_radius_div" >-->
+    <!--<div  class="address_step step1" > 关注加薪猫理财微信公众号-->
+        <!--<small class="textYellow">（ID：jiaxinmaolicai）</small>-->
+        <!--按照引导前往加薪猫理财平台进行注册</div>-->
+<!--</div>-->
+<!--<div  id="test2" class="address_radius_div" >-->
+   <!--<div class="address_step step2"> 购买活动产品：<small class="textYellow">“季季加薪-豪年计划”</small>-->
+    <!--活动期间累计投资金额大于等于3000元用户在-->
+    <!--加薪猫理财公众账号里回复<small class="textYellow">“豪年计划”</small>-->
+    <!--或者点击菜单栏<small class="textYellow">【加薪神器】-->
+    <!--—【豪年计划】</small>，并在弹出的页面里填写-->
+    <!--收货地址等信息</div>-->
+<!--</div>-->
+<!--<div  id="test3" class="address_radius_div" >-->
+    <!--<div class="address_step step3"> 正确填写信息后，我们会在活动结束后-->
+        <!--1-5个工作日内寄出礼物。</div>-->
+<!--</div>-->
+<!--<div class="imgBox" style="height: 70px;text-align: center;margin-top: 10px" >-->
+    <!--<img width="90%" height="80%" src="./img/addressReg/addressReg_title2.png">-->
+<!--</div>-->
+<div class="Xmas_input" id="area_input" >
+    <div class="Xmas">
+        <p>加薪猫账号</p>
+        <input type="text" placeholder="请填写平台注册手机号码" id="jxmAccount"  maxlength="11"><br>
+        <p>收货人姓名</p>
+        <input type="text" placeholder="如：小薪薪" id="receiverName"><br>
+        <p>收货地址</p>
+        <input type="text" placeholder="如：广州市白云区白云大道北2号" id="receiverAddress"><br>
+        <p>收货手机号码</p>
+        <input type="text" placeholder="如：13800138000" id="receiverCellphone" maxlength="11"><br>
+    </div>
+    <div class="address_btn">
+        <button onclick="submit()">确认信息</button>
+    </div>
+    <div class="address_tips">
+
+    <p>需活动当天填写</p>
+    <p>参加多日活动需在每次活动后填写一次地址</p>
+    </div>
+</div>
+
+</body>
+<script src="js/tools/jquery-2.1.4.min.js"></script>
+<script src="js/tools/template.js"></script>
+<script src="js/control/addressReg_Xmas.js?v=1.04"></script>
+
+
+</html>

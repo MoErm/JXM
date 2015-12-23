@@ -644,8 +644,8 @@ body{
     }
 }
 .address_btn{width: 80%;margin: 20px auto 20px auto}
-.address_btn button{width: 100%;height: 50px;color: #490d86;background-color: #feaf01;border-radius: 25px;font-weight: bold;font-size: 2.4rem;box-shadow: 0px 5px 0px #885702;}
-.address_tips{text-align: center;font-size: 1.4rem;color: #999999;margin-bottom: 20px}
+.address_btn button{width: 100%;height: 50px;color: #8e1011;background-color: #edd5c2;border-radius: 25px;font-weight: bold;font-size: 2.4rem;box-shadow: 0px 5px 0px #9e6530;}
+.address_tips{text-align: center;font-size: 1.4rem;color: #edd5c2;margin-bottom: 20px}
 .address_ok{text-align: center;font-size: 1.6rem;color: #fecc02;margin: 20px 0}
 .address_tips p{}
 .address_step{margin:0 10% 0px 70px;padding: 10px 0}
@@ -657,7 +657,10 @@ body{
 .address_input p{margin-top: 20px;margin-bottom: 5px;padding-left: 20px}
 .address_input input{border:0;background-color: #490d86;border-radius: 18px;padding:3px 0 3px 20px;color: #ffffff;width: 92%;height: 30px;font-size: 1.4rem}
 .address_radius_div{background-color: #7821d2;line-height: 24px;margin: 10px 5%;font-size: 1.2rem;color: #ffffff;}
-.imgBox{width: 100%;overflow: hidden}
+.imgBox{width: 100%;overflow: hidden;position: relative}
+.address_banner_txt{position: absolute;top: 0;margin: 0px 10% 0 10%;width: 80%;text-align: center;color: #ffffff}
+.address_banner_top{color: #f3e586;font-size: 1.6rem}
+
 .imgHeight_1{height: 430px}
 .textYellow{color: #fecc02;font-size: 1.2rem;display: inline}
 /* WebKit browsers */
@@ -679,10 +682,43 @@ body{
 .address_input:-ms-input-placeholder {
     color: #721fc9;
 }
+/*双旦活动*/
+.Xmas p{color: #8c0b0c}
+.Xmas_rule{background-image: url("../img/addressReg/addressReg_rule_Xmas.png");background-repeat: no-repeat ;background-size: 100% 100%}
+
+.Xmas_rule .Xmas_ruleTxt{width: 75%;margin:0 auto;padding-top: 65px;padding-bottom: 20px}
+.Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.6rem}
+.Xmas{font-size: 1.6rem;padding: 90px 13% 20px 13%;background-image: url("../img/addressReg/addressReg_input_Xmas.png");background-repeat: no-repeat ;background-size: 100% 100%}
+.Xmas input{border:0;padding:3px 0 3px 0px;color: #ffffff;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 20px}
+.Xmas_calendar{height: 500px;width: 100%;margin: 0 auto;background-color: #2d0d0c;background-image: url("../img/addressReg/addressReg_rili_Xmas.png");background-repeat: no-repeat ;background-size: 100%  100%}
+.Xmas_line{margin: 0 auto 0 auto;width: 320px;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 15px}
+.Xmas_line span{height: 60px;width: 60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2%;font-size: 1.4rem}
+.Xmas_line .Xmas_normal{border: 1px solid #275b23;color:#275b23;text-align: center}
+.Xmas_line .Xmas_active{border: 1px solid #750e0f;color: #750e0f;text-align: center}
+.Xmas_line .Xmas_img{height: 38px;width: 100%;}
+.Xmas_line .Xmas_img img{height: 38px}
+.Xmas_detail_box{border-top: 1px #ff0000 dashed;margin: 0 8%;background: #f9eee4;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;position: relative}
+.Xmas_detail_box .Xmas_cross_img{position: absolute;top: 0;right: 50%;margin-right: -35px;margin-top: -10px}
+.Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 25px;left:18px}
+.Xmas_giftName{position: absolute;left:105px;width: 150px;color: #494949;top: 18px;font-size: 1.4rem}
+.Xmas_tiaojian{position: absolute;left: 18px;bottom: 10px;font-size: 1.6rem}
+.Xmas_tupian{position: absolute;right: 5px;bottom:30px}
+.Xmas_tupian img{width: 130px}
+.Xmas_amount{position: absolute;right:30px;bottom:10px;color: #494949}
+.Xmas_input{width: 100%;margin: 0 auto;background-color: #2d0d0c;}
+.Xmas_value{font-size: 2rem}
 .bannerHeight{height: 180px}
 /*iphone6*/
 @media screen and (min-width: 371px) and (max-width: 400px) {
+    /*.Xmas_line span{height: 60px;width:60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 6px;}*/
+    .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.4rem}
     .bindText{ position: absolute; margin-top: 302px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.4rem;}
+    .Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 20px;left:12px}
+    .Xmas_giftName{position: absolute;left:95px;width: 150px;color: #494949;top: 12px;font-size: 1.4rem}
+    .Xmas_tiaojian{position: absolute;left: 18px;bottom: 10px;font-size: 1.4rem}
+    .Xmas_tupian{position: absolute;right: 5px;bottom:30px}
+    .Xmas_tupian img{width: 100px}
+    .Xmas_amount{position: absolute;right:10px;bottom:10px}
     .labaText{font-size: 1.6rem!important; }
     .img_height{height:380px;}
     .imgHeight_1{height: 390px}
@@ -691,6 +727,18 @@ body{
 
 /*iphone4 5*/
 @media screen  and (max-width: 370px) {
+    .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.2rem}
+    .Xmas_line .Xmas_img{height: 33px;width: 100%;}
+    .Xmas_line .Xmas_img img{height: 33px}
+    .Xmas_line{margin: 0 auto 0 auto;width: 280px  ;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 5px}
+    .Xmas_line span{height: 52px;width: 52px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2% 2.4%;font-size: 1rem}
+    .Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 8px;left:8px}
+    .Xmas_giftName{position: absolute;left:82px;width: 130px;color: #494949;top: 8px;font-size: 1rem}
+    .Xmas_tiaojian{position: absolute;left: 8px;bottom: 10px;font-size: 1.2rem}
+    .Xmas_tupian{position: absolute;right: 5px;bottom: 30px}
+    .Xmas_tupian img{width: 80px}
+    .Xmas_amount{position: absolute;right: 5px;bottom:10px}
+    .Xmas input{border:0;padding:3px 0 3px 0px;color: #ffffff;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 10px}
     .bindText{ position: absolute; margin-top: 270px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.2rem;}
     .labaText{font-size: 1.4rem!important; }
     .img_height{height:340px;}
