@@ -419,7 +419,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 }
 .redemption_box { background: #ffffff; border-top: 1px #cecece solid; border-bottom: 1px #cecece solid; margin-top: 10px; }
 .redemption_div { font-size: 1.6rem; padding: 15px 20px }
-.redemption_div:first-child { border-bottom: 1px #cecece solid }
+.redemption_div:first-child { border-bottom: 1px #cecece solid ;}
 .redemption_div span { display: inline-block; }
 .redemption_div span input { width: 80%; text-align: right }
 .redemption_div span:first-child { width: 30% }
@@ -1236,12 +1236,12 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_introduce_d .detail_a .list li, .ttl_introduce_d .detail_b .list li { width: 30%; display: inline-block; margin: 0 2% 0 0; text-align: center; }
 .ttl_introduce_d .detail_a .list .list_box { display: block; width: 60px; height: 60px; position: relative; padding: 3px; border: 2px solid #F99822; border-radius: 60px; color: #F99822; font-size: 1.2rem; margin: 0 auto; text-align: center; line-height: 1.4rem; }
 .ttl_introduce_d .detail_a .list .list_box span { display: block; width: 85%; margin: auto; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
-.ttl_introduce_d .detail_b {position: relative; background: #fff; }
+.ttl_introduce_d .detail_b {position: relative; background: #fff; padding: 30px 5%;}
 .ttl_introduce_d .detail_line_a,
 .ttl_introduce_d .detail_line_b { width: 100%; height: 20px;position: absolute;left: 0;bottom: 0;
  background: #FFFCF7; -moz-transform:rotate(3deg);-webkit-transform:rotate(3deg);-o-transform:rotate(3deg);-ms-transform:rotate(3deg);transform:rotate(3deg);}
-.ttl_introduce_d .detail_b .detail_line_a{bottom:-11px; border-bottom: 1px solid #F1F1F0;}
-.ttl_introduce_d .detail_b .detail_line_b{top:-11px;border-top: 1px solid #F1F1F0; }
+.ttl_introduce_d .detail_b .detail_line_a{bottom:-11px; border-top: 1px solid #F1F1F0;}
+.ttl_introduce_d .detail_b .detail_line_b{top:-11px;border-bottom: 1px solid #F1F1F0; }
 .ttl_introduce_d .detail_b .head, .ttl_introduce_d .detail_c .head { font-size: 2rem; text-align: center; margin: 0 0 10px 0; }
 .ttl_introduce_d .detail_b .list_head { font-size: 1.8rem; color: #F99822; }
 .ttl_introduce_d .detail_b .list_txt { font-size: 1.2rem; color: #9b9b9b; }
