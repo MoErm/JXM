@@ -682,7 +682,7 @@ define(function(require, exports, module) {
                     });
                 },
                 showAcountValue: function(){
-                    $("#amount_num").text('￥'+data.amountVal);
+                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
                 },
                 onHideLayer: function() {
                     clearInterval(self.paytimer);

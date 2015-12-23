@@ -1276,6 +1276,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_buy_one_t .info_add .percent_unit {font-size: 1.5rem; color: #db3710;  height: 27px; padding: 10px 0 0 0; }
 .ttl_buy_one_t .info_add .percent {font-size: 2rem;}
 .ttl_buy_one_t .info_add .title { height: 27px; }
+.ttl_buy_one_t .info_add .num_unit { color: #9b9b9b;font-size: 1.2rem; }
+
 .ttl_buy_one_m { margin: 10px 0; background: #fff; border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard, .ttl_buy_one_m .imoney { height: 50px;font-size: 1.6rem;  padding: 5px 0; border-bottom: 1px solid #ECECEC;  }
 .ttl_buy_one_m .head { text-indent: 1em; height: 50px; line-height: 50px; width: 28%; float: left; text-align: center; }
@@ -1319,6 +1321,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_pay_test_m .paycontent .forget_password { margin: 0 20px 0 0; color: #B46A25; }
 .ttl_pay_test_m .paycontent .pay_detail { text-align: center; padding: 10px 0; }
 .ttl_pay_test_m .paycontent .pay_detail .num { font-size: 3rem; color: #db3710; }
+/*.ttl_pay_test_m .paycontent .pay_detail .amount_unit { font-size: 2.5rem; }*/
 .ttl_pay_test_b { padding: 0 0 25px 0; }
 .ttl_pay_test_b .action .gopay { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 .ttl_pay_test_b .action .tip { text-align: center; margin: 10px auto 0 auto; color: #9b9b9b; }
