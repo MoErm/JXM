@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     		<div class="ttl_buy_one_t">\
 				<ul class="info_add">\
 					<li>\
-						<p class="percent"><%=cardData.initialRate%>~<%=cardData.maxRate%></p>\
+						<p class="percent"><%=cardData.initialRate%><em class="percent_unit">%</em>~<%=cardData.maxRate%><em class="percent_unit">%</em></p>\
 						<p>收益率递增</p>\
 					</li>\
 					<li>\
@@ -18,7 +18,7 @@ define(function (require, exports, module) {
     		</div>\
 			<div class="ttl_buy_one_m">\
 				<div class="mycard">\
-					<p class="head"><img src="<%=cardData.bankLogo%>" alt="" class="banklogo" />\</p>\
+					<p class="head"><img src="<%=cardData.bankLogo%>" alt="" class="banklogo" /></p>\
 					<div class="mycard_info">\
 						<div class="card_detail">\
 							<p class="card_cur" data-cardid= "<%=cardData.cardId%>"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
