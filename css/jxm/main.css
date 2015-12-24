@@ -887,11 +887,19 @@ text-align: right}
 /*--end 我的投资--*/
 .notice_detail{width: 20%;float: left;text-align: center;background-color: #a01401;}
 .notice_detail a{color: #f60;}
-.notice{white-space: nowrap;width: 80%;overflow: hidden;float: left;background-color: #a01401;color: #ffffff}
-.notice_tran{
+.notice_Xmas{white-space: nowrap;width: 80%;overflow: hidden;float: left;background-color: #a01401;color: #ffffff}
+.notice{white-space: nowrap;width: 100%;overflow: hidden;float: left;background-color: #a01401;color: #ffffff}
+.notice_tran_Xmas{
    -webkit-animation:ani2 20s linear 0s infinite;
-    animation:ani2 20s linear 0s infinite;
+animation:ani2 20s linear 0s infinite;
 }
+.notice_tran{
+    -webkit-animation:ani2 30s linear 0s infinite;
+    animation:ani2 30s linear 0s infinite;
+}
+
+@keyframes ani1{ 0%{margin-left:100%}100% { margin-left:-230%}}
+@-webkit-keyframes ani1{0%{margin-left:100%}100% {margin-left:-230%}}
 
 
 @keyframes ani2{ 0%{margin-left:100%}100% { margin-left:-140%}}

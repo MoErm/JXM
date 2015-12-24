@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
-	var tpl= ' \
-  \
+    var tpl= '<div class="notice "><div class="notice_tran">接支付机构通知，农业银行今天起代扣和绑卡业务暂不支持，恢复时间待定，特此通知。由此给您带来的不便，敬请见谅。 </div></div>\
+    <div style="clear: both"></div>\
 	<article class="mod_page v_mod page_invest_confim">\
 	    <ul class="invest_list invest_confim">\
 	      <li class="item invest_regular">\

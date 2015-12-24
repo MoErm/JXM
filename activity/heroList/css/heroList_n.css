@@ -689,34 +689,65 @@ body{
 .Xmas_rule .Xmas_ruleTxt{width: 75%;margin:0 auto;padding-top: 65px;padding-bottom: 20px}
 .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.6rem}
 .Xmas{font-size: 1.6rem;padding: 90px 13% 20px 13%;background-image: url("../img/addressReg/addressReg_input_Xmas.png");background-repeat: no-repeat ;background-size: 100% 100%}
-.Xmas input{border:0;padding:3px 0 3px 0px;color: #ffffff;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 20px}
+.Xmas input{border:0;padding:3px 0 3px 0px;color: #000000;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 20px}
 .Xmas_calendar{height: 500px;width: 100%;margin: 0 auto;background-color: #2d0d0c;background-image: url("../img/addressReg/addressReg_rili_Xmas.png");background-repeat: no-repeat ;background-size: 100%  100%}
 .Xmas_line{margin: 0 auto 0 auto;width: 320px;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 15px}
 .Xmas_line span{height: 60px;width: 60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2%;font-size: 1.4rem}
 .Xmas_line .Xmas_normal{border: 1px solid #275b23;color:#275b23;text-align: center}
-.Xmas_line .Xmas_active{border: 1px solid #750e0f;color: #750e0f;text-align: center}
+.Xmas_line .Xmas_active{border: 1px solid #2d0d0c;color: #ffffff;text-align: center;background: #2d0d0c}
 .Xmas_line .Xmas_img{height: 38px;width: 100%;}
 .Xmas_line .Xmas_img img{height: 38px}
-.Xmas_detail_box{border-top: 1px #ff0000 dashed;margin: 0 8%;background: #f9eee4;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;position: relative}
-.Xmas_detail_box .Xmas_cross_img{position: absolute;top: 0;right: 50%;margin-right: -35px;margin-top: -10px}
-.Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 25px;left:18px}
-.Xmas_giftName{position: absolute;left:105px;width: 150px;color: #494949;top: 18px;font-size: 1.4rem}
-.Xmas_tiaojian{position: absolute;left: 18px;bottom: 10px;font-size: 1.6rem}
-.Xmas_tupian{position: absolute;right: 5px;bottom:30px}
+.Xmas_detail_box{border-top: 1px #8c0b0c dashed;margin: 0 8%;background: #f9eee4;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;position: relative}
+.Xmas_detail_box .Xmas_cross_img{position: absolute;top: 0;right: 50%;margin-right: -35px;margin-top: -12px}
+
+.Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 14%;left:6%;width: 60px;text-align: center}
+.Xmas_giftName{position: absolute;left:30%;width: 100px;color: #494949;top: 12%;font-size: 1.4rem}
+.Xmas_tiaojian{position: absolute;left: 5%;bottom: 5%;font-size: 1.6rem}
+.Xmas_tiaojian_d{color: #750e0f;font-size: 1.6rem}
+.Xmas_tupian{position: absolute;right: 5%;bottom:25%}
+.Xmas_move{ -webkit-animation:X_mas_ani 0.5s linear 0s forwards ;}
 .Xmas_tupian img{width: 130px}
 .Xmas_amount{position: absolute;right:30px;bottom:10px;color: #494949}
-.Xmas_input{width: 100%;margin: 0 auto;background-color: #2d0d0c;}
+.Xmas_input{width: 100%;margin: 0 auto;background-color: #2d0d0c;position: relative}
+.Xmas_input_date{position: absolute;right: 50%;color: #ffffff;top: 25px;margin-right: -55px}
 .Xmas_value{font-size: 2rem}
 .bannerHeight{height: 180px}
+
+@-webkit-keyframes X_mas_ani{
+    0%   {
+        transform: scale(0);
+        opacity: 0;
+        /*transform:  rotateX(0deg);*/
+        /*transform-origin:0% 0%;*/
+    }
+    100% {
+        transform: scale(1);
+        /*transform:  rotateX(360deg);*/
+        /*transform-origin:0% 0%;*/
+        opacity: 1;
+
+    }
+}
+@keyframes X_mas_ani{
+    0%   {
+        transform: scale(0);
+        opacity: 0;
+        /*transform:  rotateX(0deg);*/
+        /*transform-origin:0% 0%;*/
+    }
+    100% {
+        transform: scale(1);
+        /*transform:  rotateX(360deg);*/
+        /*transform-origin:0% 0%;*/
+        opacity: 1;
+    }
+}
 /*iphone6*/
 @media screen and (min-width: 371px) and (max-width: 400px) {
     /*.Xmas_line span{height: 60px;width:60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 6px;}*/
     .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.4rem}
     .bindText{ position: absolute; margin-top: 302px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.4rem;}
-    .Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 20px;left:12px}
-    .Xmas_giftName{position: absolute;left:95px;width: 150px;color: #494949;top: 12px;font-size: 1.4rem}
-    .Xmas_tiaojian{position: absolute;left: 18px;bottom: 10px;font-size: 1.4rem}
-    .Xmas_tupian{position: absolute;right: 5px;bottom:30px}
+
     .Xmas_tupian img{width: 100px}
     .Xmas_amount{position: absolute;right:10px;bottom:10px}
     .labaText{font-size: 1.6rem!important; }
@@ -732,13 +763,12 @@ body{
     .Xmas_line .Xmas_img img{height: 33px}
     .Xmas_line{margin: 0 auto 0 auto;width: 280px  ;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 5px}
     .Xmas_line span{height: 52px;width: 52px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2% 2.4%;font-size: 1rem}
-    .Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 8px;left:8px}
-    .Xmas_giftName{position: absolute;left:82px;width: 130px;color: #494949;top: 8px;font-size: 1rem}
-    .Xmas_tiaojian{position: absolute;left: 8px;bottom: 10px;font-size: 1.2rem}
-    .Xmas_tupian{position: absolute;right: 5px;bottom: 30px}
+    .Xmas_giftName{position: absolute;left:35%;width: 100px;color: #494949;top: 12%;font-size: 1.2rem}
+    .Xmas_tiaojian{position: absolute;left: 5%;bottom: 5%;font-size: 1.2rem}
+    .Xmas_tiaojian_d{color: #750e0f;font-size: 1.4rem}
     .Xmas_tupian img{width: 80px}
     .Xmas_amount{position: absolute;right: 5px;bottom:10px}
-    .Xmas input{border:0;padding:3px 0 3px 0px;color: #ffffff;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 10px}
+    .Xmas input{border:0;padding:3px 0 3px 0px;color: #000000;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 10px}
     .bindText{ position: absolute; margin-top: 270px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.2rem;}
     .labaText{font-size: 1.4rem!important; }
     .img_height{height:340px;}

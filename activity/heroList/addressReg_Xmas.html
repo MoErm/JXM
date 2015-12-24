@@ -8,7 +8,7 @@
     <meta content="yes" name="apple-touch-fullscreen">
     <meta content="telephone=no,email=no" name="format-detection">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="./css/heroList_n.css?v=1.20">
+    <link rel="stylesheet" type="text/css" href="./css/heroList_n.css?v=1.21">
     <link rel="stylesheet" href="./css/base.css?v=201508132008">
     <link rel="stylesheet" href="./css/main.css?v=201508132008">
 
@@ -18,11 +18,11 @@
 <!--<body  style=" background-color: #ffffff">-->
 <div class="ui_header " id="eventTitle" style="height: 44px" >
 
-    <span class="ui_header-icon fl " onclick="backToIndex()">
+    <!--<span class="ui_header-icon fl " onclick="backToIndex()">-->
 
-        <i class="icon-back"></i>
+        <!--<i class="icon-back"></i>-->
 
-    </span>
+    <!--</span>-->
 
     <h1 class="hiui-page-title " style="line-height: 44px;" >
 
@@ -92,16 +92,7 @@
         </span >
 
     </div>
-    <div class="Xmas_detail_box">
-        <div class="Xmas_cross_img"> <img width="70px" src="./img/addressReg/addressReg_cross_Xmas.png"></div>
-        <div class="Xmas_day">12月25日</div><div class="Xmas_giftName"></div>
-        <div class="Xmas_tiaojian">
-            <p> 获得条件：</p>
-            <p> 当天累计购买</p>
-            <p>  六六加薪 8000 元</p>
-        </div>
-        <div class="Xmas_tupian"><img  src="img/addressReg/addressReg_gift_Xmas_1.png"></div>
-        <div class="Xmas_amount">礼品价值 <strong class="Xmas_value">￥ 459</strong></div>
+    <div class="Xmas_detail_box ">
     </div>
 
 </div>
@@ -136,6 +127,7 @@
     <!--<img width="90%" height="80%" src="./img/addressReg/addressReg_title2.png">-->
 <!--</div>-->
 <div class="Xmas_input" id="area_input" >
+    <div id="Xmas_date" class="Xmas_input_date redShadow">2015年12月24日</div>
     <div class="Xmas">
         <p>加薪猫账号</p>
         <input type="text" placeholder="请填写平台注册手机号码" id="jxmAccount"  maxlength="11"><br>
@@ -161,5 +153,18 @@
 <script src="js/tools/template.js"></script>
 <script src="js/control/addressReg_Xmas.js?v=1.04"></script>
 
+
+<script id="showXmas" type="text/html">
+    <div class="Xmas_cross_img"> <img width="70px" src="./img/addressReg/addressReg_cross_Xmas.png"></div>
+    <div class="Xmas_day">{{item.date}}</div><div class="Xmas_giftName">{{item.name}}</div>
+    <div class="Xmas_tiaojian">
+        <p> 获得条件：</p>
+        <p> 当天累计购买</p>
+        <p class="Xmas_tiaojian_d"> {{item.pro}} {{item.amount}}元</p>
+    </div>
+    <div class="Xmas_tupian"><img  src="img/addressReg/addressReg_gift_Xmas_{{num}}.png"></div>
+    <div class="Xmas_amount">礼品价值 <strong class="Xmas_value">￥ {{item.value}}</strong></div>
+
+</script>
 
 </html>

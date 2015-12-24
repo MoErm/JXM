@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
 	var tpl = '\
-	<div class="notice" style="display: none"><div class="notice_tran"></div></div><div class="notice_detail"><a class="js_notice" style="display: none">填写地址</a></div>\
+	<div class="notice_Xmas" style="display: none"><div class="notice_tran_Xmas"></div></div><div class="notice_detail"><a class="js_notice" style="display: none">填写地址</a></div>\
 <div style="clear: both"></div>\
 	<article class="mod_page v_mod page_finish_regular">\
 	  <div class="ad_box"></div>\

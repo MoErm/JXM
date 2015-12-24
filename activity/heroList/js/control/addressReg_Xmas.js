@@ -6,6 +6,27 @@ $(document).ready(function(){
         setRadius("#test"+i)
     }
     initHeight()
+    var year,month,day;
+    if(new Date().getMonth()+1==12&&new Date().getDate()>=25){
+        var num=new Date().getDate()-24
+        showDetail(num)
+        year=2015;
+        month=12;
+        day=new Date().getDate()
+    }else if(new Date().getMonth()+1==1&&new Date().getDate()<=3){
+        var num=new Date().getDate()+7
+        showDetail(num)
+        year=2016;
+        month=1;
+        day=new Date().getDate()
+    }else{
+        showDetail(1)
+        year=2015;
+        month=12;
+        day=25
+    }
+    var date=year+"年"+month+"月"+day+"日"
+    $("#Xmas_date").html(date)
 });
 function initHeight(){
     var g_width=document.body.clientWidth
@@ -24,10 +45,18 @@ function initHeight(){
 
 }
 
+
 function showDetail(num){
     $(".Xmas_active").removeClass("Xmas_active"). addClass("Xmas_normal")
-
     $("#Xmas_span_"+num).addClass("Xmas_active")
+
+    var item=giftData.gifts[num-1]
+    var data = {
+        item : item,
+        num:num
+    };
+    var html = template('showXmas', data);
+    $(".Xmas_detail_box").html(html);
 }
 
 function hideInput(){
@@ -101,7 +130,7 @@ function submit(){
         },
         success: function(data) {
             if(data.ret=='0'){
-                hideInput()
+                showCover("提交成功");
             }else{
                 showCover(data.msg);
             }
@@ -113,16 +142,71 @@ function submit(){
 
 }
 
-var giftData={
-        gifts:
-            [
-                {date:"12月25日",
-                 name:"周大福小金猴转运珠 R16729",
-                pro:"季季加薪"
-            }
-
-
-            ]
-
-
+var giftData= {
+    gifts: [
+        {date: "12月25日",
+            name: "周大福小金猴转运珠 R16729",
+            pro: "季季加薪",
+            amount: "50000",
+            value: "880"
+        },
+        {date: "12月26日",
+            name: "brita净水壶3.5L (一壶6芯)",
+            pro: "六六加薪",
+            amount: "8000",
+            value: "459"
+        },
+        {date: "12月27日",
+            name: "艾美特欧式快热电暖炉 HC2425R",
+            pro: "年年加薪",
+            amount: "6000",
+            value: "899"
+        },
+        {date: "12月28日",
+            name: "膳魔师焖烧杯",
+            pro: "月月加薪",
+            amount: "30000",
+            value: "298"
+        },
+        {date: "12月29日",
+            name: "飞利浦料理机HR1608",
+            pro: "六六加薪",
+            amount: "8000",
+            value: "449"
+        },
+        {date: "12月30日",
+            name: "ventry泰国乳胶枕",
+            pro: "季季加薪",
+            amount: "10000",
+            value: "560"
+        },
+        {date: "12月31日",
+            name: "欧姆龙血压仪HEM-7052",
+            pro: "年年加薪",
+            amount: "5000",
+            value: "599"
+        },
+        {date: "1月1日",
+            name: "apple watch sport",
+            pro: "六六加薪",
+            amount: "60000",
+            value: "2588"
+        },
+        {date: "1月2日",
+            name: "小米体重秤",
+            pro: "月月加薪",
+            amount: "15000",
+            value: "99"
+        },
+        {date: "1月3日",
+            name: "帕缇欧天丝绒厚毯",
+            pro: "年年加薪",
+            amount: "10000",
+            value: "1870"
+        }
+    ]
 }
+
+
+
+
