@@ -2,11 +2,15 @@
 	var initModel=function(opts){
 		return App.Model.extend(opts || {});
 	};
-	var domain=window.location.host.indexOf("localhost")>-1?"test.jiaxinmore.com":window.location.host;
+//	var domain=window.location.host.indexOf("localhost")>-1?"test.jiaxinmore.com":window.location.host;
+	var domain=window.location.host.indexOf("localhost")>-1?"172.16.1.57":window.location.host;
     var host="http://"+domain+"/apps";
 	var Model={
 
-
+        //双蛋活动check
+        activityCondition:initModel({
+            url:host+"/api/activity/activityCondition"
+        }),
 		//登录
 		loginModel:initModel({
 			url:host+"/api/user/login"

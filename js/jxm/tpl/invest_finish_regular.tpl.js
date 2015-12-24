@@ -1,5 +1,7 @@
 define(function (require, exports, module) {
 	var tpl = '\
+	<div class="notice_Xmas" style="display: none"><div class="notice_tran_Xmas"></div></div><div class="notice_detail"><a class="js_notice" style="display: none">填写地址</a></div>\
+<div style="clear: both"></div>\
 	<article class="mod_page v_mod page_finish_regular">\
 	  <div class="ad_box"></div>\
 	  <div class="finish_regular">\
@@ -14,27 +16,32 @@ define(function (require, exports, module) {
 	    </div>\
 	  </div>\
 	  <%if(hasCards=="1"){%>\
-	  <div class="finish_hongbao"><img src="./images/hongbao.png" >\
-	  <div class="finish_text">\
-	  恭喜您获得<strong style="color: #f23039"><%=cardCount%></strong>个红包，赶紧分享给小伙伴吧<br>(自己也可以领取哦)\
-	  </div></div>\
-	  <div class="foot_copyright"><div class="fixed">\
-            <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
-            <p class="copyright">©2015 加薪猫 jiaxinmore.com</p>\
-          </div>\
-          </div>\
 	  </article>\
+	  <div class="finish_hongbao"><img src="./images/hongbao.png" >\
+	  </div>\
+	  <div class="finish_text">\
+	  恭喜您获得<strong style="color: #f23039;font-size: 1.8rem"><%=cardCount%></strong>个红包，赶紧分享给小伙伴吧<br>(自己也可以领取哦)\
+	  </div>\
+	  <button class="finish_hongbao_btn">发红包</button>\
+	  \
+         \
+	  \
 	  <%}else{%>\
 	  <div class="no_products ico_logo"></div>\
 	  </article>\
-        <footer class="foot_copyright">\
+        \
+	  <%}%>\
+	';
+    var foot='<div class="foot_copyright"><div class="fixed">\
+        <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
+        <p class="copyright">©2015 加薪猫 jiaxinmore.com</p>\
+    </div>'
+    var foot='<footer class="foot_copyright">\
           <div class="fixed2">\
             <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
             <p class="copyright">©2015 加薪猫 jiaxinmore.com</p>\
           </div>\
-        </footer>\
-	  <%}%>\
-	';
+        </footer>'
 
     var rm='<ul class="v_mod invest_details">\
 	    <li class="v_item">\
