@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     		<div class="ttl_buy_one_t">\
 				<ul class="info_add">\
 					<li>\
-						<p class="percent"><%=cardData.initialRate%><em class="percent_unit">%</em>~<%=cardData.maxRate%><em class="percent_unit">%</em></p>\
+						<p class="percent"><%=cardData.miNRate%><em class="percent_unit">%</em>~<%=cardData.maXRate%><em class="percent_unit">%</em></p>\
 						<p>收益率递增</p>\
 					</li>\
 					<li>\
