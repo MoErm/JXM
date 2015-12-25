@@ -60,7 +60,9 @@ define(function (require, exports, module) {
             });
             var imgs=[
 //                { id: 6, src: './images/hnjh.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400861107&idx=1&sn=0c871833c6cadd1cb7e546f2de22da5c#rd' },
-                { id: 4, src: './images/zbs11.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400413790&idx=1&sn=ef4e9f3d4ac84b9d09f6d3671833cd1a#wechat_redirect' },
+//                { id: 7, src: './images/zxbl.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401347022&idx=1&sn=ee519f076c87b80c791e70514b37e3ab#rd' },
+                { id: 7, src: './images/sdhd.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd' },
+                { id: 4, src: './images/zbs12.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401190971&idx=1&sn=4c1659ecf9359c282c06c68df34fa92d#rd' },
            //     { id: 4, src: './images/zqhd.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=211186234&idx=1&sn=20889a3973778538d09f0e2f216fb574#rd' },
 //                { id: 1, src: './images/zbs.png', href:window.location.origin+'/activity/818hero/heroList.html'  },
                 { id: 2, src: './images/xszn.jpg', href:'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=209894037&idx=1&sn=5ad856a2d275475c801c6a0604874843#rd'  },

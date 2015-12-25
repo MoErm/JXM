@@ -77,16 +77,16 @@ span{margin: 0;padding: 0}
     box-sizing: border-box
 }
 .heroList_img_box_2{
-    padding: 0px 10px 0px 10px;background-color: #b70239;
+    padding: 0px 10px 0px 10px;background-color: #90111d;
 }
 .heroList_img_box{
-   padding: 0px 10px 0px 10px;background-color: #b70239;
+   padding: 0px 10px 0px 10px;background-color: #90111d;
     margin-top: 20px;
 }
 .img_height{
-    height:280px;
+    height:430px;
 }
-
+.backColor{background-color: #90111d}
 
 body{
     font-family: Microsoft YaHei;
@@ -128,7 +128,7 @@ body{
 
     width:90%;
     margin: 0 5%;
-    background-color: #b70239;
+    background-color: #90111d;
     font-size: 14px;
 }
 
@@ -277,23 +277,32 @@ body{
     font-weight:normal;
 }
 .rank{
-    position: absolute;
 
     z-index: 500;
-    top: 240px;
+    position: relative;
     text-align: center;
     font-size: 12px;
     color: #333333;
     width: 80%;
     padding: 15px 0;
-    margin: 0 10%;
+    margin: -10px 10% 0 10%;
     white-space:nowrap;
     background: url("../img/heroList_cloud.png") no-repeat;
     background-size: 100% 100%;
 
 }
+.noticeTitle{
+    position: absolute;
+    font-size: 2.6rem!important;
+    top: 0;
+    margin-top: -18px;
+    color: #fbc40f;
+    font-weight: 900;
+    margin-left: 30px;
+    text-shadow: 2px 2px 1px #5c031e,-2px -2px 1px #5c031e,2px -2px 1px #5c031e,-2px 2px 1px #5c031e,-2px 0px 1px #5c031e,0px 2px 1px #5c031e,2px 0px 1px #5c031e,0px -2px 1px #5c031e;
+}
 .notice{
-
+    position: relative;
     height: 100%;
     width: 92%;
     margin:0 auto;
@@ -304,7 +313,7 @@ body{
 .noticeText{
 
     /* margin-top: -375px; */
-    padding: 60px 22px 30px 22px;
+    padding: 50px 22px 10px 22px;
     background: url("../img/heroList_bg.png");
     background-size: 100% 100%;
 
@@ -315,8 +324,9 @@ body{
 	min-height:960px;
 }
 .infostep{
-	text-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
-	color:#f7d136;
+	/*text-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;*/
+	color:#90111d;
+    font-weight: 700;
 }
 
 .Countdown h1{
@@ -328,13 +338,12 @@ body{
     font-weight:normal;
 }
 .Countdown{
-    position: absolute;
+
     color: #ffffff;
     z-index: 500;
-    top: 300px;
+
     text-align: center;
     font-size:1.5rem;
-    height: 0px;
     width: 80%;
     margin: 0 10%;
     white-space:nowrap;
@@ -423,7 +432,7 @@ body{
     margin-left: 3%;
 }
 .rankTitle{
-    background-color: #d22b3f;
+    background-color: #69080f;
     color: #fbc40f;
     height: 30px;
     line-height: 30px;
@@ -432,19 +441,20 @@ body{
 }
 .rankList{
     position: relative;
-    color: #333333;
+    color: #ffffff;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
 }
 .odd{
-    background-color: #fec9c8;
+    background-color: #a02d34;
 }
 .even{
-    background-color:#feb1af;
+    background-color:#c34c53;
 }
 .you{
     background-color: #fbc40f;
+    color: #69080f;
 }
 .heroList span{
     display: inline-block;
@@ -490,21 +500,62 @@ body{
     background-size: 100%;
     -webkit-animation:ani2 0.3s linear 0s infinite alternate;
 }
-.bindInfo{
+.gongshiInfo{
     color: white;
     z-index: 500;
-    /* top: 260px; */
     text-align: left;
     font-size: 1.2rem;
     margin: 0 auto;
     width: 90%;
+}
+.bindText{
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 5%;
+    color: #90111d;
+    width: 90%;
+    font-size: 1.4rem;
+}
+.bindInfo{
+    position: relative;
+    color: white;
+    z-index: 500;
+    text-align: left;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    width: 90%;
+    background: url("../img/heroList_jiangpin.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.laba:before{
+    content: "";
+    background: url("../img/heroList_laba.png") no-repeat;
+    height: 30px;
+    width: 40px;
+    display: block;
+    position: absolute;
+    left: 0;
+    margin-left: -40px;
+    top: 0;
+    margin-top: -10px;
+    background-size: 100% 100%;
+}
+.laba{
+    position: relative;
+    color: #fbc40f;
 
-
+    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+.labaText{
+    font-size: 1.8rem!important;
 }
 .redShadow{
     font-size: 1.4rem;
     text-shadow: 1px 1px 1px #5c031e,-1px -1px 1px #5c031e,1px -1px 1px #5c031e,-1px 1px 1px #5c031e,-1px 0px 1px #5c031e,0px 1px 1px #5c031e,1px 0px 1px #5c031e,0px -1px 1px #5c031e;
 }
+
 .company_info:before{
     content: "";
     position: absolute;
@@ -520,7 +571,6 @@ body{
 .company_info{
     font-size:12px;;color: #ffc1c0;
     position: relative;
-    background-color: #b70239;
     margin: 0px auto;
     padding: 20px 0;
     text-align: center;
@@ -594,8 +644,8 @@ body{
     }
 }
 .address_btn{width: 80%;margin: 20px auto 20px auto}
-.address_btn button{width: 100%;height: 50px;color: #490d86;background-color: #feaf01;border-radius: 25px;font-weight: bold;font-size: 2.4rem;box-shadow: 0px 5px 0px #885702;}
-.address_tips{text-align: center;font-size: 1.4rem;color: #999999;margin-bottom: 20px}
+.address_btn button{width: 100%;height: 50px;color: #8e1011;background-color: #edd5c2;border-radius: 25px;font-weight: bold;font-size: 2.4rem;box-shadow: 0px 5px 0px #9e6530;}
+.address_tips{text-align: center;font-size: 1.4rem;color: #edd5c2;margin-bottom: 20px}
 .address_ok{text-align: center;font-size: 1.6rem;color: #fecc02;margin: 20px 0}
 .address_tips p{}
 .address_step{margin:0 10% 0px 70px;padding: 10px 0}
@@ -607,7 +657,10 @@ body{
 .address_input p{margin-top: 20px;margin-bottom: 5px;padding-left: 20px}
 .address_input input{border:0;background-color: #490d86;border-radius: 18px;padding:3px 0 3px 20px;color: #ffffff;width: 92%;height: 30px;font-size: 1.4rem}
 .address_radius_div{background-color: #7821d2;line-height: 24px;margin: 10px 5%;font-size: 1.2rem;color: #ffffff;}
-.imgBox{width: 100%;overflow: hidden}
+.imgBox{width: 100%;overflow: hidden;position: relative}
+.address_banner_txt{position: absolute;top: 0;margin: 0px 10% 0 10%;width: 80%;text-align: center;color: #ffffff}
+.address_banner_top{color: #f3e586;font-size: 1.6rem}
+
 .imgHeight_1{height: 430px}
 .textYellow{color: #fecc02;font-size: 1.2rem;display: inline}
 /* WebKit browsers */
@@ -629,14 +682,96 @@ body{
 .address_input:-ms-input-placeholder {
     color: #721fc9;
 }
+/*双旦活动*/
+.Xmas p{color: #8c0b0c}
+.Xmas_rule{background-image: url("../img/addressReg/addressReg_rule_Xmas.png");background-repeat: no-repeat ;background-size: 100% 100%}
+
+.Xmas_rule .Xmas_ruleTxt{width: 75%;margin:0 auto;padding-top: 65px;padding-bottom: 20px}
+.Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.6rem}
+.Xmas{font-size: 1.6rem;padding: 90px 13% 20px 13%;background-image: url("../img/addressReg/addressReg_input_Xmas.png");background-repeat: no-repeat ;background-size: 100% 100%}
+.Xmas input{border:0;padding:3px 0 3px 0px;color: #000000;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 20px}
+.Xmas_calendar{height: 500px;width: 100%;margin: 0 auto;background-color: #2d0d0c;background-image: url("../img/addressReg/addressReg_rili_Xmas.png");background-repeat: no-repeat ;background-size: 100%  100%}
+.Xmas_line{margin: 0 auto 0 auto;width: 320px;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 15px}
+.Xmas_line span{height: 60px;width: 60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2%;font-size: 1.4rem}
+.Xmas_line .Xmas_normal{border: 1px solid #275b23;color:#275b23;text-align: center}
+.Xmas_line .Xmas_active{border: 1px solid #2d0d0c;color: #ffffff;text-align: center;background: #2d0d0c}
+.Xmas_line .Xmas_img{height: 38px;width: 100%;}
+.Xmas_line .Xmas_img img{height: 38px}
+.Xmas_detail_box{border-top: 1px #8c0b0c dashed;margin: 0 8%;background: #f9eee4;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;position: relative}
+.Xmas_detail_box .Xmas_cross_img{position: absolute;top: 0;right: 50%;margin-right: -35px;margin-top: -12px}
+
+.Xmas_day{padding: 3px 5px;border-radius: 3px;background: #8c0b0c;position: absolute;color: #ffffff;top: 14%;left:6%;width: 60px;text-align: center}
+.Xmas_giftName{position: absolute;left:30%;width: 100px;color: #494949;top: 12%;font-size: 1.4rem}
+.Xmas_tiaojian{position: absolute;left: 5%;bottom: 5%;font-size: 1.6rem}
+.Xmas_tiaojian_d{color: #750e0f;font-size: 1.6rem}
+.Xmas_tupian{position: absolute;right: 5%;bottom:25%}
+.Xmas_move{ -webkit-animation:X_mas_ani 0.5s linear 0s forwards ;}
+.Xmas_tupian img{width: 130px}
+.Xmas_amount{position: absolute;right:30px;bottom:10px;color: #494949}
+.Xmas_input{width: 100%;margin: 0 auto;background-color: #2d0d0c;position: relative}
+.Xmas_input_date{position: absolute;right: 50%;color: #ffffff;top: 25px;margin-right: -55px}
+.Xmas_value{font-size: 2rem}
+.bannerHeight{height: 180px}
+
+@-webkit-keyframes X_mas_ani{
+    0%   {
+        transform: scale(0);
+        opacity: 0;
+        /*transform:  rotateX(0deg);*/
+        /*transform-origin:0% 0%;*/
+    }
+    100% {
+        transform: scale(1);
+        /*transform:  rotateX(360deg);*/
+        /*transform-origin:0% 0%;*/
+        opacity: 1;
+
+    }
+}
+@keyframes X_mas_ani{
+    0%   {
+        transform: scale(0);
+        opacity: 0;
+        /*transform:  rotateX(0deg);*/
+        /*transform-origin:0% 0%;*/
+    }
+    100% {
+        transform: scale(1);
+        /*transform:  rotateX(360deg);*/
+        /*transform-origin:0% 0%;*/
+        opacity: 1;
+    }
+}
 /*iphone6*/
 @media screen and (min-width: 371px) and (max-width: 400px) {
-    .img_height{height:260px;}
+    /*.Xmas_line span{height: 60px;width:60px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 6px;}*/
+    .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.4rem}
+    .bindText{ position: absolute; margin-top: 302px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.4rem;}
+
+    .Xmas_tupian img{width: 100px}
+    .Xmas_amount{position: absolute;right:10px;bottom:10px}
+    .labaText{font-size: 1.6rem!important; }
+    .img_height{height:380px;}
     .imgHeight_1{height: 390px}
+    .bannerHeight{height: 160px}
 }
 
 /*iphone4 5*/
 @media screen  and (max-width: 370px) {
-    .img_height{height:240px;}
+    .Xmas_rule .Xmas_ruleTxt p{margin: 5px 0;font-size: 1.2rem}
+    .Xmas_line .Xmas_img{height: 33px;width: 100%;}
+    .Xmas_line .Xmas_img img{height: 33px}
+    .Xmas_line{margin: 0 auto 0 auto;width: 280px  ;display: flex;flex-wrap: wrap;align-content: space-between;justify-content:flex-start;padding: 0px 0 10px 5px}
+    .Xmas_line span{height: 52px;width: 52px;background-color: #ffffff;border-radius: 5px;display: inline-block;margin: 2% 2.4%;font-size: 1rem}
+    .Xmas_giftName{position: absolute;left:35%;width: 100px;color: #494949;top: 12%;font-size: 1.2rem}
+    .Xmas_tiaojian{position: absolute;left: 5%;bottom: 5%;font-size: 1.2rem}
+    .Xmas_tiaojian_d{color: #750e0f;font-size: 1.4rem}
+    .Xmas_tupian img{width: 80px}
+    .Xmas_amount{position: absolute;right: 5px;bottom:10px}
+    .Xmas input{border:0;padding:3px 0 3px 0px;color: #000000;width: 100%;height: 30px;font-size: 1.4rem;border-bottom: 1px dashed #8c0b0c;margin-bottom: 10px}
+    .bindText{ position: absolute; margin-top: 270px; margin-left: 5%;color: #90111d;width: 90%;font-size: 1.2rem;}
+    .labaText{font-size: 1.4rem!important; }
+    .img_height{height:340px;}
     .imgHeight_1{height: 335px}
+    .bannerHeight{height: 140px}
 }

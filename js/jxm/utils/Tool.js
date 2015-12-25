@@ -48,7 +48,6 @@ define(function(require, exports, module) {
         }
       ;
     }
-    //Money
     Tool.prototype.dealMoney2 = function(str){
         var money = str.toString().split('.');
         return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + '元'
@@ -60,17 +59,40 @@ define(function(require, exports, module) {
 //        }else{
 //
 //        }
-        ;
+            ;
     }
-    Tool.prototype.showTag = function(type,isNew){
+    Tool.prototype.showTag = function(type,isNew,time,saleStartTime,productTag){
         var str=""
+        var month=saleStartTime.split("/")
+//        console.log(month[1])
+       var time1=time.substring(0,time.length-1)
+        time1=parseInt(time1)
+//        console.log(time1+"  "+(time1>80&&time1<100))
         if(isNew=="1"){
-            str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">新手专享</div></div>'
+            str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
         }else{
             if(type=='02'){
-                str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
+                if(time1>80&&time1<100){
+                    if(month[1]=='11'){
+                        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
+                    }else{
+                        str=""
+                    }
+                }
+                if(productTag!=""){
+                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
+                }
             }else{
-                str=""
+                if(time1>80&&time1<100){
+                    if(month[1]=='11'){
+                        str='<div style="position: relative;display: inline-block;width: 80px"><div class="listTag">11月争霸赛</div></div>'
+                    }else{
+                        str=""
+                    }
+                }
+                if(productTag!=""){
+                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
+                }
             }
         }
         return str;

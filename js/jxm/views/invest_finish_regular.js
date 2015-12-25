@@ -3,6 +3,8 @@ define(function (require, exports, module) {
 	var Template = require("jxm/tpl/invest_finish_regular.tpl");
 	var tool = require("jxm/utils/Tool");
 	var common = require("jxm/common/common")
+    var model = require('jxm/model/model');
+    var activityCondition = new model.activityCondition();
 	var handle = new tool();
 	var self;
 	module.exports = App.Page.extend({
@@ -10,9 +12,12 @@ define(function (require, exports, module) {
 			self = this;
 		},
         events: {
-            'click .finish_hongbao': 'SeBonus'
+            'click .finish_hongbao_btn': 'SeBonus',
+            'click .js_notice': 'toAddressReg'
         },
-
+        toAddressReg:function(){
+            window.location.href=window.location.origin+'/activity/818hero/addressReg_Xmas.html'
+        },
 
         regQR:function(){
             App.Bridge(function(bridge,scope){
@@ -54,9 +59,48 @@ define(function (require, exports, module) {
 			var investAmount=data.data.fixedProdInfo&&parseFloat((data.data.fixedProdInfo.investAmount).split(",").join(""));
 
 			self.$el.html(_.template(Template)(data.data));
+            self.checkUser()
 			//if(investAmount&&investAmount>=10000){common.showAD(self)};
 			//localStorage.removeItem('regular')
 		},
+        checkUser:function(){
+            activityCondition.exec({
+                type: 'get',
+                success: function(data){
+                    console.log(data)
+                    if(data.ret == 0) {
+
+                        if(data.data.productSource=='00'||data.data.productSource=='01'){
+
+                            if(data.data.isGot=='0'){
+                                if(data.data.productSource=='00'){
+                                    self.$('.notice_tran_Xmas').html("当日继续投资任意活动产品"+data.data.surplusAmount+"，您即可获取双旦大礼")
+                                }else if(data.data.productSource==01){
+                                    self.$('.notice_tran_Xmas').html(data.data.zxEndDate+"前继续投资中信保理"+data.data.surplusAmount+"，您即可获取双旦大礼")
+                                }
+                                self.$('.notice_Xmas').css("display","block")
+                                self.$('.js_notice').css("display","block")
+                            }else{
+                                self.$('.notice_Xmas').css("display","block")
+                                self.$('.js_notice').css("display","block")
+                                self.$('.notice_tran_Xmas').html(" 您已获得双旦活动奖品，立即前往填写您的收货地址信息")
+                            }
+                        }else{
+                            self.$('.notice_Xmas').css("display","none")
+                            self.$('.js_notice').css("display","none")
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
+        },
 		setHeader: function(){
 			var header = new App.UI.UIHeader();
 			header.set({

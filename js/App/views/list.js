@@ -1,7 +1,7 @@
 //产品列表
 define(function (require, exports, module) {
         var footer = require('jxm/tpl/footer.tpl');
-        var list = require('jxm/tpl/list.tpl');
+        var list = require('App/tpl/list.tpl');
         var model = require('jxm/model/model');
         var store = require('jxm/model/store');
         var tool = require('jxm/utils/Tool');
@@ -25,13 +25,8 @@ define(function (require, exports, module) {
             events: {
                 'click .js_my_invest': 'myInvest',//我的投资
                 'click .js_setting': 'setting',//设置
-                'click .js_ttl': 'js_ttl',//设置
                 'click .js_list_btn': 'listBtn',//购买
-                'click .js_list_item': 'listItem',//产品跳转
-                'click .ico_f_list': 'goRecommend'//推荐
-            },
-            js_ttl:function(){
-              App.goTo("ttl_recommend")
+                'click .js_list_item': 'listItem'//产品跳转
             },
             onShow: function () {
                 var query = this.request.query;
@@ -43,7 +38,7 @@ define(function (require, exports, module) {
                 self.setHeader();
                 handle.share();
                 handle.orientationTips();
-                self.$el.html('<div class="js_content"></div>' + footer);
+                self.$el.html('<div class="mod_focus js_show_ad" style="height:188px"></div><div class="js_content"></div>');
                 self.$('.js_product_list').addClass('cur');
 
                     self.getUserInfo();
@@ -51,7 +46,7 @@ define(function (require, exports, module) {
                 return self.showProduct();
             },
             noProduct: function(){
-                self.$('.js_content').html('<article class="mod_page mod_list js_list"><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article>');
+                self.$('.js_content').html('<p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p>');
             },
             getUserInfo:function(){
                 getUserInfo.exec({
@@ -59,9 +54,11 @@ define(function (require, exports, module) {
                     success: function(data){
                         if(data.ret == 0){
                             loginStore.set(data.data);
-//                            self.showAd();
+                            self.showAd();
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+//                            handle.goLogin();
+                            handle.rmStore()
+                            window.app.outTime()
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -156,16 +153,16 @@ define(function (require, exports, module) {
                                 }else{
                                     self.noProduct();
                                     self.nextProduct();
-//                                    self.noProduct();
                                 }
                             }else{
-                                self.noProduct();
+                                    self.noProduct();
                                 self.nextProduct();
-//                                    self.noProduct();
                             }
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+//                            handle.goLogin();
                             self.clearTime();
+                            handle.rmStore()
+                            window.app.outTime()
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -224,7 +221,9 @@ define(function (require, exports, module) {
                             }
                         }else if(data.ret == 999001){
                             self.clearTime();
-                            handle.goLogin();
+                            handle.rmStore()
+                            window.app.outTime()
+//                            handle.goLogin();
                         }else{
                             self.$('.js_loading').hide();
                         }
@@ -347,7 +346,8 @@ define(function (require, exports, module) {
             },
             listItem: function(e){
                 var isHistory = $(e.currentTarget).closest('.js_listing').data('history') ? '&history=1' : '';
-                App.goTo('detail?pid=' + $(e.currentTarget).attr('id') + isHistory);
+                window.app.detail('pid='+$(e.currentTarget).attr('id') + isHistory)
+//                App.goTo('detail?pid=' + $(e.currentTarget).attr('id') + isHistory);
             },
             listBtn: function(e){
                 e.stopImmediatePropagation();
@@ -364,18 +364,21 @@ define(function (require, exports, module) {
                     self.alert.show();
                 }else{
                     //已结束跳转产品详情页
-                    App.goTo('detail?pid=' + pid);
+                    window.app.detail('pid='+pid)
+//                    App.goTo('detail?pid=' + pid);
                 }
             },
-            giveUp:function(pid){
+            giveUp:function(){
                 abortChange.exec({
                     type: "post",
                     success: function (data){
                         if(data.ret == 0){
                             //解锁成功
-                            self.toInvestConfirm(pid);
+//                            self.toInvestConfirm(pid);
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+                            handle.rmStore()
+                            window.app.outTime()
+//                            handle.goLogin();
                         }else{
                             App.showToast(data.msg);
                         }
@@ -395,13 +398,15 @@ define(function (require, exports, module) {
                     success: function(data){
                         App.hideLoading();
                         if(data.ret == 0){
-                            App.goTo('invest_confirm?pid=' + pid)
+                            window.app.buy('pid='+pid)
+//                            App.goTo('invest_confirm?pid=' + pid)
                         }else if(data.ret == 110001){
                             //未绑定银行卡
                             if(!self.promptAlert){
                                 self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink('list');
-                                    App.goTo('bind_card_new');
+                                    window.app.bindCard()
+//                                    App.goTo('bind_card_new');
                                 });
                             }
                             self.promptAlert.show();
@@ -410,29 +415,33 @@ define(function (require, exports, module) {
                             if(!self.passAlert){
                                 self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink('list');
-                                    App.goTo('set_card_psw');
+                                    window.app.setMoneyPsw()
+//                                    App.goTo('set_card_psw');
                                 });
                             }
                             self.passAlert.show();
                         }else if(data.ret == 110203){
-                            self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
-                                //解除锁定
-                                self.giveUp(pid)
-                            });
-                            self.promptAlert.show();
-
-//                            self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+//                            self.promptAlert = handle.alert(" 您的银行卡处于换卡中，由于系统升级请使用原卡进行购买",function(){
 //                                //解除锁定
-//                                self.giveUp()
-//                            }, function(){
-//                                //继续更换
-//                                App.goTo("rebind_card")
+//                                self.giveUp(pid)
 //                            });
 //                            self.promptAlert.show();
+
+                            self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+                                //解除锁定
+                                self.giveUp()
+                            }, function(){
+                                //继续更换
+                                window.app.rebindCard()
+//                                App.goTo("rebind_card")
+                            });
+                            self.promptAlert.show();
                         }
                         else if(data.ret == 999001){
                             self.clearTime();
-                            handle.goLogin();
+                            handle.rmStore()
+                            window.app.outTime()
+//                            handle.goLogin();
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -456,10 +465,6 @@ define(function (require, exports, module) {
                 if(self.promptAlert){self.promptAlert.hide();}
                 if(self.passAlert){self.passAlert.hide();}
                 self.$el.html('');
-            },
-            goRecommend: function(){
-
-                App.goTo('ttl_recommend');
             }
         })
 })

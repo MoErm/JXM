@@ -85,6 +85,9 @@ gulp.task('pack-js-2', ['clean'], function() {
 gulp.task('pack-js-3', ['clean'], function() {
     return packJs('./js/zrender/*.js', './dest/js/zrender')
 })
+gulp.task('pack-js-4', ['clean'], function() {
+    return packJs('./js/App/**/*.js', './dest/js/App')
+})
 gulp.task('pack-lib', ['clean'], function() {
     return gulp.src('./js/hih5/*.js')
         .pipe(gulp.dest('./dest/js/hih5'))
@@ -98,7 +101,7 @@ gulp.task('pack-html', ['clean'], function() {
     return packHtml('./index.html', './dest')
 })
 
-gulp.task('serve', ['pack-css', 'pack-js', 'pack-img', 'pack-html', 'pack-lib','pack-js-1','pack-js-2','pack-js-3'], function () {
+gulp.task('serve', ['pack-css', 'pack-js', 'pack-img', 'pack-html', 'pack-lib','pack-js-1','pack-js-2','pack-js-3','pack-js-4'], function () {
   connect.server({
     port: port,
     livereload: {
