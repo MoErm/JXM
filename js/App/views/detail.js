@@ -1,6 +1,6 @@
 //产品详情
 define(function (require, exports, module) {
-        var detail = require('jxm/tpl/detail.tpl');
+        var detail = require('App/tpl/detail.tpl');
         var history = require('jxm/tpl/investor.tpl');
         var model = require('jxm/model/model');
         var tool = require('jxm/utils/Tool');
@@ -128,7 +128,9 @@ define(function (require, exports, module) {
                                                 self.$('.js_content').show();
                                             }
                                         }else if(data.ret == 999001){
-                                            handle.goLogin();
+//                                            self.loginTimeout();
+                                            handle.rmStore()
+                                            window.app.outTime()
                                         }
                                     },
                                     error: function(){
@@ -177,7 +179,9 @@ define(function (require, exports, module) {
                                 App.goTo("setting")
                             }
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+//                            self.loginTimeout();
+                            handle.rmStore()
+                            window.app.outTime()
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -196,7 +200,9 @@ define(function (require, exports, module) {
                             //解锁成功
                            // self.toInvestConfirm();
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+//                            handle.goLogin();
+                            handle.rmStore()
+                            window.app.outTime()
                         }else{
                             App.showToast(data.msg);
                         }
@@ -216,14 +222,16 @@ define(function (require, exports, module) {
                     'success': function(data){
                         var url = self.request.url;
                         if(data.ret == 0){
-                            App.goTo('invest_confirm?pid=' + self.data.productNo)
+                            window.app.detail('pid='+self.data.productNo)
+//                            App.goTo('invest_confirm?pid=' + self.data.productNo)
                         }else if(data.ret == 110001){
                             //未绑定银行卡
                             App.hideLoading();
                             if(!self.promptAlert){
                                 self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink(url);
-                                    App.goTo('bind_card_new');
+                                    window.app.bindCard()
+//                                    App.goTo('bind_card_new');
                                 });
                             }
                             self.promptAlert.show();
@@ -233,7 +241,8 @@ define(function (require, exports, module) {
                             if(!self.passAlert){
                                 self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink(url);
-                                    App.goTo('set_card_psw');
+//                                    App.goTo('set_card_psw');
+                                    window.app.setMoneyPsw()
                                 });
                             }
                             self.passAlert.show();
@@ -244,12 +253,15 @@ define(function (require, exports, module) {
                                 self.giveUp()
                             }, function(){
                                 //继续更换
-                                App.goTo("rebind_card")
+                                window.app.rebindCard()
+//                                App.goTo("rebind_card")
                             });
                             self.promptAlert.show();
                         }
                         else if(data.ret == 999001){
-                            handle.goLogin();
+//                            self.loginTimeout();
+                            handle.rmStore()
+                            window.app.outTime()
                         }else{
                             App.hideLoading();
                             App.showToast(data.msg  || message);
@@ -282,7 +294,9 @@ define(function (require, exports, module) {
                                     self.noHistory();
                                 }
                             }else if(data.ret == 999001){
-                                handle.goLogin();
+//                                self.loginTimeout();
+                                handle.rmStore()
+                                window.app.outTime()
                             }else{
                                 self.noHistory();
                             }

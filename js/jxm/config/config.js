@@ -32,6 +32,14 @@ window.global_config = {
             "url": "list",
             "controller": "list"
         }, {
+            "url": "App_list",
+            "controller": "App_list"
+        },
+        {
+            "url": "App_detail",
+            "controller": "App_detail"
+        },
+        {
             "url": "detail",
             "controller": "detail"
         },
@@ -207,7 +215,9 @@ requirejs.config({
         'error': 'jxm/views/error',
         'index': 'jxm/views/index',
         'detail': 'jxm/views/detail',
+        'App_detail': 'App/views/detail',
         'list': 'jxm/views/list',
+        'App_list': 'App/views/list',
         'reg': 'jxm/views/reg',
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
