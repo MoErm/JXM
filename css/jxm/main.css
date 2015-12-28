@@ -1323,7 +1323,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_buy_one_t .info_add .title, .ttl_buy_one_t .info_add .num { font-size: 1.5rem; color: #000; padding: 10px 0 0 0; }
 .ttl_buy_one_t .info_add .percent,
 .ttl_buy_one_t .info_add .percent_unit {font-size: 1.5rem; color: #db3710;  height: 27px; padding: 10px 0 0 0; }
-.ttl_buy_one_t .info_add .percent {font-size: 2rem;}
+.ttl_buy_one_t .info_add .percent {font-size: 2rem;line-height: 1.3rem;}
 .ttl_buy_one_t .info_add .title { height: 27px; }
 .ttl_buy_one_t .info_add .num_unit { color: #9b9b9b;font-size: 1.2rem; }
 
