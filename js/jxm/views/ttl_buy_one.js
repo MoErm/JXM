@@ -98,7 +98,9 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.pageData.cardData.surplusAmount= handle.dealMoney(self.pageData.cardData.surplusAmount,2);
+            self.pageData.cardData.surplusAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
+            self.pageData.cardData.miNRate= self.pageData.cardData.initialRate*100;
+            self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*100;
             //添加内容
             self.$el.html(_.template(buyStepOne)(self.pageData));
             self.initSession();
@@ -192,7 +194,7 @@ define(function(require, exports, module) {
                 App.showToast("请输入投资金额");
                 return;
             }else if(Number(self.amountVal)%100!=0){
-                App.showToast("投资金额需是1,000元的整数倍");
+                App.showToast("投资金额需是100元的整数倍");
                 return;
             }
             if(self.pageData.cardData.isContractAgreed==0){
