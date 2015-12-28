@@ -88,11 +88,13 @@ define(function (require, exports, module) {
 //                return
 //            }
             if(todaySurplusTimes==0){
-                App.showToast("今日赎回次数已用完，请明日再来")
+                self.promptAlert = handle.alert("今日赎回次数已用完，请明日再来");
+                self.promptAlert.show();
                 return
             }
             if(todaySurplusAmount==0){
-                App.showToast("今日赎回限额已用完，请明日再来")
+                self.promptAlert = handle.alert("今日赎回限额已用完，请明日再来");
+                self.promptAlert.show();
                 return
             }
             var redeemValue = handle.deleteAllBlank(self.$('#redeemValue').val());
@@ -101,11 +103,13 @@ define(function (require, exports, module) {
                 return
             }
             if(todaySurplusAmount<redeemValue){
-                App.showToast("赎回金额大于今日可赎回限额")
+                self.promptAlert = handle.alert("赎回金额大于今日可赎回限额");
+                self.promptAlert.show();
                 return
             }
             if(todaySurplusAmount<100){
-                App.showToast("赎回金额必须大于100元")
+                self.promptAlert = handle.alert("赎回金额必须大于100元");
+                self.promptAlert.show();
                 return
             }
             if(totalAmount-redeemValue<100&&totalAmount-redeemValue!=0){

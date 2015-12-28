@@ -16,8 +16,10 @@ define(function (require, exports, module) {
 	      <p class="redemption_rate_d"><%=currentDate%></p>\
 	    </div>\
 	  </div>\
+	  <%if(records.length>=1){%>\
 	  <ul class="redemption_list" id="invest_record">\
 	    <li class="redemption_list_t">赎回明细</li>\
+	    <%}%>\
 	    <% _.each(records, function(order){%>\
 	    <li  class=" item investList">\
 	    <div style="position: relative">\

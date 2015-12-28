@@ -47,7 +47,7 @@ define(function(require, exports, module) {
                 return;
             }
             getTtlServiceData.set({
-                "amount":  self.orderNo
+                "orderNo":  self.orderNo
             });
             getTtlServiceData.exec({
                 type: 'get',

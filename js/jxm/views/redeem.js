@@ -52,7 +52,7 @@ define(function (require, exports, module) {
                         console.log("inPageNum")
                         self.showMoreIn()
                     }else{
-                        if(outPageNum>=outPageTotal){
+                        if(outPageNum>outPageTotal){
                             return
                         }
                         console.log("outPageNum")
@@ -285,13 +285,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        var query = this.request.query;
-                        var type=query&&query.type||"";
-                       if(type==1){
                            App.goTo("ttl_introduce")
-                       }else{
-                           App.goTo("my_invest")
-                       }
                     }
                 },
                 center: {
