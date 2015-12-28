@@ -128,9 +128,16 @@ define(function(require, exports, module) {
         var self = this;
         App.hideLoading();
         App.showToast('登录超时，请重新登录');
+
         setTimeout(function(){
-            self.rmStore();
-            App.goTo('login');
+            if(self.mobileType()=="android"){
+                self.rmStore();
+                window.app.outTime()
+            }else{
+                self.rmStore();
+                App.goTo('login');
+            }
+
         },2000);
     }
     //清空缓存

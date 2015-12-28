@@ -121,7 +121,7 @@ define(function (require, exports, module) {
                             if(query&&query.origin=="rebind"){
                                 App.goTo('add_card');
                             }else{
-                                App.goTo('list');
+                                App.goBack();
                             }
 
                         },2000);

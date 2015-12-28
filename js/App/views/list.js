@@ -56,9 +56,9 @@ define(function (require, exports, module) {
                             loginStore.set(data.data);
                             self.showAd();
                         }else if(data.ret == 999001){
-//                            handle.goLogin();
-                            handle.rmStore()
-                            window.app.outTime()
+                            handle.goLogin();
+//                            handle.rmStore()
+//                            window.app.outTime()
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -346,7 +346,7 @@ define(function (require, exports, module) {
             },
             listItem: function(e){
                 var isHistory = $(e.currentTarget).closest('.js_listing').data('history') ? '&history=1' : '';
-                window.app.detail('pid='+$(e.currentTarget).attr('id') + isHistory)
+                window.app.goHtml('App_detail?pid='+$(e.currentTarget).attr('id') + isHistory)
 //                App.goTo('detail?pid=' + $(e.currentTarget).attr('id') + isHistory);
             },
             listBtn: function(e){
@@ -364,7 +364,7 @@ define(function (require, exports, module) {
                     self.alert.show();
                 }else{
                     //已结束跳转产品详情页
-                    window.app.detail('pid='+pid)
+                    window.app.goHtml('App_detail?pid='+pid)
 //                    App.goTo('detail?pid=' + pid);
                 }
             },
@@ -398,14 +398,14 @@ define(function (require, exports, module) {
                     success: function(data){
                         App.hideLoading();
                         if(data.ret == 0){
-                            window.app.buy('pid='+pid)
+                            window.app.goHtml('invest_confirm?pid='+pid)
 //                            App.goTo('invest_confirm?pid=' + pid)
                         }else if(data.ret == 110001){
                             //未绑定银行卡
                             if(!self.promptAlert){
                                 self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink('list');
-                                    window.app.bindCard()
+                                    window.app.goHtml('bind_card_new')
 //                                    App.goTo('bind_card_new');
                                 });
                             }
@@ -432,16 +432,16 @@ define(function (require, exports, module) {
                                 self.giveUp()
                             }, function(){
                                 //继续更换
-                                window.app.rebindCard()
+                                window.app.goHtml("rebind_card")
 //                                App.goTo("rebind_card")
                             });
                             self.promptAlert.show();
                         }
                         else if(data.ret == 999001){
                             self.clearTime();
-                            handle.rmStore()
-                            window.app.outTime()
-//                            handle.goLogin();
+//                            handle.rmStore()
+//                            window.app.outTime()
+                            handle.goLogin();
                         }else{
                             App.showToast(data.msg  || message);
                         }

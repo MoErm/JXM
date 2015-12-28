@@ -343,10 +343,10 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .bonus_btn_disable{background-color: #e9e9e9;color: #8f8f8f;}
 .bonus_bg2{width: 100%;height:220px;margin:0;z-index: 1;position: absolute}
 .bonus_rotate{
-    -webkit-animation:ani1 3s linear 0s infinite alternate;
+    -webkit-animation:ani 3s linear 0s infinite alternate;
 
 }
-@-webkit-keyframes ani1{
+@-webkit-keyframes ani{
     0%   {
         transform:rotateY(0deg);
         -ms-transform:rotateY(0deg); 	/* IE 9 */
@@ -446,6 +446,14 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_tip2 { width: 70%; margin: 5px auto; font-size: 1.2rem; color: #a1a1a1; position: relative }
 .redemption_tip2:before { background-image: url(../../images/sprite.png); background-repeat: no-repeat; background-size: 200px auto; overflow: hidden; background-position: 0px -60px; content: ""; display: block; position: absolute; height: 20px; width: 20px; left: 0; margin-left: -25px; }
 .redemption_btn { color: #ffffff; background: #d01b02; width: 80%; margin: 40px 10% 20px 10%; height: 48px; line-height: 48px; font-size: 2.2rem; text-align: center; border-radius: 5px; }
+.redemption_art .same_card_tip { width: 85%; margin: 0 auto; color: #9b9b9b; }
+.redemption_art .same_card_tip .tip_head { font-size: 1.8rem; height: 30px; text-align: center; margin: 5px 0; position: relative; }
+.redemption_art .same_card_tip .tip_head .text { display: inline-block; background: #F2F2F2; padding: 0 10px; z-index: 10; position: absolute; top: 0; left: 40%; }
+.redemption_art .same_card_tip .tip_head .line { display: block; height: 1px; background: #C5C5C5; position: absolute; top: 50%; width: 100%; }
+.redemption_art .same_card_tip .tip_text { display: inline-block; float: left; width: 85%; font-size: 1.2rem; }
+.redemption_art .same_card_tip .tip_icon { display: inline-block; width: 20px; height: 20px; float: left; margin: 0 10px 0 10px; background: url(../../images/ttl_icon_m.png) no-repeat; background-size: 100%; }
+
+
 .redemption_title { padding: 5px 3% 5px 3%; color: #333333 }
 .redemption_finish_bg { background: #ffffff; border-bottom: 1px solid #cecece; }
 .redemption_tips { font-size: 1.6rem; color: #333333 }
@@ -474,7 +482,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .payRedeem { border-top-left-radius: 5px; border-top-right-radius: 5px; position: fixed; bottom: 0; z-index: 9999; background: #ffffff; width: 100%; right: 0 }
 .payRedeem .payRedeem_title { width: 100%; text-align: center; position: relative; border-bottom: 1px solid #d01b02; height: 48px; line-height: 48px; font-size: 1.8rem }
 .payRedeem .payRedeem_close:after { background-image: url(../../images/sprite.png); background-repeat: no-repeat; background-size: 200px auto; overflow: hidden; background-position: -180px -199px; content: ""; display: block; position: absolute; height: 21px; width: 20px; right: 0; margin-right: 20px; top: 0; margin-top: 12px }
-.payRedeem_input { width: 90%; margin: 40px auto 0 auto }
+.payRedeem_input { width: 90%; margin: 20px auto 0 auto }
 .payRedeem_input input { padding: 10px; max-width: 100%; min-width: 60%; border: 1px solid #a1a1a1; border-radius: 5px; margin-left: 20px }
 .payRedeem_forget { text-align: right; display: block; margin-right: 30px }
 .payRedeem_forget a { color: #fe6400 }
@@ -482,14 +490,17 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .payRedeem_margin { margin: 30px 10% 20px 10%; }
 .payRedeem_bgRed { background: #d01b02 }
 .payRedeem_bgGrey { background: #a1a1a1; }
+.payRedeem .pay_detail { text-align: center; padding: 10px 0; }
+.payRedeem .pay_detail .num { font-size: 3rem; color: #db3710; }
+
 .ico_up { position: relative; }
 .ico_up:after { background-position: -35px -48px; content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 300px auto; overflow: hidden; position: absolute; left: 0; top: 0; width: 21px; height: 21px; margin-top: -2px }
 .ico_book:before, .ico_coin:before { content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 400px auto; overflow: hidden; position: absolute; left: 0; top: 0; width: 46px; height: 46px; }
 .ico_book:before { background-position: -291px -36px }
 .ico_coin.cur:before { background-position: -238px -36px }
 .ico_coin:before { background-position: -344px -36px }
-.ico_card:before, .ico_redbao:before, .ico_ttl:before, .ico_jiaxin:before, .ico_yaoqing:before { content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 400px auto; overflow: hidden; }
-.ico_redbao:before, .ico_ttl:before, .ico_jiaxin:before, .ico_yaoqing:before { display: inline-block; width: 22px; height: 26px; vertical-align: middle; margin-right: 6px; }
+.ico_card:before, .ico_redbao:before, .ico_ttl:before, .ico_jiaxin:before, .ico_yaoqing:before { content: ''; background-image: url(../../images/sprite_3.png); background-repeat: no-repeat; background-size: 400px auto; overflow: hidden; }
+.ico_redbao:before, .ico_ttl:before, .ico_jiaxin:before, .ico_yaoqing:before { display: inline-block; width: 30px; height: 30px; vertical-align: middle; margin-right: 6px; }
 .ico_tuijian:before, .ico_licai:before, .ico_wode:before, .ico_setting:before { width: 21px; height: 21px; vertical-align: middle; margin-right: 6px; content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 250px auto; overflow: hidden; }
 .ico_tuijian:before { background-position: -24px -60px; width: 24px; }
 .ico_licai:before { background-position: -81px -60px; }
@@ -499,10 +510,10 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ico_licai.cur:before { background-position: -81px -91px; }
 .ico_wode.cur:before { background-position: -133px -91px; width: 28px }
 .ico_setting.cur:before { background-position: -192px -90px; width: 24px; height: 24px }
-.ico_redbao:before { background-position: -45px -38px; }
-.ico_ttl:before { background-position: -80px -38px; }
-.ico_jiaxin:before { background-position: -115px -38px; }
-.ico_yaoqing:before { background-position: -145px -38px; }
+.ico_redbao:before { background-position: -73px -38px;}
+.ico_ttl:before { background-position: -25px -36px; }
+.ico_jiaxin:before { background-position: -120px -36px; }
+.ico_yaoqing:before { background-position: -165px -38px; }
 
 /*-- start--*/
 .mod_page{position:relative;margin-top: 0;}
@@ -668,7 +679,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .invest_change p { white-space: nowrap; display: inline; }
 
 /*-- start--*/
-.invest_base_info { margin-bottom: 0px; padding: 20px 15px; background-color: #FFF; }
+.invest_base_info { margin-bottom: 0px; padding: 0px 15px 20px 15px; background-color: #FFF; }
 .invest_base_info .v_item_bd { position: relative; }
 .invest_base_info .v_item_title { display: block; font-size: 1.4rem; color: #9b9b9b; }
 .invest_base_info .v_item_cont { display: block; font-size: 2rem; color: #d01b02; }
@@ -731,10 +742,10 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redeem_list span { display: inline-block; font-size: 1.4rem; color: #a7a7a7; width: 80px }
 .redeem_list .detail { color: #575757 }
 .redeem_shouyi { position: absolute; top: 0; right: 0; margin-top: 35px; margin-right: 40px; text-align: center; color: #575757 }
-.my_invest { margin: 0 0; padding: 0 10px 10px 10px; border-bottom: dashed 1px #cecece }
-.my_invest .invest_title { color: #a7a7a7 }
-.my_invest .invest_money { font-size: 2.8rem; color: #d01c02 }
-.my_change { background-color: #ffffff; border-bottom: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; }
+.my_invest { margin: 0 0; padding: 0 10px 10px 10px; background:url(../../images/my_invest_bg.jpg) no-repeat;background-size: 100% 100%;height: 100px}
+.my_invest .invest_title { color: #ffffff }
+.my_invest .invest_money { font-size: 2.8rem; color: #ffffff}
+.my_change { background-color: #ffffff; border-bottom: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px;border-top: 1px solid #cecece}
 .invest_invite { background-color: #ffffff; border-bottom: 1px solid #cecece; border-top: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px }
 .invest_tiantian { background-color: #ffffff; border-bottom: 1px dashed #cecece; border-top: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px }
 .fontBlack { color: #4f4f4f; }
@@ -840,8 +851,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
     animation:ani2 20s linear 0s infinite;
 }
 .notice_tran{
-    -webkit-animation:ani2 30s linear 0s infinite;
-    animation:ani2 30s linear 0s infinite;
+    -webkit-animation:ani1 30s linear 0s infinite;
+    animation:ani1 30s linear 0s infinite;
 }
 
 @keyframes ani1{ 0%{margin-left:100%}100% { margin-left:-230%}}

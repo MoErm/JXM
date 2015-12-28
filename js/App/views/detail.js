@@ -23,6 +23,7 @@ define(function (require, exports, module) {
                 'click .js_investHistory': 'investHistory'//投资记录
             },
             onShow: function () {
+
                 self.setHeader();
                 handle.orientationTips();
                 return self.showProduct();
@@ -129,8 +130,8 @@ define(function (require, exports, module) {
                                             }
                                         }else if(data.ret == 999001){
 //                                            self.loginTimeout();
-                                            handle.rmStore()
-                                            window.app.outTime()
+                                            handle.goLogin()
+//                                            window.app.outTime()
                                         }
                                     },
                                     error: function(){
@@ -222,7 +223,7 @@ define(function (require, exports, module) {
                     'success': function(data){
                         var url = self.request.url;
                         if(data.ret == 0){
-                            window.app.detail('pid='+self.data.productNo)
+                            window.app.goHtml('invest_confirm?pid=' + self.data.productNo)
 //                            App.goTo('invest_confirm?pid=' + self.data.productNo)
                         }else if(data.ret == 110001){
                             //未绑定银行卡
@@ -253,7 +254,7 @@ define(function (require, exports, module) {
                                 self.giveUp()
                             }, function(){
                                 //继续更换
-                                window.app.rebindCard()
+                                window.app.goHtml("rebind_card")
 //                                App.goTo("rebind_card")
                             });
                             self.promptAlert.show();

@@ -398,6 +398,10 @@ define(function(require, exports, module) {
         payRedeem: function(redeemValue) {
             var tem = '<div class="payRedeem">\
                         <div class="payRedeem_title">交易密码<div class="payRedeem_close"></div></div>\
+                        <div class="pay_detail">\
+                                <p class="title">赎回金额</p>\
+                                <h2 class="num" id="payRedeem_redeemValue"></h2>\
+                            </div>\
                         <div class="payRedeem_input">交易密码<input type="password" id="redeemPwd" maxlength="12"></div>\
                         <p class="payRedeem_forget"><a id="payRedeem_forget_a">忘记交易密码？</a></p>\
                         <button class="payRedeem_btn payRedeem_margin payRedeem_bgRed" id="payRedeem_btn">确认赎回</button>\
@@ -468,6 +472,9 @@ define(function(require, exports, module) {
                     this.hide();
                 },
                 onShow: function() {
+                    var money = redeemValue.toString().split('.');
+                 var show=money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' :  money[1].length==1?"."+money[1]+"0":"."+money[1])
+                    $('#payRedeem_redeemValue').html("¥"+show);
 
                 }
             });

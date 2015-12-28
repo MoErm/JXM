@@ -4,13 +4,11 @@ define(function (require, exports, module) {
 	<div class="new_active" >\
 	12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
 	</div>\
-	  <div class="v_mod invest_base_info">\
-	    <div class="item">\
-	      <div class="my_invest">\
+	  <div class="my_invest">\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\
 	      </div>\
-	    </div>\
+	  <div class="v_mod invest_base_info">\
 	    <div class="item">\
 	      <div class="v_item v_item2" style="text-align: left">\
 	        <div class="v_item_bd" style="padding-left:10px "><span class="v_item_title js_test ">当前收益<small>(元)</small></span><span class="v_item_cont" style="font-size: 2rem;position: relative"><%=currentIncome%></span></div>\
