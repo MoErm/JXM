@@ -2,10 +2,10 @@ define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page">\
 	  <div class="finish_regular redemption_finish_bg" style="">\
-	    <div class="item item_redeem ico_finish ">赎回金额<i class="numb"><%=ransomAmount%>元&ensp;</i><br>\
+	    <div class="item redemption_detail_ico_back">赎回金额<i class="numb"><%=ransomAmount%>元&ensp;</i><br>\
 	    <p><%=ransomTime%></p>\
 	    </div>\
-	    <div class="item  ico_chart">\
+	    <div class="item  redemption_detail_ico_card">\
 	      <p class="txt">到账时间</p>\
 	      <p class="tips"><%=arrivedDate%></p>\
 	    </div>\

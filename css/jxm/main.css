@@ -466,7 +466,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_list .investList .redemption_span2 { color: #a7a7a7; width: 30%; margin: 0; overflow: visible; white-space: nowrap }
 .redemption_list .investList .redemption_span3 { ; width: 40%; margin: 0; text-align: right }
 .redemption_amount { position: absolute; right: 10px; top: 22px; font-size: 2rem; color: #4f4f4f }
-.redemption_total { padding: 5px 10px 10px 10px; display: block; width: 100%; border-bottom: 1px dashed #cecece; margin-bottom: 10px }
+.redemption_total { padding: 5px 10px 10px 10px; display: block; width: 95%; border-bottom: 1px dashed #cecece; margin-bottom: 10px }
 .redemption_total span { display: inline-block }
 .redemption_total .span_1 { width: 80px; white-space: nowrap; font-size: 1.6rem }
 .redemption_total .span_2 { width: 80px; white-space: nowrap; color: #a7a7a7; font-size: 1.4rem }
@@ -474,8 +474,10 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_total .span_4 { color: #a7a7a7; font-size: 1.6rem }
 .redemption_item { margin-bottom: 10px; padding: 20px 15px 10px 25px; }
 .redemption_item > .item { position: relative; padding-left: 60px; padding-top: 4px; height: 80px }
-.redemption_item .icon_ok:before, .redemption_item .icon_coin:before { width: 30px; height: 30px; display: block; background-color: #000000; position: absolute; content: ''; overflow: hidden; left: 12px }
-.redemption_item .icon_ok:after { width: 1px; height: 48px; display: block; background-color: #fe6400; position: absolute; content: ''; overflow: hidden; left: 27px; bottom: 0 }
+.redemption_item .icon_ok:before, .redemption_item .icon_coin:before { width: 30px; height: 30px; display: block;background: url(../../images/sprite_3.png) no-repeat; position: absolute; content: ''; left: 12px;background-size: 400px auto;}
+.redemption_item .icon_ok:before{background-position: -53px -101px;}
+.redemption_item .icon_coin:before{background-position: -87px -101px;}
+.redemption_item .icon_ok:after { width: 1px; height: 58px; display: block; background-color: #fe6400; position: absolute; content: ''; overflow: hidden; left: 27px; bottom: 0;margin-bottom: -5px }
 .redemption_item .icon_ok { font-size: 1.6rem; color: #333333 }
 .redemption_item .icon_ok p { font-size: 1.4rem; color: #a7a7a7 }
 .redemption_item .numb { color: #d01b02 }
@@ -493,8 +495,16 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .payRedeem .pay_detail { text-align: center; padding: 10px 0; }
 .payRedeem .pay_detail .num { font-size: 3rem; color: #db3710; }
 
+.redemption_detail_ico_back,.redemption_detail_ico_card{ position: relative; }
+.redemption_detail_ico_back{font-size: 1.6rem; color: #4f4f4f;}
+.redemption_detail_ico_back .numb{color: #d01b02}
+.redemption_detail_ico_back p{font-size: 1.4rem;color: #999;}
+.redemption_detail_ico_back:after{width: 1px; height: 23px; display: block; background-color: #fe6400; position: absolute; content: ''; overflow: hidden; left: 27px; bottom: 0;margin-bottom: -5px}
+.redemption_detail_ico_back:before{ width: 30px; height: 30px; display: block;background: url(../../images/sprite_3.png) no-repeat; position: absolute; content: ''; left: 12px;background-size: 400px auto;background-position: -53px -101px;}
+.redemption_detail_ico_card:before{ width: 30px; height: 30px; display: block;background: url(../../images/sprite_3.png) no-repeat; position: absolute; content: ''; left: 12px;background-size: 400px auto;background-position:-87px -101px;}
+
 .ico_up { position: relative; }
-.ico_up:after { background-position: -35px -48px; content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 300px auto; overflow: hidden; position: absolute; left: 0; top: 0; width: 21px; height: 21px; margin-top: -2px }
+.ico_up:after { content: ''; background-image: url(../../images/sprite_3.png); background-repeat: no-repeat; background-size: 400px auto; overflow: hidden; position: absolute; left: 0; top: 0; width: 21px; height: 21px; margin-top: -1px;background-position: -230px -110px;}
 .ico_book:before, .ico_coin:before { content: ''; background-image: url(../../images/sprite_2.png); background-repeat: no-repeat; background-size: 400px auto; overflow: hidden; position: absolute; left: 0; top: 0; width: 46px; height: 46px; }
 .ico_book:before { background-position: -291px -36px }
 .ico_coin.cur:before { background-position: -238px -36px }
@@ -736,11 +746,16 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .investList span { display: inline-block; font-size: 1.4rem; color: #a7a7a7; width: 80px; padding: 0 }
 .investList .logo { width: 88%; position: relative; padding-left: 30px; border-top: 1px dashed #cecece; padding-top: 5px }
 .investList .logo img { padding: 0; margin: 0; position: absolute; left: 0; width: 20px }
-.redeem_list { padding: 10px 10px 10px 20px !important; position: relative }
+.redeem_list { margin: 10px 20px 10px 20px !important; position: relative; background-color: #FFF;padding: 5px 0 0 0}
+.redeem_list:first-child{border-top: none;}
+.redeem_list{border-top:1px dashed #acacac; }
+.redeem_list_date{color: #575757!important}
+.redeem_list_money{color: #d53925!important;font-size: 1.6rem!important;}
+.redeem_list_ul{background: #ffffff;border-top: 1px solid #acacac;border-bottom: 1px solid #acacac;margin-bottom: 40px}
 .afterArrow::after { position: absolute; content: ""; display: block; top: 0; margin-top: 28px; width: 10px; height: 10px; right: 0; margin-right: 20px; border-left: 2px solid #b5b5b5; border-bottom: 2px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
 .afterArrow2::after { position: absolute; content: ""; display: block; top: 0; margin-top: 50px; width: 10px; height: 10px; right: 0; margin-right: 20px; border-left: 2px solid #b5b5b5; border-bottom: 2px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
-.redeem_list span { display: inline-block; font-size: 1.4rem; color: #a7a7a7; width: 80px }
-.redeem_list .detail { color: #575757 }
+.redeem_list span { display: inline-block; font-size: 1.4rem; color: #a7a7a7; width: 50% }
+.redeem_list .detail { color: #575757;text-align: right;}
 .redeem_shouyi { position: absolute; top: 0; right: 0; margin-top: 35px; margin-right: 40px; text-align: center; color: #575757 }
 .my_invest { margin: 0 0; padding: 0 10px 10px 10px; background:url(../../images/my_invest_bg.jpg) no-repeat;background-size: 100% 100%;height: 100px}
 .my_invest .invest_title { color: #ffffff }

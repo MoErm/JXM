@@ -40,7 +40,7 @@ define(function (require, exports, module) {
             App.goTo("my_wallet")
         },
         goRedeem:function(){
-            App.goTo("redeem")
+            App.goTo("ttl_introduce")
         },
         goInvite:function(){
             App.goTo("my_invite")
