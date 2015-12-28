@@ -90,6 +90,15 @@ define(function (require, exports, module) {
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();
+            var query = this.request.query;
+            var orderNo=query&&query.orderNo||"";
+            if(orderNo==""){
+                App.showToast("订单编号错误")
+                window.setTimeout(function(){
+                    App.goTo("my_invest")
+                },2000)
+                return
+            }
             header.set({
                 view: this,
                 back: {
@@ -111,7 +120,7 @@ define(function (require, exports, module) {
                     [{
                     'tagname': '', 'value': '协议&ensp;',
                     callback: function () {
-
+                         App.goTo("ttl_service_ordertip?orderNo="+orderNo)
                     }
                 }]
             });

@@ -1411,6 +1411,43 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_title_tip .tip_close { width: 100%; height: 50px; position: fixed;left: 0; bottom: 0; background: #fff; }
 .ttl_title_tip .tip_close_btn { display: block; width: 30px; height: 30px; margin: 10px auto; background: url(../../images/ttl_icon_q.png) no-repeat; background-size: 100%; }
 
+/*-- 天添利 风险提示书 --*/
+.ttl_invest_tip,
+.ttl_service_tip{width: 95%;margin: 0 auto; background: url(../../images/ttl_icon_v.png) repeat-y;background-size: 100%;}
+.ttl_invest_tip .tip_title{text-align: center;font-size: 2rem;}
+.ttl_invest_tip .tip_head{text-align: center;}
+.ttl_invest_tip .tip_list dt{font-weight: bold;margin:30px 0 5px 0;}
+.ttl_invest_tip .tip_list dd{text-indent: 2.2rem;}
+.ttl_invest_tip .tip_list .tip_spe,
+.ttl_service_tip .tip_list .tip_spe{font-weight: bold;margin: 20px 0 10px 0;text-indent: 2rem;}
+
+/*-- 天添利 债权收益权转让服务协议 --*/
+.ttl_service_tip .ttl_service_tip_t .tip_head{text-align: center;margin: 5px auto;}
+.ttl_service_tip .ttl_service_tip_t .tip_title li{margin-bottom: 3px;}
+.ttl_service_tip .ttl_service_tip_t .tip_title .list_title{margin-right: 10px;}
+.ttl_service_tip .ttl_service_tip_m .tip_title{font-weight: bold;text-indent: 1rem;margin: 30px auto 0 auto;}
+.ttl_service_tip .ttl_service_tip_m .tip_list dt{font-weight: bold;margin: 30px 0 5px 0;}
+.ttl_service_tip .ttl_service_tip_m .tip_list dd p{text-indent: 2rem;margin-bottom: 5px;}
+.ttl_service_tip .ttl_service_tip_m .tip_list .tip_sublist{text-indent: 2rem;}
+.ttl_service_tip .ttl_service_tip_m .tip_list_info{height: 180px; }
+.ttl_service_tip .ttl_service_tip_b .tip_title{margin:20px 0 5px 0;}
+.ttl_service_tip .ttl_service_tip_b .tip_table {width: 100%;margin: 15px auto;}
+.ttl_service_tip .ttl_service_tip_b .tip_table td{border:1px solid #000;padding: 0 0 0 5px; }
+.ttl_service_tip .ttl_service_tip_b .tip_table .tip_table_name{min-width: 125px;width: 35%;}
+.ttl_service_tip .ttl_service_tip_b .tip_table thead{text-align: center;font-weight: bold;}
+.ttl_service_tip .ttl_service_tip_b .tip_table .tip_table_head{font-size: 1.8rem;}
+.ttl_service_tip .ttl_service_tip_b .tip_table .list_title {margin:10px 0 0 0;}
+.ttl_service_tip .ttl_service_tip_b .tip_table .tip_table_list{width: 95%; margin: 0 auto;}
+.ttl_service_tip .ttl_service_tip_b .tip_table .tip_table_list li{margin-bottom: 5px;}
+.ttl_service_tip .ttl_service_tip_b .tip_table .spe_list{font-weight: bold;}
+.ttl_service_tip .ttl_service_tip_m .cur{background: url(../../images/ttl_icon_u.png) no-repeat 133px -27px;background-size: 50%;}
+.ttl_service_tip .ttl_service_tip_m .cur_a{background: url(../../images/ttl_icon_t.png) no-repeat 133px -27px;background-size: 50%;}
+
+
+
+
+
+
 
 
 
