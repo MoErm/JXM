@@ -503,20 +503,30 @@ define(function(require, exports, module) {
             var titleTip = '<article class="ttl_title_tip " id="ttl_title_tip">\
                     <h2 class="tip_head">收益率小助手</h2>\
                     <dl class="tip_list">\
-                        <dt class="tip_list_title">一、天添利的收益率如何增长？</dt>\
-                        <dl class="tip_list_content">投资当天的起始收益率为5%，随着投资时间按天递增，最高为12%。可滑动转盘查看未来7日的收益率。</dl>\
-                        <dt class="tip_list_title">二、开放购买时间？</dt>\
+                        <dt class="tip_list_title">一、什么是天添利？</dt>\
+                        <dl class="tip_list_content">一款100元起投、收益率按天增涨的活期理财产品。</dl>\
+                        <dt class="tip_list_title">二、收益率如何增涨？</dt>\
+                        <dl class="tip_list_content">购买当天的起始收益率为5%，并按天增涨，最高可达12%。</dl>\
+                        <dt class="tip_list_title">三、收益率转盘如何使用？</dt>\
+                        <dl class="tip_list_content">根据转盘两侧的提示符，分别向右、向左转动转盘， 可查看昨日以及未来7日（共9天）年化收益率。</dl>\
+                        <dt class="tip_list_title">四、什么是“当日最高收益率”？</dt>\
+                        <dl class="tip_list_content">所有在投订单中拥有最高收益率订单的今日收益率（若无在投资产， 数值显示为起始收益率）。</dl>\
+                        <dt class="tip_list_title">五、购买时间？</dt>\
                         <dl class="tip_list_content">每日06:00 ~ 22:00 开放购买。</dl>\
-                        <dt class="tip_list_title">三、何时起息？何时能看到收益？</dt>\
-                        <dl class="tip_list_content">投资成功后，当日起息；次日显示收益。（若收益少于0.01元，则不予显示）。</dl>\
-                        <dt class="tip_list_title">四、何时可以赎回？是否需要手续费？</dt>\
-                        <dl class="tip_list_content">24h随时可申请赎回，无任何手续费。</dl>\
-                        <dt class="tip_list_title">五、赎回次数与金额限制？</dt>\
-                        <dl class="tip_list_content">每日赎回限额为5万元，次数为3次。</dl>\
-                        <dt class="tip_list_title">六、赎回的金额什么时候到账？</dt>\
-                        <dl class="tip_list_content">提交赎回后（t 日），一般为（t + 3 ）个工作日到账，如遇节假日， 将往后顺延，具体时间视银行而定（请关注平台交易记录中的赎回状态）</dl>\
-                        <dt class="tip_list_title">七、赎回到哪张银行卡？</dt>\
-                        <dl class="tip_list_content">严格遵循原卡原退原则，赎回成功后，赎回金额分别进入对应的投资银行卡。</dl>\
+                        <dt class="tip_list_title">六、何日起息？何日能看到收益？</dt>\
+                        <dl class="tip_list_content">投资成功后，当日起息；次日显示收益（若收益少于0.01元，则不予显示）。</dl>\
+                        <dt class="tip_list_title">七、何时可以赎回？是否需要手续费？</dt>\
+                        <dl class="tip_list_content">投资成功后，随时可申请赎回，无任何手续费。</dl>\
+                        <dt class="tip_list_title">八、赎回次数与金额？</dt>\
+                        <dl class="tip_list_content">每日赎回限额为20万元，次数为5次（大额赎回通道即将开放）。</dl>\
+                        <dt class="tip_list_title">九、赎回的金额什么时候到账？</dt>\
+                        <dl class="tip_list_content">提交赎回后（t 日），一般为（t + 3 ）个工作日到账，如遇节假日， 将往后顺延，具体时间视银行而定（请关注平台交易记录中的赎回状态）。</dl>\
+                        <dt class="tip_list_title">十、赎回到哪张银行卡？</dt>\
+                        <dl class="tip_list_content">严格遵循原卡原退原则，赎回金额将返回对应的购买银行卡。</dl>\
+                        <dt class="tip_list_title">十一、赎回规则？</dt>\
+                        <dl class="tip_list_content">为了您的收益最大化，我们的赎回规则为：按订单的收益率从低到高开始赎回（即较晚投资的订单优先赎回）。</dl>\
+                        <dt class="tip_list_title">十二、赎回当天是否计算收益？</dt>\
+                        <dl class="tip_list_content">赎回当天不计算收益。</dl>\
                     </dl>\
                     <div class="tip_close"><em class="tip_close_btn" id="tip_close_btn"></em></div>\
                 </article>';
