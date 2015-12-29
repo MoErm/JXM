@@ -33,7 +33,7 @@ define(function (require, exports, module) {
 							<li>10.0%</li>\
 							<li>8.0%</li>\
 							<li>6.0%</li>\
-							<li>4.0%</li>\
+							<li>5.0%</li>\
 						</ul>\
 						<svg id="chart_line" class="chart_line"></svg>\
 					</div>\
@@ -47,7 +47,7 @@ define(function (require, exports, module) {
 					</div>\
 				</div>\
 				<div class="ttl_recommend_detail_b">\
-					<input type="button" value="查看详情" class="godetail_btn godetail" />\
+					<input type="button" value="立即抢购" class="godetail_btn godetail" />\
 				</div>\
             </div>\
         </article>';

@@ -1272,8 +1272,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_recommend_detail_m .chart_info_list {text-align: center;font-size: 1.2rem;margin: 15px auto; }
 .ttl_recommend_detail_m .chart_info_list li {display: inline-block;width: 27%;height: 16px;border-radius: 16px; border:1px solid #9A9693; text-align: center;line-height: 18px;background: #FFFCF5;  padding: 5px 3px;}
 .ttl_recommend_detail_m .chart_line { width: 100%; }
-.ttl_recommend_detail_m .chart_num { position: absolute; bottom: 5px; }
-.ttl_recommend_detail_m .chart_num li { font-size: 1.2rem; color: #9b9b9b; margin: 16px 0 0  0; text-align: right; }
+.ttl_recommend_detail_m .chart_num { position: absolute; bottom: 20px; }
+.ttl_recommend_detail_m .chart_num li { font-size: 1.2rem; color: #9b9b9b; margin: 12px 0 0  0; text-align: right; }
 .ttl_recommend_detail_m .info { width: 85%; margin: 0 auto 10px auto; overflow: hidden; }
 .ttl_recommend_detail_m .info_list li { display: inline-block; width: 24%; color: #9b9b9b; text-align: center; }
 .ttl_recommend_detail_m .info_list em { display: block; width: 30px; height: 30px; margin: 0 auto 3px auto; }
@@ -1433,7 +1433,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_title_tip .tip_head { height: 40px;width: 100%; line-height: 40px; text-align: center; color: #fff; background: #D11B03; font-size: 1.8rem; position: fixed;}
 .ttl_title_tip .tip_list { width: 90%; margin: 60px auto; min-height: 660px;height: 100%; padding-bottom: 50px }
 .ttl_title_tip .tip_list_title { font-weight: bold; margin: 20px 0 3px 0; }
-.ttl_title_tip .tip_list_content { margin: 0 0 0 20px; }
+.ttl_title_tip .tip_list_content { margin: 0 0 0 28px; }
 .ttl_title_tip .tip_close { width: 100%; height: 50px; position: fixed;left: 0; bottom: 0; background: #fff; }
 .ttl_title_tip .tip_close_btn { display: block; width: 30px; height: 30px; margin: 10px auto; background: url(../../images/ttl_icon_r.png) no-repeat; background-size: 100%; }
 
