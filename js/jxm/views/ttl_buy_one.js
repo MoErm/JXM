@@ -208,11 +208,11 @@ define(function(require, exports, module) {
         },
         goContractTip: function (e) {
             
-            App.goTo('get_contract');
+            App.goTo('ttl_invest_tip');
         },
         goContractTransfer: function (e) {
             
-            App.goTo('get_contract');
+            App.goTo('ttl_service_tip');
         },
         giveUp: function() {
             abortChange.exec({

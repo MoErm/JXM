@@ -198,6 +198,15 @@ window.global_config = {
         }, {
             "url": "ttl_title_tip",
             "controller": "ttl_title_tip"
+        }, {
+            "url": "ttl_invest_tip",
+            "controller": "ttl_invest_tip"
+        }, {
+            "url": "ttl_service_tip",
+            "controller": "ttl_service_tip"
+        }, {
+            "url": "ttl_service_ordertip",
+            "controller": "ttl_service_ordertip"
         }
 
     ],
@@ -270,6 +279,9 @@ requirejs.config({
         'ttl_pay_test': 'jxm/views/ttl_pay_test',
         'ttl_pay_success': 'jxm/views/ttl_pay_success',
         'ttl_title_tip': 'jxm/views/ttl_title_tip',
+        'ttl_invest_tip': 'jxm/views/ttl_invest_tip',
+        'ttl_service_tip': 'jxm/views/ttl_service_tip',        
+        'ttl_service_ordertip': 'jxm/views/ttl_service_ordertip',        
         'redemption': 'jxm/views/redemption',
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',

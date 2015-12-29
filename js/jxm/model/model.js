@@ -303,6 +303,10 @@
         goTtlPayResult: initModel({
             url:host+"/api/demand/checkDemandOrder"
         }),
+        // 天添利债权协议接口
+        getTtlServiceData: initModel({
+            url:host+"/api/demand/demandProductContract"
+        }),
         
         //chinaPay 验证
         NewCardBindService:initModel({
