@@ -203,21 +203,18 @@ define(function(require, exports, module) {
                 return
             } else if (num != turnNum) {
                 if (num > turnNum) {
-                    self.$("#left_arrow").css("display","block")
                     if (max == now) {
-                        self.$("#right_arrow").css("display","none")
+
                         return
                     } else {
-                        self.$("#right_arrow").css("display","block")
                         self.showRed(1)
                     }
                 } else {
-                    self.$("#right_arrow").css("display","block")
+
                     if (min == now) {
-                        self.$("#left_arrow").css("display","none")
+
                         return
                     } else {
-                        self.$("#left_arrow").css("display","block")
                         self.showRed(-1)
                     }
                 }
@@ -260,6 +257,14 @@ define(function(require, exports, module) {
             var showDate_3 = self.addDate(nowDate, RoundNum - 1)
             var showDate_4 = self.addDate(nowDate, RoundNum)
             console.log(RoundNum)
+            if(RoundNum==1){
+                self.$("#right_arrow").css("display","none")
+            }else if(RoundNum==9){
+                self.$("#left_arrow").css("display","none")
+            }else{
+                self.$("#right_arrow").css("display","block")
+                self.$("#left_arrow").css("display","block")
+            }
             if(RoundNum>=8){
                 self.$("#cycle_2").removeClass("cycleToday")
             }else{
@@ -280,7 +285,6 @@ define(function(require, exports, module) {
             }
             for (var i = 0; i < hidePool.length; i++) {
                 self.$("#cycle_" + hidePool[i]).removeClass("cycleNow")
-                console.log(showDate_4+"    "+showDate_0)
                 if (i == 0) {
                     self.$("#cycle_" + hidePool[i]).html(showDate_4.substr(4, 2) + "/" + showDate_4.substr(6, 2))
                 } else if (i == hidePool.length - 1) {

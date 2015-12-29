@@ -12,7 +12,7 @@ define(function (require, exports, module) {
 					<h2><%=getTtlProperty.allProperty%></h2>\
 				</div>\
 				<div class="history">\
-					<p>历史收益(元)</p>\
+					<p>累计收益(元)</p>\
 					<h2><%=getTtlProperty.historyIncome%></h2>\
 				</div>\
     		</div>\
@@ -35,7 +35,7 @@ define(function (require, exports, module) {
                         </div>\
 					</div>\
 					<div style="width: 100%" id="tradeAmount">\
-					 <div class="cycle_bg"  >\
+					    <div class="cycle_bg">\
                         <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
                             <div class="cycleTest cycleTestRed cycle_1" id="cycle_1"></div>\
                             <div class="cycleTest cycleTestRed cycle_2 cycleToday cycleNow" id="cycle_2"></div>\
@@ -52,6 +52,8 @@ define(function (require, exports, module) {
                             <div style="position: absolute;top: 15px;right:2px;" id="right_arrow"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
                         </div>\
                      </div>\
+                     <div class="next_arrow"></div>\
+                     <div class="next_arrow"></div>\
 				</div>\
 			</div>\
             <div class="ttl_introduce_d">\

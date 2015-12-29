@@ -20,7 +20,7 @@ define(function (require, exports, module) {
             handle.share();
             self = this;
 
-            this.setHeader();
+
 
             this.showPage();
 //            self.$el.html(Template);
@@ -64,6 +64,13 @@ define(function (require, exports, module) {
                         self.data.orderNo=orderNo
 
                         self.$el.html(_.template(Template)(self.data));
+                        var stat;
+                        if(self.data.orderStatus==05||self.data.orderStatus==07||self.data.orderStatus==08){
+                            stat=true
+                        }else{
+                            stat=false;
+                        }
+                        self.setHeader(stat);
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;
                             self.currentAmount = data.data.currentAmount;
@@ -93,7 +100,7 @@ define(function (require, exports, module) {
                 }
             })
         },
-        setHeader: function () {
+        setHeader: function (showContract) {
             var header = new App.UI.UIHeader();
             var query = this.request.query;
             var orderNo=query&&query.orderNo||"";
@@ -121,13 +128,15 @@ define(function (require, exports, module) {
                 center: {
                     'tagname': 'title', 'value': ['投资详情']
                 },
-                right:
-                    [{
+                right:showContract? [{
                     'tagname': '', 'value': '协议&ensp;',
                     callback: function () {
-                         App.goTo("ttl_service_ordertip?orderNo="+orderNo)
+                        App.goTo("ttl_service_ordertip?orderNo="+orderNo)
                     }
-                }]
+                }]:null
+
+
+
             });
         },
 

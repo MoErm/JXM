@@ -12,7 +12,7 @@ define(function (require, exports, module) {
 					<em class="tip_icon"></em>\
 					<p class="tip_text">余额小于100元需一次性全额赎回</p>\
 					\
-					<p class="tip_text"> <br>预计赎回金额t+3个工作日返回至银行账户<br>\
+					<p class="tip_text" style="margin-top: 10px"> 预计赎回金额t+3个工作日返回至银行账户<br>\
     实际到账时间根据银行而定</p>\
 				</div>\
 	</article>';
