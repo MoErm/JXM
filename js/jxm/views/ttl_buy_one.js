@@ -162,23 +162,24 @@ define(function(require, exports, module) {
                     self.promptAlert.show();
                 }else if(data.ret == 999901){
                     //由于银行服务器客户信息更新
-                    self.passAlert = handle.prompt("由于银行服务器客户信息更新，为了维护您的权益，请您在继续投资前先和加薪猫客服取得联系，客服电话：4008-339-869");
+                    self.passAlert = handle.alert("由于银行服务器客户信息更新，为了维护您的权益，请您在继续投资前先和加薪猫客服取得联系，客服电话：4008-339-869");
                     self.passAlert.show();                        
                 }else if(data.ret == 110109){
                     //此卡已锁定，无法支付
-                    self.passAlert = handle.prompt("此卡已锁定，无法支付");
+                    self.passAlert = handle.alert("此卡已锁定，无法支付");
                     self.passAlert.show();                        
                 }else if(data.ret == 110112){
                     //由于您未满18周岁，无法在加薪猫平台进行投资，如有疑问请联系客服
-                    self.passAlert = handle.prompt("由于您未满18周岁，无法在加薪猫平台进行投资，如有疑问请联系客服");
+                    self.passAlert = handle.alert("由于您未满18周岁，无法在加薪猫平台进行投资，如有疑问请联系客服");
                     self.passAlert.show();                        
                 }else if(data.ret == 300008){
                     //由于支付渠道调整，暂不支持该银行支付，如有疑问请联系客服
-                    self.passAlert = handle.prompt("由于支付渠道调整，暂不支持该银行支付，如有疑问请联系客服");
+                    self.passAlert = handle.alert("由于支付渠道调整，暂不支持该银行支付，如有疑问请联系客服");
                     self.passAlert.show(); 
                 }else{
 
-                    App.showToast(data.msg  || self.message);
+                    self.passAlert = handle.alert(data.msg  || self.message);
+                    self.passAlert.show();
                 }
                 App.hideLoading();
             });
@@ -194,7 +195,8 @@ define(function(require, exports, module) {
                 App.showToast("请输入投资金额");
                 return;
             }else if(Number(self.amountVal)%100!=0){
-                App.showToast("投资金额需是100元的整数倍");
+                self.passAlert = handle.alert("投资金额需是100元的整数倍");
+                self.passAlert.show();
                 return;
             }
             if(self.pageData.cardData.isContractAgreed==0){

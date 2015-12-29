@@ -110,12 +110,14 @@ define(function(require, exports, module) {
         },
         initChart: function() {
             var chartLine = Snap("#chart_line");
-            var pathPoint = [ 'M0 0','M40 95C129 85,120 55 320 3'];
+            var lineWidth= $("#chart_line").width()*0.92;
+
+            var pathPoint = [ 'M0 0','M40 125C189 85,160 35 '+lineWidth+ ' 3'];
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             
             var drawLine = chartLine.paper.path(pathPoint[1]).attr({
                 stroke: lineGrad,
-                strokeWidth: 2,
+                strokeWidth: 3,
                 fill: "none"
             });
 
@@ -149,12 +151,12 @@ define(function(require, exports, module) {
                 });
             }             
             function drawMaxPoint(){
-                var maxPoint = chartLine.paper.circle(320,3,2).attr({
+                var maxPoint = chartLine.paper.circle(lineWidth,3,3).attr({
                     fill: "#FF6500"
                 });
             }
             function drawMinPoint(){
-                var minPoint = chartLine.paper.circle(40,95,2).attr({
+                var minPoint = chartLine.paper.circle(40,125,3).attr({
                     fill: "#FF6500"
                 });
             }
@@ -162,7 +164,6 @@ define(function(require, exports, module) {
                 var current_frame = 0;
                 var total_frames = 60;
                 var self = this;
-                var progress = current_frame/total_frames;
                 var path = document.querySelector('#chart_line path');
                 var pathLength = path.getTotalLength();
                 path.style.transition = path.style.WebkitTransition ='none';
