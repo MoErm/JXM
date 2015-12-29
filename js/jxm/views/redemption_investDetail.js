@@ -61,6 +61,8 @@ define(function (require, exports, module) {
                     if(data.ret == 0){
                         self.data=data.data
                         self.data.format=self.format
+                        self.data.orderNo=orderNo
+
                         self.$el.html(_.template(Template)(self.data));
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;

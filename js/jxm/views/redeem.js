@@ -223,6 +223,11 @@ define(function (require, exports, module) {
                         self.data.format=self.format
                         self.data.shuhuiFlag=shuhuiFlag
                         self.$el.html(_.template(Template)(self.data));
+                        var query = self.request.query;
+                        var from=query&&query.from||"";
+                        if(from==1){
+                            self.chang()
+                        }
                         self.scrollTopListener();
 
                     } else if (data.ret == 999001) {

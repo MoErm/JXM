@@ -102,12 +102,13 @@ define(function (require, exports, module) {
                 App.showToast("请输入赎回金额")
                 return
             }
+
             if(todaySurplusAmount<redeemValue){
                 self.promptAlert = handle.alert("赎回金额大于今日可赎回限额");
                 self.promptAlert.show();
                 return
             }
-            if(todaySurplusAmount<100){
+            if(redeemValue<100){
                 self.promptAlert = handle.alert("赎回金额必须大于100元");
                 self.promptAlert.show();
                 return

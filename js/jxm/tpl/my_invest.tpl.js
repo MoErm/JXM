@@ -1,9 +1,7 @@
 define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page mod_my_invest">\
-	<div class="new_active" >\
-	12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
-	</div>\
+	\
 	  <div class="my_invest">\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\

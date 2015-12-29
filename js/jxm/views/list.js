@@ -28,7 +28,8 @@ define(function (require, exports, module) {
                 'click .js_ttl': 'js_ttl',//设置
                 'click .js_list_btn': 'listBtn',//购买
                 'click .js_list_item': 'listItem',//产品跳转
-                'click .ico_f_list': 'goRecommend'//推荐
+                'click .ico_f_list': 'goRecommend',//推荐
+                'click .js_situation':'goHeroList'
             },
             js_ttl:function(){
               App.goTo("ttl_recommend")
@@ -338,6 +339,15 @@ define(function (require, exports, module) {
                     },
                     right: null
                 });
+            },
+            goHeroList:function(){
+//            window.location.href="./activity/818hero/heroList.html"
+                window.location.href="./activity/818hero/heroList.html"
+//            if(window.WebViewJavascriptBridge){
+//                window.WebViewJavascriptBridge.callHandler('openUrl',{"url": window.location.origin+"/activity/818hero/heroList.html"},function(response) {})
+//            }else{
+//                window.location.href="./activity/818hero/heroList.html"
+//            }
             },
             myInvest: function(){
                 App.goTo('my_invest');
