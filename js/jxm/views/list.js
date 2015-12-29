@@ -152,6 +152,7 @@ define(function (require, exports, module) {
 
                                     data.data.show = true;
                                     data.data.showhistory = false;
+                                    data.data.notice = true
                                     self.$('.js_content').html(_.template(list)(data.data));
                                     self.nextProduct();
                                 }else{
@@ -206,6 +207,7 @@ define(function (require, exports, module) {
                                 data.data.show = false;
                                 data.data.showhistory = true;
                                 data.data.noProgress = noProgress;
+                                data.data.notice = false
                                 self.$('.js_loading').before(_.template(list)(data.data));
                                 self.$('.js_history_title').hide();
                                 self.$('.js_history_title').eq(0).show();

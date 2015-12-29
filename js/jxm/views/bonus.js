@@ -82,7 +82,8 @@ define(function (require, exports, module) {
 //                            App.showToast(JSON.stringify(data)+urlstr,10000)
 //                            return
                             appid=data.data.appid;
-                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&appid="+query.appid+"&userMode="+data.data.userMode)
+//                            App.showToast("data.data.appid "+data.data.appid+"  query.appid  "+query.appid,100000)
+                            App.goTo("bonusOpen?cid="+query.cid+"&openId="+sessionOpenId+"&mobile="+data.data.mobile+"&userMode="+data.data.userMode+"&appid="+data.data.appid)
                         }
                         else if(data.data.status==99){
                             var url="http://"+location.hostname+"/apps/api/user/shareAuthrize?cid="+query.cid
