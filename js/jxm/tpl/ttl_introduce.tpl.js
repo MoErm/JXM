@@ -23,7 +23,7 @@ define(function (require, exports, module) {
 				</h3>\
 				<div class="chart">\
 					<div class="chart_head">\
-						<p>今日最高收益率</p>\
+						<p>当日最高收益率</p>\
 						<h2 id="todayYieldRate">0.000%</h2>\
 					</div>\
 					<div style="width: 100%" id="tradeAmount">\
@@ -47,9 +47,9 @@ define(function (require, exports, module) {
                             <div id="cycle_num_5">0</div>\
                             <div>%</div>\
                         </div>\
-                            <div style="position: absolute;top: 75px;right: 50%;margin-right: -8px"><img src="images/cycle_arrow.png" width="16px" alt=""></div>\
-                            <div style="position: absolute;top: 15px;left: 2px;"><img src="images/cycle_leftArrow.png" width="50px" alt=""></div>\
-                            <div style="position: absolute;top: 15px;right:2px;"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
+                            <div style="position: absolute;top: 75px;right: 50%;margin-right: -18px"><img src="images/cycle_arrow.png" width="36px" alt=""></div>\
+                            <div style="position: absolute;top: 15px;left: 2px;" id="left_arrow"><img src="images/cycle_leftArrow.png" width="50px" alt=""></div>\
+                            <div style="position: absolute;top: 15px;right:2px;" id="right_arrow"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
                         </div>\
                      </div>\
 				</div>\

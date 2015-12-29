@@ -204,17 +204,21 @@ define(function(require, exports, module) {
                 return
             } else if (num != turnNum) {
                 if (num > turnNum) {
+                    self.$("#left_arrow").css("display","block")
                     if (max == now) {
-                        App.showToast("暂时只能查看7日内的收益率")
+                        self.$("#right_arrow").css("display","none")
                         return
                     } else {
+                        self.$("#right_arrow").css("display","block")
                         self.showRed(1)
                     }
                 } else {
+                    self.$("#right_arrow").css("display","block")
                     if (min == now) {
-                        App.showToast("暂时只能查看7日内的收益率")
+                        self.$("#left_arrow").css("display","none")
                         return
                     } else {
+                        self.$("#left_arrow").css("display","block")
                         self.showRed(-1)
                     }
                 }
