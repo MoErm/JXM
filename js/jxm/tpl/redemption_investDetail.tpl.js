@@ -5,7 +5,7 @@ define(function (require, exports, module) {
 	  <div class="redemption_item redemption_finish_bg" style="">\
           <div class="redemption_total">\
           <span class="span_1">当前余额</span><span class="span_3"><%=currentAmount%>元</span><br>\
-           <span class="span_2">累计收益</span><span class="span_4"> +10.00元</span>\
+           <span class="span_2">累计收益</span><span class="span_4"> +<%=income%>元</span>\
           </div>\
 	   <div class="item icon_ok">成功支付 <i class="numb"><%=investAmount%></i><br>\
 	   <p><%=bankName%>(尾号<%=cardTailNo%>)</p>\

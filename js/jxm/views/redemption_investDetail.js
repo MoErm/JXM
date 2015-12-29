@@ -33,7 +33,9 @@ define(function (require, exports, module) {
                 postData:{
                     surplusPayTime:self.surplus,
                     orderNo:orderNo
-                }
+
+                },
+                amountVal:self.currentAmount
             }
             payLayer.ttlPayWin(data)
         },
@@ -62,6 +64,7 @@ define(function (require, exports, module) {
                         self.$el.html(_.template(Template)(self.data));
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;
+                            self.currentAmount = data.data.currentAmount;
                             self.detailTimer = setInterval(function () {
                                 var minute = Math.floor(self.surplus / 60);
                                 var second = self.surplus - minute * 60;

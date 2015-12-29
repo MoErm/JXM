@@ -689,7 +689,12 @@ define(function(require, exports, module) {
                     });
                 },
                 showAcountValue: function(){
-                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
+                    var str=data.amountVal
+                    var money =str.toString().split('.');
+                    var show=money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' :  money[1].length==1?"."+money[1]+"0":"."+money[1])
+                    $('#amount_num').html("¥"+show);
+
+//                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
                 },
                 onHideLayer: function() {
                     clearInterval(self.paytimer);
