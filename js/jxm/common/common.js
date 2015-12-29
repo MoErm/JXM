@@ -643,8 +643,8 @@ define(function(require, exports, module) {
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.paytimer);
-                            self.payCountAlert = handle.alert('支付确认中，请到"我的投资"查看支付结果', function() {
-                                App.goTo("my_invest")
+                            self.payCountAlert = handle.alert('支付确认中，请到"交易记录"查看支付结果', function() {
+                                App.goTo("redeem");
                             });
                             self.payCountAlert.show();
                             self.showResult = false;

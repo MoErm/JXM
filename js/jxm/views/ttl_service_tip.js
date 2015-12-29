@@ -39,8 +39,8 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.$el.html(ttlServiceTip);
             App.hideLoading();
+            self.$el.html(ttlServiceTip);
         }
     })
 })
