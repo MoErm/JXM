@@ -454,7 +454,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_art .same_card_tip .tip_icon { display: inline-block; width: 20px; height: 20px; float: left; margin: 0 10px 0 10px; background: url(../../images/ttl_icon_m.png) no-repeat; background-size: 100%; }
 
 
-.redemption_title { padding: 5px 3% 5px 3%; color: #333333 }
+.redemption_title { padding: 5px 3% 5px 20px; color: #333333 }
 .redemption_finish_bg { background: #ffffff; border-bottom: 1px solid #cecece; }
 .redemption_tips { font-size: 1.6rem; color: #333333 }
 .redemption_rate { color: #d01b02 }
@@ -463,18 +463,18 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_list_t { padding: 5px 20px; font-size: 1.6rem; color: #333333 }
 .redemption_list .investList { border-top: 1px dashed #acacac }
 .redemption_list .investList .redemption_span1 { width: 90px; margin: 0 }
-.redemption_list .investList .redemption_span2 { color: #a7a7a7; width: 30%; margin: 0; overflow: visible; white-space: nowrap }
+.redemption_list .investList .redemption_span2 { color: #333333; width: 30%; margin: 0; overflow: visible; white-space: nowrap }
 .investList .redemption_span0 { width: 30%; margin: 0 }
  .investList .redemption_span4 { color: #a7a7a7; width: 70%; margin: 0; overflow: visible; white-space: nowrap ;text-align: right;}
 .redemption_list .investList .redemption_span3 { ; width: 40%; margin: 0; text-align: right }
 .redemption_amount { position: absolute; right: 10px; top: 22px; font-size: 2rem; color: #4f4f4f }
-.redemption_total { padding: 5px 10px 10px 10px; display: block; width: 95%; border-bottom: 1px dashed #cecece; margin-bottom: 10px }
+.redemption_total { padding: 5px 10px 10px 0px; display: block; width: 95%; border-bottom: 1px dashed #cecece; margin-bottom: 10px }
 .redemption_total span { display: inline-block }
 .redemption_total .span_1 { width: 80px; white-space: nowrap; font-size: 1.6rem }
 .redemption_total .span_2 { width: 80px; white-space: nowrap; color: #a7a7a7; font-size: 1.4rem }
 .redemption_total .span_3 { color: #d01b02; font-size: 1.8rem }
 .redemption_total .span_4 { color: #a7a7a7; font-size: 1.6rem }
-.redemption_item { margin-bottom: 10px; padding: 20px 15px 10px 25px; }
+.redemption_item { margin-bottom: 10px; padding: 20px 15px 10px 20px; }
 .redemption_item > .item { position: relative; padding-left: 60px; padding-top: 4px; height: 80px }
 .redemption_item .icon_ok:before, .redemption_item .icon_coin:before { width: 30px; height: 30px; display: block;background: url(../../images/sprite_3.png) no-repeat; position: absolute; content: ''; left: 12px;background-size: 400px auto;}
 .redemption_item .icon_ok:before{background-position: -53px -101px;}
@@ -485,7 +485,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_item .numb { color: #d01b02 }
 .payRedeem { border-top-left-radius: 5px; border-top-right-radius: 5px; position: fixed; bottom: 0; z-index: 9999; background: #ffffff; width: 100%; right: 0 }
 .payRedeem .payRedeem_title { width: 100%; text-align: center; position: relative; border-bottom: 1px solid #d01b02; height: 48px; line-height: 48px; font-size: 1.8rem }
-.payRedeem .payRedeem_close:after { background-image: url(../../images/sprite.png); background-repeat: no-repeat; background-size: 200px auto; overflow: hidden; background-position: -180px -199px; content: ""; display: block; position: absolute; height: 21px; width: 20px; right: 0; margin-right: 20px; top: 0; margin-top: 12px }
+.payRedeem .payRedeem_close:after {  position: absolute; display: block; width: 24px; height: 24px; border-radius: 24px; background: url(../../images/ttl_icon_r.png) no-repeat; background-size: 100%;   overflow: hidden; content: ""; right: 0; margin-right: 20px; top: 0; margin-top: 12px }
 .payRedeem_input { width: 90%; margin: 20px auto 0 auto }
 .payRedeem_input input { padding: 10px; max-width: 100%; min-width: 60%; border: 1px solid #a1a1a1; border-radius: 5px; margin-left: 20px }
 .payRedeem_forget { text-align: right; display: block; margin-right: 30px }
@@ -977,7 +977,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ico_clock2::before { background-position: 0 -145px; }
 .ico_clock2.cur::before { background-position: -150px -145px; }
 .finish_regular .txt { font-size: 1.6rem; color: #4f4f4f; }
-.finish_regular .tips { font-size: 1.4rem; color: #999; }
+.finish_regular .tips { font-size: 1.2rem; color: #999; }
 .invest_details { font-size: 1.2rem; color: #4f4f4f; margin-top: 10px; padding: 15px 30px 0; background-color: #FFF; }
 .invest_details::after { visibility: hidden; }
 .invest_details .v_item { line-height: 1.5; padding: 3px 0; }
@@ -1286,6 +1286,16 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 
 /*-- 天添利 介绍页 --*/
 .ttl_introduce { }
+.next_arrow{position: relative;width: 100%;height: 5px}
+.next_arrow2{position: relative;width: 100%;height: 5px}
+.next_arrow:before{
+    -webkit-animation:arrow_ani 1.2s linear 0s infinite;
+    animation:arrow_ani 1.2s linear 0s infinite;
+    content: "";display: inline-block; width: 10px; height: 10px; vertical-align: middle; border-left: 2px solid #cecece;border-bottom: 2px solid #cecece; -webkit-transform: rotate(-45deg); transform: rotate(-45deg); -webkit-box-sizing: border-box; right: 50%; position: absolute; margin-right: -5px; box-sizing: border-box;}
+
+@keyframes arrow_ani{ 0%{margin-top: 0px}100% { margin-top: 10px}}
+@-webkit-keyframes arrow_ani{0%{margin-top: 0px}100% { margin-top: 10px}}
+
 .ttl_introduce_t { height: 120px; text-align: center; background: -webkit-linear-gradient(#D01B02, #FD6200); background: -o-linear-gradient(#D01B02, #FD6200); background: linear-gradient(#D01B02, #FD6200); }
 .ttl_introduce_t .earn { display: inline-block; color: #fff; font-size: 1.5rem; padding: 20px 0 0 0; }
 .ttl_introduce_t .earn h2 { font-size: 4rem; }

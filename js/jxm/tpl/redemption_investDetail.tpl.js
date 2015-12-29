@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
 	var tpl = '\
-	<%if(orderStatus=="05"||orderStatus=="07"||orderStatus=="08"||orderStatus=="04"){%>\
+	<%if(orderStatus=="05"||orderStatus=="07"||orderStatus=="08"){%>\
 	<article class="mod_page">\
 	  <div class="redemption_item redemption_finish_bg" style="">\
           <div class="redemption_total">\
@@ -48,7 +48,10 @@ define(function (require, exports, module) {
 	        <%}else if (orderStatus == "06") {%>\
 	        	<p class="info"><%=orderStatusDesc%></p>\
         		<p class="v_tips ico_tips">由于您在时限内未完成支付，该笔订单被强制关闭</p>\
-	        <%}else if (orderStatus == "03") {%>\
+	        <%}else if (orderStatus == "04") {%>\
+	        	<p class="info"><%=orderStatusDesc%></p>\
+	        	<p class="v_tips ico_tips">支付确认中，请耐心等待</p>\
+	        <%} else if (orderStatus == "03") {%>\
 	        	<p class="info"><%=orderStatusDesc%></p>\
         		<p class="v_tips ico_tips">由于您在该笔订单支付过程中创建了另一笔支付订单，该笔订单已被强制关闭</p>\
 	        <%}else if (orderStatus == "02") {%>\
