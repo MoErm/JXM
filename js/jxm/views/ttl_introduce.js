@@ -91,7 +91,7 @@ define(function(require, exports, module) {
         events: {
             'click #action_buy': 'goBuyPage', //购买页面
             'click #action_redem': 'goRedemPage', //赎回页面
-            'click #title_tip': 'actionTitleTip', //收益助手提示
+            'click #title_tip': 'actionTitleTip' //收益助手提示
         },
         onShow: function() {
             pool = new Array(1, 2, 3);
@@ -123,8 +123,8 @@ define(function(require, exports, module) {
             mc.on("hammer.input", function(ev) {
                 //                self.cycleTime(ev.deltaX)
                 //                console.log(ev)
-                console.log(ev.deltaTime + "  " + ev.srcEvent.type)
-                console.log(ev.deltaTime < 100 && ev.srcEvent.type == "touchend")
+//                console.log(ev.deltaTime + "  " + ev.srcEvent.type)
+//                console.log(ev.deltaTime < 100 && ev.srcEvent.type == "touchend")
 
 
                 if (ev.deltaTime < 100 && ev.srcEvent.type == "touchend") {
@@ -160,7 +160,6 @@ define(function(require, exports, module) {
             //            console.log(window.event.changedTouches[0].clientX)
             var distance = 0;
             distance = Math.sqrt(x * x + y * y).toFixed(0)
-            console.log()
                 //            if(type=="touchstart"){
             startPoint = window.event.changedTouches[0].clientX
                 //            }else if(type=="touchend"){
@@ -260,25 +259,32 @@ define(function(require, exports, module) {
             var showDate_2 = self.addDate(nowDate, RoundNum - 2)
             var showDate_3 = self.addDate(nowDate, RoundNum - 1)
             var showDate_4 = self.addDate(nowDate, RoundNum)
+            console.log(RoundNum)
+            if(RoundNum>=8){
+                self.$("#cycle_2").removeClass("cycleToday")
+            }else{
+                self.$("#cycle_2").addClass("cycleToday")
+            }
                 //            console.log(showDate_1+"  "+showDate_2+"  "+showDate_3)
             self.setRate(showDate_2)
             for (var i = 0; i < pool.length; i++) {
-                self.$("#cycle_" + pool[i]).removeClass("cycleToday")
+                self.$("#cycle_" + pool[i]).removeClass("cycleNow")
                 if (i == 0) {
                     self.$("#cycle_" + pool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_1.substr(6, 2))
                 } else if (i == 1) {
-                    self.$("#cycle_" + pool[i]).addClass("cycleToday")
+                    self.$("#cycle_" + pool[i]).addClass("cycleNow")
                     self.$("#cycle_" + pool[i]).html(showDate_2.substr(4, 2) + "/" + showDate_2.substr(6, 2))
                 } else if (i == 2) {
                     self.$("#cycle_" + pool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_3.substr(6, 2))
                 }
             }
             for (var i = 0; i < hidePool.length; i++) {
-                self.$("#cycle_" + hidePool[i]).removeClass("cycleToday")
+                self.$("#cycle_" + hidePool[i]).removeClass("cycleNow")
+                console.log(showDate_4+"    "+showDate_0)
                 if (i == 0) {
-                    self.$("#cycle_" + hidePool[i]).html(showDate_1.substr(4, 2) + "/" + showDate_4.substr(6, 2))
+                    self.$("#cycle_" + hidePool[i]).html(showDate_4.substr(4, 2) + "/" + showDate_4.substr(6, 2))
                 } else if (i == hidePool.length - 1) {
-                    self.$("#cycle_" + hidePool[i]).html(showDate_3.substr(4, 2) + "/" + showDate_0.substr(6, 2))
+                    self.$("#cycle_" + hidePool[i]).html(showDate_0.substr(4, 2) + "/" + showDate_0.substr(6, 2))
                 }
             }
             var cycle = window.document.getElementById("cycle")
@@ -309,6 +315,7 @@ define(function(require, exports, module) {
         },
         addDate: function(date, days) {
             var d = new Date(date);
+
             d.setDate(d.getDate() + days);
             var m = d.getMonth() + 1;
             m = m + ""

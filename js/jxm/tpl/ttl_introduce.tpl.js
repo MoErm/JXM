@@ -24,21 +24,7 @@ define(function (require, exports, module) {
 				<div class="chart">\
 					<div class="chart_head">\
 						<p>当日最高收益率</p>\
-						<h2 id="todayYieldRate">0.000%</h2>\
-					</div>\
-					<div style="width: 100%" id="tradeAmount">\
-					 <div class="cycle_bg"  >\
-                        <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
-                            <div class="cycleTest cycleTestRed cycle_1" id="cycle_1"></div>\
-                            <div class="cycleTest cycleTestRed cycle_2" id="cycle_2"></div>\
-                            <div class="cycleTest cycleTestRed cycle_3" id="cycle_3"></div>\
-                            <div class="cycleTest cycleTestRed cycle_4" id="cycle_4"></div>\
-                            <div class="cycleTest cycleTestRed cycle_5" id="cycle_5"></div>\
-                            <div class="cycleTest cycleTestRed cycle_6" id="cycle_6"></div>\
-                            <div class="cycleTest cycleTestRed cycle_7" id="cycle_7"></div>\
-                            <div class="cycleTest cycleTestRed cycle_8" id="cycle_8"></div>\
-                        </div>\
-                        <div class="cycle_num">\
+						   <div class="cycle_num">\
                             <div id="cycle_num_1">0</div>\
                             <div id="cycle_num_2">0</div>\
                             <div>.</div>\
@@ -47,6 +33,20 @@ define(function (require, exports, module) {
                             <div id="cycle_num_5">0</div>\
                             <div>%</div>\
                         </div>\
+					</div>\
+					<div style="width: 100%" id="tradeAmount">\
+					 <div class="cycle_bg"  >\
+                        <div id="cycle" style="-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;background-color:rgba(0,0,0,0);position: relative" class="cycle_rotate">\
+                            <div class="cycleTest cycleTestRed cycle_1" id="cycle_1"></div>\
+                            <div class="cycleTest cycleTestRed cycle_2 cycleToday cycleNow" id="cycle_2"></div>\
+                            <div class="cycleTest cycleTestRed cycle_3" id="cycle_3"></div>\
+                            <div class="cycleTest cycleTestRed cycle_4" id="cycle_4"></div>\
+                            <div class="cycleTest cycleTestRed cycle_5" id="cycle_5"></div>\
+                            <div class="cycleTest cycleTestRed cycle_6" id="cycle_6"></div>\
+                            <div class="cycleTest cycleTestRed cycle_7" id="cycle_7"></div>\
+                            <div class="cycleTest cycleTestRed cycle_8" id="cycle_8"></div>\
+                        </div>\
+                     \
                             <div style="position: absolute;top: 75px;right: 50%;margin-right: -18px"><img src="images/cycle_arrow.png" width="36px" alt=""></div>\
                             <div style="position: absolute;top: 15px;left: 2px;" id="left_arrow"><img src="images/cycle_leftArrow.png" width="50px" alt=""></div>\
                             <div style="position: absolute;top: 15px;right:2px;" id="right_arrow"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\

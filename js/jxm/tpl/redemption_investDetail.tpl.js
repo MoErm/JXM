@@ -23,10 +23,10 @@ define(function (require, exports, module) {
 	    <% _.each(records, function(order){%>\
 	    <li  class=" item investList">\
 	    <div style="position: relative">\
-	    	<span class="redemption_span1">起息日期</span><span class="redemption_span2" ><%=order.clearingTime%></span><span class="redemption_span3" style="color: #000000"></span><br>\
 	    	<span class="redemption_span1">赎回收益率</span><span class="redemption_span2"><%=format(order.clearingRate)%></span><br>\
 	    	<span class="redemption_span1">赎回本金</span><span class="redemption_span2" ><%=order.clearingPrincipal%>元</span><br>\
-	    	<span class="redemption_span1">赎回收益</span><span class="redemption_span2" ><%=order.clearingInterest%>元</span>\
+	    	<span class="redemption_span1">赎回收益</span><span class="redemption_span2" ><%=order.clearingInterest%>元</span><br>\
+	    	<span class="redemption_span1">赎回日期</span><span class="redemption_span2" ><%=order.clearingTime%></span><span class="redemption_span3" style="color: #000000"></span>\
 	    	<div class="redemption_amount">-<%=order.clearingAmount%>元</div>\
    		</div>\
    		</li>\
@@ -56,6 +56,14 @@ define(function (require, exports, module) {
         		<p class="v_tips ico_tips"><%=failedReason%></p>\
         		<%}%>\
 	      </li>\
+	      <li  class=" item investList">\
+	    <div style="position: relative;padding-right:10px;border-top:#acacac dashed 1px;padding-top:10px">\
+	    	<span class="redemption_span0">投资金额</span><span class="redemption_span4"><%=currentAmount%>元</span><br>\
+	    	<span class="redemption_span0">起息日</span><span class="redemption_span4" ><%=valueDate%></span><br>\
+	    	<span class="redemption_span0">订单编号</span><span class="redemption_span4" ><%=orderNo%></span><br>\
+	    	<span class="redemption_span0">创建日期</span><span class="redemption_span4" ><%=orderTime%></span><span class="redemption_span3" style="color: #000000"></span>\
+   		</div>\
+   		</li>\
 	    </ul>\
 	    <div style="height:20px"></div>\
 	  </div>\

@@ -74,7 +74,7 @@ define(function (require, exports, module) {
                         var query = this.request.query;
                         var type=query&&query.type||"";
                         if(type==1){
-                            App.goTo("redeem?type=1")
+                            App.goTo("redeem?type=1&from=1")
                         }else{
                             App.goTo("redeem")
                         }

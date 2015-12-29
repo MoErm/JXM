@@ -1,5 +1,8 @@
 define(function (require, exports, module) {
     var tpl = '<%if(show){%><article class="mod_page mod_list js_list"><%}%>\
+                <div class="new_active" >\
+	12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
+	</div>\
                 <div class="mod_listing">\
                     <%if(show){%><h2 class="hd_title"><span>每天10点，优质放送 </span></h2><%}%>\
                     <%if(showhistory){%><h2 class="hd_title js_history_title"><span>历史优质产品</span></h2><%}%>\

@@ -464,6 +464,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redemption_list .investList { border-top: 1px dashed #acacac }
 .redemption_list .investList .redemption_span1 { width: 90px; margin: 0 }
 .redemption_list .investList .redemption_span2 { color: #a7a7a7; width: 30%; margin: 0; overflow: visible; white-space: nowrap }
+.investList .redemption_span0 { width: 30%; margin: 0 }
+ .investList .redemption_span4 { color: #a7a7a7; width: 70%; margin: 0; overflow: visible; white-space: nowrap ;text-align: right;}
 .redemption_list .investList .redemption_span3 { ; width: 40%; margin: 0; text-align: right }
 .redemption_amount { position: absolute; right: 10px; top: 22px; font-size: 2rem; color: #4f4f4f }
 .redemption_total { padding: 5px 10px 10px 10px; display: block; width: 95%; border-bottom: 1px dashed #cecece; margin-bottom: 10px }
@@ -757,7 +759,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redeem_list span { display: inline-block; font-size: 1.4rem; color: #a7a7a7; width: 50% }
 .redeem_list .detail { color: #575757;text-align: right;}
 .redeem_shouyi { position: absolute; top: 0; right: 0; margin-top: 35px; margin-right: 40px; text-align: center; color: #575757 }
-.my_invest { margin: 0 0; padding: 0 10px 10px 10px; background:url(../../images/my_invest_bg.jpg) no-repeat;background-size: 100% 100%;height: 100px}
+.my_invest { margin: 0 0; padding:40px 10px 20px 10px; background:url(../../images/my_invest_bg.jpg) no-repeat;background-size: 100% 100%;}
 .my_invest .invest_title { color: #ffffff }
 .my_invest .invest_money { font-size: 2.8rem; color: #ffffff}
 .my_change { background-color: #ffffff; border-bottom: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px;border-top: 1px solid #cecece}
@@ -1245,14 +1247,16 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .cycle_6 { position: absolute; bottom: 16%; right: 50%; -webkit-transform: rotate(180deg); margin-right: -16px }
 .cycle_7 { position: absolute; bottom: 25%; left: 22%; -webkit-transform: rotate(225deg); }
 .cycle_8 { position: absolute; top: 50%; left: 14%; -webkit-transform: rotate(270deg); margin-top: -8px }
-.cycleTestRed { color: #fe6400; display: block !important; }
+.cycleTestRed { color: #b5b5b5; display: block !important; text-align: center}
 .cycle_bg { height: 150px; width: 300px; position: relative; margin: 0 auto 30px auto; overflow: hidden }
-.cycleToday { text-shadow: 1px 1px 1px yellow, -1px -1px 1px yellow, 1px -1px 1px yellow, -1px 1px 1px yellow, -1px 0px 1px yellow, 0px 1px 1px yellow, 1px 0px 1px yellow, 0px -1px 1px yellow; }
+/*.cycleNow { text-shadow: 1px 1px 1px #d01b02, -1px -1px 1px #d01b02, 1px -1px 1px #d01b02, -1px 1px 1px #d01b02, -1px 0px 1px #d01b02, 0px 1px 1px #d01b02, 1px 0px 1px #d01b02, 0px -1px 1px #d01b02; }*/
+.cycleNow { border: 1px solid  #d01b02 ;color: #d01b02}
+.cycleToday {  color: #fe6400}
 
 /*.cycle_rotate{-webkit-transform:rotate(0deg);-webkit-transition: -webkit-transform ease-out 1s;height: 300px;width: 300px;}*/
 .cycle_rotate { background: url("../../images/cycle.png") no-repeat; background-size: 300px 300px; background-color: rgba(0, 0, 0, 0); }
-.cycle_num { position: absolute; top: 0; margin-left: 68px; margin-top: 0px; display: none }
-.cycle_num div { display: inline-block; background: #ffffff; border-radius: 5px; height: 30px; width: 20px; line-height: 30px; font-size: 2rem; text-align: center; color: #fe6400 }
+.cycle_num {  }
+.cycle_num div { display: inline-block; background: #fe6400; border-radius: 5px; height: 30px; width: 20px; line-height: 30px; font-size: 2rem; text-align: center; color: #ffffff }
 
 /*-- 天添利 推荐页 --*/
 .ttl_recommend_ad { min-height: 100px;overflow: hidden; }
