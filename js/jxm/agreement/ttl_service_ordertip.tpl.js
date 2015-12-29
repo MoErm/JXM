@@ -152,7 +152,7 @@ define(function (require, exports, module) {
 					</tr>\
 					<tr>\
 						<td class="tip_table_name">债权期限</td>\
-						<td><%=serviceData.contractDate%></td>\
+						<td>自（<%=serviceData.contractDate%>）起至收益权赎回日</td>\
 					</tr>\
 					<tr class="tip_table_head"><td colspan="2">债权收益权转让基本信息</td></tr>\
 					<tr>\
@@ -177,7 +177,7 @@ define(function (require, exports, module) {
 					</tr>\
 					<tr>\
 						<td class="tip_table_name">受让方预期年化收益率：</td>\
-						<td><%=serviceData.currentRate%></td>\
+						<td>与受让方持有债权收益权的期限所对应的预期年化收益率</td>\
 					</tr>\
 					<tr>\
 						<td class="tip_table_name">投资金额：</td>\
