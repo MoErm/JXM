@@ -1287,6 +1287,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_introduce_t .earn h2 { font-size: 4rem; }
 .ttl_introduce_m { background: #fff; margin: 0 0 10px 0; padding: 10px 0; border-bottom: 1px solid #E6E6E6; }
 .ttl_introduce_m .total, .ttl_introduce_m .history { display: inline-block; width: 49%; font-size: 1.5rem; color: #9b9b9b; text-indent: 4rem; }
+.ttl_introduce_m .history{border-left:1px solid #E6E6E6;}
 .ttl_introduce_m .total h2, .ttl_introduce_m .history h2 { font-size: 2rem; color: #db3710; }
 .ttl_introduce_b { border-top: 1px solid #ECECEC; background: #ffffff; margin: 0 0 10px 0; }
 .ttl_introduce_b .title { display: inline-block; height: 30px; color: #9b9b9b; padding: 10px 0 0 0; }
