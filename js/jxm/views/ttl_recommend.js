@@ -112,7 +112,7 @@ define(function(require, exports, module) {
             var chartLine = Snap("#chart_line");
             var lineWidth= $("#chart_line").width()*0.92;
 
-            var pathPoint = [ 'M0 0','M45 126C189 85,160 35 '+lineWidth+ ' 5'];
+            var pathPoint = [ 'M0 0','M47 126C189 85,160 35 '+lineWidth+ ' 5'];
             var lineGrad = chartLine.paper.gradient("r(0.1, 1, 1)#FFC34A-#FF6500");
             
             var drawLine = chartLine.paper.path(pathPoint[1]).attr({
@@ -156,7 +156,7 @@ define(function(require, exports, module) {
                 });
             }
             function drawMinPoint(){
-                var minPoint = chartLine.paper.circle(45,126,3).attr({
+                var minPoint = chartLine.paper.circle(47,126,3).attr({
                     fill: "#FF6500"
                 });
             }
