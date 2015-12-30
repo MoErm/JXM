@@ -294,7 +294,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['交易详情']
+                    'tagname': 'title', 'value': ['交易记录']
                 },
                 right:null
             });
