@@ -27,7 +27,7 @@ define(function(require, exports, module) {
         onShow: function() {
             self = this.initialize();
             self.message = '网络错误，请稍后重试';
-
+            $(self.header).hide();
             var query = self.request.query;
             var openid= query&&query.openid||"";
             if(openid!=""){
@@ -36,22 +36,9 @@ define(function(require, exports, module) {
 
             handle.share();
             handle.orientationTips();
-            self.setHeader();
             self.initInvest();
             self.getUserInfo();
-        },
-        setHeader: function () {
-            var header = new App.UI.UIHeader();
-            header.set({
-                view: this,
-                title: '推荐',
-                back: {
-                    'tagname': null,
-                    callback: function () {}
-                },
-                right: null
-            });
-        },
+        },       
         getUserInfo:function(){
             getUserInfo.exec({
                 type: 'get',
