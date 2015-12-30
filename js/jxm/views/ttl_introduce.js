@@ -108,8 +108,17 @@ define(function(require, exports, module) {
             self.pageData = {};
             self.setHeader();
             self.initProperty();
+            self.hideArrow();
         },
+        hideArrow:function(){
+            $(window).bind('scroll', function(){
 
+
+                if ($(window).scrollTop() >= 0) {
+                    self.$(".fixed_arrow").css("display","none")
+                }
+            })
+        },
         setCycle: function() {
 
             var hit = document.querySelector("#tradeAmount");

@@ -52,8 +52,7 @@ define(function (require, exports, module) {
                             <div style="position: absolute;top: 15px;right:2px;" id="right_arrow"><img src="images/cycle_rightArrow.png" width="50px" alt=""></div>\
                         </div>\
                      </div>\
-                     <div class="next_arrow"></div>\
-                     <div class="next_arrow"></div>\
+                     \
 				</div>\
 			</div>\
             <div class="ttl_introduce_d">\
@@ -100,6 +99,10 @@ define(function (require, exports, module) {
                             </ul>\
                         </div>\
                     </div>\
+                </div>\
+                <div class="fixed_arrow" style="display:block">\
+                    <div class="next_arrow"></div>\
+                    <div class="next_arrow"></div>\
                 </div>\
                 <div class="action">\
                     <ul class="action_list">\
