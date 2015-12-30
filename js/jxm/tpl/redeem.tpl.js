@@ -22,7 +22,7 @@ define(function (require, exports, module) {
                         <p><span class="v_item_title"><%if(order.orderStatus==08) {%>最终收益率<% }else{ %>昨日收益率<% } %></span><span class="v_item_cont"><%if(order.rate==0){%>- -<%}else{%><%=format(order.rate)%><%}%><%if(order.isUp==1){%><i class="ico_up"></i><%}%></span></p>\
                 </div>\
                 <div class="v_item_bd">\
-                    <span class="v_item_title"><%if(order.income==0){ if(order.orderStatus==08){%>0.00<%}else{%>- -<%}%><%}else{%>+<%=order.income%>元<%}%></span><span class="v_item_cont">累计收益</span>\
+                    <span class="v_item_title"><%if(order.income==0){ if(order.orderStatus==08||order.orderStatus==05){%>0.00<%}else{%>- -<%}%><%}else{%>+<%=order.income%>元<%}%></span><span class="v_item_cont">累计收益</span>\
                 </div>\
             </div>\
            </li>\
