@@ -26,12 +26,6 @@ window.global_config = {
         }, {
             "url": "list",
             "controller": "list"
-        }, { "url": "App_list",
-        "controller": "App_list"
-    },
-        {
-            "url": "App_detail",
-            "controller": "App_detail"
         },
         {
             "url": "detail",
@@ -207,6 +201,19 @@ window.global_config = {
         }, {
             "url": "ttl_service_ordertip",
             "controller": "ttl_service_ordertip"
+        },
+        { "url": "App_list",
+            "controller": "App_list"
+        },
+        {
+            "url": "App_detail",
+            "controller": "App_detail"
+        },{
+            "url": "App_invest_confirm",
+            "controller": "App_invest_confirm"
+        },{
+            "url": "App_invest_finish_regular",
+            "controller": "App_invest_finish_regular"
         }
 
     ],
@@ -225,9 +232,7 @@ requirejs.config({
         'error': 'jxm/views/error',
         'index': 'jxm/views/index',
         'detail': 'jxm/views/detail',
-        'App_detail': 'App/views/detail',
         'list': 'jxm/views/list',
-        'App_list': 'App/views/list',
         'reg': 'jxm/views/reg',
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
@@ -286,6 +291,10 @@ requirejs.config({
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',
         'redemption_investDetail': 'jxm/views/redemption_investDetail',
-        'recommend': 'jxm/views/recommend'
+        'recommend': 'jxm/views/recommend',
+        'App_detail': 'App/views/detail',
+        'App_invest_confirm': 'App/views/invest_confirm',
+        'App_invest_finish_regular': 'App/views/invest_finish_regular',
+        'App_list': 'App/views/list'
     }
 })

@@ -3,7 +3,7 @@ define(function (require, exports, module) {
         var detail = require('App/tpl/detail.tpl');
         var history = require('jxm/tpl/investor.tpl');
         var model = require('jxm/model/model');
-        var tool = require('jxm/utils/Tool');
+        var tool = require('App/utils/Tool');
         var detailModel = new model.detailModel();
         var investModel = new model.investModel();
         var realStatusCheck = new model.realStatusCheck();
@@ -39,7 +39,7 @@ define(function (require, exports, module) {
             },
             goList: function(){
                 setTimeout(function(){
-                    App.goTo('list');
+                    window.app.goBack();
                 },2000);
             },
             comeType : function(type, ceiling, rate, floor){
@@ -223,16 +223,17 @@ define(function (require, exports, module) {
                     'success': function(data){
                         var url = self.request.url;
                         if(data.ret == 0){
-                            window.app.goHtml('invest_confirm?pid=' + self.data.productNo)
-//                            App.goTo('invest_confirm?pid=' + self.data.productNo)
+//                            App.showToast("成功跳转")
+//                            window.app.goHtml('App_invest_confirm?pid=' + self.data.productNo)
+                            App.goTo('App_invest_confirm?pid=' + self.data.productNo)
                         }else if(data.ret == 110001){
                             //未绑定银行卡
                             App.hideLoading();
                             if(!self.promptAlert){
                                 self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink(url);
-                                    window.app.bindCard()
-//                                    App.goTo('bind_card_new');
+//                                    window.app.bindCard()
+                                    App.goTo('bind_card_new');
                                 });
                             }
                             self.promptAlert.show();
@@ -254,8 +255,8 @@ define(function (require, exports, module) {
                                 self.giveUp()
                             }, function(){
                                 //继续更换
-                                window.app.goHtml("rebind_card")
-//                                App.goTo("rebind_card")
+//                                window.app.goHtml("rebind_card")
+                                App.goTo("rebind_card")
                             });
                             self.promptAlert.show();
                         }
@@ -317,7 +318,8 @@ define(function (require, exports, module) {
                     back: {
                         'tagname': 'back',
                         callback: function () {
-                            App.goTo('list');
+                            App.showToast("返回")
+                            window.app.goBack();
                         }
                     },
                     right: null

@@ -4,7 +4,7 @@ define(function (require, exports, module) {
         var list = require('App/tpl/list.tpl');
         var model = require('jxm/model/model');
         var store = require('jxm/model/store');
-        var tool = require('jxm/utils/Tool');
+        var tool = require('App/utils/Tool');
         var listModel = new model.listModel();
         var loginStore = new store.loginStore();
         var realStatusCheck = new model.realStatusCheck();
@@ -338,12 +338,7 @@ define(function (require, exports, module) {
                     right: null
                 });
             },
-            myInvest: function(){
-                App.goTo('my_invest');
-            },
-            setting: function(){
-                App.goTo('setting');
-            },
+
             listItem: function(e){
                 var isHistory = $(e.currentTarget).closest('.js_listing').data('history') ? '&history=1' : '';
                 window.app.goHtml('App_detail?pid='+$(e.currentTarget).attr('id') + isHistory)
