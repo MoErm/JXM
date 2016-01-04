@@ -19,7 +19,7 @@ define(function(require, exports, module) {
         events: {
             'click #action_buy': 'goBuyTipPage',
             'click .js_tips': 'goContractTip',//《风险提示书》
-            'click .js_transfer': 'goContractTransfer',//《产品收益权转让及服务协议》
+            'click .js_transfer': 'goContractTransfer'//《产品收益权转让及服务协议》
         },
         onShow: function() {
             self = this.initialize();
@@ -125,7 +125,7 @@ define(function(require, exports, module) {
                 "cardId": goBuyData.cardId
             });
             goTtlBuyPageCheck.exec({
-                type: 'post',
+                type: 'post'
             }).then(function (data) {
                 self.pageData.postData= data.data;
                 if(data.ret == 0){

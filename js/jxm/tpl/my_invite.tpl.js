@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 	</div>\
 	<% }%>\
 	<% if(role !="01") {%>\
-	  <div class="v_mod invest_base_info">\
+	  <div class="v_mod invest_base_info" style="padding-top: 20px">\
 	    <div class="item">\
 	      <div class="v_item v_item1">\
 	        <div class="v_item_bd"><span class="v_item_cont"><i class="rmb">&yen;&nbsp</i><%=totalBonus%></span></div>\
@@ -49,7 +49,7 @@ define(function (require, exports, module) {
 	  </div>\
 	  <% } %>\
 	<% } else if (role =="01") {%>\
-	  <div class="v_mod invest_base_info">\
+	  <div class="v_mod invest_base_info"  style="padding-top: 20px">\
 	    <div class="item">\
 	      <div class="v_item v_item3">\
 	        <div class="v_item_bd"><span class="v_item_title">成功邀请人数</span><span class="v_item_cont"><%=totalCount%></span></div>\

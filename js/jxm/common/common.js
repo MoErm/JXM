@@ -501,6 +501,7 @@ define(function(require, exports, module) {
                     'click .js_share_close': 'onHideLayer',
                     'click .js_share_bonus': 'onHideLayer'
                 },
+
                 twoDimension: function() {
                     this.$('.js_share').hide();
                     this.$el.append(this.dimension);

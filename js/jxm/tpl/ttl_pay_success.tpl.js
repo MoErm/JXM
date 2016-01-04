@@ -14,7 +14,7 @@ define(function (require, exports, module) {
 					<em class="icon <%if(successData.payMoneyDate!= successData.getMoneyDate){%>nocur<% } %>"></em>\
 					<div class="info">\
 						<p class="sub_time"><%=successData.valueDate%></p>\
-						<p>开始计算收益，今日收益率 <%=successData.currentRate*100%>%</p>\
+						<p>开始计算收益，起始收益率 <%=successData.currentRate*100%>%</p>\
 					</div>\
 				</li>\
 				<li class="show">\

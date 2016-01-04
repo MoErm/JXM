@@ -41,11 +41,13 @@ define(function (require, exports, module) {
                         if(inPageNum>inPageTotal){
                             return
                         }
+                        console.log("showMoreIn")
                         self.showMoreIn()
                     }else{
                         if(outPageNum>outPageTotal){
                             return
                         }
+                        console.log("showMoreOut")
                         self.showMoreOut()
                     }
                 }
@@ -208,6 +210,8 @@ define(function (require, exports, module) {
             //self.$el.html(Footer);
             outPageNum=1;
             inPageNum=1;
+            inPageTotal=0
+            outPageTotal=0
             return this.myChange();
         },
 

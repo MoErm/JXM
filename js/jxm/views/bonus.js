@@ -5,7 +5,6 @@ define(function (require, exports, module) {
     var openBonus = new Model.openBonus();
     var checkStatus = new Model.checkStatus();
     var Store = require("jxm/model/store");
-    var bonusStore = new Store.bonusStore();
     var tool = require('jxm/utils/Tool')
     var handle = new tool();
     var payLayer = require("jxm/common/common");
@@ -26,7 +25,7 @@ define(function (require, exports, module) {
         beforeIn:  function () {
             App.showLoading();
             var query = this.request.query;
-            var sessionOpenId=bonusStore.get()
+            var sessionOpenId=query.openId
             if(query.openId==null||query.openId==""){
 
                 if(sessionOpenId==""||sessionOpenId==null){
@@ -34,19 +33,14 @@ define(function (require, exports, module) {
 
                     var redirect_uri_in="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+query.appid+"&redirect_uri="+encodeURIComponent(url)+"&response_type=code&scope=snsapi_userinfo&state=jiaxinmore#wechat_redirect"
 
-                    if(window.WebViewJavascriptBridge){
-                        window.WebViewJavascriptBridge.callHandler('openUrl',{"url": redirect_uri_in},function(response) {})
-                    }else{
 
                             window.location.href=redirect_uri_in;
 
-                    }
                 }else{
                     self.checkBonus()
                 }
 
             }else{
-                bonusStore.set(query.openId)
                 self.checkBonus()
             }
 
@@ -55,7 +49,7 @@ define(function (require, exports, module) {
         checkBonus:function(){
             App.showLoading();
             var query = this.request.query;
-           var sessionOpenId=bonusStore.get()
+            var sessionOpenId=query.openId
             checkStatus.set({ 'cid': query.cid,
                 'openId': sessionOpenId})
             checkStatus.exec({
@@ -145,7 +139,7 @@ define(function (require, exports, module) {
             openFlag=true;
             var query = this.request.query;
             var mobile;
-            var openId=bonusStore.get();
+            var openId=query.openId
             if(oldPhoneflag||self.mobile==null||self.mobile==""){
                 mobile=self.$el.find(".bonus_input").val();
 
@@ -164,13 +158,13 @@ define(function (require, exports, module) {
                 openFlag=false;
                 App.hideLoading();
                 if(data&&data.ret==0){
-                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+appid)
+                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+query.appid)
                 }else if(data.ret==100203) {
                     self.promptAlert = handle.alert(data.msg);
                     self.promptAlert.show();
                     self.$el.find(".bonus_img3").removeClass("bonus_rotate")
                 }else if(data.ret==100201) {
-                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+appid)
+                    App.goTo("bonusOpen?cid="+query.cid+"&mobile="+mobile+"&openId="+openId+"&appid="+query.appid)
                 }else{
                         App.hideLoading();
                         App.showToast(data.msg || '网络错误')

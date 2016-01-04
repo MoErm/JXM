@@ -201,20 +201,20 @@ window.global_config = {
         }, {
             "url": "ttl_service_ordertip",
             "controller": "ttl_service_ordertip"
-        },
-        { "url": "App_list",
-            "controller": "App_list"
-        },
-        {
-            "url": "App_detail",
-            "controller": "App_detail"
-        },{
-            "url": "App_invest_confirm",
-            "controller": "App_invest_confirm"
-        },{
-            "url": "App_invest_finish_regular",
-            "controller": "App_invest_finish_regular"
         }
+//        ,{ "url": "App_list",
+//            "controller": "App_list"
+//        },
+//        {
+//            "url": "App_detail",
+//            "controller": "App_detail"
+//        },{
+//            "url": "App_invest_confirm",
+//            "controller": "App_invest_confirm"
+//        },{
+//            "url": "App_invest_finish_regular",
+//            "controller": "App_invest_finish_regular"
+//        }
 
     ],
     loader: requirejs
@@ -291,10 +291,11 @@ requirejs.config({
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',
         'redemption_investDetail': 'jxm/views/redemption_investDetail',
-        'recommend': 'jxm/views/recommend',
-        'App_detail': 'App/views/detail',
-        'App_invest_confirm': 'App/views/invest_confirm',
-        'App_invest_finish_regular': 'App/views/invest_finish_regular',
-        'App_list': 'App/views/list'
+        'recommend': 'jxm/views/recommend'
+//        ,
+//        'App_detail': 'App/views/detail',
+//        'App_invest_confirm': 'App/views/invest_confirm',
+//        'App_invest_finish_regular': 'App/views/invest_finish_regular',
+//        'App_list': 'App/views/list'
     }
 })

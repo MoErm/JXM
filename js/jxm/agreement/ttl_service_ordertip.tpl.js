@@ -152,7 +152,7 @@ define(function (require, exports, module) {
 					</tr>\
 					<tr>\
 						<td class="tip_table_name">债权期限</td>\
-						<td>自（<%=serviceData.contractDate%>）起至收益权赎回日</td>\
+						<td>自<%=serviceData.contractDate%>起至收益权赎回日</td>\
 					</tr>\
 					<tr class="tip_table_head"><td colspan="2">债权收益权转让基本信息</td></tr>\
 					<tr>\

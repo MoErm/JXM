@@ -12,7 +12,7 @@ define(function (require, exports, module) {
 	   <p><%=orderTime%></p>\
 	   </div>\
 	    <div class="item icon_coin">\
-	      <p class="redemption_tips">昨日收益率 <i class="redemption_rate"><%=format(rate)%></i><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
+	      <p class="redemption_tips">昨日收益率 <i class="redemption_rate"><%if(rate==0){%>- -<%}else{%><%=format(rate)%><%}%></i><%if(isUp==1){%><i class="ico_up"></i><%}%></p>\
 	      <p class="redemption_rate_d"><%=currentDate%></p>\
 	    </div>\
 	  </div>\

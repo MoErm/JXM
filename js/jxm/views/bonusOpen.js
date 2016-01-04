@@ -3,7 +3,6 @@ define(function (require, exports, module) {
     var bonusOpen = require("jxm/tpl/bonusOpen.tpl");
     var getRecord = new Model.getRecord();
     var Store = require("jxm/model/store");
-    var bonusStore = new Store.bonusStore();
     var tool = require('jxm/utils/Tool')
     var handle = new tool();
     var payLayer = require("jxm/common/common");
@@ -60,9 +59,6 @@ define(function (require, exports, module) {
             var sendData;
 
                 var query = this.request.query;
-                if(query){
-                    bonusStore.set(query.openId)
-                }
                 sendData={
                     'cid': query.cid,
                     'mobile': query.mobile,
@@ -93,8 +89,9 @@ define(function (require, exports, module) {
         },
         sendChange:function(){
             var query = this.request.query;
-            var url="http://"+location.hostname+"/index.html#bonus?appid="+query.appid+"&cid="+query.cid;
-
+//            var url="http://"+location.hostname+"/index.html#bonus?appid="+query.appid+"&cid="+query.cid;
+            var redirect_uri="http://"+location.hostname+"/apps/api/crc/open?cid="+query.cid;
+            var url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+query.appid+"&redirect_uri="+encodeURIComponent(redirect_uri)+"&response_type=code&scope=snsapi_base&state=jiaxinmore#wechat_redirect";
             if(handle.mobileType()=='android'){
                 var shareConfig={'title': '我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！','url':url,'desc':'红包来了！加薪猫理财，怎么开心怎么来!',"imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
                 window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {

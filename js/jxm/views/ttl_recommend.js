@@ -62,8 +62,8 @@ define(function(require, exports, module) {
             var minHeight = $(window).width() / 3.2;
             var imgs = [{
                 id: 4,
-                src: './images/zbs11.jpg',
-                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400413790&idx=1&sn=ef4e9f3d4ac84b9d09f6d3671833cd1a#wechat_redirect'
+                src: './images/sdhd.jpg',
+                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd'
             }, {
                 id: 2,
                 src: './images/xszn.jpg',

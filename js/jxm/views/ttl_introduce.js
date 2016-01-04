@@ -265,7 +265,7 @@ define(function(require, exports, module) {
             var showDate_2 = self.addDate(nowDate, RoundNum - 2)
             var showDate_3 = self.addDate(nowDate, RoundNum - 1)
             var showDate_4 = self.addDate(nowDate, RoundNum)
-            console.log(RoundNum)
+
             if(RoundNum==1){
                 self.$("#right_arrow").css("display","none")
             }else if(RoundNum==9){
@@ -327,9 +327,13 @@ define(function(require, exports, module) {
             }
         },
         addDate: function(date, days) {
-            var d = new Date(date);
+            var d = new Date();
 
+//            console.log("change  "+  d.setDate(days+1))
+//            console.log("show   "+new Date(d.setDate(days+1)))
             d.setDate(d.getDate() + days);
+            console.log("now  "+d)
+//            d=new Date(d.setDate(days+1))
             var m = d.getMonth() + 1;
             m = m + ""
             if (m.length == 1) {
@@ -339,6 +343,7 @@ define(function(require, exports, module) {
             if (day.length == 1) {
                 day = "0" + day
             }
+            console.log(d.getFullYear() + '' + m + '' + day)
             return d.getFullYear() + '' + m + '' + day;
         },
         setHeader: function() {
