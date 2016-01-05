@@ -11,7 +11,23 @@ define(function (require, exports, module) {
 	          <div class="v_item_bd"> <span class="v_item_title"><i class="webtxt2"><%=investDeadline%></i></span><span class="v_item_cont">投资期限</span> </div>\
 	          <div class="v_item_bd"> <span class="v_item_title"><i class="webtxt2"><%=surplusAmount_show%></i></span><span class="v_item_cont">剩余可投</span> </div>\
 	        </div>\
-	        <div class="v_item item_form"><input type="tel" class="inpt_txt js_amount js_par" placeholder="<%=minInvestAmount_show%>起投，<%=additionalAmount_show%>递增" /><span class="unit">元</span></div>\
+	        <div class="ttl_buy_one_m">\
+				<div class="mycard">\
+					<p class="head"><img src="<%=bankLogo%>" alt="" class="banklogo" /></p>\
+					<div class="mycard_info">\
+						<div class="card_detail">\
+							<p class="card_cur" data-cardid= "<%=cardId%>"><%=bankName%>(尾号<%=cardNoTail%>)</p>\
+						</div>\
+					</div>\
+				</div>\
+				<div class="imoney">\
+					<p class="head">金额</p>\
+					<div class="imoney_content">\
+						<input type="number" class="imoney_num" id="imoney_num" placeholder="<%=minInvestAmount_show%>元起投，<%=additionalAmount_show%>元递增"/>\
+						<span class="imoney_text">元</span>\
+					</div>\
+				</div>\
+			</div>\
 	        <% if ("s" != "") {%><div class="invest_change">红包：<p id="change"><%=change%></p></div><% }%>\
 	        <div class="v_item v_item2">\
 	          <div class="v_item_hd"><span class="v_item_title"><i class="webtxt js_profit">--</i><span class="unit">元</span></span><span class="v_item_cont"><% if (incomeType == "04") {%>最高收益可达<%} else {%>预计到期收益<% } %></span></div>\

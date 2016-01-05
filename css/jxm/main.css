@@ -395,7 +395,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 
 	/*ttl 适配*/
 	.page .ttl_recommend_ad { min-height: 100px; overflow: hidden;}
-	.page .ttl_buy_one_m .imoney_num { width: 71%; }
+	.page .ttl_buy_one_m .imoney_num { width: 64%; }
 	.tip_cont .ttl_title_tip{height: 620px;}
 }
 
@@ -431,7 +431,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 	/*ttl 适配*/
 	.page .ttl_recommend_ad { min-height: 100px;overflow: hidden; }
 	.page .ttl_recommend_detail_m .info { width: 100%; }
-	.page .ttl_buy_one_m .imoney_num { width: 84%; }
+	.page .ttl_buy_one_m .imoney_num { width: 75%; }
 	.tip_cont .ttl_title_tip{height: 570px;}
 }
 .redemption_box { background: #ffffff; border-top: 1px #cecece solid; border-bottom: 1px #cecece solid; margin-top: 10px; }
@@ -1366,15 +1366,14 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 
 .ttl_buy_one_m { margin: 10px 0; background: #fff; border-top: 1px solid #ECECEC; }
 .ttl_buy_one_m .mycard, .ttl_buy_one_m .imoney { height: 50px;font-size: 1.6rem;  padding: 5px 0; border-bottom: 1px solid #ECECEC;  }
-.ttl_buy_one_m .head { text-indent: 1em; height: 50px; line-height: 50px; width: 28%; float: left; text-align: center; }
-.ttl_buy_one_m .mycard_info, .ttl_buy_one_m .imoney_content { width: 70%; float: left; margin: 0 0 0 5px;  }
-.ttl_buy_one_m .imoney_num { width: 65%; height: 50px; display: inline-block; text-align: right; }
-.ttl_buy_one_m .mycard { font-size: 1.5rem; }
-.ttl_buy_one_m .mycard .card_detail { color: #9b9b9b; float: left;}
+.ttl_buy_one_m .head { text-indent: 1em; height: 50px; line-height: 50px; width: 25%; float: left; text-align: center; }
+.ttl_buy_one_m .mycard_info, .ttl_buy_one_m .imoney_content { width: 70%;height: 50px;line-height: 50px; float: left; margin: 0 0 0 5px;  }
+.ttl_buy_one_m .imoney_num { width: 58%; height: 50px; display: inline-block; text-align: right; }
+.ttl_buy_one_m .mycard { font-size: 1.2rem;}
+.ttl_buy_one_m .mycard .card_detail {background:url(../../images/ttl_icon_w.png) no-repeat  95% 45%;background-size: 5%;text-indent: 0.3rem;}
 .ttl_buy_one_m .mycard .banklogo { display: inline-block; width: 36px; height: 36px; padding: 7px 0 0 0; }
-.ttl_buy_one_m .mycard .card_detail { width: 100%; }
-.ttl_buy_one_m .mycard .card_detail p { line-height: normal; margin: 5px 0 0 5px; font-size: 1.5rem; }
-.ttl_buy_one_m .mycard .card_detail .limit_text { font-size: 1.1rem; }
+.ttl_buy_one_m .imoney_content{position:relative;}
+.ttl_buy_one_m .imoney_content .imoney_text{position: absolute;right: 5%;}
 .ttl_buy_one_b { padding: 20px 0; }
 .ttl_buy_one_b .action_buy { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 .ttl_buy_one_b .action_tip { width: 95%; margin: 15px auto; color: #9b9b9b; font-size: 1rem; }
@@ -1469,14 +1468,21 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_service_tip .ttl_service_tip_m .cur{background: url(../../images/ttl_icon_u.png) no-repeat 133px -27px;background-size: 50%;}
 .ttl_service_tip .ttl_service_tip_m .cur_a{background: url(../../images/ttl_icon_t.png) no-repeat 133px -27px;background-size: 50%;}
 
-
-
-
-
-
-
-
-
+/*-- 天添利 支付卡选择 --*/
+.ttl_card_select { width: 95%; margin: 10px auto 80px auto; background: #fff; border-top: 1px solid #ECECEC; }
+.ttl_card_select .ttl_card_list li,
+.ttl_card_select .ttl_card_add { height: 60px;font-size: 1.4rem;  padding: 5px 0; }
+.ttl_card_select .ttl_card_list li:hover{background:#eee;}
+.ttl_card_select .ttl_card_list .head { text-indent: 1em; height: 50px; line-height: 50px; width: 15%; float: left; text-align: center; }
+.ttl_card_select .ttl_card_list .mycard_info { width: 70%; float: left; margin: 0 0 0 5px;  }
+.ttl_card_select .ttl_card_list .imoney_num { width: 75%; height: 50px; display: inline-block; text-align: right; }
+.ttl_card_select .ttl_card_list .card_detail { float: left;}
+.ttl_card_select .ttl_card_list .banklogo { display: inline-block; width: 36px; height: 36px; padding: 7px 0 0 0; }
+.ttl_card_select .ttl_card_list .card_detail { width: 100%; }
+.ttl_card_select .ttl_card_list .card_detail p { line-height: normal; margin: 5px 0 0 5px; font-size: 1.5rem; }
+.ttl_card_select .ttl_card_list .card_detail .limit_text { font-size: 1rem;  color: #9b9b9b;}
+.ttl_card_select .ttl_card_list li.cur_card{background:url(../../images/ttl_icon_x.png) no-repeat  95% 23px;}
+.ttl_card_select .ttl_card_add {line-height: 60px;text-indent: 2rem;border-bottom: 1px solid #ECECEC;background:url(../../images/ttl_icon_w.png) no-repeat  95% 23px;}
 
 
 

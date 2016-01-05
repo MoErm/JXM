@@ -377,7 +377,6 @@ define(function(require, exports, module) {
                 success: function(data) {
                     if (data.ret == 0) {
                         self.pageData.getTtlProperty = data.data;
-
                         self.initTemple();
                     } else if (data.ret == 999001) {
                         handle.goLogin();
