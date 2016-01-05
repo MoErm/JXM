@@ -67,10 +67,9 @@ define(function (require, exports, module) {
             header.set({
                 view: this,
                 title: '设置',
-                back: {
-                    'tagname': 'back',
+                back:{
+                    'tagname': '',
                     callback: function () {
-                        App.goTo('my_invest')
                     }
                 },
                 right: null
