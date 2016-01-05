@@ -16,7 +16,7 @@ define(function (require, exports, module) {
     var onceClick=true;
     module.exports = App.Page.extend({
         events: {
-            'click .js_add_card': 'goAddCard'
+            'click .add_card': 'goAddCard'
         },
         onShow: function () {
 
@@ -110,15 +110,15 @@ define(function (require, exports, module) {
                         App.goTo('setting');
                     }
                 },
-                right:null
-//                    [{
-//                        'tagname': 'changeCard', 'value': '更换&nbsp;&nbsp;',
-//                        callback: function () {
-//
-//                            self.checkUnBinding();
-//
-//                        }
-//                    }]
+                right:
+                    [{
+                        'tagname': 'changeCard', 'value': '<i style="font-size: 3rem">&plus;</i>&nbsp;&nbsp;',
+                        callback: function () {
+
+                            App.showToast("添加新银行卡")
+
+                        }
+                    }]
             });
         },
         giveUp:function(){

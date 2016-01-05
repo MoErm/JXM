@@ -45,8 +45,7 @@ define(function (require, exports, module) {
                 'change .js_card_number': 'inputCard',//获取开户行信息
                 'click .js_name': 'checkCardBin',//获取开户行信息
                 'click .js_id_card': 'checkCardBin',//获取开户行信息
-                'click .js_band_card': 'checkCardBin',//check卡bin
-                'click .bind_bank_tips':'showBankTips'
+                'click .js_band_card': 'checkCardBin'//check卡bin
             },
             signature:function(){
                 if(submitFlag){
@@ -371,7 +370,15 @@ define(function (require, exports, module) {
                             self.promptAlert.show();
                         }
                     },
-                    right: null
+                    right:
+                        [{
+                        'tagname': 'showBankTips', 'value': '支持银行&nbsp;&nbsp;',
+                        callback: function () {
+
+                            self.showBankTips();
+
+                        }
+                    }]
                 });
             },
             agreement: function(e){
