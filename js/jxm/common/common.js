@@ -6,8 +6,8 @@ define(function(require, exports, module) {
     var getMsgCodeModel = new Model.getMsgCodeModel();
     var getTtlPayCode = new Model.getTtlPayCode();
     var goTtlPayOrder = new Model.goTtlPayOrder();
-    var goTtlPayResult = new Model.goTtlPayResult(); 
-    var checkOrder = new Model.checkOrder();    
+    var goTtlPayResult = new Model.goTtlPayResult();
+    var checkOrder = new Model.checkOrder();
     var abortChange = new Model.abortChange();
     var tool = require("jxm/utils/Tool");
     var qrcode = require("jxm/utils/qrcode");
@@ -407,11 +407,11 @@ define(function(require, exports, module) {
                         <button class="payRedeem_btn payRedeem_margin payRedeem_bgRed" id="payRedeem_btn">确认赎回</button>\
                     </div>';
             var popwin = new App.UI.UIPopWin({
-                events:{
-                    "click .payRedeem_close":"onHideLayer",
-                    "click #payRedeem_forget_a":"forget",
-//                    "input #redeemPwd":"canPay",
-                    "click .payRedeem_btn":"doPay"
+                events: {
+                    "click .payRedeem_close": "onHideLayer",
+                    "click #payRedeem_forget_a": "forget",
+                    //                    "input #redeemPwd":"canPay",
+                    "click .payRedeem_btn": "doPay"
 
                 },
                 maskToHide: false,
@@ -419,45 +419,45 @@ define(function(require, exports, module) {
                 onHideLayer: function() {
                     this.hide();
                 },
-                canPay:function(){
-                    var tradePassword =$('#redeemPwd').val();
-                    if(tradePassword.length>0){
-                        payFlag=true;
+                canPay: function() {
+                    var tradePassword = $('#redeemPwd').val();
+                    if (tradePassword.length > 0) {
+                        payFlag = true;
                         $('#payRedeem_btn').removeClass("payRedeem_bgGrey")
                         $('#payRedeem_btn').addClass("payRedeem_bgRed")
-                    }else{
-                        payFlag=false;
+                    } else {
+                        payFlag = false;
                         $('#payRedeem_btn').addClass("payRedeem_bgGrey")
                         $('#payRedeem_btn').removeClass("payRedeem_bgRed")
                     }
                 },
-                forget:function(){
+                forget: function() {
                     App.goTo("forget_password")
                     this.hide();
                 },
-                doPay:function(){
-                    var tradePassword =$('#redeemPwd').val();
-                    if(tradePassword==""){
+                doPay: function() {
+                    var tradePassword = $('#redeemPwd').val();
+                    if (tradePassword == "") {
                         App.showToast("请输入交易密码")
                         return
                     }
-                    var data={
-                        'tradePassword':tradePassword,
-                        'redeemAmount':redeemValue
+                    var data = {
+                        'tradePassword': tradePassword,
+                        'redeemAmount': redeemValue
                     }
                     App.showLoading()
                     confirmRedeem.set(data)
                     confirmRedeem.exec({
                         type: 'post',
-                        success: function(data){
+                        success: function(data) {
                             App.hideLoading();
-                            if(data.ret == 0){
-                                App.goTo("redemption_finish?redeemAmount="+data.data.redeemAmount+"&redeemTime="+data.data.redeemTime+"&ransomId=-1")
+                            if (data.ret == 0) {
+                                App.goTo("redemption_finish?redeemAmount=" + data.data.redeemAmount + "&redeemTime=" + data.data.redeemTime + "&ransomId=-1")
 
-                            }else if(data.ret == 999001) {
+                            } else if (data.ret == 999001) {
                                 handle.goLogin();
-                            }else{
-                                self.promptAlert = handle.alert(data.msg,function(){
+                            } else {
+                                self.promptAlert = handle.alert(data.msg, function() {
                                     this.hide();
                                 });
                                 self.promptAlert.show();
@@ -473,8 +473,8 @@ define(function(require, exports, module) {
                 },
                 onShow: function() {
                     var money = redeemValue.toString().split('.');
-                 var show=money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' :  money[1].length==1?"."+money[1]+"0":"."+money[1])
-                    $('#payRedeem_redeemValue').html("¥"+show);
+                    var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
+                    $('#payRedeem_redeemValue').html("¥" + show);
 
                 }
             });
@@ -554,8 +554,66 @@ define(function(require, exports, module) {
                 }
             });
         },
-        ttlPayWin: function(data){
-            console.log(data);
+        //选择银行卡
+        ttlSelectCard: function(data){
+            var tem = '<article class="ttl_pay_test">\
+                    <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
+                    <div class="ttl_pay_test_m">\
+                        <div class="ttl_card_select">\
+                            <ul class="ttl_card_list">\
+                                <li>\
+                                    <p class="head"><img src=" '+data.cardData.bankLogo+'" alt="" class="banklogo" /></p>\
+                                    <div class="mycard_info">\
+                                        <div class="card_detail">\
+                                            <p class="card_name" data-cardid= "'+data.cardData.cardId+'">'+data.cardData.bankName+'(尾号'+data.cardData.cardNoTail+')</p>\
+                                            <p class="limit_text">单笔限额：'+data.cardData.transactLimit+'，单日限额：'+data.cardData.dailyLimit+'</p>\
+                                        </div>\
+                                    </div>\
+                                </li>\
+                                <li class="cur_card">\
+                                    <p class="head"><img src=" '+data.cardData.bankLogo+'" alt="" class="banklogo" /></p>\
+                                    <div class="mycard_info">\
+                                        <div class="card_detail">\
+                                            <p class="card_name" data-cardid= "'+data.cardData.cardId+'">'+data.cardData.bankName+'(尾号'+data.cardData.cardNoTail+')</p>\
+                                            <p class="limit_text">单笔限额：'+data.cardData.transactLimit+'，单日限额：'+data.cardData.dailyLimit+'</p>\
+                                        </div>\
+                                    </div>\
+                                </li>\
+                            </ul>\
+                            <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
+                        </div>\
+                    </div>\
+                </article>';
+            var self = null; 
+            var selectCardWin = new App.UI.UIPopWin({
+                maskToHide: false,
+                template: tem,
+                events: {
+                    'click #cardSelectClose': 'onHideLayer',
+                    'click #useNewCard': 'goAddCard',
+                    'click .ttl_card_list li': 'goSelectCard',
+                },
+                initialize: function() {
+                    return this;
+                },
+                onShow: function() {
+                    self = this.initialize();
+                },
+                onHideLayer: function() {
+                    self.hide();
+                },
+                goSelectCard: function(){
+                    self.onHideLayer();
+                    Common.ttlPayWin(data);
+                },
+                goAddCard: function(){
+                     App.goTo("add_new_card");
+                }
+            });
+            selectCardWin.show();
+        },
+        //支付弹出窗
+        ttlPayWin: function(data) {
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">支付确认<em class="close" id="payClose"></em></div>\
                     <div class="ttl_pay_test_m">\
@@ -584,7 +642,7 @@ define(function(require, exports, module) {
                         </div>\
                     </div>\
                 </article>';
-            var self = null;
+            var self = null; 
             var popwin = new App.UI.UIPopWin({
                 maskToHide: false,
                 template: tem,
@@ -592,7 +650,7 @@ define(function(require, exports, module) {
                     'click #payClose': 'onHideLayer',
                     'click #gopay': 'payOrder',
                     'click .js_code': 'getCode',
-                    'click #forget_password':'goForgetPassword'
+                    'click #forget_password': 'goForgetPassword'
                 },
                 initialize: function() {
                     return this;
@@ -600,8 +658,8 @@ define(function(require, exports, module) {
                 onShow: function() {
                     self = this.initialize();
                     self.showOrderCountDown();
-                    self.showCodeCountDown(60);                
-                    self.showAcountValue();                    
+                    self.showCodeCountDown(60);
+                    self.showAcountValue();
                 },
                 showCodeCountDown: function(timer) {
                     //获取验证码倒计时
@@ -676,12 +734,12 @@ define(function(require, exports, module) {
                                 self.payCountAlert = handle.alert(data.data.orderStatusReason, function() {
                                     App.goTo("redeem");
                                 });
-                                    self.payCountAlert.show();
-                            }else{
+                                self.payCountAlert.show();
+                            } else {
                                 clearInterval(self.ordertimer);
-                                clearInterval(self.paytimer);                                
+                                clearInterval(self.paytimer);
                             }
-                                
+
                         },
                         error: function() {
                             App.hideLoading();
@@ -689,13 +747,13 @@ define(function(require, exports, module) {
                         }
                     });
                 },
-                showAcountValue: function(){
-                    var str=data.amountVal
-                    var money =str.toString().split('.');
-                    var show=money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' :  money[1].length==1?"."+money[1]+"0":"."+money[1])
-                    $('#amount_num').html("¥"+show);
+                showAcountValue: function() {
+                    var str = data.amountVal
+                    var money = str.toString().split('.');
+                    var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
+                    $('#amount_num').html("¥" + show);
 
-//                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
+                    //                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
                 },
                 onHideLayer: function() {
                     clearInterval(self.paytimer);
@@ -710,7 +768,7 @@ define(function(require, exports, module) {
                     App.showLoading();
                     getTtlPayCode.exec({
                         type: 'get',
-                        success: function(data){
+                        success: function(data) {
                             App.hideLoading();
                             if (data.ret == 0) {
                                 self.showCodeCountDown(60);
@@ -720,8 +778,8 @@ define(function(require, exports, module) {
                             } else {
                                 App.showToast(data.msg || "网络错误");
                             }
-                         },
-                        error: function(){
+                        },
+                        error: function() {
                             App.hideLoading();
                         }
                     });
@@ -747,7 +805,7 @@ define(function(require, exports, module) {
                 payOrder: function() {
                     var code = $('#checkCode').val();
                     var psw = $('#checkPassword').val();
-                    var orderNo= data.postData.orderNo;
+                    var orderNo = data.postData.orderNo;
 
                     if (code == "") {
                         App.showToast("验证码不能为空");
@@ -757,7 +815,7 @@ define(function(require, exports, module) {
                         App.showToast("请输入平台交易密码");
                         return;
                     }
-                    
+
 
                     App.showLoading();
                     goTtlPayOrder.set({
@@ -816,7 +874,7 @@ define(function(require, exports, module) {
                         }
                     })
                 },
-                goForgetPassword: function(){
+                goForgetPassword: function() {
                     self.hide();
                     App.goTo("forget_password");
                 }

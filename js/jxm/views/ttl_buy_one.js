@@ -100,7 +100,7 @@ define(function(require, exports, module) {
         initTemple: function(){
             self.pageData.cardData.surplusAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
             self.pageData.cardData.miNRate= self.pageData.cardData.initialRate*100;
-            self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*100;
+            self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*10000/100;
             //添加内容
             self.$el.html(_.template(buyStepOne)(self.pageData));
             self.initSession();
@@ -133,7 +133,7 @@ define(function(require, exports, module) {
                     $("#imoney_num").val(goBuyData.amountVal);
                     self.pageData.amountVal= goBuyData.amountVal;
                     //执行确认弹窗
-                    common.ttlPayWin(self.pageData);
+                    common.ttlSelectCard(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录
                     handle.goLogin();
