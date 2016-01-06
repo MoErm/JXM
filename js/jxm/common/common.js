@@ -591,8 +591,8 @@ define(function(require, exports, module) {
                                 self.CardDetail= "";
                                 //生成银行卡列表
                                 self.cardList.forEach(function(element, index){
-                                    self.CardDetail+= '<li><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
-                                        <p class="card_name"  data-cardid= " '+element.cardId+ '">'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
+                                    self.CardDetail+= '<li  data-cardid= " '+element.cardId+ '"><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
+                                        <p class="card_name" >'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
                                         <p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div></li>';
                                 });
                                 $("#cardList").html(self.CardDetail);
@@ -622,7 +622,7 @@ define(function(require, exports, module) {
                     self.hide();
                 },
                 goSelectCard: function(){
-                    self.onHideLayer();
+                   
                     self.goSetNewCard();
                 },
                 goAddCard: function(){
@@ -630,7 +630,17 @@ define(function(require, exports, module) {
                     App.goTo("add_new_card");
                 },
                 goSetNewCard: function(){
-
+                    self.choosedCardId= $(event.target.closest("li")).attr("data-cardid");
+                    self.cardList.forEach(function(element, index){
+                        if(element.cardId == self.choosedCardId){
+                            self.choosedCardData= element;
+                        }
+                    });
+                    self.onHideLayer();
+                    self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
+                        <p class="card_cur" data-cardid= "'+self.choosedCardData.cardId+ '">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNoTail+ ')</p></div></div>';
+                        
+                    $("#cardSelect").html(self.actNewCard);
                 }
             });
             selectCardWin.show();
