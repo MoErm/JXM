@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var getTtlPayCode = new Model.getTtlPayCode();
     var goTtlPayOrder = new Model.goTtlPayOrder();
     var goTtlPayResult = new Model.goTtlPayResult();
+    var getMyBankCard = new Model.addMyBankCard();
     var checkOrder = new Model.checkOrder();
     var abortChange = new Model.abortChange();
     var tool = require("jxm/utils/Tool");
@@ -555,36 +556,18 @@ define(function(require, exports, module) {
             });
         },
         //选择银行卡
-        ttlSelectCard: function(data){
+        ttlSelectCard: function(actCardBox){          
+            var self = null; 
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
                     <div class="ttl_pay_test_m">\
                         <div class="ttl_card_select">\
-                            <ul class="ttl_card_list">\
-                                <li>\
-                                    <p class="head"><img src=" '+data.cardData.bankLogo+'" alt="" class="banklogo" /></p>\
-                                    <div class="mycard_info">\
-                                        <div class="card_detail">\
-                                            <p class="card_name" data-cardid= "'+data.cardData.cardId+'">'+data.cardData.bankName+'(尾号'+data.cardData.cardNoTail+')</p>\
-                                            <p class="limit_text">单笔限额：'+data.cardData.transactLimit+'，单日限额：'+data.cardData.dailyLimit+'</p>\
-                                        </div>\
-                                    </div>\
-                                </li>\
-                                <li class="cur_card">\
-                                    <p class="head"><img src=" '+data.cardData.bankLogo+'" alt="" class="banklogo" /></p>\
-                                    <div class="mycard_info">\
-                                        <div class="card_detail">\
-                                            <p class="card_name" data-cardid= "'+data.cardData.cardId+'">'+data.cardData.bankName+'(尾号'+data.cardData.cardNoTail+')</p>\
-                                            <p class="limit_text">单笔限额：'+data.cardData.transactLimit+'，单日限额：'+data.cardData.dailyLimit+'</p>\
-                                        </div>\
-                                    </div>\
-                                </li>\
-                            </ul>\
+                            <ul class="ttl_card_list" id="cardList"></ul>\
                             <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
                         </div>\
                     </div>\
-                </article>';
-            var self = null; 
+                </article>';           
+            //显示换银行卡界面
             var selectCardWin = new App.UI.UIPopWin({
                 maskToHide: false,
                 template: tem,
@@ -596,21 +579,62 @@ define(function(require, exports, module) {
                 initialize: function() {
                     return this;
                 },
-                onShow: function() {
-                    self = this.initialize();
+                initCardList: function(){
+                    getMyBankCard.exec({
+                        type: 'get',
+                        success: function(data) {
+                            App.hideToast();
+                            if (data.ret == 999001) {
+                                App.goTo('login');
+                            } else if (data.ret == 0) {
+                                self.cardList= data.data.cardList;
+                                self.CardDetail= "";
+                                //生成银行卡列表
+                                self.cardList.forEach(function(element, index){
+                                    self.CardDetail+= '<li><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
+                                        <p class="card_name"  data-cardid= " '+element.cardId+ '">'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
+                                        <p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div></li>';
+                                });
+                                $("#cardList").html(self.CardDetail);
+
+                            } else if (data.ret == 110001) {
+                                self.promptAlert = handle.alert(data.msg,function(){
+                                    App.goTo("setting")
+                                });
+                                self.promptAlert.show();
+                                self.setHeader();
+                                self.$el.html(addCard + footer);
+                            } else {
+                                handle.alert('银行卡数据异常，请联系客服');
+                            }
+                        },
+                        error: function() {
+                            App.hideLoading();
+                            App.showToast('网络错误,请稍后重试');
+                        }
+                    });
                 },
+                onShow: function() {                    
+                    self = this.initialize();
+                    self.initCardList();
+                },                
                 onHideLayer: function() {
                     self.hide();
                 },
                 goSelectCard: function(){
                     self.onHideLayer();
-                    Common.ttlPayWin(data);
+                    self.goSetNewCard();
                 },
                 goAddCard: function(){
-                     App.goTo("add_new_card");
+                    self.onHideLayer();
+                    App.goTo("add_new_card");
+                },
+                goSetNewCard: function(){
+
                 }
             });
             selectCardWin.show();
+            
         },
         //支付弹出窗
         ttlPayWin: function(data) {

@@ -19,7 +19,8 @@ define(function(require, exports, module) {
         events: {
             'click #action_buy': 'goBuyTipPage',
             'click .js_tips': 'goContractTip',//《风险提示书》
-            'click .js_transfer': 'goContractTransfer'//《产品收益权转让及服务协议》
+            'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
+            'click #cardSelect': 'goCardSelectWin'//《产品收益权转让及服务协议》
         },
         onShow: function() {
             self = this.initialize();
@@ -132,8 +133,7 @@ define(function(require, exports, module) {
                     //渲染投资金额
                     $("#imoney_num").val(goBuyData.amountVal);
                     self.pageData.amountVal= goBuyData.amountVal;
-                    //执行确认弹窗
-                    common.ttlSelectCard(self.pageData);
+                    common.ttlPayWin(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录
                     handle.goLogin();
@@ -233,6 +233,9 @@ define(function(require, exports, module) {
                     App.showToast(self.message);
                 }
             })
+        },
+        goCardSelectWin: function(){
+            common.ttlSelectCard();
         }
     });
 

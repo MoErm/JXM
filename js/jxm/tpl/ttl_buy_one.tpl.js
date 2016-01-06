@@ -17,7 +17,7 @@ define(function (require, exports, module) {
 				</ul>\
     		</div>\
 			<div class="ttl_buy_one_m">\
-				<div class="mycard">\
+				<div class="mycard" id="cardSelect">\
 					<p class="head"><img src="<%=cardData.bankLogo%>" alt="" class="banklogo" /></p>\
 					<div class="mycard_info">\
 						<div class="card_detail">\
