@@ -102,6 +102,9 @@
 		//设置交易密码
 		setTransactPwdModel: initModel({
 			url: host+'/api/card/setTransactPwd'
+		}),//设置交易密码
+        getRealInfo: initModel({
+			url: host+'/api/card/getRealInfo'
 		}),
 		//我的投资
 		myProperty: initModel({

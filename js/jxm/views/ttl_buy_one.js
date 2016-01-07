@@ -78,13 +78,10 @@ define(function(require, exports, module) {
                             App.goTo('set_card_psw');
                         });                        
                         self.passAlert.show();
-                    }else if(data.ret == 110203){
-                        self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
-                            //解除锁定
-                            self.giveUp()
-                        }, function(){
-                            //继续更换
-                            App.goTo("rebind_card")
+                    }else if(data.ret == 110115){
+                        App.hideLoading();
+
+                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
                         });
                         self.promptAlert.show();
                     }else{
@@ -151,13 +148,10 @@ define(function(require, exports, module) {
                         App.goTo('ttl_buy_one');
                     });                        
                     self.passAlert.show();
-                }else if(data.ret == 110203){
-                    self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
-                        //解除锁定
-                        self.giveUp()
-                    }, function(){
-                        //继续更换
-                        App.goTo("rebind_card")
+                }else if(data.ret == 110115){
+                    App.hideLoading();
+
+                    self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
                     });
                     self.promptAlert.show();
                 }else if(data.ret == 999901){
@@ -215,24 +209,6 @@ define(function(require, exports, module) {
         goContractTransfer: function (e) {
             
             App.goTo('ttl_service_tip');
-        },
-        giveUp: function() {
-            abortChange.exec({
-                type: "post",
-                success: function(data) {
-                    if (data.ret == 0) {
-                        //解锁成功
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg);
-                    }
-                },
-                error: function() {
-                    App.hideLoading();
-                    App.showToast(self.message);
-                }
-            })
         }
     });
 

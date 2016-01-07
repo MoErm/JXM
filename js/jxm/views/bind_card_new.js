@@ -1,7 +1,6 @@
 //实名绑卡
 define(function (require, exports, module) {
         var bindCard_new = require('jxm/tpl/bind.card_new.tpl');
-        var bindCard_new_step2 = require('jxm/tpl/bind.card_new_step2.tpl');
         var tool = require('jxm/utils/Tool');
         var model = require('jxm/model/model');
         var Store = require("jxm/model/store");
@@ -13,7 +12,7 @@ define(function (require, exports, module) {
         var sendDribblet = new model.sendDribblet();
         var loginStore = new Store.loginStore();
         var getSignature = new model.getSignature();
-        var NewCardBindService = new model.NewCardBindService();
+        var getRealInfo = new model.getRealInfo();
         var footer = require('jxm/tpl/card.footer.tpl');
         var handle = new tool();
         var message = '网络错误，请稍后重试';
@@ -28,19 +27,13 @@ define(function (require, exports, module) {
                 self = this;
             },
             afterMount: function(){
-                    self.checkStep();
-            },
-            showBind:function(data){
-                self.$el.html(_.template(bindCard_new_step2)(data)+footer);
+//                    self.checkStep();
             },
             events: {
                 'click .js_agreement a': 'agreementLink',//《委托支付服务协议》
                 'click .js_agreement': 'agreement',//是否同意《委托支付服务协议》
-//                'click .js_next': 'submit',//下一步
                 'click .js_next': 'submit',//下一步
                 'click .js_notice': 'notice',//下一步
-                // 'input .js_card_number' : 'clearBrank',//不让输入空格
-                //  'click .js_band_card': 'showCard',//获取银行卡信息
                 'click .js_address': 'showAddress',//获取开户行信息
                 'change .js_card_number': 'inputCard',//获取开户行信息
                 'click .js_name': 'checkCardBin',//获取开户行信息
@@ -104,18 +97,18 @@ define(function (require, exports, module) {
                         App.hideToast();
                         App.hideLoading();
                         if(data.ret == 0){
-                            var bind_info={
-                                cardNo:cardNumber,
-                                certNo:idCard,
-                                usrName:name,
-                                address:addressStr,
-                                'provinceCode': self.cityData.bankProvinceCode,
-                                'provinceName': self.cityData.bankProvinceName,
-                                'cityName': self.cityData.cityName,
-                                'cityCode':   self.cityData.cityId
-
-                            }
-                            sessionStorage.setItem("bind_info", JSON.stringify(bind_info));
+//                            var bind_info={
+//                                cardNo:cardNumber,
+//                                certNo:idCard,
+//                                usrName:name,
+//                                address:addressStr,
+//                                'provinceCode': self.cityData.bankProvinceCode,
+//                                'provinceName': self.cityData.bankProvinceName,
+//                                'cityName': self.cityData.cityName,
+//                                'cityCode':   self.cityData.cityId
+//
+//                            }
+//                            sessionStorage.setItem("bind_info", JSON.stringify(bind_info));
                             self.$('#cardNo').val(sendData.cardNo)
                             self.$('#certNo').val(sendData.certNo)
                             self.$('#usrName').val(sendData.usrName)
@@ -136,7 +129,6 @@ define(function (require, exports, module) {
 //                            }
                             actionUrl= data.data.requestUrl;
                             self.$('#myform')[0].action =actionUrl;
-
                             document.getElementById('myform').submit();
 
 
@@ -286,17 +278,6 @@ define(function (require, exports, module) {
                     }
                 })
             },
-            checkStep:function(){
-                if(!firstInit){
-                    console.log("sss")
-                    self.$el.html(bindCard_new + footer);
-                    self.regClear();
-                    firstInit=true;
-                }
-                self.review();
-
-
-            },
 
             inputCard: function () {
                 cardChecked=false;
@@ -311,18 +292,63 @@ define(function (require, exports, module) {
             },
 
             onShow: function () {
-                if(firstInit){
+//                if(firstInit){
 
-                    self.checkStep();
-                }
-
+                self.$el.html(bindCard_new + footer);
+//                }
+                var query = this.request.query;
+                        self.checkUserInfo()
                 cardbin=false;
                 self.setHeader();
 //                self.cityData=null;
                 self.bankData=null;
                 App.hideLoading()
 
+                console.log(!_.isUndefined(query))
+                if(!_.isUndefined(query)&&!_.isUndefined(query.surplusCount)){
+                    if(query.surplusCount==0){
+                        self.promptAlert = handle.alert('今日绑卡次数过多，请明日再试',function(){
+                        });
+                        self.promptAlert.show();
+                    }else{
+                        self.promptAlert = handle.alert('今日绑卡次数剩余'+query.surplusCount+'次',function(){
+                        });
+                        self.promptAlert.show();
+                    }
+                }
+
             },
+            checkUserInfo:function(){
+
+                getRealInfo.exec({
+                    type: 'get',
+                    success: function(data){
+                        App.hideLoading();
+                        if(data.ret == 0){
+                            //存变量
+                            if(data.data.userName!=null){
+                                self.$('.js_name').val(data.data.userName)
+                                self.$('.js_name')[0].readOnly=true
+
+                                self.$('.js_id_card').val(data.data.certNo)
+                                self.$('.js_id_card')[0].readOnly=true
+                            }
+
+                        }else if(data.ret == 999001){
+                            handle.goLogin();
+                        }else{
+                            App.showToast(data.msg  || message);
+                        }
+                    },
+                    error: function(){
+                        App.hideLoading();
+                        App.showToast(message);
+                    }
+                })
+
+
+            },
+
             agreementLink: function(e){
                 var tel=self.$(".js_tel").val()
                 if(tel){
@@ -331,30 +357,30 @@ define(function (require, exports, module) {
                 e.stopImmediatePropagation();
                 App.goTo('get_contract?cid=13&type=2');
             },
-            review:function(){
-
-                var bind_info=sessionStorage.getItem("bind_info");
-                if(bind_info==null||bind_info==""){
-
-                }else{
-                    cardbin=true
-                    bind_info=eval("("+bind_info+")")
-                    self.cityData={
-                        bankProvinceCode:bind_info.provinceCode,
-                        bankProvinceName:bind_info.provinceName,
-                        cityName:bind_info.cityName,
-                        cityId:bind_info.cityCode
-
-                    }
-
-
-                    self.$('.js_card_number').val(bind_info.cardNo)
-                    self.$('.js_id_card').val(bind_info.certNo)
-                    self.$('.js_name').val(bind_info.usrName)
-                    self.$('.js_card_bankName').val(bind_info.address)
-                    self.$('.js_address_select').val(bind_info.provinceName+" "+bind_info.cityName)
-                }
-            },
+//            review:function(){
+//
+//                var bind_info=sessionStorage.getItem("bind_info");
+//                if(bind_info==null||bind_info==""){
+//
+//                }else{
+//                    cardbin=true
+//                    bind_info=eval("("+bind_info+")")
+//                    self.cityData={
+//                        bankProvinceCode:bind_info.provinceCode,
+//                        bankProvinceName:bind_info.provinceName,
+//                        cityName:bind_info.cityName,
+//                        cityId:bind_info.cityCode
+//
+//                    }
+//
+//
+//                    self.$('.js_card_number').val(bind_info.cardNo)
+//                    self.$('.js_id_card').val(bind_info.certNo)
+//                    self.$('.js_name').val(bind_info.usrName)
+//                    self.$('.js_card_bankName').val(bind_info.address)
+//                    self.$('.js_address_select').val(bind_info.provinceName+" "+bind_info.cityName)
+//                }
+//            },
             setHeader: function () {
                 var header = new App.UI.UIHeader();
                 header.set({
@@ -716,11 +742,11 @@ define(function (require, exports, module) {
 
             },
             onHide: function(){
-//                self.$('#js_card_bankName').val("");
-//                self.$('.js_name').val("");
-//                self.$('.js_id_card').val("");
-//                self.$('.js_card_number').val("")
-//                self.$('.inpt_readonly').val("");
+                self.$('#js_card_bankName').val("");
+                self.$('.js_name').val("");
+                self.$('.js_id_card').val("");
+                self.$('.js_card_number').val("")
+                self.$('.inpt_readonly').val("");
                 if(self.promptAlert){
                     self.promptAlert.hide();
                 }

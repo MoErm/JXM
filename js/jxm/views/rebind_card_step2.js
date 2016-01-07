@@ -321,27 +321,6 @@ define(function (require, exports, module) {
                 self.showBind()
 
             },
-            giveUp:function(){
-                App.showLoading();
-                abortChange.exec({
-                    type: "post",
-                    success: function (data){
-                        App.hideLoading();
-                        if(data.ret == 0 ){
-                            //解锁成功
-                            App.goTo("add_card")
-                        }else if(data.ret == 999001){
-                            handle.goLogin();
-                        }else{
-                            App.showToast(data.msg);
-                        }
-                    },
-                    error:function(){
-                        App.hideLoading();
-                        App.showToast(message);
-                    }
-                })
-            },
             setHeader: function () {
                 var header = new App.UI.UIHeader();
                 header.set({
@@ -350,11 +329,6 @@ define(function (require, exports, module) {
                     back: {
                         'tagname': 'back',
                         callback: function () {
-
-                                self.promptAlert = handle.prompt('未完成新银行卡的绑定，是否放弃更改？','放弃', '继续', function(){
-                                   self.giveUp()
-                                });
-                            self.promptAlert.show();
                         }
                     },
                     right: null

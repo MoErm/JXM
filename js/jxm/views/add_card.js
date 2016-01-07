@@ -16,7 +16,7 @@ define(function (require, exports, module) {
     var onceClick=true;
     module.exports = App.Page.extend({
         events: {
-            'click .add_card': 'goAddCard'
+            'click .js_add_card': 'goAddCard'
         },
         onShow: function () {
 
@@ -31,27 +31,10 @@ define(function (require, exports, module) {
                     self.data=data.data;
                     App.hideLoading();
                     if(data.ret == 0){
-                        if(data.data!=null){
+                        if(data.data.cardList.length!=0){
                             self.$el.html(_.template(myCardTpl + footer)(data.data));
                             self.setHeader2();
                             //console.log(self.data.cardList[0].status)
-                            if(self.data.cardList[0].status==02){
-                                self.giveUp()
-
-//                                self.promptAlert = handle.prompt('您更换的新银行卡还没绑定完成，是否要继续更换？','放弃', '去更换',function(){
-//                                    //解除锁定
-//                                    self.giveUp()
-//                                }, function(){
-//                                    //继续更换
-//                                    App.goTo("rebind_card")
-//                                });
-//                                self.promptAlert.show();
-                            }
-
-//                            self.promptAlert = handle.alert("",function(){
-//                               self.giveUp()
-//                            });
-//                            self.promptAlert.show();
 
                         }else{
                             self.setHeader();
@@ -114,31 +97,10 @@ define(function (require, exports, module) {
                     [{
                         'tagname': 'changeCard', 'value': '<i style="font-size: 3rem">&plus;</i>&nbsp;&nbsp;',
                         callback: function () {
-
-                            App.showToast("添加新银行卡")
-
+                            App.goTo('bind_card_new');
                         }
                     }]
             });
-        },
-        giveUp:function(){
-            abortChange.exec({
-                type: "post",
-                success: function (data){
-                    if(data.ret == 0){
-                        //解锁成功
-
-                    }else if(data.ret == 999001){
-                        handle.goLogin();
-                    }else{
-                        App.showToast(data.msg);
-                    }
-                },
-                error:function(){
-                    App.hideLoading();
-                    App.showToast(message);
-                }
-            })
         },
         checkUnBinding:function(){
             App.showLoading();
