@@ -826,7 +826,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .change_box .num { font-size: 2rem; text-align: center; color: #d01b02; top: 18px; left: 22px; z-index: 9; }
 .change_box .num_none { font-size: 2rem; text-align: center; color: #797979; top: 18px; left: 22px; z-index: 9; }
 .invest_list { }
-.invest_list > .item { position: relative; margin-top: 10px; padding: 0 20px; background-color: #FFF; }
+.invest_list > .item { position: relative; margin-top: 10px; padding: 0 10px; background-color: #FFF; }
 .invest_list .hd_title { position: relative; width: 100%; font-size: 1.6rem; color: #4f4f4f; padding-top: 5px; padding-bottom: 5px; overflow: hidden; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 .invest_list .hd_title::after { position: absolute; left: 0; bottom: 0; width: 100%; height: 0; content: ''; border-bottom: 1px dashed #c6c6c6; overflow: hidden; }
 .invest_list .status { position: absolute; right: 15px; top: -2px; width: 64px; height: 27px; line-height: 27px; font-size: 1.2rem; color: #FFF; text-align: center; overflow: hidden; }
