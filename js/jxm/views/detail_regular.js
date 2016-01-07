@@ -48,7 +48,6 @@ define(function (require, exports, module) {
             		if(data.ret == 0){
             			self.data = data.data
             			self.amount = self.data.fixedProdInfo.investAmout
-            			
             			self.timer;
 						//判断协议
 						if(data.data.orderStatus!="01"&&data.data.orderStatus!="02"&&data.data.orderStatus!="03"&&data.data.orderStatus!="04"&&data.data.orderStatus!="06"){

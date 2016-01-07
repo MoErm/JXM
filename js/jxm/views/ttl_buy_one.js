@@ -188,7 +188,7 @@ define(function(require, exports, module) {
         goBuyTipPage: function(e){
             e.preventDefault(e);
             self.amountVal= $("#imoney_num").val();
-            self.cardId= $(".card_cur").data("cardid");
+            self.cardId= $("#cardSelect").data("cardid");
             self.goBuyData= {"amountVal":self.amountVal, "cardId":self.cardId};
 
             if(self.amountVal== ""){
@@ -235,7 +235,9 @@ define(function(require, exports, module) {
             })
         },
         goCardSelectWin: function(){
-            common.ttlSelectCard();
+            //传入当前银行卡ID
+            self.currentCardId= $(event.target).closest('#cardSelect').data("cardid");
+            common.ttlSelectCard(self.currentCardId);
         }
     });
 
