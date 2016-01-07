@@ -19,7 +19,8 @@ define(function(require, exports, module) {
         events: {
             'click #action_buy': 'goBuyTipPage',
             'click .js_tips': 'goContractTip',//《风险提示书》
-            'click .js_transfer': 'goContractTransfer'//《产品收益权转让及服务协议》
+            'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
+            'click #cardSelect': 'goCardSelectWin'//《产品收益权转让及服务协议》
         },
         onShow: function() {
             self = this.initialize();
@@ -78,10 +79,13 @@ define(function(require, exports, module) {
                             App.goTo('set_card_psw');
                         });                        
                         self.passAlert.show();
-                    }else if(data.ret == 110115){
-                        App.hideLoading();
-
-                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
+                    }else if(data.ret == 110203){
+                        self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+                            //解除锁定
+                            self.giveUp()
+                        }, function(){
+                            //继续更换
+                            App.goTo("rebind_card")
                         });
                         self.promptAlert.show();
                     }else{
@@ -129,8 +133,7 @@ define(function(require, exports, module) {
                     //渲染投资金额
                     $("#imoney_num").val(goBuyData.amountVal);
                     self.pageData.amountVal= goBuyData.amountVal;
-                    //执行确认弹窗
-                    common.ttlSelectCard(self.pageData);
+                    common.ttlPayWin(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录
                     handle.goLogin();
@@ -148,10 +151,13 @@ define(function(require, exports, module) {
                         App.goTo('ttl_buy_one');
                     });                        
                     self.passAlert.show();
-                }else if(data.ret == 110115){
-                    App.hideLoading();
-
-                    self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
+                }else if(data.ret == 110203){
+                    self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
+                        //解除锁定
+                        self.giveUp()
+                    }, function(){
+                        //继续更换
+                        App.goTo("rebind_card")
                     });
                     self.promptAlert.show();
                 }else if(data.ret == 999901){
@@ -209,6 +215,27 @@ define(function(require, exports, module) {
         goContractTransfer: function (e) {
             
             App.goTo('ttl_service_tip');
+        },
+        giveUp: function() {
+            abortChange.exec({
+                type: "post",
+                success: function(data) {
+                    if (data.ret == 0) {
+                        //解锁成功
+                    } else if (data.ret == 999001) {
+                        handle.goLogin();
+                    } else {
+                        App.showToast(data.msg);
+                    }
+                },
+                error: function() {
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            })
+        },
+        goCardSelectWin: function(){
+            common.ttlSelectCard();
         }
     });
 
