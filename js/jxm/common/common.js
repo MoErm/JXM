@@ -566,7 +566,7 @@ define(function(require, exports, module) {
                             <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
                         </div>\
                     </div>\
-                </article>';           
+                </article>';
             //显示换银行卡界面
             var selectCardWin = new App.UI.UIPopWin({
                 maskToHide: false,
@@ -640,14 +640,13 @@ define(function(require, exports, module) {
                 },
                 goSetNewCard: function(){
                     self.choosedCardId= Number($(event.target.closest("li")).attr("data-cardid"));
-
                     self.cardList.forEach(function(element, index){
                         //如果点击银行卡添加信息到页面
                         if(element.cardId == self.choosedCardId){
                             self.choosedCardData= element;
                             self.onHideLayer();
-                            self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
-                                <p class="card_cur" data-cardid= "'+self.choosedCardData.cardId+ '">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
+                            self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
+                                <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
                                 
                             $("#cardSelect").html(self.actNewCard);
                         }

@@ -17,9 +17,9 @@ define(function (require, exports, module) {
 				</ul>\
     		</div>\
 			<div class="ttl_buy_one_m">\
-				<div class="mycard" id="cardSelect" data-cardid= "<%=cardData.cardId%>">\
+				<div class="mycard" id="cardSelect">\
 					<p class="head"><img src="<%=cardData.bankLogo%>" alt="" class="banklogo" /></p>\
-					<div class="mycard_info">\
+					<div class="mycard_info"  data-cardid= "<%=cardData.cardId%>">\
 						<div class="card_detail">\
 							<p class="card_cur"><%=cardData.bankName%>(尾号<%=cardData.cardNoTail%>)</p>\
 						</div>\
