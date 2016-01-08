@@ -1433,6 +1433,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_pay_test { position: fixed; bottom: 0; left: 0; width: 100%; border-radius: 5px 5px 0 0; background: #fff; }
 .ttl_pay_test_t { height: 45px; line-height: 45px; font-size: 1.8rem; text-align: center; border-bottom: 2px solid #CD1B02; position: relative; }
 .ttl_pay_test_t .close { position: absolute; right: 10px; top: 10px; display: block; width: 24px; height: 24px; border-radius: 24px; background: url(../../images/ttl_icon_r.png) no-repeat; background-size: 100%; }
+.ttl_pay_test_m{height:295px; }
 .ttl_pay_test_m .paycontent { padding: 20px 0; width: 90%; margin: 0 auto;height: 300px; }
 .ttl_pay_test_m .paycontent .head { display: inline-block; width: 30%; height: 50px; line-height: 50px; text-indent: 2em; }
 .ttl_pay_test_m .paycontent .test_code, .ttl_pay_test_m .paycontent .test_password { display: inline-block; width: 65%; height: 48px; float: right; margin: 0 2% 0 0; border: 1px solid #E5E5E5; border-radius: 5px; position: relative; }
@@ -1503,9 +1504,10 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_service_tip .ttl_service_tip_m .cur_a{background: url(../../images/ttl_icon_t.png) no-repeat 133px -27px;background-size: 50%;}
 
 /*-- 天添利 支付卡选择 --*/
-.ttl_card_select { width: 95%; margin: 10px auto 80px auto; background: #fff; border-top: 1px solid #ECECEC; }
+.ttl_card_select { width: 95%; margin: 10px auto 0 auto; background: #fff; border-top: 1px solid #ECECEC; }
 .ttl_card_select .ttl_card_list li,
 .ttl_card_select .ttl_card_add { height: 60px;font-size: 1.4rem;  padding: 5px 0; }
+.ttl_card_select .ttl_card_list{height: 215px;overflow-y:auto;}
 .ttl_card_select .ttl_card_list li{border-bottom: 1px solid #f6f6f6;}
 .ttl_card_select .ttl_card_list li:hover{background:#eee;}
 .ttl_card_select .ttl_card_list .head { text-indent: 1em; height: 50px; line-height: 50px; width: 15%; float: left; text-align: center; }
