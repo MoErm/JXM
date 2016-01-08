@@ -296,6 +296,7 @@ define(function (require, exports, module) {
 
                 self.$el.html(bindCard_new + footer);
 //                }
+                self.regClear();
                 var query = this.request.query;
                         self.checkUserInfo()
                 cardbin=false;
@@ -736,7 +737,7 @@ define(function (require, exports, module) {
                     })
             },
             regClear:function(){
-                _.each(['js_id_card', 'js_card_number', 'js_address_select'], function(item){
+                _.each(['js_id_card', 'js_card_number'], function(item){
                     App.UI.UIInputClear(self.$('.' + item), '', null, {'right': 5});
                 })
 
