@@ -557,25 +557,9 @@ define(function(require, exports, module) {
         },
         //选择银行卡
         ttlSelectCard: function(currentCardId){          
-            var self = null; 
-            var tem = '<article class="ttl_pay_test">\
-                    <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
-                    <div class="ttl_pay_test_m">\
-                        <div class="ttl_card_select">\
-                            <ul class="ttl_card_list" id="cardList"></ul>\
-                            <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
-                        </div>\
-                    </div>\
-                </article>';
+            var self = null;            
             //显示换银行卡界面
-            var selectCardWin = new App.UI.UIPopWin({
-                maskToHide: false,
-                template: tem,
-                events: {
-                    'click #cardSelectClose': 'onHideLayer',
-                    'click #useNewCard': 'goAddCard',
-                    'click .ttl_card_list li': 'goSelectCard',
-                },
+            var getCardList= {
                 initialize: function() {
                     return this;
                 },
@@ -602,9 +586,8 @@ define(function(require, exports, module) {
                                         <p class="card_name" >'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
                                         <p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div></li>';
                                     }
-                                  
-                                });
-                                $("#cardList").html(self.CardDetail);
+                                });                           
+                                showCardWin(self.CardDetail,self.cardList);
 
                             } else if (data.ret == 110001) {
                                 self.promptAlert = handle.alert(data.msg,function(){
@@ -623,38 +606,64 @@ define(function(require, exports, module) {
                         }
                     });
                 },
-                onShow: function() {                    
+                init:function(){
                     self = this.initialize();
                     self.initCardList();
-                },                
-                onHideLayer: function() {
-                    self.hide();
-                },
-                goSelectCard: function(){
-                   
-                    self.goSetNewCard();
-                },
-                goAddCard: function(){
-                    self.onHideLayer();
-                    App.goTo("bind_card_new");
-                },
-                goSetNewCard: function(){
-                    self.choosedCardId= Number($(event.target).parents("li").data("cardid"));
-                    self.cardList.forEach(function(element, index){
-                        //如果点击银行卡添加信息到页面
-                        if(element.cardId == self.choosedCardId){
-                            self.choosedCardData= element;
-                            self.onHideLayer();
-                            self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
-                                <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
-                                
-                            $("#cardSelect").html(self.actNewCard);
-                        }
-                    });
                 }
-            });
-            selectCardWin.show();
-            
+            }            
+            getCardList.init();
+            function showCardWin(cardDetail,cardData){                
+                var tem = '<article class="ttl_pay_test">\
+                    <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
+                    <div class="ttl_pay_test_m">\
+                        <div class="ttl_card_select">\
+                            <ul class="ttl_card_list" id="cardList">'+cardDetail+'</ul>\
+                            <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
+                        </div>\
+                    </div>\
+                </article>';
+                var selectCardWin = new App.UI.UIPopWin({
+                    maskToHide: false,
+                    template: tem,
+                    events: {
+                        'click #cardSelectClose': 'onHideLayer',
+                        'click #useNewCard': 'goAddCard',
+                        'click .ttl_card_list li': 'goSelectCard',
+                    },
+                    initialize: function() {
+                        return this;
+                    },
+                    
+                    onShow: function() {                    
+                        self = this.initialize();
+                    },                
+                    onHideLayer: function() {
+                        self.hide();
+                    },
+                    goSelectCard: function(){                       
+                        self.goSetNewCard();
+                    },
+                    goAddCard: function(){
+                        self.onHideLayer();
+                        App.goTo("bind_card_new");
+                    },
+                    goSetNewCard: function(){
+                        self.choosedCardId= Number($(event.target).parents("li").data("cardid"));
+                        cardData.forEach(function(element, index){
+                            //如果点击银行卡添加信息到页面
+                            if(element.cardId == self.choosedCardId){
+                                self.choosedCardData= element;
+                                self.onHideLayer();
+                                self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
+                                    <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
+                                    
+                                $("#cardSelect").html(self.actNewCard);
+                            }
+                        });
+                    }
+                });
+                selectCardWin.show();
+            }
         },
         //支付弹出窗
         ttlPayWin: function(data) {
