@@ -639,7 +639,7 @@ define(function(require, exports, module) {
                     App.goTo("bind_card_new");
                 },
                 goSetNewCard: function(){
-                    self.choosedCardId= Number($(event.target.closest("li")).attr("data-cardid"));
+                    self.choosedCardId= Number($(event.target).parents("li").data("cardid"));
                     self.cardList.forEach(function(element, index){
                         //如果点击银行卡添加信息到页面
                         if(element.cardId == self.choosedCardId){

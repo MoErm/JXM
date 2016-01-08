@@ -99,7 +99,7 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
-            self.pageData.cardData.surplusAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
+            self.pageData.cardData.maxInvestAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
             self.pageData.cardData.miNRate= self.pageData.cardData.initialRate*100;
             self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*10000/100;
             //添加内容
@@ -187,7 +187,7 @@ define(function(require, exports, module) {
         },
         goBuyTipPage: function(e){
             e.preventDefault(e);
-            self.amountVal= $("#imoney_num").val();
+            self.amountVal= Number($("#imoney_num").val());
             self.cardId= $("#cardSelect").find("div[data-cardid]").attr("data-cardid");
             self.goBuyData= {"amountVal":self.amountVal, "cardId":self.cardId};
 
@@ -195,13 +195,18 @@ define(function(require, exports, module) {
                 App.showToast("请输入投资金额");
                 $("#imoney_num").val("");
                 return;
-            }else{
+            }else{                
                 if(isNaN(self.amountVal)){
                     App.showToast("请输入合法数字金额");
                     $("#imoney_num").val("");
                 }
-                else  if(Number(self.amountVal)%100!=0){
+                else if(self.amountVal%100!=0){
                     self.passAlert = handle.alert("投资金额需是100元的整数倍");
+                    self.passAlert.show();
+                    return;
+                }
+                if(self.amountVal> parseInt(self.pageData.cardData.surplusAmount)){
+                    self.passAlert = handle.alert("不能超过剩余可投上限");
                     self.passAlert.show();
                     return;
                 }
