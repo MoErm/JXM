@@ -18,8 +18,8 @@ define(function (require, exports, module) {
             'click .js_invest': 'createOrder',
             'click .js_notice': 'notice',
             'input .js_amount': 'changeAmount',
-            'click .js_contract': 'goContract'
-
+            'click .js_contract': 'goContract',
+            'click #cardSelect' :"goCardSelectWin"
         },
         initialize: function () {
             self = this;
@@ -76,6 +76,12 @@ define(function (require, exports, module) {
                         self.data.minInvestAmount_show = handle.dealMoney(self.data.minInvestAmount);
                         self.data.maxInvestAmount_show = handle.dealMoney(self.data.maxInvestAmount);
                         self.data.surplusAmount_show = handle.dealMoney(self.data.surplusAmount);
+                        //默认银行卡信息
+                        self.data.bankLogo = self.data.defaultCard.bankLogo;
+                        self.data.bankName = self.data.defaultCard.bankName;
+                        self.data.cardInfoId = self.data.defaultCard.cardInfoId;
+                        self.data.cardNoTail = self.data.defaultCard.cardNoTail.slice(-4);
+                        self.data.dailyLimit = self.data.defaultCard.dailyLimit;
 
                         if (self.data.incomeType != "03") {
                             self.data.incomeceiling = self.data.incomeRateCeiling.split('%')[0]
@@ -243,7 +249,7 @@ define(function (require, exports, module) {
             var addition = self.data.additionalAmount;
             var amount = parseFloat(self.$('.js_amount').val());
             var surplus = self.data.surplusAmount;
-
+            var selectCardId= $("#cardSelect").find('div[data-cardid]').attr("data-cardid");
             if (self.data.productType == "01") {
                 var investAmount = parseFloat(self.$('.js_amount').val()) + parseFloat(self.$('.js_invest').attr('id'))
             } else if (self.data.productType == "02") {
@@ -305,7 +311,8 @@ define(function (require, exports, module) {
                 createOrderMode.set({
                     'productNo': query.pid,
                     'investAmount': self.$('.js_amount').val(),
-                    'token': self.data.token
+                    'token': self.data.token,
+                    'cardInfoId': selectCardId
                 });
                 createOrderMode.exec({
                     type: 'post'
@@ -485,6 +492,11 @@ define(function (require, exports, module) {
                     }
                 }]
             });
+        },
+        goCardSelectWin: function(){
+            //传入当前银行卡ID
+            self.currentCardId= $(event.target).closest('#cardSelect').find("div[data-cardid]").attr("data-cardid");
+            payLayer.ttlSelectCard(self.currentCardId);
         }
     })
 })

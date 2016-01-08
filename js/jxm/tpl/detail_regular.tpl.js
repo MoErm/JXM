@@ -40,7 +40,7 @@ define(function (require, exports, module) {
 	      </li>\
 	      <li class="v_item">\
 	        <div class="v_item_hd">投资银行卡</div>\
-	        <div class="v_item_bd"><%=fixedProdInfo.investCardName%><%=fixedProdInfo.investCardNum%></div>\
+	        <div class="v_item_bd"><%=bankName%>(尾号<%=cardTailNo%>)</div>\
 	      </li>\
 	      <li class="v_item">\
 	        <div class="v_item_hd"><% if(fixedProdInfo.incomeType == "04") {%>最高收益可达<% } else {%>实际赚取收益<% } %></div>\
@@ -120,7 +120,7 @@ define(function (require, exports, module) {
 	      </li>\
 	      <li class="v_item">\
 	        <div class="v_item_hd">投资银行卡</div>\
-	        <div class="v_item_bd"><%=fixedProdInfo.investCardName%><%=fixedProdInfo.investCardNum%></div>\
+	        <div class="v_item_bd"><%=bankName%>(尾号<%=cardTailNo%>)</div>\
 	      </li>\
 	      <li class="v_item">\
 	        <div class="v_item_hd">预期年化收益</div>\

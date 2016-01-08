@@ -12,18 +12,18 @@ define(function (require, exports, module) {
 	          <div class="v_item_bd"> <span class="v_item_title"><i class="webtxt2"><%=surplusAmount_show%></i></span><span class="v_item_cont">剩余可投</span> </div>\
 	        </div>\
 	        <div class="ttl_buy_one_m">\
-				<div class="mycard">\
+				<div class="mycard" id="cardSelect">\
 					<p class="head"><img src="<%=bankLogo%>" alt="" class="banklogo" /></p>\
-					<div class="mycard_info">\
+					<div class="mycard_info"  data-cardid= "<%=cardInfoId%>">\
 						<div class="card_detail">\
-							<p class="card_cur" data-cardid= "<%=cardId%>"><%=bankName%>(尾号<%=cardNoTail%>)</p>\
+							<p class="card_cur" ><%=bankName%>(尾号<%=cardNoTail%>)</p>\
 						</div>\
 					</div>\
 				</div>\
 				<div class="imoney">\
 					<p class="head">金额</p>\
 					<div class="imoney_content">\
-						<input type="number" class="imoney_num" id="imoney_num" placeholder="<%=minInvestAmount_show%>元起投，<%=additionalAmount_show%>元递增"/>\
+						<input type="number" class="imoney_num js_amount" placeholder="<%=minInvestAmount_show%>起投，<%=additionalAmount_show%>递增"/>\
 						<span class="imoney_text">元</span>\
 					</div>\
 				</div>\

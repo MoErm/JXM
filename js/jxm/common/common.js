@@ -556,7 +556,7 @@ define(function(require, exports, module) {
             });
         },
         //选择银行卡
-        ttlSelectCard: function(actCardBox){          
+        ttlSelectCard: function(currentCardId){          
             var self = null; 
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
@@ -566,7 +566,7 @@ define(function(require, exports, module) {
                             <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
                         </div>\
                     </div>\
-                </article>';           
+                </article>';
             //显示换银行卡界面
             var selectCardWin = new App.UI.UIPopWin({
                 maskToHide: false,
@@ -591,9 +591,18 @@ define(function(require, exports, module) {
                                 self.CardDetail= "";
                                 //生成银行卡列表
                                 self.cardList.forEach(function(element, index){
-                                    self.CardDetail+= '<li  data-cardid= " '+element.cardId+ '"><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
+                                    //勾选默认银行卡
+                                    if(element.cardId == currentCardId){
+                                      self.CardDetail+= '<li class= "cur_card" data-cardid= "'+element.cardId+'"><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
                                         <p class="card_name" >'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
                                         <p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div></li>';
+                                    }
+                                    else{
+                                        self.CardDetail+= '<li class= "" data-cardid= "'+element.cardId+'"><p class="head"><img src=" '+element.bankLogo+'" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
+                                        <p class="card_name" >'+element.bankName+'(尾号'+ element.cardNo.slice(-4)+')</p>\
+                                        <p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div></li>';
+                                    }
+                                  
                                 });
                                 $("#cardList").html(self.CardDetail);
 
@@ -627,20 +636,21 @@ define(function(require, exports, module) {
                 },
                 goAddCard: function(){
                     self.onHideLayer();
-                    App.goTo("add_new_card");
+                    App.goTo("bind_card_new");
                 },
                 goSetNewCard: function(){
-                    self.choosedCardId= $(event.target.closest("li")).attr("data-cardid");
+                    self.choosedCardId= Number($(event.target.closest("li")).attr("data-cardid"));
                     self.cardList.forEach(function(element, index){
+                        //如果点击银行卡添加信息到页面
                         if(element.cardId == self.choosedCardId){
                             self.choosedCardData= element;
+                            self.onHideLayer();
+                            self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
+                                <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
+                                
+                            $("#cardSelect").html(self.actNewCard);
                         }
                     });
-                    self.onHideLayer();
-                    self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info"><div class="card_detail">\
-                        <p class="card_cur" data-cardid= "'+self.choosedCardData.cardId+ '">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNoTail+ ')</p></div></div>';
-                        
-                    $("#cardSelect").html(self.actNewCard);
                 }
             });
             selectCardWin.show();
