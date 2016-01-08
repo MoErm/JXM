@@ -193,12 +193,20 @@ define(function(require, exports, module) {
 
             if(self.amountVal== ""){
                 App.showToast("请输入投资金额");
+                $("#imoney_num").val("");
                 return;
-            }else if(Number(self.amountVal)%100!=0){
-                self.passAlert = handle.alert("投资金额需是100元的整数倍");
-                self.passAlert.show();
-                return;
-            }
+            }else{
+                if(isNaN(self.amountVal)){
+                    App.showToast("请输入合法数字金额");
+                    $("#imoney_num").val("");
+                }
+                else  if(Number(self.amountVal)%100!=0){
+                    self.passAlert = handle.alert("投资金额需是100元的整数倍");
+                    self.passAlert.show();
+                    return;
+                }
+            } 
+
             if(self.pageData.cardData.isContractAgreed==0){
                 sessionStorage.setItem("isagreedData",JSON.stringify(self.goBuyData));
                 App.goTo("ttl_buy_two");

@@ -23,7 +23,7 @@ define(function (require, exports, module) {
 				<div class="imoney">\
 					<p class="head">金额</p>\
 					<div class="imoney_content">\
-						<input type="number" class="imoney_num js_amount" id="imoney_num" placeholder="<%=minInvestAmount_show%>起投，<%=additionalAmount_show%>递增"/>\
+						<input type="number" class="imoney_num js_amount" placeholder="<%=minInvestAmount_show%>起投，<%=additionalAmount_show%>递增"/>\
 						<span class="imoney_text">元</span>\
 					</div>\
 				</div>\
