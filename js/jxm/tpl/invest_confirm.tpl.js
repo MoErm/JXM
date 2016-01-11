@@ -12,7 +12,7 @@ define(function (require, exports, module) {
 	          <div class="v_item_bd"> <span class="v_item_title"><i class="webtxt2"><%=surplusAmount_show%></i></span><span class="v_item_cont">剩余可投</span> </div>\
 	        </div>\
 	        <div class="ttl_buy_one_m">\
-				<div class="mycard" id="cardSelect">\
+				<div class="mycard" id="cardSelectSecond">\
 					<p class="head"><img src="<%=bankLogo%>" alt="" class="banklogo" /></p>\
 					<div class="mycard_info"  data-cardid= "<%=cardInfoId%>">\
 						<div class="card_detail">\
