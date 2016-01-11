@@ -556,8 +556,9 @@ define(function(require, exports, module) {
             });
         },
         //选择银行卡
-        ttlSelectCard: function(currentCardId){          
-            var self = null;            
+        ttlSelectCard: function(cardBox){          
+            var self = null;
+            var currentCardId= cardBox.find("div[data-cardid]").attr("data-cardid");
             //显示换银行卡界面
             var getCardList= {
                 initialize: function() {
@@ -657,7 +658,7 @@ define(function(require, exports, module) {
                                 self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
                                     <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
                                     
-                                $("#cardSelect").html(self.actNewCard);
+                                cardBox.html(self.actNewCard);
                             }
                         });
                     }

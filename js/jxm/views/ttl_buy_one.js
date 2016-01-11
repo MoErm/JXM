@@ -249,8 +249,8 @@ define(function(require, exports, module) {
         },
         goCardSelectWin: function(){
             //传入当前银行卡ID
-            self.currentCardId= $(event.target).closest('#cardSelect').find("div[data-cardid]").attr("data-cardid");
-            common.ttlSelectCard(self.currentCardId);
+            self.currentCardBox= $(event.target).closest('#cardSelect');
+            common.ttlSelectCard(self.currentCardBox);
         }
     });
 

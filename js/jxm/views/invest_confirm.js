@@ -495,8 +495,8 @@ define(function (require, exports, module) {
         },
         goCardSelectWin: function(){
             //传入当前银行卡ID
-            self.currentCardId= $(event.target).closest('#cardSelect').find("div[data-cardid]").attr("data-cardid");
-            payLayer.ttlSelectCard(self.currentCardId);
+            self.currentCardBox= $(event.target).closest('#cardSelect');
+            payLayer.ttlSelectCard(self.currentCardBox);
         }
     })
 })
