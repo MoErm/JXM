@@ -1,8 +1,6 @@
 define(function (require, exports, module) {
     var tpl = '\
-    <%if(notice){%><div class="new_active" >\
-	12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
-	</div><%}%>\
+  \
     <%if(show){%><article class="mod_page mod_list js_list"><%}%>\
                 <div class="mod_listing">\
                     <%if(show){%><h2 class="hd_title"><span>每天10点，优质放送 </span></h2><%}%>\
@@ -44,3 +42,7 @@ define(function (require, exports, module) {
         <%if(show){%><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article><%}%>';
     module.exports = tpl;
 })
+
+//<%if(notice){%><div class="new_active" >\
+//12月全民邀请争霸赛 <a href="javascript:void(0)"style="color:#f60;" class="js_situation">查看详情</a>\
+//</div><%}%>

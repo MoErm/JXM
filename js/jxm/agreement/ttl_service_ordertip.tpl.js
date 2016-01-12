@@ -4,7 +4,7 @@ define(function (require, exports, module) {
 			<h3 class="tip_head">债权收益权转让服务协议</h3>\
     		<ul class="tip_title">\
     			<li><span class="list_title">甲方 (受让方)：</span> <%=serviceData.contractorA%></li>\
-    			<li><span class="list_title">证件号码：</span><%=serviceData.bankAccount%></li>\
+    			<li><span class="list_title">证件号码：</span><%=serviceData.idA%></li>\
     			<li><span class="list_title">乙方 (转让方)：</span><%=serviceData.contractorB%></li>\
     			<li><span class="list_title">住所：</span><%=serviceData.addressB%></li>\
     			<li><span class="list_title">丙方 (服务方)：</span>上海展义金融信息服务有限公司</li>\

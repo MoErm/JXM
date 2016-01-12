@@ -60,11 +60,13 @@ define(function(require, exports, module) {
         initAD: function() {
             var container = self.$el.find(".img_box");
             var minHeight = $(window).width() / 3.2;
-            var imgs = [{
-                id: 4,
-                src: './images/sdhd.jpg',
-                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd'
-            }, {
+            var imgs = [
+//                {
+//                id: 4,
+//                src: './images/sdhd.jpg',
+//                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd'
+//            },
+                {
                 id: 2,
                 src: './images/xszn.jpg',
                 href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=209894037&idx=1&sn=5ad856a2d275475c801c6a0604874843#rd'
