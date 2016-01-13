@@ -1518,8 +1518,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_card_select .ttl_card_list .card_detail { width: 100%; }
 .ttl_card_select .ttl_card_list .card_detail p { line-height: normal; margin: 5px 0 0 5px; font-size: 1.2rem; }
 .ttl_card_select .ttl_card_list .card_detail .limit_text { font-size: 1rem;  color: #9b9b9b;}
-.ttl_card_select .ttl_card_list li.cur_card{background:url(../../images/ttl_icon_x.png) no-repeat  95% 23px;}
-.ttl_card_select .ttl_card_add {line-height: 60px;text-indent: 2rem;border-bottom: 1px solid #ECECEC;background:url(../../images/ttl_icon_w.png) no-repeat  95% 23px;}
+.ttl_card_select .ttl_card_list li.cur_card{background:url(../../images/ttl_icon_x.png) no-repeat  95% 23px;background-size: 20px}
+.ttl_card_select .ttl_card_add {line-height: 60px;text-indent: 2rem;border-bottom: 1px solid #ECECEC;background:url(../../images/ttl_icon_w.png) no-repeat  95% 23px;background-size: 15px}
 
 
 
