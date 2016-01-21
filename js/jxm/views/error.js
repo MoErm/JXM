@@ -19,7 +19,11 @@ define(function (require, exports, module) {
             return
         },
         backToIndex:function(){
-            App.goTo("list")
+            if(handle.mobileType()=="android"){
+                window.app.goBack()
+            }else{
+                App.goTo("ttl_recommend")
+            }
         },
         showMsg:function(){
             var query = this.request.query;
@@ -48,7 +52,11 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("ttl_recommend")
+                        if(handle.mobileType()=="android"){
+                            window.app.goBack()
+                        }else{
+                            App.goTo("ttl_recommend")
+                        }
                     }
                 },
                 right: null

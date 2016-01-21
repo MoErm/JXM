@@ -133,7 +133,12 @@ define(function (require, exports, module) {
 
 
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+                            if(handle.mobileType()=="android"){
+                                window.app.outTime()
+                            }else{
+                                handle.goLogin();
+                            }
+
                         }else if(data.ret == 110199){
                             self.promptAlert = handle.alert(data.msg);
                             self.promptAlert.show();
@@ -190,7 +195,12 @@ define(function (require, exports, module) {
                             cardChecked=true;
 
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+                            if(handle.mobileType()=="android"){
+                                window.app.outTime()
+                            }else{
+                                handle.goLogin();
+                            }
+
                         }else{
                             //App.UI.UIInputClear(self.$('#js_card_bankName'), '', null, {'right': 5});
                             self.$('#js_card_bankName').val("")
@@ -265,7 +275,11 @@ define(function (require, exports, module) {
                             self.signature();
 
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+                            if(handle.mobileType()=="android"){
+                                window.app.outTime()
+                            }else{
+                                handle.goLogin();
+                            }
                         }else{
                             //App.UI.UIInputClear(self.$('#js_card_bankName'), '', null, {'right': 5});
                             self.$('#js_card_bankName').val("")
@@ -336,7 +350,11 @@ define(function (require, exports, module) {
                             }
 
                         }else if(data.ret == 999001){
-                            handle.goLogin();
+                            if(handle.mobileType()=="android"){
+                                window.app.outTime()
+                            }else{
+                                handle.goLogin();
+                            }
                         }else{
                             App.showToast(data.msg  || message);
                         }
@@ -390,9 +408,13 @@ define(function (require, exports, module) {
                     back: {
                         'tagname': 'back',
                         callback: function () {
-
                                 self.promptAlert = handle.prompt('未完成设置将无法进行交易。<br>要继续完成设置吗？','放弃', '继续', function(){
-                                    handle.getProductLink();
+
+                                    if(handle.mobileType()=="android"){
+                                        window.app.goBack()
+                                    }else{
+                                        handle.getProductLink();
+                                    }
                                 });
                             self.promptAlert.show();
                         }
@@ -449,7 +471,11 @@ define(function (require, exports, module) {
                                     App.showToast('出现错误，请稍后重试');
                                 }
                             }else if(data.ret == 999001){
-                                handle.goLogin();
+                                if(handle.mobileType()=="android"){
+                                    window.app.outTime()
+                                }else{
+                                    handle.goLogin();
+                                }
                             }else{
                                 App.showToast(data.msg  || message);
                             }
@@ -484,7 +510,11 @@ define(function (require, exports, module) {
                                     App.showToast('出现错误，请稍后重试');
                                 }
                             }else if(data.ret == 999001){
-                                handle.goLogin();
+                                if(handle.mobileType()=="android"){
+                                    window.app.outTime()
+                                }else{
+                                    handle.goLogin();
+                                }
                             }else{
                                 App.showToast(data.msg  || message);
                             }
@@ -547,7 +577,11 @@ define(function (require, exports, module) {
                                    App.showToast('出现错误，请稍后重试');
                                }
                             }else if(data.ret == 999001){
-                                handle.goLogin();
+                                if(handle.mobileType()=="android"){
+                                    window.app.outTime()
+                                }else{
+                                    handle.goLogin();
+                                }
                             }else{
                                 App.showToast(data.msg  || message);
                             }
@@ -652,8 +686,11 @@ define(function (require, exports, module) {
                             self.promptAlert.show();
 
                         }else if(data.ret == 999001){
-                            handle.goLogin();
-
+                            if(handle.mobileType()=="android"){
+                                window.app.outTime()
+                            }else{
+                                handle.goLogin();
+                            }
                         }else{
                             App.showToast(data.msg || message);
                         }
@@ -712,17 +749,18 @@ define(function (require, exports, module) {
                         success: function(data){
                             App.hideLoading();
                             if(data.ret == 0){
-
                                     if(data.defaultCheckMode=='02'){
                                         self.getDribblet();
                                     }else{
                                         App.showLoading();
                                         App.goTo('bind_card_new_step3');
                                     }
-
-
                             }else if(data.ret == 999001){
-                                handle.goLogin();
+                                if(handle.mobileType()=="android"){
+                                    window.app.outTime()
+                                }else{
+                                    handle.goLogin();
+                                }
                             }else if(data.ret == 110199){
                                 self.promptAlert = handle.alert(data.msg);
                                 self.promptAlert.show();
