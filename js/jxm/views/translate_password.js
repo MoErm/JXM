@@ -40,8 +40,8 @@ define(function (require, exports, module) {
             if(oldPassword==""){
                 App.showToast("原密码不能为空");
                 return false;
-            } else if(!newPassword.match(/\D/g)|| /^[a-zA-Z]*$/.test(newPassword) || !/\w/.test(newPassword)||newPassword.length<6){
-                App.showToast("新密码有误，请输入6~12位，包含数字、字母和符号的组合");
+            } else if(!newPassword.match(/\d{6}/)||newPassword.length<6){
+                App.showToast("新密码有误，请输入6位数字密码");
                 return false;
             }else if(newPassword !== affirmPassword){
                 App.showToast("密码不一致")

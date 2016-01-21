@@ -5,7 +5,7 @@ define(function (require, exports, module) {
                             <li class="item">\
                                 <div class="item_hd">交易密码</div>\
                                 <div class="item_bd">\
-                                    <input type="password" value="" placeholder="6~12位，包含字母、数字和符号的组合" class="inpt_txt js_psw js_psw1"  maxlength="12"/>\
+                                    <input type="password" value="" placeholder="6位密码数字密码" class="inpt_txt js_psw js_psw1"  maxlength="6"/>\
                                 </div>\
                             </li>\
                             <li class="item item_tips">\

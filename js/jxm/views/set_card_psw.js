@@ -59,8 +59,8 @@ define(function (require, exports, module) {
                 var pswB = handle.deleteAllBlank(self.$('.js_psw2').val());
                 if(!pswA.length){
                     error.push('请输入交易密码');
-                }else if(pswA.length < 6 || !pswA.match(/\D/g) || /^[a-zA-Z]*$/.test(pswA) || !/\w/.test(pswA)){
-                    error.push('密码有误，请输入6~12位，包含数字、字母和符号的组合');
+                }else if(pswA.length < 6 || !pswA.match(/\d{6}/)){
+                    error.push('密码有误，请输入6位数字密码');
                 }else if(!pswB.length){
                     error.push('请确认交易密码保持一致')
                 }else if(pswA !== pswB){
