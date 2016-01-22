@@ -5,7 +5,7 @@ define(function (require, exports, module) {
         <li class="item">\
         <div class="item_hd">新密码</div>\
         <div class="item_bd">\
-        <input type="password" value="" placeholder="6~12位，包含字母、数字和符号的组合"id="js_new_password" class="inpt_txt" maxlength="12"/>\
+        <input type="password" value="" placeholder="6位密码数字密码"id="js_new_password" class="inpt_txt" maxlength="6"/>\
         </div>\
         </li>\
         <li class="item item_tips">\
@@ -14,7 +14,7 @@ define(function (require, exports, module) {
         <li class="item">\
         <div class="item_hd">确认密码</div>\
         <div class="item_bd">\
-        <input type="password" value="" placeholder="重复输入新的密码" class="inpt_txt" id="js_Confirm_password" maxlength="12"/>\
+        <input type="password" value="" placeholder="重复输入新的密码" class="inpt_txt" id="js_Confirm_password" maxlength="6"/>\
         </div>\
         </li>\
         </ul>\

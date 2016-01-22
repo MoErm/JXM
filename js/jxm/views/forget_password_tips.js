@@ -42,8 +42,8 @@ define(function (require, exports, module) {
         checkTradPassword: function () {
             var newPassword = this.$el.find('#js_new_password').val();
             var confPassword = this.$el.find('#js_Confirm_password').val();
-            if (!newPassword.match(/\D/g) || /^[a-zA-Z]*$/.test(newPassword) || !/\w/.test(newPassword) || newPassword.length < 6) {
-                App.showToast("新密码有误，请输入6~12位，包含数字、字母和符号的组合");
+            if (!newPassword.match(/\d{6}/g)||newPassword.length < 6) {
+                App.showToast("新密码有误，请输入6位数字密码");
                 return false;
             } else if (confPassword != newPassword) {
                 App.showToast("密码不一致");

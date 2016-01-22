@@ -14,7 +14,7 @@ define(function (require, exports, module) {
                             <li class="item">\
                                 <div class="item_hd">确认密码</div>\
                                 <div class="item_bd">\
-                                    <input type="password" value="" placeholder="重复输入新的密码" class="inpt_txt js_psw js_psw2" maxlength="12"/>\
+                                    <input type="password" value="" placeholder="重复输入新的密码" class="inpt_txt js_psw js_psw2" maxlength="6"/>\
                                 </div>\
                             </li>\
                         </ul>\
