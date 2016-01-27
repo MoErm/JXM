@@ -14,7 +14,10 @@ window.global_config = {
         }, {
             "url": "reg",
             "controller": "reg"
-        }, {
+        },  {
+        "url": "reg_next",
+        "controller": "reg_next"
+         },{
             "url": "regYY",
             "controller": "regYY"
         }, {
@@ -23,6 +26,9 @@ window.global_config = {
         }, {
             "url": "get_password",
             "controller": "get_password"
+        }, {
+        "url": "get_password_next",
+        "controller": "get_password_next"
         }, {
             "url": "list",
             "controller": "list"
@@ -234,8 +240,10 @@ requirejs.config({
         'detail': 'jxm/views/detail',
         'list': 'jxm/views/list',
         'reg': 'jxm/views/reg',
+        'reg_next': 'jxm/views/reg_next',
         'regYY': 'jxm/views/regYY',
         'get_password': 'jxm/views/get_password',
+        'get_password_next': 'jxm/views/get_password_next',
         'bind_card_new': 'jxm/views/bind_card_new',
         //        'bind_card_new_step2': 'jxm/views/bind_card_new_step2',
         //        'bind_card_new_step3': 'jxm/views/bind_card_new_step3',

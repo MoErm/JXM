@@ -105,6 +105,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 /*--end --*/
 
 /*-- start--*/
+.img_check{position: absolute;right: 0;top: 5px}
 .mod_reg_login { position: relative; z-index: 1; padding: 15px 15px 0; }
 .mod_reg_login::after { position: fixed; z-index: -1; left: 0; top: 0; bottom: 0; width: 100%; content: ''; background-color: #FFF; overflow: hidden; }
 .frm_item { position: relative; min-height: 36px; margin-top: 16px; vertical-align: top; }

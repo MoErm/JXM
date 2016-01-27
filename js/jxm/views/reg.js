@@ -4,8 +4,11 @@ define(function (require, exports, module) {
     var Template = require("jxm/tpl/reg.tpl");
     var getMsgCodeModel = new Model.getMsgCodeModel();
     var signUpModel = new Model.signUpModel();
+    var registerSms = new Model.registerSms();
+    var registerCheck = new Model.registerCheck();
     var loginStore = new Store.loginStore();
     var bonusStore = new Store.bonusStore();
+    var getCaptcha = new Model.getCaptchaModel();
     var tool = require('jxm/utils/Tool');
     var handle = new tool();
     var self;
@@ -14,7 +17,7 @@ define(function (require, exports, module) {
         events: {
             'click #js_startReg': 'doReg',
             'click #js_login': "goLogin",
-            'click .code': 'getCode',
+            'click .js_img_code': 'getCaptcha',
             'blur .js_password':'getPasswordHiding',
             'focus .js_password':'getPasswordHint',
             'click #js_password_eye':'getSwitch',
@@ -23,6 +26,7 @@ define(function (require, exports, module) {
         },
         afterMount: function () {
             this.$el.append(this.template)
+
         },
         registrationLink:function(){
             App.goTo('get_contract?cid=11');
@@ -31,11 +35,13 @@ define(function (require, exports, module) {
             App.goTo('get_contract?cid=12');
         },
         onShow: function () {
+            self=this
             var shareConfig={"link":window.location.origin};
             handle.share(shareConfig);
             this.$el.find(".js_password").val('');
             this.setHeader();
             this.regClear();
+            this.getCaptcha()
             handle.orientationTips();
             var query = this.request.query;
             var isbind=query&&query.type||"";
@@ -81,6 +87,22 @@ define(function (require, exports, module) {
                 this.startReg();
             };
         },
+        getCaptcha: function () {
+
+            getCaptcha.exec({type:"get"}).then(function (json) {
+                if (json && json.ret == 0) {
+                    var img = "data:image/gif;base64,"+json.data.captchaData;
+                    var js_identify_code=self.$el.find(".js_identify_code");
+                    js_identify_code.show();
+                    js_identify_code.data("show","true")
+                    self.$el.find(".js_img_code").attr("src", img);
+                } else {
+                    App.showToast("获取验证码失败");
+                }
+            }).catch(function () {
+                App.showToast("获取验证码失败");
+            })
+        },
         startReg:function(){
             var passWord=this.$el.find('.js_password').val();
             var phone_num = this.$el.find('.js_mobile').val();
@@ -97,21 +119,37 @@ define(function (require, exports, module) {
                 source='02'
             }
             App.showLoading();
-            signUpModel.set({"userId": phone_num,"loginPwd":passWord,"msgCaptcha":coad_num,"inviteCode":inviteCode,"openId":openId,"source":source})//组织参数
-            signUpModel.exec().then(function (data) {
-                App.hideLoading();
-                if(data&&data.ret==0){
-                    App.showToast("注册成功");
-                    loginStore.set(data.data);//设置LocalStorge
-                    window.setTimeout(function(){App.goTo("ttl_recommend")},2000);
-                }else{
-                    var msg=data.msg||"error"
-                    App.showToast(msg);
+            registerCheck.set({"userId": phone_num,"loginPwd":passWord,"msgCaptcha":coad_num,"inviteCode":inviteCode,"openId":openId,"source":source})//组织参数
+            registerCheck.exec({
+                type: 'get',
+                success: function (data) {
+                    App.hideLoading();
+                    if(data&&data.ret==0){
+                        //App.showToast("注册成功");
+                        //loginStore.set(data.data);//设置LocalStorge
+                        //window.setTimeout(function(){App.goTo("ttl_recommend")},2000);
+                        registerSms.exec({
+                            type: 'get',
+                            success: function (data) {
+                                if(data.ret==0){
+                                    App.goTo("reg_next")
+                                }else{
+                                    var msg=data.msg||"error"
+                                    App.showToast(msg);
+                                }
+                            }
+                        })
+                    }else if(data.ret==100009){
+                        App.showToast(data.msg);
+                        self.$el.find('.js_code').val("");
+                        self.getCaptcha()
+                    }else{
+                        self.$el.find('.js_code').val("");
+                        self.getCaptcha()
+                        var msg=data.msg||"error"
+                        App.showToast(msg);
+                    }
                 }
-
-            }).catch(function () {
-                App.hideLoading();
-                //TODO
             })
         },
         checkCode:function(){
@@ -136,7 +174,6 @@ define(function (require, exports, module) {
                 App.showToast("密码有误，请输入6~12位，包含数字、字母和符号的组合。");
                 return false;
             }
-
             return true;
         },
         checkMobile: function () {
@@ -153,6 +190,9 @@ define(function (require, exports, module) {
             return true;
         },
         onHide:function(){
+            this.$el.find('.js_password').val("");
+            this.$el.find('.js_mobile').val("");
+            this.$el.find('.js_code').val("");
             App.hideLoading();
         },
         getCode: function (e) {

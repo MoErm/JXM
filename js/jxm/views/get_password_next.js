@@ -1,14 +1,14 @@
 define(function (require, exports, module) {
     var Model = require("jxm/model/model");
-    var Template = require("jxm/tpl/get_password.tpl");
+    var Template = require("jxm/tpl/get_password_next.tpl");
     var getMsgCodeModel = new Model.getMsgCodeModel();
     var getCaptcha = new Model.getCaptchaModel();
     var RetrievePassword= new Model.RetrievePassword();
-    var loginPwdResetCheck= new Model.loginPwdResetCheck();
     var loginPwdResetSms= new Model.loginPwdResetSms();
     var tool = require('jxm/utils/Tool');
     var handle = new tool();
     var self;
+    var smsFlag=false;
     module.exports = App.Page.extend({
         template: Template,
         initialize: function () {
@@ -17,7 +17,7 @@ define(function (require, exports, module) {
         },
         events: {
             'click #js_reset':'doReset',
-            'click .js_img_code': 'getCaptcha',
+            'click .code':'getCode',
             'click #js_password_eye':'getSwitch'
         },
 
@@ -29,24 +29,22 @@ define(function (require, exports, module) {
         },
         onShow: function () {
             self=this
-            this.$el.find(".js_mobile").val('');
-            this.$el.find(".js_password").val('');
+
+            this.$el.find(".js_code").val('');
             this.$('.count').html(this.getCount());
             this.setHeader();
             this.regClear();
-            this.getCaptcha();
+            smsFlag=true
+            self.startCountDown(60);//开始倒计时逻辑
             App.hideLoading();
         },
         onHide:function(){
-            this.$el.find(".js_code").val('');
             App.hideLoading();
         },
         doReset: function (e) {
             e.preventDefault();
-            if(this.checkCode()){
                 App.hideLoading();
                 this.startReset();
-            };
         },
         getSwitch:function(){
             var passWord = this.$el.find('.js_password');
@@ -59,61 +57,34 @@ define(function (require, exports, module) {
                 passwordEye.css('opacity',"")
             }
         },
-        getCaptcha: function () {
-            var self = this;
-            getCaptcha.exec({type:"get"}).then(function (json) {
-                if (json && json.ret == 0) {
-                    var img = "data:image/gif;base64,"+json.data.captchaData;
-                    var js_identify_code=self.$el.find(".js_identify_code");
-                    js_identify_code.show();
-                    js_identify_code.data("show","true")
-                    self.$el.find(".js_img_code").attr("src", img);
-                } else {
-                    App.showToast("获取验证码失败");
-                }
-            }).catch(function () {
-                App.showToast("获取验证码失败");
-            })
-        },
         startReset:function(){
-            var phone_num = this.$el.find('.js_mobile').val();
             var coad_num = this.$el.find('.js_code').val();
-            var passWord=this.$el.find('.js_password').val();
-            App.showLoading();
-            loginPwdResetCheck.set({"mobile": phone_num,"picCaptcha":coad_num,"newPassword":passWord})//组织参数
-            loginPwdResetCheck.exec().then(function (data) {
+            RetrievePassword .set({"msgCaptcha":coad_num})//组织参数
+            RetrievePassword .exec().then(function (data) {
                 App.hideLoading();
                 if(data&&data.ret==0){
-                    loginPwdResetSms.exec({
-                        type: 'get',
-                        success: function (data) {
-                            if(data.ret==0){
-                                var isBind=self.request.query&&self.request.query.type||"";
-                                if(isBind=="bind"){
-                                    App.goTo("get_password_next?type=bind")
-                                }else{
-                                    App.goTo("get_password_next");
-                                }
-                            }else{
-                                var msg=data.msg||"error"
-                                App.showToast(msg);
-                            }
-
+                    App.showToast("重置成功");
+                    setTimeout(function(){
+                        var isBind=self.request.query&&self.request.query.type||"";
+                        if(isBind=="bind"){
+                            App.goTo("bind")
+                        }else{
+                            App.goTo("login");
                         }
-                    })
-
+                    },2000);
                 }else if (data.ret == 999001){
                     handle.goLogin();
-                }else if (data.ret == 100009){
-
+                }else if (data.ret == 110011){
                     var msg=data.msg||"系统错误";
                     App.showToast(msg);
-                    self.$el.find('.js_code').val("");
-                    self.getCaptcha()
+                    var isBind=self.request.query&&self.request.query.type||"";
+                    if(isBind=="bind"){
+                        App.goTo("get_password?type=bind")
+                    }else{
+                        App.goTo("get_password");
+                    }
                 }else{
                     var msg=data.msg||"系统错误";
-                    self.$el.find('.js_code').val("");
-                    self.getCaptcha()
                     App.showToast(msg);
                 }
             }).catch(function () {
@@ -133,28 +104,23 @@ define(function (require, exports, module) {
             return true;
 
         },
-        checkCode:function(){
-            var phone_num = $.trim(this.$el.find('.js_mobile').val());
-            var coad_num = this.$el.find('.js_code').val();
-            var passWord=this.$el.find('.js_password').val();
-            var re = /^0?1[123456789]\d{9}$/;
-            if (phone_num == "") {
-                App.showToast("手机号不能为空");
-                return false;
+        getCode: function (e) {
+            if(smsFlag){
+                return
             }
-            if (re.test(phone_num) != true) {
-                App.showToast("手机号格式不正确");
-                return false;
-            }
-            else  if(coad_num==""){
-                App.showToast("验证码不能为空");
-                return false;
-            }
-            else if(!passWord.match(/\D/g)|| /^[a-zA-Z]*$/.test(passWord) || !/\w/.test(passWord)||passWord.length<6){
-                App.showToast("密码有误，请输入6~12位，包含数字、字母和符号的组合。");
-                return false;
-            }
-            return true;
+
+            loginPwdResetSms.exec({
+                type: 'get',
+                success: function (data) {
+                    if(data.ret==0){
+                        smsFlag = true
+                        self.startCountDown(60);//开始倒计时逻辑
+                    }else{
+                        App.showToast(data.msg)
+                    }
+
+                }
+            })
         },
         startCountDown: function (time) {
             var self = this;
@@ -169,6 +135,7 @@ define(function (require, exports, module) {
                 var sec = parseInt(self._tick);
                 self._tick = sec <= 0 ? self.tick : sec;
                 if (sec <= 0) {
+                    smsFlag=false
                     window.clearTimeout(self.codeTimer);
                     el.removeClass("disabled");
                     el.html("重新获取");

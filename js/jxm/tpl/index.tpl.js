@@ -78,11 +78,6 @@ define(function(require, exports, module) {
     <p class="summary">具有30年以上银行及金融行业从业经验。</p>\
     </li>\
     <li>\
-    <h3><span class="name">杨  炯</span><span class="grade">&nbsp&nbsp&nbsp金融创新专家</span></h3>\
-    <span class="photos"><img src="images/img142x142_2.jpg" width="72" alt=""></span>\
-     <p class="summary">历任诺亚财富创新条线总监、上交所衍生品研发主管、永安期货宏观策略分析师。金融从业逾20年，拥有计算机和金融专业双硕士。</p>\
-    </li>\
-    <li>\
     <h3><span class="name">冯  斌</span><span class="grade">&nbsp&nbsp&nbsp投资理财专家</span></h3>\
     <span class="photos"><img src="images/img142x142_4.jpg" width="72" alt=""></span>\
         <p class="summary">原交通银行私人银行顾问。</p>\

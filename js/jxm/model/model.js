@@ -31,6 +31,14 @@
 		signUpModel : initModel({
 			url:host+"/api/user/register"
 		}),
+        //开始注册
+        registerCheck : initModel({
+			url:host+"/api/user/registerCheck"
+		}),
+        //获取注册验证
+        registerSms : initModel({
+            url:host+"/api/user/registerSms"
+        }),
         //活动注册
         signUpYYModel : initModel({
             url:host+"/api/user/registerYY"
@@ -42,6 +50,12 @@
 		//忘记登陆密码
 		RetrievePassword : initModel({
 			url: host+'/api/user/resetLoginPwd'
+		}),//忘记登陆密码
+        loginPwdResetCheck : initModel({
+			url: host+'/api/user/loginPwdResetCheck'
+		}),//忘记登陆密码
+        loginPwdResetSms : initModel({
+			url: host+'/api/user/loginPwdResetSms'
 		}),
 		//修改登陆密码
 		ChangeLoginPassword : initModel({

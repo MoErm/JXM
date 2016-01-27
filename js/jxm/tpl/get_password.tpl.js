@@ -8,14 +8,14 @@ define(function (require, exports, module) {
         <li class="frm_item">\
         <input type="tel" class="frm_inpt js_mobile" maxlength="11"  placeholder="请输入您的手机号" />\
         </li>\
-        <li class="frm_item frm_item_getcode">\
-        <input type="text" class="frm_inpt js_code" placeholder="短信验证码" maxlength="8" />\
-        <span class="code" >获取验证码</span></li>\
+        <li class="frm_item js_identify_code"   data-show="false" >\
+        <input type="text" class="frm_inpt js_code"  placeholder="验证码" maxlength="8"/>\
+        <span class="code img_check"><img  class="js_img_code"></span></li>\
     <li class="frm_item">\
         <input type="password" class="frm_inpt js_password" maxlength="12"  placeholder="登录密码6~12位，包含字母、数字和符号组合" />\
         <span class="btn_eye" data-tips="show" id="js_password_eye"></span>\
         </li>\
-        <li class="frm_btn"> <a href="#" class="btn_link btn_link2" id="js_reset">确认重置</a> </li>\
+        <li class="frm_btn"> <a href="#" class="btn_link btn_link2" id="js_reset">下一步</a> </li>\
     </ul>\
     </article>\
     <footer class="foot_copyright">\
