@@ -10,7 +10,7 @@ define(function (require, exports, module) {
         <p class="frm_tips hightlight" id="js_Password_hint" style="display:none;">登录密码6~12位，包含字母、数字和符号组合</p>\
     </li>\
       <li class="frm_item js_identify_code"   data-show="false" >\
-        <input type="text" class="frm_inpt js_code"  placeholder="验证码" maxlength="8"/>\
+        <input type="text" class="frm_inpt js_code"  placeholder="请输入图形验证码" maxlength="8"/>\
         <span class="code img_check"><img  class="js_img_code"></span></li>\
     <li class="frm_item invite_code">\
         <input type="tel" class="frm_inpt" id="js_invite_code" maxlength="4"  value="" placeholder="邀请码（选填）" />\
