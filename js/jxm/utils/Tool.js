@@ -28,6 +28,7 @@ define(function(require, exports, module) {
     Tool.prototype.mobileType = function() {
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
 
+
         if (userAgent.indexOf("hih5hybird") > -1) {
             return 'android'
         } else {

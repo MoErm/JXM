@@ -33,12 +33,67 @@ define(function (require, exports, module) {
                 'click .js_agreement a': 'agreementLink',//《委托支付服务协议》
                 'click .js_agreement': 'agreement',//是否同意《委托支付服务协议》
                 'click .js_next': 'submit',//下一步
+                'click #ios': 'ios',//下一步
                 'click .js_notice': 'notice',//下一步
                 'click .js_address': 'showAddress',//获取开户行信息
                 'change .js_card_number': 'inputCard',//获取开户行信息
                 'click .js_name': 'checkCardBin',//获取开户行信息
                 'click .js_id_card': 'checkCardBin',//获取开户行信息
                 'click .js_band_card': 'checkCardBin'//check卡bin
+            },
+            ios:function(){
+               function log(msg){
+                   var log=window.document.getElementById("log").innerHTML
+                   log+=msg+"</br>"
+                   window.document.getElementById("log").innerHTML=log
+               }
+
+                //var shareConfig={'title': '我刚刚投资了加薪猫理财，得到一个抵现礼包，快来抢啊！','url':url,'desc':'红包来了！加薪猫理财，怎么开心怎么来!',"imgUrl":"http://m.jiaxinmore.com/images/bonus_icon.jpg"};
+                //window.WebViewJavascriptBridge.callHandler('doShare',shareConfig,function(response) {
+                //    //TODO
+                //})
+
+                function setupWebViewJavascriptBridge(callback) {
+                    log("开始调用setup")
+                    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+                    log("WebViewJavascriptBridge")
+                    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+                    log("WVJBCallbacks")
+                    window.WVJBCallbacks = [callback];
+                    var WVJBIframe = document.createElement('iframe');
+                    WVJBIframe.style.display = 'none';
+                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                    document.documentElement.appendChild(WVJBIframe);
+                    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+                }
+
+                setupWebViewJavascriptBridge(function(bridge) {
+                    log("调用开始callback")
+                    var uniqueId = 1
+                    //function log(message, data) {
+                    //    var log = document.getElementById('log')
+                    //    var el = document.createElement('div')
+                    //    el.className = 'logLine'
+                    //    el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
+                    //    if (log.children.length) { log.insertBefore(el, log.children[0]) }
+                    //    else { log.appendChild(el) }
+                    //}
+                    bridge.init(function(message, responseCallback) {
+                        log("开始调用init")
+                        //log('JS got a message', message)
+                        var data = { 'Javascript Responds':'Wee!' }
+                        //log('JS responding with', data)
+                        responseCallback(data)
+                    })
+
+                    bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+                        log("开始调用testJavascriptHandler")
+                        //log('ObjC called testJavascriptHandler with', data)
+                        var responseData = { 'Javascript Says':'Right back atcha!' }
+                        //log('JS responding with', responseData)
+                        responseCallback(responseData)
+                    })
+                })
             },
             signature:function(){
                 if(submitFlag){
@@ -307,7 +362,7 @@ define(function (require, exports, module) {
 
             onShow: function () {
 //                if(firstInit){
-
+                handle.mobileType();
                 self.$el.html(bindCard_new + footer);
 //                }
                 self.regClear();
