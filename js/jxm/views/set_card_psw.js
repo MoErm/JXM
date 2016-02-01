@@ -10,6 +10,11 @@ define(function (require, exports, module) {
         var message = '网络错误，请稍后重试';
         var self;
         module.exports = App.Page.extend({
+            beforeIn:  function () {
+                if(handle.mobileType()=="android"){
+                    window.app.setMoneyPsd()
+                }
+            },
             initialize:function(){
                 self = this;
             },

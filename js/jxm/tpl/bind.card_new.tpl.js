@@ -34,6 +34,8 @@ define(function (require, exports, module) {
                      </div>\
                    \
                     <div class="btn_box_submit js_next">下一步</div>\
+                    <div class="btn_box_submit " id="ios">ceshi</div>\
+                    <div id="log"></div>\
                     <p class="entrust_agreement2 js_agreement">我已阅读并同意<a href="javascript:void(0)" class="bind_card_agreement">《委托支付服务协议》</a></p>\
                 <input type="hidden" id="cardNo" name="cardNo" >\
                 <input type="hidden" id="certNo" name="certNo" >\

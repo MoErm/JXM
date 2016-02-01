@@ -15,6 +15,11 @@ define(function (require, exports, module) {
     var self;
     var onceClick=true;
     module.exports = App.Page.extend({
+        beforeIn:  function () {
+           if(handle.mobileType()=="android"){
+               window.app.goMyCards()
+           }
+        },
         events: {
             'click .js_add_card': 'goAddCard'
         },
