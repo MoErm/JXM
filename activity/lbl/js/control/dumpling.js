@@ -162,8 +162,8 @@ var dumpling = {
                 clearTimeout(that.codetimer);
                 $.ajax({
                     type: 'get',
-                    // url: "../../apps/api/activity/sendYuanxiaoSms",
-                    url: "http://test.jiaxinmore.com/apps/api/activity/sendYuanxiaoSms",
+                    // url: "../../apps/api/activity/chkYuanxiaoSms",
+                    url: "http://test.jiaxinmore.com/apps/api/activity/chkYuanxiaoSms",
                     data: postData,
                     success: function(data) {
                         if (data.ret == 0) {
