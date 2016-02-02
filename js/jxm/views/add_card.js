@@ -18,6 +18,11 @@ define(function (require, exports, module) {
         beforeIn:  function () {
            if(handle.mobileType()=="android"){
                window.app.goMyCards()
+           }else if(handle.mobileType()=="ios") {
+               handle.setupWebViewJavascriptBridge(function (bridge) {
+                   bridge.callHandler('back', null, function (response) {
+                   })
+               })
            }
         },
         events: {

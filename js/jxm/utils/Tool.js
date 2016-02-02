@@ -25,15 +25,35 @@ define(function(require, exports, module) {
         return new Date(date[0], parseInt(date[1], 10) - 1, parseInt(date[2], 10), parseInt(time[0], 10), parseInt(time[1], 10), parseInt(time[2], 10));
     }
     //判断登录环境
-    Tool.prototype.mobileType = function() {
+    var mType='html';
+    Tool.prototype.getMobileType=function(){
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
-
-
         if (userAgent.indexOf("hih5hybird") > -1) {
-            return 'android'
+            mType='android'
         } else {
-            return 'html'
+            this.setupWebViewJavascriptBridge(function(bridge) {
+                bridge.callHandler('testObjcCallback', {'abcTest': 'abcTest'}, function(response) {
+                })
+            })
         }
+
+    }
+    Tool.prototype.mobileType = function() {
+        this.getMobileType();
+        return mType;
+    }
+    Tool.prototype.setupWebViewJavascriptBridge=function(callback){
+        if (window.WebViewJavascriptBridge) {  mType='ios'; return callback(WebViewJavascriptBridge); }
+        if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+
+        window.WVJBCallbacks = [callback];
+        var WVJBIframe = document.createElement('iframe');
+        WVJBIframe.style.display = 'none';
+        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+        document.documentElement.appendChild(WVJBIframe);
+        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+
+
     }
     //Money
     Tool.prototype.dealMoney = function(str,fixNum){
