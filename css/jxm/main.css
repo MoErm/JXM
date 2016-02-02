@@ -724,6 +724,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .invest_change { color: #9b9b9b; margin-top: -10px }
 .invest_change p { white-space: nowrap; display: inline; }
 
+.iosPadding{padding-top: 20px}
 /*-- start--*/
 .invest_base_info { margin-bottom: 0px; padding: 0px 15px 20px 15px; background-color: #FFF; }
 .invest_base_info .v_item_bd { position: relative; }
