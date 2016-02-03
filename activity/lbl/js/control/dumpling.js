@@ -19,7 +19,7 @@ var dumpling = {
         $("#cover").css("height", document.body.scrollHeight);
         $("#cover").css("width", document.body.clientWidth);
     },
-    showCoverText: function(msg) {
+    showCoverText: function(msg,fn) {
         //显示文字蒙层
         var self = this;
         self.showCover();
@@ -28,6 +28,9 @@ var dumpling = {
         $("#coverText").html(msg);
         window.setTimeout(function() {
             self.closeCover();
+            if(fn){
+                fn();
+            }
         }, 1500);
     },
     closeCover: function() {
@@ -159,6 +162,13 @@ var dumpling = {
                 var postData = {
                     "msgCaptcha": $("#msgCode").val()
                 }
+                if ( postData.msgCaptcha == "") {
+                    self.showCoverText("请输入短信验证码",function(){
+                        self.showCover();
+                    });                    
+                    return;
+                }
+               
                 clearTimeout(that.codetimer);
                 $.ajax({
                     type: 'get',
@@ -173,11 +183,15 @@ var dumpling = {
                                 window.location.reload();
                             }, 1500)
                         } else {
-                            self.showCoverText(data.msg);
+                            self.showCoverText(data.msg,function(){
+                                self.showCover();
+                            });   
                         }
                     },
                     error: function() {
-                        self.showCoverText('网络异常');
+                        self.showCoverText('网络异常',function(){
+                            self.showCover();
+                        });   
                     }
                 });
             },

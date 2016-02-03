@@ -56,8 +56,8 @@ input, button { border: none; outline: none; }
 .dumpling_tips { margin: 20px auto; border-radius: 10px; background: url(../images/dumpling_bg.png); background-color: #fbe4c1; padding: 3px 6px; width: 90%; text-align: center; font-size: 0.8rem; color: #3e0601; }
 
 /*图片验证码*/
-.img_code_box .code_box, .img_code_box .img_code { display: inline-block; height: 25px; }
-.img_code_box .code_box { width: 55%; vertical-align: top; text-align: center; }
+.img_code_box .code_box, .img_code_box .img_code { display: inline-block; height: 30px; }
+.img_code_box .code_box { width: 65%; vertical-align: top; text-align: center;border:1px solid #ccc;border-radius: 3px; }
 .img_code_box .img_code { width: 80px; float: right; }
 
 /*短信验证码*/
