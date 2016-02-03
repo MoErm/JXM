@@ -33,8 +33,6 @@ define(function (require, exports, module) {
                 'click .js_agreement a': 'agreementLink',//《委托支付服务协议》
                 'click .js_agreement': 'agreement',//是否同意《委托支付服务协议》
                 'click .js_next': 'submit',//下一步
-                'click #ios': 'ios',//下一步
-                'click #ios2': 'ios2',//下一步
                 'click .js_notice': 'notice',//下一步
                 'click .js_address': 'showAddress',//获取开户行信息
                 'change .js_card_number': 'inputCard',//获取开户行信息
@@ -131,13 +129,19 @@ define(function (require, exports, module) {
 //                            }
                             actionUrl= data.data.requestUrl;
                             self.$('#myform')[0].action =actionUrl;
-                            document.getElementById('myform').submit();
 
+                            if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                                handle.setupWebViewJavascriptBridge(function(bridge) {
+                                    bridge.callHandler('doSubmit', null, function(response) {
+                                    })
+                                })
+                            }
+                            document.getElementById('myform').submit();
 
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()=="ios") {
+                            }else  if(handle.mobileType()!="html") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -204,7 +208,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()=="ios") {
+                            }else  if(handle.mobileType()!="html") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -289,7 +293,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()=="ios") {
+                            }else  if(handle.mobileType()!="html") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -324,7 +328,12 @@ define(function (require, exports, module) {
 
             onShow: function () {
 //                if(firstInit){
-
+                if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('bindInit', null, function(response) {
+                        })
+                    })
+                }
                 self.$el.html(bindCard_new + footer);
 //                }
                 self.regClear();
@@ -335,12 +344,6 @@ define(function (require, exports, module) {
 //                self.cityData=null;
                 self.bankData=null;
                 App.hideLoading()
-                if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
-                    document.getElementsByClassName("hiui-header")[0].style.paddingTop="20px"
-                    document.getElementsByClassName("mod_card_bind")[0].style.paddingTop="20px"
-                }
-
-
                 if(!_.isUndefined(query)&&!_.isUndefined(query.surplusCount)){
                     if(query.surplusCount==0){
                         self.promptAlert = handle.alert('今日绑卡次数过多，请明日再试',function(){
@@ -373,7 +376,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()=="ios") {
+                            }else  if(handle.mobileType()!="html") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -395,12 +398,21 @@ define(function (require, exports, module) {
             },
 
             agreementLink: function(e){
-                var tel=self.$(".js_tel").val()
-                if(tel){
-                    sessionStorage.setItem("bind_tel", tel);
+
+
+                if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('contract', null, function(response) {
+                        })
+                    })
+                }else{
+                    var tel=self.$(".js_tel").val()
+                    if(tel){
+                        sessionStorage.setItem("bind_tel", tel);
+                    }
+                    e.stopImmediatePropagation();
+                    App.goTo('get_contract?cid=13&type=2');
                 }
-                e.stopImmediatePropagation();
-                App.goTo('get_contract?cid=13&type=2');
             },
 //            review:function(){
 //
@@ -437,11 +449,6 @@ define(function (require, exports, module) {
                                 self.promptAlert = handle.prompt('未完成设置将无法进行交易。<br>要继续完成设置吗？','放弃', '继续', function(){
                                     if(handle.mobileType()=="android"){
                                         window.app.goBack()
-                                    }else if(handle.mobileType()=="ios") {
-                                        handle.setupWebViewJavascriptBridge(function(bridge) {
-                                            bridge.callHandler('back', null, function(response) {
-                                            })
-                                        })
                                     }else{
                                         handle.getProductLink();
                                     }
@@ -463,10 +470,10 @@ define(function (require, exports, module) {
             agreement: function(e){
                 $(e.target).toggleClass('checked')
             },
-            agreementLink: function(e){
-                e.stopImmediatePropagation();
-                App.goTo('get_contract?cid=13&type=2');
-            },
+            //agreementLink: function(e){
+            //    e.stopImmediatePropagation();
+            //    App.goTo('get_contract?cid=13&type=2');
+            //},
             clearBrank: function(e){
                 var val = $(e.target).val();
                 $(e.target).val(handle.deleteAllBlank(val));
@@ -503,7 +510,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()=="ios") {
+                                }else  if(handle.mobileType()!="html") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -547,7 +554,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()=="ios") {
+                                }else  if(handle.mobileType()!="html") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -619,7 +626,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()=="ios") {
+                                }else  if(handle.mobileType()!="html") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -733,7 +740,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()=="ios") {
+                            }else  if(handle.mobileType()!="html") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -808,7 +815,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()=="ios") {
+                                }else  if(handle.mobileType()!="html") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })

@@ -13,6 +13,11 @@ define(function (require, exports, module) {
             beforeIn:  function () {
                 if(handle.mobileType()=="android"){
                     window.app.setMoneyPsd()
+                }else if(handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function (bridge) {
+                        bridge.callHandler('setPassword', null, function (response) {
+                        })
+                    })
                 }
             },
             initialize:function(){

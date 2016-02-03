@@ -65,6 +65,7 @@ define(function (require, exports, module) {
 //                { id: 4, src: './images/zbs12.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401190971&idx=1&sn=4c1659ecf9359c282c06c68df34fa92d#rd' },
            //     { id: 4, src: './images/zqhd.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=211186234&idx=1&sn=20889a3973778538d09f0e2f216fb574#rd' },
 //                { id: 1, src: './images/zbs.png', href:window.location.origin+'/activity/818hero/heroList.html'  },
+                { id: 1, src: './images/sytz.jpg', href:"http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=402476113&idx=1&sn=fe5958e3e30ad9d6b330bd4e51101722#rd"  },
                 { id: 2, src: './images/xszn.jpg', href:'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=209894037&idx=1&sn=5ad856a2d275475c801c6a0604874843#rd'  },
                 { id: 3, src: './images/xszy.jpg', href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=210062014&idx=1&sn=babbf5cda487369cf0ae489719e12a73#rd ' }
             ];

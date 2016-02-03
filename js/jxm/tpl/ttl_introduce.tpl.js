@@ -6,6 +6,8 @@ define(function (require, exports, module) {
 					<h2><%=getTtlProperty.yestIncome%></h2>\
 				</div>\
     		</div>\
+    		<div class="notice "><div class="notice_tran">因春节假期，2月4日至 2月13日期间发起的赎回申请， 资金预计在2月20日之前到账。请做好合理安排。</div></div>\
+    <div style="clear: both"></div>\
     		<div class="ttl_introduce_m">\
 				<div class="total">\
 					<p>总金额(元)</p>\

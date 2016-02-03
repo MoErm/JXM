@@ -9,7 +9,6 @@ define(function (require, exports, module) {
             App.hideLoading()
         },
         onShow: function () {
-            App.showToast(handle.mobileType())
             if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
 
             }else{
