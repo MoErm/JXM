@@ -40,8 +40,8 @@ var dumpling = {
         var self = this;
         $.ajax({
             type: 'get',
-            // url: "../../apps/api/user/getCaptcha", 
-            url: "http://test.jiaxinmore.com/apps/api/user/getCaptcha",
+            url: "../../apps/api/user/getCaptcha", 
+            // url: "http://test.jiaxinmore.com/apps/api/user/getCaptcha",
             success: function(data) {
                 if (data.ret == 0) {
                     var img = "data:image/gif;base64," + data.data.captchaData;
@@ -83,8 +83,8 @@ var dumpling = {
 
         $.ajax({
             type: 'POST',
-            // url: "../../apps/api/activity/chkYuanxiaoPic",
-            url: "http://test.jiaxinmore.com/apps/api/activity/chkYuanxiaoPic",
+            url: "../../apps/api/activity/chkYuanxiaoPic",
+            // url: "http://test.jiaxinmore.com/apps/api/activity/chkYuanxiaoPic",
             data: {
                 "dateCode": day,
                 "timeCode": time,
@@ -120,8 +120,8 @@ var dumpling = {
 
                 $.ajax({
                     type: 'get',
-                    // url: "../../apps/api/activity/sendYuanxiaoSms",
-                    url: "http://test.jiaxinmore.com/apps/api/activity/sendYuanxiaoSms",
+                    url: "../../apps/api/activity/sendYuanxiaoSms",
+                    // url: "http://test.jiaxinmore.com/apps/api/activity/sendYuanxiaoSms",
                     success: function(data) {
                         if (data.ret == 0) {
                             that.getMsgCountDown();
@@ -162,8 +162,8 @@ var dumpling = {
                 clearTimeout(that.codetimer);
                 $.ajax({
                     type: 'get',
-                    // url: "../../apps/api/activity/chkYuanxiaoSms",
-                    url: "http://test.jiaxinmore.com/apps/api/activity/chkYuanxiaoSms",
+                    url: "../../apps/api/activity/chkYuanxiaoSms",
+                    // url: "http://test.jiaxinmore.com/apps/api/activity/chkYuanxiaoSms",
                     data: postData,
                     success: function(data) {
                         if (data.ret == 0) {
