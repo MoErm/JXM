@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
+
 <head lang="en">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -9,19 +10,31 @@
     <meta content="telephone=no,email=no" name="format-detection">
     <title>邻帮邻</title>
     <link rel="stylesheet" type="text/css" href="./css/lbl.css?v=1.01">
-
-
 </head>
-<body  style=" background-color: white">
-<div class="cover" id="cover"></div>
-<div class="coverText" id="coverText" onclick="closeCover()"></div>
-<div>
-    <img src="./images/banner.jpg" width="100%">
-</div>
-<div class="input_div">
 
-    <span class="span_1"> 预约时间</span>
-    <span class="span_3">
+<body style=" background-color: white">
+    <!-- toast弹出层 -->
+    <div class="cover" id="cover"></div>
+    <div class="coverText" id="coverText"></div>
+    <!-- 验证码弹出层 -->
+    <div class="msgCodeCover" id="msgCodeCover">
+        <div class="msgHead">
+            <em class="msgClose" id="msgClose"></em>
+            短信验证码
+        </div>
+        <div class="msgContent">
+            <input type="text" placeholder="短信验证码"  class="msgCode" id="msgCode">
+            <span class="msgTitle" id="msgTitle">获取验证码</span>
+        </div>
+        <button id="msgSubBtn" class="msgSubBtn">确定</button>
+    </div>
+    <!-- 正文内容 -->
+    <div>
+        <img src="./images/banner.jpg" width="100%">
+    </div>
+    <div class="input_div">
+        <span class="span_1"> 预约时间</span>
+        <span class="span_3">
     <select id="select_day">
         <option value="01">2月17日</option>
         <option value="02">2月18日</option>
@@ -29,25 +42,28 @@
         <option value="04">2月20日</option>
         <option value="05">2月21日</option>
     </select></span>
-    <span class="span_3">
+        <span class="span_3">
         <select  id="select_time">
         <option value="01">上午9点</option>
         <option value="02">下午3点</option>
     </select></span>
-</div>
-<div  class="input_div">
-    <span  class="span_1">手机号码</span>
-    <span class="span_2"><input type="text" placeholder="请填写您的手机号" class="dumpling_input" id="input_phone" maxLength="11"></span>
-</div>
-<div  class="dumpling_tips">
-    <p>因为汤圆属于速冻食品，不便至于常温环境时间过长，我们的工作人员会提前通知您领取的具体时间，以便您及时领取</p>
-    <p>(预约截止日期：2016/02/05)</p>
-</div>
-<button class="btn" onclick="sub()">提交</button>
+    </div>
+    <div class="input_div">
+        <span class="span_1">手机号码</span>
+        <span class="span_2"><input type="text" placeholder="请填写您的手机号" class="dumpling_input" id="input_phone" maxLength="11"></span>
+    </div>
+    <div class="input_div img_code_box">
+        <input type="text" placeholder="请输入右侧验证码" class="code_box" id="code_box">
+        <img src="" alt="" class="img_code" id="img_code">
+    </div>
+    <div class="dumpling_tips">
+        <p>因为汤圆属于速冻食品，不便置于常温环境时间过长，我们的工作人员会提前通知您领取的具体时间，以便您及时领取</p>
+        <p>(预约截止日期：2016/02/22)</p>
+    </div>
+    <button class="btn" id="subBtn">立即预约</button>
 </body>
 <script src="js/tools/jquery-2.1.4.min.js"></script>
 <script src="js/tools/template.js"></script>
 <script src="js/control/dumpling.js?v=1.04"></script>
-
 
 </html>

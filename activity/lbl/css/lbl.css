@@ -1,5 +1,5 @@
-div,img,body,html{margin: 0;padding: 0}
-html { font-size: 10px; font-family: "Microsoft YaHei";}
+div, img, body, html { margin: 0; padding: 0 }
+html { font-size: 10px; font-family: "Microsoft YaHei"; }
 html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary { margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: normal; vertical-align: baseline; background: transparent; }
 article, aside, figure, footer, header, nav, section, details, summary { display: block; }
 html { box-sizing: border-box; }
@@ -24,7 +24,7 @@ input[type="checkbox"] { vertical-align: bottom; }
 .ie7 input[type="checkbox"] { vertical-align: baseline; }
 .ie6 input { vertical-align: text-bottom; }
 select, input, textarea { font: 99% sans-serif; }
-table { font-size: inherit;}
+table { font-size: inherit; }
 small { font-size: 85%; }
 strong { font-weight: bold; }
 td, td img { vertical-align: top; }
@@ -44,100 +44,30 @@ button, input[type=button] { width: auto; overflow: visible; }
 body, button, input, select, textarea { font: 400 14px/1.5 Arial, "Lucida Grande", Verdana, "Microsoft YaHei", hei; }
 html { -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; -moz-user-select: none; }
 input, button { border: none; outline: none; }
+.cover { z-index: 1000; background-color: #000000; opacity: 0.4; position: absolute; }
+.coverText { z-index: 1005; color: #ffffff; background-color: #000000; -webkit-border-top-left-radius: 10px; -webkit-border-top-right-radius: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; text-align: center; position: fixed; vertical-align: middle; margin-right: 20%; margin-left: 20%; height: auto; padding: 10px 0; }
+.input_div { margin: 15px auto; padding: 0 10px; width: 90%; }
+.input_div .span_1 { width: 30%; font-size: 1rem; display: inline-block; }
+.input_div .span_2 { width: 68%; font-size: 1rem; display: inline-block; }
+.input_div .span_2 .dumpling_input { width: 100%; padding: 5px 5px; border-radius: 5px; border: 1px solid #ccc; }
+.input_div .span_3 { width: 33%; padding: 5px 5px; font-size: 1rem; display: inline-block; position: relative; border: 1px solid #ccc; border-radius: 5px; }
+.input_div .span_3 select { outline: none; border: 0; width: 100%; -webkit-appearance: none; background: url(../images/icon-san.png) no-repeat; background-size: 10px 9px; background-position: 95%;    /*position: absolute;*/ }
+.input_div .span_3:before { content: ""; display: block; background: #ccc; width: 1px; height: 25px; position: absolute; right: 25%; top: 5px; }
+.dumpling_tips { margin: 20px auto; border-radius: 10px; background: url(../images/dumpling_bg.png); background-color: #fbe4c1; padding: 3px 6px; width: 90%; text-align: center; font-size: 0.8rem; color: #3e0601; }
 
-.cover{
-    z-index: 1000;
-    background-color: #000000;
-    opacity:0.4;
-    position: absolute;
-}
-.coverText{
-    z-index: 1002;
-    color: #ffffff;
-    background-color: #000000;
-    -webkit-border-top-left-radius:  10px;
-    -webkit-border-top-right-radius:  10px;
-    -webkit-border-bottom-right-radius:   10px;
-    -webkit-border-bottom-left-radius:  10px;
-    text-align: center;
-    position: fixed;
-    vertical-align:middle;
-    margin-right: 20%;
-    margin-left: 20%;
-    height:auto;
-    padding: 10px 0;
-}
-.input_div{ margin: 15px auto;padding: 0 10px;width: 90%;}
-.input_div .span_1{
-    width: 30%;
-    font-size: 1rem;
-    display: inline-block;
-}
-.input_div .span_2{
-    width: 68%;
+/*图片验证码*/
+.img_code_box .code_box, .img_code_box .img_code { display: inline-block; height: 30px; }
+.img_code_box .code_box { width: 65%; vertical-align: top; text-align: center;border:1px solid #ccc;border-radius: 3px; }
+.img_code_box .img_code { width: 80px; float: right; }
 
-    font-size: 1rem;
-    display: inline-block;
-}
-.input_div .span_2 .dumpling_input{
-    width: 100%;
-    padding: 5px 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.input_div .span_3{
-    width: 33%;
-    padding: 5px 5px;
-    font-size: 1rem;
-    display: inline-block;
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+/*短信验证码*/
+.msgCodeCover {display: none; position: absolute; width: 50%; z-index: 1003; width: 80%; background: #fff; margin: auto; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 5px; }
+.msgCodeCover .msgHead { width: 100%; height: 50px; line-height: 50px; text-align: center; position: relative; border-bottom: 1px solid #d0d0d0; margin: 0 0 15px 0; }
+.msgCodeCover .msgClose { display: inline-block; width: 33px; height: 33px; background: url(../images/dum_icon.png) no-repeat -7px -7px; background-size: 47px; position: absolute; right: 6px; top: 6px; }
 
-.input_div .span_3 select{
-    outline:none;
-    border: 0;
-    width: 100%;
-    -webkit-appearance: none;
-    background: url(../images/icon-san.png) no-repeat;
-    background-size: 10px 9px;
-    background-position: 95%;
-    /*position: absolute;*/
+.msgContent { width: 90%; height: 40px; margin: 0 auto; border: 1px solid #d0d0d0; position: relative; border-radius: 3px;}
+.msgContent .msgCode { height: 100%; width: 100%; text-indent: 10px; }
+.msgContent .msgTitle { position: absolute; right: 0; top: 0; height: 100%; line-height: 40px; padding: 0 5px; color: #b46a25;text-align: center; }
+.msgContent .msgTitle.disabled { background: #d0d0d0;color: #fff; }
 
-}
-.input_div .span_3:before{
-    content: "";
-    display: block;
-    background: #ccc;
-    width: 1px;
-    height: 25px;
-    position: absolute;
-    right: 25%;
-    top: 5px;
-}
-/*.input_div .span_3:after{*/
-    /*content: "";*/
-    /*display: block;*/
-    /*background: url(../images/icon-san.png) no-repeat;*/
-    /*background-size: 10px 9px;*/
-    /*width:12px;*/
-    /*height: 10px;*/
-    /*position: absolute;*/
-    /*right: 9px;*/
-    /*top: 13px;*/
-/*}*/
-.dumpling_tips{
-    margin:20px auto;
-    border-radius: 10px;
-    background: url(../images/dumpling_bg.png);
-    background-color: #fbe4c1;
-    padding: 3px 6px;
-    width: 90%;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #3e0601;
-}
-
-
-.btn { color: #fff; background: #d01b02; width: 80%; margin: 20px 10% 20px; height: 48px; line-height: 48px; font-size: 1.4rem; text-align: center; border-radius: 5px; border: 0 }
+.msgSubBtn, .btn { color: #fff; background: #d01b02; width: 90%; margin: 20px 5% 20px; height: 48px; line-height: 48px; font-size: 1.4rem; text-align: center; border-radius: 5px; border: 0 }
