@@ -42,7 +42,7 @@ define(function(require, exports, module) {
                                   <li class="frm_item frm_item_getcode">\
                                     <label for="inpt_code">验证码</label>\
                                     <input type="text" id="inpt_code" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
-                                    <span class="code js_code">获取验证码</span></li>\
+                                    <span class="code js_code code_disabled">已获取（60）</span></li>\
                                   <li class="frm_item">\
                                     <label for="inpt_pssword">交易密码</label>\
                                     <input type="password" id="inpt_pssword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
@@ -56,7 +56,7 @@ define(function(require, exports, module) {
                           <div class="mod_popup_mask hidden" style="background:#000;opacity:0.5;position:absolute;left:20px;top:5px;width:270px;height:375px"></div>\
                           <div class="mod_popup_toast hidden" style="text-align:center;height:20px;top:180px;position:absolute;left:50%;background:#000;opacity:0.8;padding:10px 20px;color:#fff;border-radius:5px"></div>\
                         </div>'
-
+            var getCodeFlag=false;
             var popwin = new App.UI.UIPopWin({
                 maskToHide: false,
                 template: tem,
@@ -161,13 +161,15 @@ define(function(require, exports, module) {
                     clearInterval(self.codetimer);
                     self.codetimer = setInterval(function() {
                         self.$el.find('.js_code').html('已获取（' + second + '）');
-                        self.$el.find('.js_code').data("hascode", 1);
+                        //self.$el.find('.js_code').data("hascode", 1);
+                        getCodeFlag=true
                         self.$el.find('.js_code').addClass("code_disabled");
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.codetimer);
                             self.$el.find('.js_code').html('获取验证码');
-                            self.$el.find('.js_code').data("hascode", 0);
+                            //self.$el.find('.js_code').data("hascode", 0);
+                            getCodeFlag=false
                             self.$el.find('.js_code').removeClass("code_disabled");
                         }
                     }, 1000);
@@ -192,10 +194,13 @@ define(function(require, exports, module) {
                 onShow: function() {
                     var self = this
                     self.showOrderCountDown();
+
+
                     if (hasCode == false) {
                         self.getCode();
                     } else {
-                        self.showCodeCountDown(60);
+                        getCodeFlag=true
+                        self.showCodeCountDown(59);
                     }
 
                 },
@@ -204,7 +209,8 @@ define(function(require, exports, module) {
                     clearInterval(self.paytimer);
                     clearInterval(self.codetimer);
                     clearInterval(self.ordertimer);
-                    self.$el.find('.js_code').data("hascode", 0);
+                    //self.$el.find('.js_code').data("hascode", 0);
+                    getCodeFlag=false
                     self.$el.find('.js_code').removeClass("code_disabled");
                     //alert隐藏
                     self.payCountAlert && self.payCountAlert.hide();
@@ -212,10 +218,13 @@ define(function(require, exports, module) {
                 },
                 getCode: function() {
                     var self = this;
-                    if (self.$el.find('.js_code').data("hascode")) {
-                        return;
+                    //if (self.$el.find('.js_code').data("hascode")==1) {
+                    //    return;
+                    //}
+                    if( getCodeFlag){
+                        return
                     }
-
+                    getCodeFlag=true
                     App.showLoading();
                     getMsgCodeModel.set({
                             "type": "1",
@@ -226,11 +235,14 @@ define(function(require, exports, module) {
                     }).then(function(data) {
                         App.hideLoading();
                         if (data.ret == 0) {
-                            self.showCodeCountDown(data.data.retryWait);
+                            self.showCodeCountDown(59);
+
                         } else if (data.ret == 999001) {
-                            self.$el.find('.js_code').data("hascode", 0);
+                            //self.$el.find('.js_code').data("hascode", 0);
+
                             App.goTo('login');
                         } else {
+                            //self.showCodeCountDown(data.data.retryWait);
                             App.showToast(data.msg || "网络错误");
                         }
 
@@ -298,7 +310,8 @@ define(function(require, exports, module) {
                                 handle.goLogin();
                             } else {
                                 clearInterval(self.codetimer);
-                                self.$el.find('.js_code').data("hascode", 0)
+                                //self.$el.find('.js_code').data("hascode", 0)
+                                getCodeFlag=false
                                 self.$el.find('.js_code').removeClass("code_disabled");
                                 self.$el.find('.js_code').html('获取验证码')
                                 self.$el.find('#inpt_code').val('')
@@ -667,7 +680,7 @@ define(function(require, exports, module) {
             }
         },
         //支付弹出窗
-        ttlPayWin: function(data) {
+        ttlPayWin: function(data,from) {
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">支付确认<em class="close" id="payClose"></em></div>\
                     <div class="ttl_pay_test_m">\
@@ -680,7 +693,7 @@ define(function(require, exports, module) {
                               <li class="frm_item frm_item_getcode">\
                                 <label for="inpt_code">验证码</label>\
                                 <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
-                                <span class="code js_code">获取验证码</span></li>\
+                                <span class="code js_code code_disabled">已获取（60）</span></li>\
                               <li class="frm_item">\
                                 <label for="inpt_pssword">交易密码</label>\
                                 <input type="password" id="checkPassword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
@@ -696,7 +709,8 @@ define(function(require, exports, module) {
                         </div>\
                     </div>\
                 </article>';
-            var self = null; 
+            var self = null;
+            var getCodeFlag_ttl=true
             var popwin = new App.UI.UIPopWin({
                 maskToHide: false,
                 template: tem,
@@ -712,8 +726,15 @@ define(function(require, exports, module) {
                 onShow: function() {
                     self = this.initialize();
                     self.showOrderCountDown();
-                    self.showCodeCountDown(60);
+
                     self.showAcountValue();
+                    console.log(from)
+                    if(from==false){
+                        getCodeFlag_ttl=false
+                        self.getCode()
+                    }else{
+                        self.showCodeCountDown(59);
+                    }
                 },
                 showCodeCountDown: function(timer) {
                     //获取验证码倒计时
@@ -721,13 +742,15 @@ define(function(require, exports, module) {
                     clearInterval(self.codetimer);
                     self.codetimer = setInterval(function() {
                         self.$el.find('.js_code').html('已获取（' + second + '）');
-                        self.$el.find('.js_code').data("hascode", 1);
+                        //self.$el.find('.js_code').data("hascode", 1);
+                        getCodeFlag_ttl=true
                         self.$el.find('.js_code').addClass("code_disabled");
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.codetimer);
                             self.$el.find('.js_code').html('获取验证码');
-                            self.$el.find('.js_code').data("hascode", 0);
+                            //self.$el.find('.js_code').data("hascode", 0);
+                            getCodeFlag_ttl=false
                             self.$el.find('.js_code').removeClass("code_disabled");
                         }
                     }, 1000);
@@ -812,23 +835,31 @@ define(function(require, exports, module) {
                 onHideLayer: function() {
                     clearInterval(self.paytimer);
                     clearInterval(self.ordertimer);
+                    getCodeFlag_ttl=false
                     self.hide();
                 },
                 getCode: function() {
-                    if (self.$el.find('.js_code').data("hascode")) {
-                        return;
+                    //if (self.$el.find('.js_code').data("hascode")) {
+                    //    return;
+                    //}
+                    if(getCodeFlag_ttl){
+                        return
                     }
-
+                    getCodeFlag_ttl=true
                     App.showLoading();
                     getTtlPayCode.exec({
                         type: 'get',
                         success: function(data) {
                             App.hideLoading();
                             if (data.ret == 0) {
-                                self.showCodeCountDown(60);
+                                self.showCodeCountDown(59);
                             } else if (data.ret == 999001) {
-                                self.$el.find('.js_code').data("hascode", 0);
+                                //self.$el.find('.js_code').data("hascode", 0);
+                                getCodeFlag_ttl=false
                                 App.goTo('login');
+                            }else if (data.ret == 100017) {
+                                self.showCodeCountDown(data.data.waitSeconds);
+                                //App.showToast(data.msg || "网络错误");
                             } else {
                                 App.showToast(data.msg || "网络错误");
                             }
@@ -890,7 +921,8 @@ define(function(require, exports, module) {
                                 handle.goLogin();
                             } else {
                                 clearInterval(self.codetimer);
-                                self.$el.find('.js_code').data("hascode", 0)
+                                //self.$el.find('.js_code').data("hascode", 0)
+                                getCodeFlag_ttl=false
                                 self.$el.find('.js_code').removeClass("code_disabled");
                                 self.$el.find('.js_code').html('获取验证码');
                                 self.$el.find('#checkCode').val('');

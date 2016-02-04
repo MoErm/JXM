@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     var getOrderDetails = new Model.getOrderDetails();
     var surplus=0;
     //接口getOrderDetails
+    var self
     module.exports = App.Page.extend({
         events: {
             'click .js_pay': 'pay',
@@ -37,7 +38,7 @@ define(function (require, exports, module) {
                 },
                 amountVal:self.currentAmount
             }
-            payLayer.ttlPayWin(data)
+            payLayer.ttlPayWin(data,false)
         },
         format:function(num){
             var temp_num=num*100
@@ -73,19 +74,18 @@ define(function (require, exports, module) {
                         self.setHeader(stat);
                         if(data.data.orderStatus == "01") {
                             self.surplus = data.data.surplusPayTime;
+                            //self.surplus =2;
                             self.currentAmount = data.data.currentAmount;
                             self.detailTimer = setInterval(function () {
                                 var minute = Math.floor(self.surplus / 60);
                                 var second = self.surplus - minute * 60;
                                 $('.js_time').html(minute + '分' + second + '秒');
                                 self.surplus -= 1;
-                                self.data.surplusPayTime = self.surplus - 1;
-                                if (self.surplussurplus == -1) {
+                                //self.data.surplusPayTime = self.surplus - 1;
+                                if (self.surplus < -1) {
                                     clearInterval(self.detailTimer);
-                                    self.hide()
                                     self.getOrderInfoAlert = handle.alert('订单已关闭，请重新购买', function () {
-
-                                        App.goTo("my_invest")
+                                        App.goTo("ttl_introduce")
                                     }).show();
                                 }
                             }, 1000);

@@ -83,7 +83,7 @@ define(function(require, exports, module) {
         };
     }
     var map = new Map();
-
+    //var chunjie=false
     module.exports = App.Page.extend({
         initialize: function() {
             return this;
@@ -94,6 +94,8 @@ define(function(require, exports, module) {
             'click #title_tip': 'actionTitleTip' //收益助手提示
         },
         onShow: function() {
+            self = this.initialize();
+
             pool = new Array(1, 2, 3);
             hidePool = new Array(4, 5, 6, 7, 8);
             turnNum = 0;
@@ -102,13 +104,14 @@ define(function(require, exports, module) {
             nowRoundNum = 0;
             max = 0;
             min = 0;
-            self = this.initialize();
+
             self.message = '网络错误，请稍后重试';
             handle.share();
             self.pageData = {};
             self.setHeader();
             self.initProperty();
             self.hideArrow();
+
         },
         hideArrow:function(){
             $(window).bind('scroll', function(){
@@ -332,7 +335,7 @@ define(function(require, exports, module) {
 //            console.log("change  "+  d.setDate(days+1))
 //            console.log("show   "+new Date(d.setDate(days+1)))
             d.setDate(d.getDate() + days);
-            console.log("now  "+d)
+            //console.log("now  "+d)
 //            d=new Date(d.setDate(days+1))
             var m = d.getMonth() + 1;
             m = m + ""
@@ -343,7 +346,7 @@ define(function(require, exports, module) {
             if (day.length == 1) {
                 day = "0" + day
             }
-            console.log(d.getFullYear() + '' + m + '' + day)
+            //console.log(d.getFullYear() + '' + m + '' + day)
             return d.getFullYear() + '' + m + '' + day;
         },
         setHeader: function() {
@@ -471,9 +474,20 @@ define(function(require, exports, module) {
             } else {
                 self.pageData.getTtlProperty.isCanBuy = 0;
             }
+            var today=new Date()
+            //console.log(today>1454716800000&&today<1455494400000)
+            if(today>1454716800000&&today<1455494400000){
+                self.pageData.getTtlProperty.isCanBuy = 0;
+            }
 
         },
         goBuyPage: function(e) {
+            if(self.pageData.getTtlProperty.isCanBuy==0){
+                self.getOrderInfoAlert = handle.alert('春节期间暂不开放购买，请2.15日再来~', function () {
+
+                }).show();
+                return
+            }
             e.preventDefault(e);
             getTtlProperty.exec({
                 type: 'get',
