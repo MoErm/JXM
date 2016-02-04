@@ -120,14 +120,15 @@ var dumpling = {
         self.msgCode = {
             getMsgCode: function(msgCodeBox) {
                 var that = this;
-
+                // 先倒计时
+                that.getMsgCountDown();
                 $.ajax({
                     type: 'get',
                     url: "../../apps/api/activity/sendYuanxiaoSms",
                     // url: "http://test.jiaxinmore.com/apps/api/activity/sendYuanxiaoSms",
                     success: function(data) {
-                        if (data.ret == 0) {
-                            that.getMsgCountDown();
+                        if (data.ret == 0) {                            
+                            
                             msgCodeBox.show();
                             self.showCover();
                         } else {
