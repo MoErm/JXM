@@ -118,16 +118,19 @@ var dumpling = {
         //短信验证码
         var self = this;
         self.msgCode = {
-            getMsgCode: function() {
+            getMsgCode: function(msgCodeBox) {
                 var that = this;
-
+                // 先倒计时
+                that.getMsgCountDown();
                 $.ajax({
                     type: 'get',
                     url: "../../apps/api/activity/sendYuanxiaoSms",
                     // url: "http://test.jiaxinmore.com/apps/api/activity/sendYuanxiaoSms",
                     success: function(data) {
-                        if (data.ret == 0) {
-                            that.getMsgCountDown();
+                        if (data.ret == 0) {                            
+                            
+                            msgCodeBox.show();
+                            self.showCover();
                         } else {
                             self.showCoverText(data.msg);
                         }
@@ -198,10 +201,7 @@ var dumpling = {
             showMsgCodeCover: function() {
                 var that = this;
                 var msgCodeBox = $("#msgCodeCover");
-
-                msgCodeBox.show();
-                self.showCover();
-                that.getMsgCode();
+                that.getMsgCode(msgCodeBox);
             },
             hideMsgCodeCover: function() {
                 var msgCodeBox = $("#msgCodeCover");
