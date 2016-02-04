@@ -32,8 +32,7 @@ define(function(require, exports, module) {
             mType='android'
         } else {
             this.setupWebViewJavascriptBridge(function(bridge) {
-                bridge.callHandler('testObjcCallback', {'abcTest': 'abcTest'}, function(response) {
-                })
+
             })
         }
 

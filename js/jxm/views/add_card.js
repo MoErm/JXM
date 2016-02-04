@@ -18,7 +18,7 @@ define(function (require, exports, module) {
         beforeIn:  function () {
            if(handle.mobileType()=="android"){
                window.app.goMyCards()
-           }else if(handle.mobileType()=="ios") {
+           }else if(handle.mobileType()!="html") {
                handle.setupWebViewJavascriptBridge(function (bridge) {
                    bridge.callHandler('back', null, function (response) {
                    })
