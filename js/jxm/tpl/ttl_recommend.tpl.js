@@ -26,7 +26,7 @@ define(function (require, exports, module) {
 							<div class="chart_info_head"></div>\
 							<ul class="chart_info_list">\
 								<li><em class="list_b">5%</em>起天天加息</li>\
-								<li><em class="list_a">12%</em>最高收益率</li>\
+								<li><em class="list_a">11.2%</em>最高收益率</li>\
 								<li><em class="list_c">收益率</em>按天增涨</li>\
 							</ul>\
 						</div>\

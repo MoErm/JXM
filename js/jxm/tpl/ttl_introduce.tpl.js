@@ -6,8 +6,7 @@ define(function (require, exports, module) {
 					<h2><%=getTtlProperty.yestIncome%></h2>\
 				</div>\
     		</div>\
-    		<div class="notice "><div class="notice_tran">因春节假期，2月4日至 2月13日期间发起的赎回申请， 资金预计在2月20日之前到账。请做好合理安排。</div></div>\
-    <div style="clear: both"></div>\
+    		\
     		<div class="ttl_introduce_m">\
 				<div class="total">\
 					<p>总金额(元)</p>\
@@ -64,7 +63,7 @@ define(function (require, exports, module) {
                         <h2 class="head">收益率按天增涨的活期理财</h2>\
                         <ul class="list">\
                             <li><p class="list_box"><span>5%<br/>年化起</span></p></li>\
-                            <li><p class="list_box"><span>12%<br/>年化最高</span></p></li>\
+                            <li><p class="list_box"><span>11.2%<br/>年化最高</span></p></li>\
                             <li><p class="list_box"><span>t+0<br/>当日起息</span></p></li>\
                         </ul>\
                     </div>\
@@ -117,3 +116,6 @@ define(function (require, exports, module) {
 
     module.exports = tpl;
 })
+
+//<div class="notice "><div class="notice_tran">因春节假期，2月4日至 2月13日期间发起的赎回申请， 资金预计在2月20日之前到账。请做好合理安排。</div></div>\
+//<div style="clear: both"></div>

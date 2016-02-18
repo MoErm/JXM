@@ -103,7 +103,7 @@
 <div id="eventInfo" style="border-bottom: 1px solid #d9d9d9;padding-bottom: 5%;background-color: #ffffff">
     <div style="width: 100%;text-align: center;color: #b90405;font-size: 28px;font-weight: bold;padding-bottom: 20px;padding-top: 20px">活动说明</div>
     <div class="tips">
-    <strong>活动针对对象：</strong>已经发放邀请码的展义全体员工（还没有邀请码的展义员工请联系尹馨培，微信号：yxp272338959）。<br>
+    <strong>活动针对对象：</strong>已经发放邀请码的展义全体员工（还没有邀请码的展义员工请联系刘影妹，微信号：lym19920607）。<br>
         <strong>邀请人数计算方法：</strong>包括本人，本人邀请的一级客户人数以及次级客户人数之和。<br>
         <strong>活动规则：</strong>活动期间，按照邀请的支付用户的排序，当邀请人数一样时，则按照累计成交金额确定排名。
     </div>
@@ -116,10 +116,10 @@
     <div class="infoText">
         <div style="padding:20px 20px 10px 10px">
             <big class="infostep1"> Step 1:&nbsp;</big>请于活动开始前关注加薪猫理财公众账号：jiaxinmaolicai，按照微信提示进行注册，绑卡。<br>
-            <big class="infostep1"> Step 2:&nbsp;</big>方法1：进入【我的投资】，点击右上角【邀请好友】，按照提示开始邀请操作。
+            <big class="infostep1"> Step 2:&nbsp;</big>方法1：进入【我】，点击右上角【邀请好友】，按照提示开始邀请操作
         </div>
         <div style="padding:10px 20px 10px 10px;">
-            <img style="height: auto;width: 45%;margin-left:10px;float:left;" src="./img/heroList_info1.png" >
+            <img style="height: auto;width: 45%;margin-left:10px;float:left;margin-right: 10px" src="./img/heroList_info1.jpg" >
             <big class="infostep"> 微信</big><br>
             点击【微信】，直接将连接发送给朋友或分享到朋友圈，好友点击注册后自动产生绑定关系。<br>
             <big class="infostep"> 二维码</big><br>
@@ -130,7 +130,7 @@
         </div>
         <div style="">
             <img style="height: auto;width: 40%;float:left;padding:0 5% 20px 5%" src="./img/heroList_info2.png" >
-            <img style="height: auto;width: 40%;float:left;padding:0 5% 20px 0" src="./img/heroList_info3.png" >
+            <img style="height: auto;width: 40%;float:left;padding:0 5% 20px 0" src="./img/heroList_info3.jpg" >
         </div>
         <div style="padding:10px 20px 40px 10px;clear:both;">
             <big class="infostep">我的邀请页</big><br>
@@ -161,43 +161,6 @@
     var temp11_30="";
     var temp1_3="";
     function initHero(){
-              var now = new Date();
-        var nowMonth = now.getMonth(); //当前月0-11整数
-        var nowYear = now.getFullYear(); //当前年
-        var endYear;
-        var endMonth;
-        var endday=30;
-        if(nowMonth==0||nowMonth==2||nowMonth==4||nowMonth==6||nowMonth==7||nowMonth==9||nowMonth==11){
-            endday=31;
-        }else if(nowMonth==1){
-            if(isLeapYear(nowYear)){
-                endday=29;
-            }else{
-                endday=28;
-            }
-
-        }
-
-        if(nowMonth==11){
-            endYear=nowYear+1;
-            endMonth=1;
-        }else{
-            endYear=nowYear;
-            endMonth=nowMonth+1;
-        }
-        //var startDate=nowYear+"-"+(nowMonth+1)+"-1";
-        var startDate="2015-8-18";
-        var endDate="2015-8-31 23:59:59";
-        //  var endDate=endYear+'-'+endMonth+"-"+endday+" 23:59:59";
-
-        //  window.setInterval(function(){ShowCountDown(2015,9,1,'Countdown');}, interval);//更新倒计时endMonth+1下月1日0点之前
-        if(nowYear=='2015'&&(endMonth)=='8'){
-            //startDate="2015-8-18";
-            //  endDate="2015-8-31 23:59:59";
-        }else{
-            //  $("#eventTime").html(nowYear+"年"+(nowMonth+1)+"月"+"1日-"+endYear+"年"+(endMonth)+"月"+endday+"日。");
-        }
-//        $("#eventTime").html(nowYear+"年"+(nowMonth+1)+"月"+"1日-"+endYear+"年"+(endMonth)+"月"+endday+"日。");
 
 
 

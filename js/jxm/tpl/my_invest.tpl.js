@@ -33,7 +33,7 @@ define(function (require, exports, module) {
 	        <span class="change">已获返利<%=bonusAmount%>元</span>\
 	    </div>\
 	  \
-        \
+        <div id="titletest" style="display:none"></div>\
 	</article>';
 
 

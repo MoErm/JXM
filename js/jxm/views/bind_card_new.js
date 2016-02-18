@@ -44,6 +44,19 @@ define(function (require, exports, module) {
                 if(submitFlag){
                     return
                 }
+                var source="";
+                var productNo="";
+                var query = this.request.query;
+                if (_.isUndefined(query) || _.isUndefined(query.source)) {
+
+                }else{
+                    if(query.source=="01"){
+                        source=query.source;
+                        productNo=query.productNo
+                    }else if(query.source=="02"){
+                        source=query.source;
+                    }
+                }
 
 
                 var error = [];
@@ -87,8 +100,11 @@ define(function (require, exports, module) {
                     'provinceCode': self.cityData.bankProvinceCode,
                     'provinceName': self.cityData.bankProvinceName,
                     'cityName': self.cityData.cityName,
-                    'cityCode':   self.cityData.cityId
+                    'cityCode':   self.cityData.cityId,
+                    'source':   source,
+                    'productNo':   productNo
                 }
+
                 getSignature.set(sendData);
                 getSignature.exec({
                     type: 'POST',
@@ -151,6 +167,9 @@ define(function (require, exports, module) {
                             }
 
                         }else if(data.ret == 110199){
+                            self.promptAlert = handle.alert(data.msg);
+                            self.promptAlert.show();
+                        }else if(data.ret == 110005){
                             self.promptAlert = handle.alert(data.msg);
                             self.promptAlert.show();
                         }else{
@@ -334,8 +353,9 @@ define(function (require, exports, module) {
                         })
                     })
                 }
+
                 self.$el.html(bindCard_new + footer);
-//                }
+
                 self.regClear();
                 var query = this.request.query;
                         self.checkUserInfo()
@@ -346,13 +366,23 @@ define(function (require, exports, module) {
                 App.hideLoading()
                 if(!_.isUndefined(query)&&!_.isUndefined(query.surplusCount)){
                     if(query.surplusCount==0){
-                        self.promptAlert = handle.alert('今日绑卡次数过多，请明日再试',function(){
+                        self.promptAlert = handle.alert('今日绑卡次数已用完，请明日再试',function(){
                         });
                         self.promptAlert.show();
                     }else{
-                        self.promptAlert = handle.alert('今日绑卡次数剩余'+query.surplusCount+'次',function(){
-                        });
-                        self.promptAlert.show();
+                        if(handle.mobileType()=="html") {
+                            var customer = self.$('.js_customer');
+                            self.passAlert = handle.prompt('今日绑卡次数剩余' +query.surplusCount+ '次', '联系客服', '再试一次', function () {
+                                customer.trigger('click');
+                                customer.trigger('click');
+                            }, null);
+                            self.passAlert.show();
+                        }else{
+                            self.promptAlert = handle.alert('今日绑卡次数剩余'+query.surplusCount+'次',function(){
+                            });
+                            self.promptAlert.show();
+                        }
+
                     }
                 }
 

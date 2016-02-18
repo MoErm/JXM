@@ -3,12 +3,14 @@ define(function (require, exports, module) {
   \
     <%if(show){%><article class="mod_page mod_list js_list"><%}%>\
                 <div class="mod_listing">\
-                    <%if(show){%><h2 class="hd_title"><span>每天10点，优质放送 </span></h2><%}%>\
+                    <%if(show){%><h2 class="hd_title"><span>每天10点，优质放送 </span></h2>\
+                    <div id="titletest" style="display:none"></div><%}%>\
                     <%if(showhistory){%><h2 class="hd_title js_history_title"><span>历史优质产品</span></h2><%}%>\
                     <ul class="listing js_listing" data-history="<%=showhistory%>">\
                         <%_.each(items, function(item){%>\
                             <li id="<%=item.productNo%>" class="<%if(item.productSubject!=00){%>skin_<%=item.productSubject%><%}else{%>item<%}%> js_list_item"  data-time="<%=item.saleStartTime%>" data-sale="<%=item.saleStatus%>">\
-                                <%=showTag(item.incomeType,item.isForNew,item.investDeadline,item.saleStartTime,item.productTag) %><h3 class="item_title"><%if(item.productName.length <=20){%><%=item.productName%><%}else{%><%=item.productName.substr(0,20)%>...<%}%></h3>\
+                                <%=showTag(item.incomeType,item.isForNew,item.investDeadline,item.saleStartTime,item.productTag) %>\
+                                <h3 class="item_title"><%if(item.productName.length <=20){%><%=item.productName%><%}else{%><%=item.productName.substr(0,20)%>...<%}%></h3>\
                                     <%if(item.productSubject!=00){%>\
                                         <div class="img_<%=item.productSubject%>"></div>\
                                        <%}%>\
@@ -30,6 +32,9 @@ define(function (require, exports, module) {
                                     <%}else if(item.saleStatus == "2"){%>\
                                         <div class="v_item_hd js_list_time">距离购买开始：<%=item.getSaleStartString%></div>\
                                         <div class="v_item_bd js_list_btn"><span class="btn_link btn_link3">即将开始</span></div>\
+                                     <%}else if(item.saleStatus == "8"){%>\
+                                        <div class="v_item_hd js_list_time">距离购买结束：<%=item.getSaleStartString%></div>\
+                                        <div class="v_item_bd js_list_btn"><span class="btn_link btn_link2">还有机会</span></div>\
                                      <%}else{%>\
                                         <div class="v_item_hd js_list_time">购买结束时间：<%=cutTime(item.saleEndTime)%></div>\
                                         <div class="v_item_bd js_list_btn"><span class="btn_link btn_link2"><%=item.btnText%></span></div>\
@@ -39,6 +44,7 @@ define(function (require, exports, module) {
                         <%})%>\
                     </ul>\
                 </div>\
+                \
         <%if(show){%><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article><%}%>';
     module.exports = tpl;
 })

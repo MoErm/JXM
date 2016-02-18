@@ -220,12 +220,15 @@ define(function (require, exports, module) {
                             self.passAlert.show();
                         }else if(data.ret == 110115){
                             App.hideLoading();
-
                             self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
                             });
                             self.promptAlert.show();
-                        }
-                        else if(data.ret == 999001){
+                        }else if(data.ret == 200003){
+                            App.hideLoading();
+                            self.promptAlert = handle.alert("暂无额度，但还有人未完成支付，5分钟后再来看看！",function(){
+                            });
+                            self.promptAlert.show();
+                        }else if(data.ret == 999001){
                             handle.goLogin();
                         }else{
                             App.hideLoading();
@@ -295,6 +298,8 @@ define(function (require, exports, module) {
                        self.alert = handle.alert('该产品将于' + self.data.saleStartTime + '准时开售，敬请期待');
                    }
                    self.alert.show();
+               }else if(self.data.saleStatus == 8){
+                    self.toInvestConfirm();
                }
             },
             //选项卡切换
@@ -335,6 +340,17 @@ define(function (require, exports, module) {
                     ++self.time;
                     if(self.data.getSaleStartTime - self.time == 0){
                         self.data.saleStatus = 1;
+                    }
+                }else if(self.data.saleStatus == 8){
+                    btnName.html(handle.btnStatus(8));
+                    if(!buyBtn.hasClass('btn_link2')){
+                        buyBtn.removeClass('btn_link1');
+                        buyBtn.addClass('btn_link2');
+                    }
+                    listTime.html('距离购买结束：' + handle.countDown(self.data.getSaleEndTime - self.time));
+                    ++self.time;
+                    if(self.data.getSaleEndTime - self.time == 0){
+                        self.data.saleStatus = 3;
                     }
                 }else{
                     self.data.saleStatus = 3;

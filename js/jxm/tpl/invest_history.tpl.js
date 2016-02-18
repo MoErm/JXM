@@ -10,8 +10,8 @@ define(function (require, exports, module) {
 	        	<div class="v_item_hd">\
 	            	<%if(order.productType == "01") {%>\
 		            	<p><span class="v_item_title">投资金额</span><span class="v_item_cont"><%=order.investAmout%></span></p>\
-		            	<p><span class="v_item_title">预计到期日</span><span class="v_item_cont"><%=order.expectExpiringDate%></span></p>\
-		            	<p><span class="v_item_title">预期年化收益</span><span class="v_item_cont"><% if(order.incomeType == "01") {%><%=order.incomeRateCeiling%><% }else if(order.incomeType =="02"){%><%=order.incomeRateCeiling%>+<%=order.activityIncomeRate%><% }else if(order.incomeType =="04"){%><%=order.incomeRateFloor%>~<%=order.incomeRateCeiling%><% } %></span></p>\
+		            	<p><span class="v_item_title">到期日</span><span class="v_item_cont"><%=order.expectExpiringDate%></span></p>\
+		            	<p><span class="v_item_title">年化收益率</span><span class="v_item_cont"><% if(order.incomeType == "01") {%><%=order.incomeRateCeiling%><% }else if(order.incomeType =="02"){%><%=order.incomeRateCeiling%>+<%=order.activityIncomeRate%><% }else if(order.incomeType =="04"){%><%=order.incomeRateFloor%>~<%=order.incomeRateCeiling%><% } %></span></p>\
 	            	<% }else if (order.productType == "02"){%>\
 		            	<p><span class="v_item_title">投资金额</span><span class="v_item_cont"><%=order.investAmout%></span></p>\
 		            	<p><span class="v_item_title">当前份额</span><span class="v_item_cont"><%=order.currentCount%></span></p>\
@@ -22,7 +22,7 @@ define(function (require, exports, module) {
 	            	<%if(order.incomeType == "03"){%>\
 	            	<span class="v_item_title"><%=order.accProfit%></span><span class="v_item_cont">累计盈亏</span>\
 	            	<% } else if(order.incomeType == "01" ||order.incomeType == "02" ){%>\
-	            	<span class="v_item_title"><%=order.expectReturn%></span><span class="v_item_cont">预计到期收益</span>\
+	            	<span class="v_item_title"><%=order.expectReturn%></span><span class="v_item_cont">已获收益</span>\
 	            	<%} else if(order.incomeType == "04"){%>\
 	            	<span class="v_item_title"><%=order.expectReturn%></span><span class="v_item_cont">最高收益可达</span>\
 	            	<% }%>\

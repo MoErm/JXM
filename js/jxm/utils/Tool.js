@@ -24,6 +24,15 @@ define(function(require, exports, module) {
         var time = array[1].split(':');
         return new Date(date[0], parseInt(date[1], 10) - 1, parseInt(date[2], 10), parseInt(time[0], 10), parseInt(time[1], 10), parseInt(time[2], 10));
     }
+    //处理时间
+    Tool.prototype.setTitle = function(str) {
+        var $body = $('#titletest');
+        document.title =str
+        var $iframe = $('<iframe src=""></iframe>').on('load', function() {
+            setTimeout(function() {        $iframe.off('load').remove()      }, 0)
+        }).appendTo($body)
+
+    }
     //判断登录环境
     var mType='html';
     Tool.prototype.getMobileType=function(){
@@ -105,28 +114,32 @@ define(function(require, exports, module) {
         if(isNew=="1"){
             str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
         }else{
-            if(type=='02'){
-                if(time1>80&&time1<100){
-                    if(month[1]=='11'){
-                        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
-                    }else{
-                        str=""
-                    }
-                }
-                if(productTag!=""){
-                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
-                }
-            }else{
-                if(time1>80&&time1<100){
-                    if(month[1]=='11'){
-                        str='<div style="position: relative;display: inline-block;width: 80px"><div class="listTag">11月争霸赛</div></div>'
-                    }else{
-                        str=""
-                    }
-                }
-                if(productTag!=""){
-                    str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
-                }
+            //if(type=='02'){
+            //    //if(time1>80&&time1<100){
+            //    //    if(month[1]=='11'){
+            //    //        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">豪年计划</div></div>'
+            //    //    }else{
+            //    //        str=""
+            //    //    }
+            //    //}
+            //    if(productTag!=""){
+            //        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
+            //    }
+            //}else{
+            //    //if(time1>80&&time1<100){
+            //    //    if(month[1]=='11'){
+            //    //        str='<div style="position: relative;display: inline-block;width: 80px"><div class="listTag">11月争霸赛</div></div>'
+            //    //    }else{
+            //    //        str=""
+            //    //    }
+            //    //}
+            //    if(productTag!=""){
+            //        str='<div style="position: relative;display: inline-block;width: 70px"><div class="listTag">'+productTag+'</div></div>'
+            //    }
+            //}
+
+            if(productTag!=""){
+                str='<div style="position: relative;display: inline-block;" class="listTag">'+productTag+'</div>'
             }
         }
         return str;
@@ -205,7 +218,7 @@ define(function(require, exports, module) {
     }
     //按钮状态
     Tool.prototype.btnStatus = function(str){
-        return ['立即投资', '即将开始', '已结束', '计息中', '封闭中', '已结息','已售罄'][parseInt(str, 10) -1];
+        return ['立即投资', '即将开始', '已结束', '计息中', '封闭中', '已结息','已售罄','还有机会'][parseInt(str, 10) -1];
     }
     //绑卡的返回
     Tool.prototype.getProductLink = function(){

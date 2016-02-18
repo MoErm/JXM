@@ -21,6 +21,7 @@ define(function (require, exports, module) {
         module.exports = App.Page.extend({
             initialize: function(){
                 self = this;
+                this.header = document.querySelector("#header");
             },
             events: {
                 'click .js_my_invest': 'myInvest',//我的投资
@@ -35,21 +36,25 @@ define(function (require, exports, module) {
               App.goTo("ttl_recommend")
             },
             onShow: function () {
+                self = this;
                 var query = this.request.query;
                 var openid=query&&query.openid||"";
                 if(openid!=""){
                     sessionStorage.setItem("openid",openid);
                 }
 
-                self.setHeader();
+
+
+                //self.setHeader();
                 handle.share();
                 handle.orientationTips();
                 self.$el.html('<div class="js_content"></div>' + footer);
                 self.$('.js_product_list').addClass('cur');
 
                     self.getUserInfo();
+                self.showProduct();
 
-                return self.showProduct();
+                return ;
             },
             noProduct: function(){
                 self.$('.js_content').html('<article class="mod_page mod_list js_list"><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article>');
@@ -132,13 +137,14 @@ define(function (require, exports, module) {
                                     //取秒比较
                                     var serverTime = Math.floor(handle.dealTime(data.data.serverTime).getTime()/1000);
                                     _.each(data.data.items, function(item){
+
                                         item.time = serverTime;
                                         //倒计时
                                         item.getSaleEndTime = Math.floor(handle.dealTime(item.saleEndTime).getTime()/1000);
                                         item.getSaleStartTime = Math.floor((handle.dealTime(item.saleStartTime).getTime())/1000);
                                         item.getSaleEndString = handle.countDown(item.getSaleEndTime - item.time);
                                         item.getSaleStartString = handle.countDown(item.getSaleStartTime - item.time);
-                                        if(item.saleStatus == 1 || item.saleStatus == 2){
+                                        if(item.saleStatus == 1 || item.saleStatus == 2|| item.saleStatus == 8){
                                             timer[item.productNo] = setInterval(function(){ self.showTime(item);},1000);
                                         }
                                         item.btnText = handle.btnStatus(item.saleStatus);
@@ -154,6 +160,8 @@ define(function (require, exports, module) {
                                     data.data.showhistory = false;
                                     data.data.notice = true
                                     self.$('.js_content').html(_.template(list)(data.data));
+                                    handle.setTitle("产品列表");
+                                    $(self.header).hide();
                                     self.nextProduct();
                                 }else{
                                     self.noProduct();
@@ -194,7 +202,7 @@ define(function (require, exports, module) {
                                     item.getSaleStartTime = Math.floor((handle.dealTime(item.saleStartTime).getTime())/1000);
                                     item.getSaleEndString = handle.countDown(item.getSaleEndTime - item.time);
                                     item.getSaleStartString = handle.countDown(item.getSaleStartTime - item.time);
-                                    if(item.saleStatus == 1 || item.saleStatus == 2){
+                                    if(item.saleStatus == 1 || item.saleStatus == 2|| item.saleStatus == 8){
                                         timer[item.productNo] = setInterval(function(){ self.showTime(item);},1000);
                                     }
                                     item.btnText = handle.btnStatus(item.saleStatus);
@@ -306,6 +314,7 @@ define(function (require, exports, module) {
                 var listItem = self.$('#' + item.productNo);
                 var listTime = listItem.find('.js_list_time');
                 var listBtn = listItem.find('.js_list_btn');
+
                 if(item.saleStatus == 1){
                     listItem.attr('data-sale','1');
                     listTime.html('距离购买结束：' + handle.countDown(item.getSaleEndTime - item.time));
@@ -321,6 +330,15 @@ define(function (require, exports, module) {
                     ++item.time;
                     if(item.getSaleStartTime - item.time == 0){
                         item.saleStatus = 1;
+                    }
+                }else if(item.saleStatus == 8){
+                    listItem.attr('data-sale','8');
+                    listTime.html('距离购买结束：' + handle.countDown(item.getSaleEndTime - item.time));
+                    //console.log(item.saleStatus+"  "+item.getSaleEndTime+"  "+item.time)
+                    listBtn.html('<span class="btn_link btn_link2">' + handle.btnStatus(8) + '</span>');
+                    ++item.time;
+                    if(item.getSaleEndTime - item.time == 0){
+                        item.saleStatus = 3;
                     }
                 }else{
                     listItem.removeAttr('data-sale');
@@ -374,6 +392,8 @@ define(function (require, exports, module) {
                     //即将开始
                     self.alert = handle.alert('该产品将于' + time + '准时开售，敬请期待');
                     self.alert.show();
+                }else if(status == 8){
+                    self.toInvestConfirm(pid);
                 }else{
                     //已结束跳转产品详情页
                     App.goTo('detail?pid=' + pid);
@@ -407,6 +427,11 @@ define(function (require, exports, module) {
                                 });
                             }
                             self.passAlert.show();
+                        }else if(data.ret == 200003){
+                            //未设置交易密码
+                            self.promptAlert = handle.alert("暂无额度，但还有人未完成支付，5分钟后再来看看！",function(){
+                            });
+                            self.promptAlert.show();
                         }else if(data.ret == 110115){
                             App.hideLoading();
 
@@ -440,6 +465,7 @@ define(function (require, exports, module) {
                 if(self.promptAlert){self.promptAlert.hide();}
                 if(self.passAlert){self.passAlert.hide();}
                 self.$el.html('');
+                handle.setTitle("加薪猫");
             },
             goRecommend: function(){
 

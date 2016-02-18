@@ -1,6 +1,5 @@
 define(function (require, exports, module) {
-    var tpl= '<div class="notice "><div class="notice_tran">接支付机构通知，农业银行今天起代扣和绑卡业务暂不支持，恢复时间待定，特此通知。由此给您带来的不便，敬请见谅。 </div></div>\
-    <div style="clear: both"></div>\
+    var tpl= '\
 	<article class="mod_page v_mod page_invest_confim">\
 	    <ul class="invest_list invest_confim">\
 	      <li class="item invest_regular">\
@@ -61,4 +60,7 @@ define(function (require, exports, module) {
 })
 //滚动广告栏
 // <div class="notice "><div class="notice_tran">当日继续投资任意活动产品XXXX元，您即可获取双旦大礼</div></div><div class="notice_detail"><a class="js_notice">填写地址</a></div>\
+//<div style="clear: both"></div>
+
+//<div class="notice "><div class="notice_tran">接支付机构通知，农业银行今天起代扣和绑卡业务暂不支持，恢复时间待定，特此通知。由此给您带来的不便，敬请见谅。 </div></div>\
 //<div style="clear: both"></div>

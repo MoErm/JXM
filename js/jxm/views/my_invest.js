@@ -40,7 +40,7 @@ define(function (require, exports, module) {
             App.goTo("my_wallet")
         },
         goRedeem:function(){
-            App.goTo("ttl_introduce")
+            App.goTo("ttl_introduce?last=2")
         },
         goInvite:function(){
             App.goTo("my_invite")
@@ -64,7 +64,9 @@ define(function (require, exports, module) {
             self.$el.html(Footer);
             self.$('#js_my_invest').addClass('cur');
             self.regQR();
-            return this.render();
+            this.render();
+
+            return
         },
         regQR:function(){
             App.Bridge(function(bridge,scope){
@@ -97,7 +99,7 @@ define(function (require, exports, module) {
                         //self.history()
                         //self.newAcitve();
                         self.$('.js_my_invest').addClass('cur');
-
+                        handle.setTitle("我");
                         //处理总资产的长度
                         self.$()
 
@@ -186,7 +188,7 @@ define(function (require, exports, module) {
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['我']
+                    'tagname': 'title', 'value': [' ']
                 },
 
                 right: [{
@@ -217,7 +219,7 @@ define(function (require, exports, module) {
             App.goTo('list');
         },
         onHide: function () {
-
+            handle.setTitle("加薪猫");
         }
     })
 })

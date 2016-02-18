@@ -203,7 +203,7 @@ define(function(require, exports, module) {
         },
         goDetailPage: function() {
 
-            App.goTo("ttl_introduce");
+            App.goTo("ttl_introduce?last=1");
         },
         goInvest: function() {
 

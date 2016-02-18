@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 /*2014-12-9*/
+iframe{display: none}
 html { font-size: 10px; }
 textarea { resize: none; }
 :focus { outline: 0 }

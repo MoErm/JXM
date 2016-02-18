@@ -47,6 +47,7 @@ define(function (require, exports, module) {
                 <input type="hidden" id="ordDate" name="ordDate">\
                 <input type="hidden" id="signature" name="signature">\
                 </form>\
+                 <a href="tel:4008339869" class="js_customer" style="display:none"></a>\
                 </article>';
     module.exports = tpl;
 //    <div class="notice "><div class="notice_tran">由于银行服务器维护，暂时停止工行、农行、招行、兴业银行的绑卡和支付业务，但不影响兑付。恢复时间另行通知，给您带来不便深感抱歉。</div></div><div class="notice_detail"><a class="js_notice">查看详情</a></div>\

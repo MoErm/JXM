@@ -357,7 +357,17 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function() {
-                        App.goTo('ttl_recommend');
+                        var query = self.request.query;
+                        if (_.isUndefined(query) || _.isUndefined(query.last)) {
+                            App.goTo('ttl_recommend');
+                        }else{
+                            if(query.last==1){
+                                App.goTo('ttl_recommend');
+                            }else{
+                                App.goTo('my_invest');
+                            }
+                        }
+
                     }
                 },
                 right: [{
@@ -537,7 +547,7 @@ define(function(require, exports, module) {
                         <dt class="tip_list_title">一、什么是天添利？</dt>\
                         <dl class="tip_list_content">一款100元起投、收益率按天增涨的活期理财产品。</dl>\
                         <dt class="tip_list_title">二、收益率如何增涨？</dt>\
-                        <dl class="tip_list_content">购买当天的起始收益率为5%，并按天增涨，最高可达12%。</dl>\
+                        <dl class="tip_list_content">购买当天的起始收益率为5%，并按天增涨，最高可达11.2%。</dl>\
                         <dt class="tip_list_title">三、收益率转盘如何使用？</dt>\
                         <dl class="tip_list_content">根据转盘两侧的提示符，分别向右、向左转动转盘， 可查看昨日以及未来7日（共9天）年化收益率。</dl>\
                         <dt class="tip_list_title">四、什么是“当日最高收益率”？</dt>\

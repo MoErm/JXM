@@ -250,7 +250,7 @@ define(function(require, exports, module) {
         goCardSelectWin: function(){
             //传入当前银行卡ID
             self.currentCardBox= $(event.target).closest('#cardSelect');
-            common.ttlSelectCard(self.currentCardBox);
+            common.ttlSelectCard(self.currentCardBox,'02','');
         }
     });
 

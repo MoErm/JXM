@@ -18,6 +18,7 @@ define(function (require, exports, module) {
                         </ul>\
                         <a href="tel:<%=customer%>" class="js_customer" style="display:none"></a>\
                     </div>\
+                     <div id="titletest" style="display:none"></div>\
                 </article>\
                 <footer class="foot_copyright foot_fixed">\
                 <div class="fixed" style="margin-bottom: 55px">\

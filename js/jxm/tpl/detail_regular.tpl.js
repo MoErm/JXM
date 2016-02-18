@@ -43,6 +43,10 @@ define(function (require, exports, module) {
 	        <div class="v_item_bd"><%=bankName%>(尾号<%=cardTailNo%>)</div>\
 	      </li>\
 	      <li class="v_item">\
+	        <div class="v_item_hd">年化收益率</div>\
+	        <div class="v_item_bd"><%=fixedProdInfo.incomeRateCeiling%></div>\
+	      </li>\
+	      <li class="v_item">\
 	        <div class="v_item_hd"><% if(fixedProdInfo.incomeType == "04") {%>最高收益可达<% } else {%>实际赚取收益<% } %></div>\
 	        <div class="v_item_bd"><%=fixedProdInfo.actualIncome%></div>\
 	      </li>\

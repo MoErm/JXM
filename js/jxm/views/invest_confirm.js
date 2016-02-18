@@ -494,9 +494,14 @@ define(function (require, exports, module) {
             });
         },
         goCardSelectWin: function(){
+            var query = this.request.query;
+            if (_.isUndefined(query) || _.isUndefined(query.pid)) {
+                App.goTo('list');
+                return;
+            }
             //传入当前银行卡ID
             self.currentCardBox= $(event.target).closest('#cardSelectSecond');
-            payLayer.ttlSelectCard(self.currentCardBox);
+            payLayer.ttlSelectCard(self.currentCardBox,'01',query.pid);
         }
     })
 })

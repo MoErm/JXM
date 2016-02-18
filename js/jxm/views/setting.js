@@ -50,9 +50,12 @@ define(function (require, exports, module) {
             self.callPhone.show();
         },
         onShow: function () {
+            this.header = document.querySelector("#header");
             handle.share();
-            self.setHeader();
+
+            $(self.header).hide();
             self.$el.html(_.template(setting+Footer)({tel: tel, customer: tel.replace(/-/g, '')}));
+            handle.setTitle("设置");
             self.$('.js_setting').addClass('cur')
             App.hideLoading()
         },
@@ -76,6 +79,7 @@ define(function (require, exports, module) {
             });
         },
         onHide: function(){
+            handle.setTitle("加薪猫");
             if(self.callPhone){
                 self.callPhone.hide();
             }

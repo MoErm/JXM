@@ -569,7 +569,7 @@ define(function(require, exports, module) {
             });
         },
         //选择银行卡
-        ttlSelectCard: function(cardBox){          
+        ttlSelectCard: function(cardBox,source,productNo){
             var self = null;
             var currentCardId= cardBox.find("div[data-cardid]").attr("data-cardid");
             //显示换银行卡界面
@@ -659,7 +659,12 @@ define(function(require, exports, module) {
                     },
                     goAddCard: function(){
                         self.onHideLayer();
-                        App.goTo("bind_card_new");
+                        if(source=='01'){
+                            App.goTo("bind_card_new?source=01&productNo="+productNo);
+                        }else{
+                            App.goTo("bind_card_new?source=02");
+                        }
+
                     },
                     goSetNewCard: function(){
                         self.choosedCardId= Number($(event.target).parents("li").data("cardid"));
