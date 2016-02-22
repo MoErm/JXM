@@ -73,6 +73,10 @@
 		ChangeTradePassword : initModel({
 			url: host+'/api/userInfo/modifyTradePwd'
 		}),
+        //验证原交易密码
+        chkOldTradePwd : initModel({
+			url: host+'/api/userInfo/chkOldTradePwd'
+		}),
 		//忘记交易密码
 		checkTranPwd : initModel({
 			url: host+'/api/userInfo/checkForResetTradePwd'

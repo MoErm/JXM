@@ -76,7 +76,7 @@ define(function(require, exports, module) {
                     }else if(data.ret == 110009){
                         //未设置交易密码                        
                         self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
-                            App.goTo('set_card_psw');
+                            App.goTo('reset_password?soure=0');
                         });                        
                         self.passAlert.show();
                     }else if(data.ret == 110203){

@@ -417,7 +417,7 @@ define(function (require, exports, module) {
                             if(!self.passAlert){
                                 self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
                                     handle.setProductLink('list');
-                                    App.goTo('set_card_psw');
+                                    App.goTo('reset_password?soure=0');
                                 });
                             }
                             self.passAlert.show();

@@ -547,7 +547,6 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
-
         //公告
         showAD: function(view) {
             var month = new Date().getMonth() + 1;

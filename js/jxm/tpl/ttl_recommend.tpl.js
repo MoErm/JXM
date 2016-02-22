@@ -1,7 +1,6 @@
 define(function (require, exports, module) {
     var tpl = 
-    	'<div class="notice "><div class="notice_tran">亲爱的用户，加薪猫理财平台将在2016年2月15日全面调整平台固定收益产品的年化收益率，谢谢！ </div></div>\
-    <div style="clear: both"></div>\
+    	'\
     <article class="ttl_recommend" id="ttl_recommend">\
     		<div class="ttl_recommend_ad">\
 				<div class="mod_focus">\

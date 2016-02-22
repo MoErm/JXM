@@ -1064,9 +1064,52 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .mod_aboutus p { line-height: 22px; text-indent: 24px; margin-top: 10px; }
 
 /*--end --*/
+.pwd-box{
+	width:290px;
+	padding-left: 1px;
+	position: relative;
+	border: 1px solid #9f9fa0;
+	border-radius: 3px;
+	over-flow:hidden;
+	background: white;
+	margin: 0 auto;
+}
+.pwd-box input[type="tel"]{
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+	/*color: transparent;*/
+	position: absolute;
+	color: black;
+	top: 0;
+	left: 0;
+	border: none;
+	font-size:48px;
+	opacity: 0;
+	z-index: 1;
+	letter-spacing: 21.5px;
+	text-align: left;
+}
+.fake-box input{
+	width: 44px;
+	height: 48px;
+	line-height: 40px;
+	border: none;
+	border-right: 1px solid #e5e5e5;
+	text-align: center;
+	font-size: 30px;
 
+}
+.fake-box input:nth-last-child(1){
+	border:none;
+}
+.sixPass_tips{width: 70%;margin: 4px auto 0 auto;position: relative}
+.sixPass_tips::before{content: "";display: block;position: absolute;width: 20px;height: 20px;background-image: url(../../images/sprite.png);background-repeat: no-repeat; background-size: 200px auto; overflow: hidden; background-position: 0px -60px;left: 0;margin-left: -22px}
 /*-- start--*/
 .mod_popup { width: 100%; color: #4f4f4f; padding: 0 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+.sixPass { border-top: 1px solid #e5e5e5;width: 100%; color: #4f4f4f; padding: 0 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;position:fixed;right:0px;z-index: 9999 ;margin: 0 auto;bottom: 0;height: 200px;background: white}
+.sixPass_title{width: 100%;text-align: center;padding: 10px;border-top: 1px solid #e5e5e5}
+.sixPass_pad_top{width: 100%;background: #f2f2f2;height: 10px}
 .pop_cont { background-color: #FFF; box-shadow: 0 0 10px rgba(0, 0, 0, .2) }
 .pop_cont .btn_close { position: absolute; right: 0; top: 0; width: 40px; height: 40px; overflow: hidden; }
 .pop_cont .btn_close::before { position: absolute; right: 10px; top: 13px; width: 20px; height: 20px; background-position: -180px -200px; }

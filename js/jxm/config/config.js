@@ -51,6 +51,9 @@ window.global_config = {
         }, {
             "url": "forget_password_tips",
             "controller": "forget_password_tips"
+        },  {
+            "url": "reset_password",
+            "controller": "reset_password"
         }, {
             "url": "account",
             "controller": "account"
@@ -256,6 +259,7 @@ requirejs.config({
         'translate_password': 'jxm/views/translate_password',
         'forget_password': 'jxm/views/forget_password',
         'forget_password_tips': 'jxm/views/forget_password_tips',
+        'reset_password': 'jxm/views/reset_password',
         'account': 'jxm/views/account',
         'my_invest': 'jxm/views/my_invest',
         'my_invest_record': 'jxm/views/my_invest_record',

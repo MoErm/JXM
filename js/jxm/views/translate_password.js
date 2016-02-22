@@ -3,6 +3,7 @@ define(function (require, exports, module) {
     var Store = require("jxm/model/store");
     var Template = require("jxm/tpl/translate_password.tpl");
     var ChangeTradePassword = new Model.ChangeTradePassword();
+    var chkOldTradePwd = new Model.chkOldTradePwd();
     module.exports = App.Page.extend({
         template: Template,
         events: {
@@ -16,13 +17,12 @@ define(function (require, exports, module) {
         },
         startLogin:function(){
             var oldPassword=this.$el.find('#js_oldpassword').val();
-            var newPassword=this.$el.find('#js_newpassowrd').val();
            // var affirmPassword=this.$el.find('#js_affirmpassword').val();
-            ChangeTradePassword.set({"oldPwd": oldPassword,"newPwd":newPassword})//组织参数
-            ChangeTradePassword.exec().then(function (data) {
+            chkOldTradePwd.set({"oldPwd": oldPassword})//组织参数
+            chkOldTradePwd.exec().then(function (data) {
                     if(data&&data.ret==0){
-                        App.showToast("修改交易密码成功");
-                        App.goTo("setting");
+                        sessionStorage.setItem("oldPassword",oldPassword)
+                        App.goTo("reset_password?soure=1");
                     }else if (data.ret == 999001){
                         handle.goLogin();
                     }else{
@@ -35,16 +35,8 @@ define(function (require, exports, module) {
         },
         checkCode: function(){
                 var oldPassword=this.$el.find('#js_oldpassword').val();
-                var newPassword=this.$el.find('#js_newpassowrd').val();
-                var affirmPassword=this.$el.find('#js_affirmpassword').val();
             if(oldPassword==""){
                 App.showToast("原密码不能为空");
-                return false;
-            } else if(!newPassword.match(/\d{6}/)||newPassword.length<6){
-                App.showToast("新密码有误，请输入6位数字密码");
-                return false;
-            }else if(newPassword !== affirmPassword){
-                App.showToast("密码不一致")
                 return false;
             }
             return true
@@ -57,6 +49,7 @@ define(function (require, exports, module) {
         },
         onShow: function () {
             this.setHeader()
+            this.$el.find('#js_oldpassword').val("");
             App.hideLoading();
         },
         setHeader: function () {

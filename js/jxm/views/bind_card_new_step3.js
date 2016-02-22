@@ -44,7 +44,7 @@ define(function (require, exports, module) {
                                 self.$(".js_tel").val(tel);
                                 //跳转至手机号check
                             }else if(data.phase==4){
-                                App.goTo("set_card_psw")
+                                App.goTo("reset_password?soure=0")
                             }else{
                                 App.goTo("setting")
                             }
