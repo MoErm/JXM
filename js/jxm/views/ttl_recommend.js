@@ -66,8 +66,8 @@ define(function(require, exports, module) {
 //                src: './images/sdhd.jpg',
 //                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd'
 //            }
-            { id: 1, src: './images/sytz.jpg', href:"http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=402476113&idx=1&sn=fe5958e3e30ad9d6b330bd4e51101722#rd"  },
-                {
+//            { id: 1, src: './images/sytz.jpg', href:"http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=402476113&idx=1&sn=fe5958e3e30ad9d6b330bd4e51101722#rd"  },
+            {
                 id: 2,
                 src: './images/xszn.jpg',
                 href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=209894037&idx=1&sn=5ad856a2d275475c801c6a0604874843#rd'
