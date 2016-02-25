@@ -100,6 +100,7 @@ define(function (require, exports, module) {
                       $input.each(function() {
                           $(this).val("");
                       });
+                      $("#sixPass_tips").css("display","none");
                       $("#sixPass_title").html("请重复输入6位数字密码")
                   }
                 }else{
