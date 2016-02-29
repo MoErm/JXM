@@ -474,57 +474,78 @@ define(function(require, exports, module) {
             self.saleStart = self.pageData.getTtlProperty.saleStartTime;
             self.saleEnd = self.pageData.getTtlProperty.saleEndTime;
 
+            self.saleStatus=self.pageData.getTtlProperty.saleStatus;
+            self.nextSaleDate=self.pageData.getTtlProperty.nextSaleDate;
             // console.log(self.serverTime);
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
             //如果在售卖时间段内
-            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
-                self.pageData.getTtlProperty.isCanBuy = 1;
-            } else {
+
+            if (self.saleStatus=='01') {
+                self.pageData.buttonText="购买"
+                if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
+                    self.pageData.getTtlProperty.isCanBuy = 1;
+                }else{
+                    self.pageData.getTtlProperty.isCanBuy = 0;
+                }
+            }else if (self.saleStatus=='03')  {
+                self.pageData.buttonText="已售罄"
+                self.pageData.getTtlProperty.isCanBuy = 0;
+            } else  if (self.saleStatus=='02') {
+                self.pageData.buttonText="还有机会"
+                self.pageData.getTtlProperty.isCanBuy = 0;
+            }else{
+                self.pageData.buttonText="购买"
                 self.pageData.getTtlProperty.isCanBuy = 0;
             }
-            var today=new Date()
-            //console.log(today>1454716800000&&today<1455494400000)
-            if(today>1454716800000&&today<1455494400000){
-                self.pageData.getTtlProperty.isCanBuy = 0;
-            }
+            //var today=new Date()
+            ////console.log(today>1454716800000&&today<1455494400000)
+            //if(today>1454716800000&&today<1455494400000){
+            //    self.pageData.getTtlProperty.isCanBuy = 0;
+            //}
 
         },
         goBuyPage: function(e) {
-            if(self.pageData.getTtlProperty.isCanBuy==0){
-                self.getOrderInfoAlert = handle.alert('春节期间暂不开放购买，请2.15日再来~', function () {
-
-                }).show();
-                return
-            }
             e.preventDefault(e);
-            getTtlProperty.exec({
-                type: 'get',
-                success: function(data) {
-                    if (data.ret == 0) {
-                        self.pageData.getTtlProperty = data.data;
-
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || self.message);
-                    }
-                },
-                error: function() {
-                    App.hideLoading();
-                }
-            });
+            //getTtlProperty.exec({
+            //    type: 'get',
+            //    success: function(data) {
+            //        if (data.ret == 0) {
+            //            self.pageData.getTtlProperty = data.data;
+            //
+            //        } else if (data.ret == 999001) {
+            //            handle.goLogin();
+            //        } else {
+            //            App.showToast(data.msg || self.message);
+            //        }
+            //    },
+            //    error: function() {
+            //        App.hideLoading();
+            //    }
+            //});
 
             // console.log(self.serverTime);
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
             //如果在售卖时间段内
-            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
-                App.goTo("ttl_buy_one");
-            } else {
-                App.showToast("产品开放购买时间为06:00 ~ 22:00，请到时再来哦！");
+            if (self.saleStatus=='01') {
+                if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
+                    App.goTo("ttl_buy_one");
+                }else{
+                    self.getOrderInfoAlert = handle.alert('产品开放购买时间为06:00 ~ 22:00，请到时再来哦！', function () {
+                    }).show();
+                }
+            } else if (self.saleStatus=='00')  {
+                self.getOrderInfoAlert = handle.alert('下个开放购买日期为'+self.nextSaleDate, function () {
+                }).show();
+                return;
+            }else if (self.saleStatus=='02')  {
+                self.getOrderInfoAlert = handle.alert('暂无额度，但还有人未完成支付，5分钟后再来看看！', function () {
+                }).show();
+                return;
+            }else if (self.saleStatus=='03')  {
                 return;
             }
         },

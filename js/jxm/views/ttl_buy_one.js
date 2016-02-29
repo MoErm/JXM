@@ -206,8 +206,9 @@ define(function(require, exports, module) {
                     return;
                 }
                 if(self.amountVal> parseInt(self.pageData.cardData.surplusAmount)){
-                    self.passAlert = handle.alert("不能超过剩余可投上限");
+                    self.passAlert = handle.alert("超过剩余可投金额");
                     self.passAlert.show();
+                    $("#imoney_num").val(self.pageData.cardData.surplusAmount)
                     return;
                 }
             } 
