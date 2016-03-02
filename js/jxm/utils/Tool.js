@@ -27,10 +27,19 @@ define(function(require, exports, module) {
     //处理时间
     Tool.prototype.setTitle = function(str) {
         var $body = $('#titletest');
-        document.title =str
-        var $iframe = $('<iframe src=""></iframe>').on('load', function() {
-            setTimeout(function() {        $iframe.off('load').remove()      }, 0)
-        }).appendTo($body)
+        document.title =str;
+        var userAgent = window.navigator.userAgent.toLocaleLowerCase();
+        if(window.location.host.indexOf("localhost")>-1){
+        }else{
+            if(userAgent.indexOf("applewebkit") > -1){
+                console.log(userAgent)
+                var $iframe = $('<iframe src="favicon.ico"></iframe>').on('load', function() {
+                    setTimeout(function() {
+                        $iframe.off('load').remove()
+                    }, 0)
+                }).appendTo($body)
+            }
+        }
 
     }
     //判断登录环境

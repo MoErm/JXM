@@ -1348,8 +1348,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_recommend_detail_m .chart { height: 275px; width: 100%; margin: 0 auto 10px auto; position: relative; background: url(../../images/ttl_icon_b.png) no-repeat right bottom; background-size: 100%; border-bottom: 1px solid #DDD6CC; }
 .ttl_recommend_detail_m .chart_info { height: 120px; width: auto; margin: 0 auto; position: relative; top: 10px; }
 .ttl_recommend_detail_m .chart_info_head {margin:0 0 0 23%;width: 150px;height: 40px;background: url(../../images/ttl_icon_a.png) no-repeat;background-size: 100%;}
-.ttl_recommend_detail_m .chart_info_list {text-align: center;font-size: 1.2rem;margin: 15px auto; }
-.ttl_recommend_detail_m .chart_info_list li {display: inline-block;width: 27%;height: 16px;border-radius: 16px; border:1px solid #9A9693; text-align: center;line-height: 18px;background: #FFFCF5;  padding: 5px 3px;}
+.ttl_recommend_detail_m .chart_info_list {text-align: center;font-size: 1.2rem;margin: 10px auto; }
+.ttl_recommend_detail_m .chart_info_list li {display: inline-block;width: 30%;height: 16px;border-radius: 16px; border:1px solid #9A9693; text-align: center;line-height: 18px;background: #FFFCF5;  padding: 5px 2px;}
 .ttl_recommend_detail_m .chart_line { width: 100%; }
 .ttl_recommend_detail_m .chart_num { position: absolute; bottom: 20px; }
 .ttl_recommend_detail_m .chart_num li { font-size: 1.2rem; color: #9b9b9b; margin: 12px 0 0  0; text-align: right; }
