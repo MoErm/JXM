@@ -494,6 +494,44 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
+        newBonus: function() {
+            var tem = '<div class="newBonus_box">\
+                        <div class="newBonus_box1"></div>\
+                    </div>';
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click .payRedeem_close": "onHideLayer",
+                    "click #payRedeem_forget_a": "forget",
+                    //                    "input #redeemPwd":"canPay",
+                    "click .payRedeem_btn": "doPay"
+                },
+                maskToHide: false,
+                template: tem,
+                onHideLayer: function() {
+                    this.hide();
+                },
+                canPay: function() {
+                    var tradePassword = $('#redeemPwd').val();
+                    if (tradePassword.length > 0) {
+                        payFlag = true;
+                        $('#payRedeem_btn').removeClass("payRedeem_bgGrey")
+                        $('#payRedeem_btn').addClass("payRedeem_bgRed")
+                    } else {
+                        payFlag = false;
+                        $('#payRedeem_btn').addClass("payRedeem_bgGrey")
+                        $('#payRedeem_btn').removeClass("payRedeem_bgRed")
+                    }
+                },
+                forget: function() {
+                    App.goTo("forget_password")
+                    this.hide();
+                },
+                onShow: function() {
+
+                }
+            });
+            popwin.show();
+        },
 
         //邀请好友
         sendBonus: function(isHideShareBar, url) {

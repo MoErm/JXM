@@ -46,20 +46,20 @@ define(function (require, exports, module) {
 
         },
 		onShow: function () {
-			this.setHeader()
-
-			this.render()
+			this.setHeader();
+            common.newBonus();
+			this.render();
             App.hideLoading();
 
 		},
 		render: function(){
-			var data = JSON.parse(localStorage.getItem('regular'))
+			var data = JSON.parse(localStorage.getItem('regular'));
             self.data=data;
 			if(_.isNull(data)) {App.showToast("非法请求,将返回列表页");window.setTimeout(function(){App.goTo("list")},2000);return;}
 			var investAmount=data.data.fixedProdInfo&&parseFloat((data.data.fixedProdInfo.investAmount).split(",").join(""));
 
 			self.$el.html(_.template(Template)(data.data));
-            self.checkUser()
+            //self.checkUser();
 			//if(investAmount&&investAmount>=10000){common.showAD(self)};
 			//localStorage.removeItem('regular')
 		},
