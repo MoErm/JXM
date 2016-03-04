@@ -495,38 +495,40 @@ define(function(require, exports, module) {
             popwin.show();
         },
         newBonus: function() {
-            var tem = '<div class="newBonus_box">\
-                        <div class="newBonus_box1"></div>\
-                    </div>';
+            var tem = '<div class="newBonus_box newBonus_show1">\
+                        <div class="newBonus_close newBonus_show2"></div>\
+                        <div class="newBonus_box1">\
+                            <div class="newBonus_cycle"><small>￥</small>15</div>\
+                             <div class="newBonus_text1">尊贵的客户恭喜您收到了15元\
+                            抵现红包！已经放入您的红包账户中</div>\
+                             <div class="newBonus_text2">有效期7天，不要浪费哦！</div>\
+                             <div class="newBonus_logo"></div>\
+                            <button class="newBonus_btn">立即查看</button>\
+                        </div>\
+                        </div>';
             var popwin = new App.UI.UIPopWin({
                 events: {
-                    "click .payRedeem_close": "onHideLayer",
-                    "click #payRedeem_forget_a": "forget",
-                    //                    "input #redeemPwd":"canPay",
-                    "click .payRedeem_btn": "doPay"
+                    "click .newBonus_close": "onHideLayer",
+                    "click .newBonus_btn": "toMyWallet"
+
+
                 },
                 maskToHide: false,
                 template: tem,
                 onHideLayer: function() {
                     this.hide();
                 },
-                canPay: function() {
-                    var tradePassword = $('#redeemPwd').val();
-                    if (tradePassword.length > 0) {
-                        payFlag = true;
-                        $('#payRedeem_btn').removeClass("payRedeem_bgGrey")
-                        $('#payRedeem_btn').addClass("payRedeem_bgRed")
-                    } else {
-                        payFlag = false;
-                        $('#payRedeem_btn').addClass("payRedeem_bgGrey")
-                        $('#payRedeem_btn').removeClass("payRedeem_bgRed")
-                    }
-                },
-                forget: function() {
-                    App.goTo("forget_password")
+                toMyWallet:function(){
                     this.hide();
+                    App.goTo("my_wallet")
+
                 },
                 onShow: function() {
+                    var height=document.body.clientHeight
+                    console.log(height)
+                    if(height<=568){
+                        $(".newBonus_btn").css("top","300px")
+                    }
 
                 }
             });
