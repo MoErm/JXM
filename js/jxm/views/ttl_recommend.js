@@ -34,12 +34,11 @@ define(function(require, exports, module) {
             if(openid!=""){
                 sessionStorage.setItem("openid",openid);
             }
-
             handle.share();
-            handle.orientationTips();
-            self.initInvest();
+            handle.orientationTips();            
             self.getUserInfo();
-            self.getBannerImg();
+            self.getBannerImg();  
+            self.initInvest();           
         },       
         getUserInfo:function(){
             getUserInfo.exec({
@@ -80,8 +79,8 @@ define(function(require, exports, module) {
         initAD: function() {
             var container = self.$el.find(".img_box");
             var minHeight = $(window).width() / 3.2;
-            console.log(self.bannerData)
-                
+            console.log(self.bannerData)    
+
             var imgs =self.bannerData ? self.bannerData.bannerImages:[{
                 id: 3,
                 src: './images/xszy.jpg',
