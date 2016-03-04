@@ -329,6 +329,11 @@
             url:host+"/api/demand/demandProductContract"
         }),
         
+        // 获取banner图片
+        getBannerImages: initModel({
+             url:host+"/api/notice/getBannerImages"
+        }),
+
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
