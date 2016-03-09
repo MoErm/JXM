@@ -494,14 +494,17 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
-        newBonus: function() {
+        newBonus: function(money,day) {
             var tem = '<div class="newBonus_box newBonus_show1">\
                         <div class="newBonus_close newBonus_show2"></div>\
                         <div class="newBonus_box1">\
-                            <div class="newBonus_cycle"><small>￥</small>15</div>\
-                             <div class="newBonus_text1">尊贵的客户恭喜您收到了15元\
+                            <div class="newBonus_cycle"><small>￥</small>';
+            tem+=money+'</div>\
+                             <div class="newBonus_text1">尊贵的客户恭喜您收到了';
+            tem+=money+'元\
                             抵现红包！已经放入您的红包账户中</div>\
-                             <div class="newBonus_text2">有效期7天，不要浪费哦！</div>\
+                             <div class="newBonus_text2">有效期';
+            tem+=day+'天，不要浪费哦！</div>\
                              <div class="newBonus_logo"></div>\
                             <button class="newBonus_btn">立即查看</button>\
                         </div>\
@@ -524,11 +527,8 @@ define(function(require, exports, module) {
 
                 },
                 onShow: function() {
-                    var height=document.body.clientHeight
-                    console.log(height)
-                    if(height<=568){
-                        $(".newBonus_btn").css("top","300px")
-                    }
+                    var width=document.body.clientWidth
+                    $(".newBonus_btn").css("marginTop",width*0.8/0.7*0.8+"px")
 
                 }
             });

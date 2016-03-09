@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var handle = new tool();
     var getTtlProperty = new Model.getTtlProperty(); //获取灵活宝资产信息接口
     var getTtlRate = new Model.getTtlRate(); //获取收益率接口
+    var getRollingNotice = new Model.getRollingNotice();
     var pool = new Array(1, 2, 3);
     var hidePool = new Array(4, 5, 6, 7, 8);
     var turnNum = 0;
@@ -464,6 +465,7 @@ define(function(require, exports, module) {
         initTemple: function() {
             self.initBuyTime();
             self.$el.html(_.template(introduce)(self.pageData));
+            self.initNotice()
             self.setCycle();
             self.initRate();
             App.hideLoading();
@@ -557,6 +559,38 @@ define(function(require, exports, module) {
                 // App.showAlert("不可赎回");
                 return;
             }
+        },
+        initNotice:function(){
+            getRollingNotice.exec({
+                type: 'get',
+                data:{
+                    index:'02'
+                },
+                success: function(data){
+                    if(data.ret == 0){
+                        if(data.data.isShow==1){
+                            $(".notice").css("display","block")
+                            $(".notice_text").html(data.data.content)
+                            self.time=data.data.duration
+                            self.noticeAni()
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
+        noticeAni:function(){
+            $(".notice_text").css("marginLeft",document.body.clientWidth)
+            require(["jquery"], function ($) {
+                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+            });
         },
         onHide: function() {
             now = 0

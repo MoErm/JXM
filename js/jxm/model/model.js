@@ -333,6 +333,10 @@
         getBannerImages: initModel({
              url:host+"/api/notice/getBannerImages"
         }),
+        // 获取滚动条
+        getRollingNotice: initModel({
+             url:host+"/api/notice/getRollingNotice"
+        }),
 
         //chinaPay 验证
         NewCardBindService:initModel({

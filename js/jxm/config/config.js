@@ -233,6 +233,7 @@ requirejs.config({
     baseUrl: "js",
     urlArgs: "v=${version}",
     paths: {
+        "jquery": "jxm/utils/jquery-2.1.4.min",
         'echarts': 'jxm/utils/echart',
         'echarts/chart/pie': 'jxm/utils/chart/pie',
         'echarts/chart/line': 'jxm/utils/chart/line',

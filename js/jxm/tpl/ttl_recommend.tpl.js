@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
     var tpl =
-        '<div class="notice "><div class="notice_tran">亲爱的用户，加薪猫平台即将全面升级和改版，目前的新手活动和邀请活动将于2016年3月10日22:00结束，特此通知。</div></div>\
+        '<div class="notice" style="display: none"><div class="notice_text"></div></div>\
 <div style="clear: both"></div>\
     <article class="ttl_recommend" id="ttl_recommend">\
     		<div class="ttl_recommend_ad">\

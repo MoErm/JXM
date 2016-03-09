@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     var Footer = require("jxm/tpl/footer.tpl");
     var myProperty = new Model.myProperty();
     var historyOrder = new Model.historyOrder();
-
+    var getRollingNotice = new Model.getRollingNotice();
     var Store = require("jxm/model/store");
     var loginStore = new Store.loginStore();
     var tool = require('jxm/utils/Tool')
@@ -78,6 +78,38 @@ define(function (require, exports, module) {
                 })
             },self);
         },
+        initNotice:function(){
+            getRollingNotice.exec({
+                type: 'get',
+                data:{
+                    index:'03'
+                },
+                success: function(data){
+                    if(data.ret == 0){
+                        if(data.data.isShow==1){
+                            $(".notice").css("display","block")
+                            $(".notice_text").html(data.data.content)
+                            self.time=data.data.duration
+                            self.noticeAni()
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
+        noticeAni:function(){
+            $(".notice_text").css("marginLeft",document.body.clientWidth)
+            require(["jquery"], function ($) {
+                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+            });
+        },
         render: function () {
             $(".mod_my_invest").html("")
             var self = this;
@@ -96,7 +128,7 @@ define(function (require, exports, module) {
 
 
                         self.$el.html(_.template(Template + Footer)(self.data));
-                        //self.history()
+                        self.initNotice()
                         //self.newAcitve();
                         self.$('.js_my_invest').addClass('cur');
                         handle.setTitle("我");

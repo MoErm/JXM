@@ -1571,13 +1571,13 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 
 /**/
 
-.newBonus_box{	z-index: 1002;	position: fixed;	width: 100%;	height: 100%;	top:100px;	left: 0%;}
+.newBonus_box{	z-index: 1002;	position: fixed;	width: 100%;	height: 100%;	top:20%;	left: 0%;}
 .newBonus_box1{	height: 80%;	width: 80%;	margin: 0 10%;	background: url(../../images/newBouns_bg.png) no-repeat;	background-size: 100%;	padding-top: 30px;z-index: 1002;}
 .newBonus_cycle{	width: 100px;	height: 100px;	background: url(../../images/newBouns_cycle.png) no-repeat;	background-size: 100%;	margin: 0px auto;	text-align: center;	font-size: 3rem;	line-height: 100px;	color: #d17103;  font-weight: 600;}
 .newBonus_text1{	width: 85%;	margin: 0 auto;	padding-top: 10px;	text-align: center;}
 .newBonus_text2{	text-align: center;	width: 85%;	margin: 0 auto;	padding-top: 10px;	font-size: 1.2em;padding-bottom: 10px}
 .newBonus_logo{width: 130px;height: 60px;background: url(../../images/newBouns_logo.png) no-repeat;	background-size: 100%;	margin: 0 auto;}
-.newBonus_btn{position: absolute;top: 53%;z-index: 1003;border-radius: 5px;background-color: #ffd601;width: 60%;margin: 0 10%;height: 40px;font-size: 1.6em}
+.newBonus_btn{position: absolute;top: 0;z-index: 1003;border-radius: 5px;background-color: #ffd601;width: 60%;margin: 0 10%;height: 40px;font-size: 1.6em}
 .newBonus_close{position: absolute;background: url(../../images/newBouns_close.png) no-repeat;	background-size: 100%;height: 60px;width: 40px;z-index: 1001;top: 0;margin-top: -60px;right: 10%;	transform:rotateX(-90deg);
 	-webkit-transform:rotateX(-90deg);}
 .newBonus_show1{
