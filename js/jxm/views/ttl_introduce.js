@@ -359,15 +359,25 @@ define(function(require, exports, module) {
                     'tagname': 'back',
                     callback: function() {
                         var query = self.request.query;
-                        if (_.isUndefined(query) || _.isUndefined(query.last)) {
-                            App.goTo('ttl_recommend');
+                        if(handle.mobileType()=="android"){
+                            window.app.ttlBack()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('ttlBack', null, function(response) {
+                                })
+                            })
                         }else{
-                            if(query.last==1){
+                            if (_.isUndefined(query) || _.isUndefined(query.last)) {
                                 App.goTo('ttl_recommend');
                             }else{
-                                App.goTo('my_invest');
+                                if(query.last==1){
+                                    App.goTo('ttl_recommend');
+                                }else{
+                                    App.goTo('my_invest');
+                                }
                             }
                         }
+
 
                     }
                 },
@@ -375,7 +385,17 @@ define(function(require, exports, module) {
                     'tagname': '',
                     'value': '交易记录&ensp;',
                     callback: function() {
-                        App.goTo("redeem?type=1")
+                        if(handle.mobileType()=="android"){
+                            window.app.ttlRedeem()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('ttlRedeem', null, function(response) {
+                                })
+                            })
+                        }else{
+                            App.goTo("redeem?type=1")
+                        }
+
                     }
                 }]
             });
@@ -393,7 +413,16 @@ define(function(require, exports, module) {
                         self.pageData.getTtlProperty = data.data;
                         self.initTemple();
                     } else if (data.ret == 999001) {
-                        handle.goLogin();
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     } else {
                         App.showToast(data.msg || self.message);
                     }
@@ -452,7 +481,16 @@ define(function(require, exports, module) {
                         self.$("#todayYieldRate").html(self.format(data.data.todayYieldRate))
 
                     } else if (data.ret == 999001) {
-                        handle.goLogin();
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     } else {
                         App.showToast(data.msg || self.message);
                     }
@@ -534,7 +572,17 @@ define(function(require, exports, module) {
             //如果在售卖时间段内
             if (self.saleStatus=='01') {
                 if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
-                    App.goTo("ttl_buy_one");
+                    if(handle.mobileType()=="android"){
+                        window.app.ttlBuy()
+                    }else  if(handle.mobileType()!="html") {
+                        handle.setupWebViewJavascriptBridge(function(bridge) {
+                            bridge.callHandler('ttlBuy', null, function(response) {
+                            })
+                        })
+                    }else{
+                        App.goTo("ttl_buy_one");
+                    }
+
                 }else{
                     self.getOrderInfoAlert = handle.alert('产品开放购买时间为06:00 ~ 22:00，请到时再来哦！', function () {
                     }).show();
@@ -554,7 +602,17 @@ define(function(require, exports, module) {
         goRedemPage: function() {
             var redemBtn = $("#action_redem");
             if (!redemBtn.hasClass('lock')) {
-                App.goTo("redemption");
+                if(handle.mobileType()=="android"){
+                    window.app.ttlRedemption()
+                }else  if(handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('ttlRedemption', null, function(response) {
+                        })
+                    })
+                }else{
+                    App.goTo("redemption");
+                }
+
             } else {
                 // App.showAlert("不可赎回");
                 return;
@@ -596,6 +654,16 @@ define(function(require, exports, module) {
             now = 0
         },
         actionTitleTip: function() {
+            if(handle.mobileType()=="android"){
+                window.app.ttlTipsOn()
+            }else  if(handle.mobileType()!="html") {
+                handle.setupWebViewJavascriptBridge(function(bridge) {
+                    bridge.callHandler('ttlTipsOn', null, function(response) {
+                    })
+                })
+            }else{
+
+            }
             var titleTip = '<article class="ttl_title_tip " id="ttl_title_tip">\
                     <h2 class="tip_head">收益率小助手</h2>\
                     <dl class="tip_list">\
@@ -634,6 +702,16 @@ define(function(require, exports, module) {
             App.showToast($("#ttl_title_tip"));
             //隐藏收益小助手
             $("#tip_close_btn").on("click", function() {
+                if(handle.mobileType()=="android"){
+                    window.app.ttlTipsOff()
+                }else  if(handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('ttlTipsOff', null, function(response) {
+                        })
+                    })
+                }else{
+
+                }
                 $("#ttl_title_tip").remove();
             });
         }
