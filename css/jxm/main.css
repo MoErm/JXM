@@ -1192,6 +1192,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .QR_code2 img { position: relative; width: 230px; height: 230px; vertical-align: top; }
 .QR_code { width: 130px; height: 130px; text-align: center; margin: 12px auto 0; overflow: hidden; }
 .QR_code img { position: relative; width: 130px; height: 130px; vertical-align: top; }
+.invite_img{	top:0;;width: 100%;margin-bottom: 0;height: 75%}
+
 
 /*--end --*/
 

@@ -356,8 +356,8 @@ define(function(require, exports, module) {
         inviteFriends: function(isHideShareBar) {
             var popwin = new App.UI.UIPopWin({
                 maskToHide: true,
-                weixin: '<div class="mod_guide js_share_info" style="position:fixed;top:0px;right:0px;">\
-                            <div class="guide_img js_share_close"><img src="images/invite.png" alt=""></div>\
+                weixin: '<div class="mod_guide js_share_info" style="position:fixed;top:0px;right:0px;padding: 0;height: 100%;width: 100%">\
+                            <div class="guide_img js_share_close" style="height: 100%;width: 100%"><img src="images/invite2.png" alt="" style="width: 120px;height: 25%"><img src="images/invite1.png" alt="" class="invite_img"></div>\
                         </div>',
                 dimension: '<div class="mod_popup js_qrcode" style="position:fixed;right:0px;">\
                         <div class="pop_cont">\
