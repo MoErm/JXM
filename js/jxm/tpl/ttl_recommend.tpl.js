@@ -1,6 +1,7 @@
 define(function (require, exports, module) {
-    var tpl = 
-    	'\
+    var tpl =
+        '<div class="notice" style="display: none"><div class="notice_text"></div></div>\
+<div style="clear: both"></div>\
     <article class="ttl_recommend" id="ttl_recommend">\
     		<div class="ttl_recommend_ad">\
 				<div class="mod_focus">\

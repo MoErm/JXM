@@ -25,7 +25,7 @@ define(function (require, exports, module) {
             checkTranPwd.set({"idNo":idCard,"msgCode":code_num});
             checkTranPwd.exec().then(function (data) {
                 if(data&&data.ret==0){
-                    App.goTo("forget_password_tips?token="+data.data.token);
+                    App.goTo("reset_password?soure=2&token="+data.data.token);
                 }else if (data.ret == 999001){
                     handle.goLogin();
                 }else{

@@ -1,6 +1,8 @@
 define(function (require, exports, module) {
     var tpl= '\
-	<article class="mod_page v_mod page_invest_confim">\
+	<div class="notice" style="display: none"><div class="notice_text"></div></div>\
+<div style="clear: both"></div><article class="mod_page v_mod page_invest_confim">\
+	\
 	    <ul class="invest_list invest_confim">\
 	      <li class="item invest_regular">\
 	        <p class="status status3"><% if (productType == "01") {%>固收类产品<% } else if(productType == "02") {%>浮动类产品<%} %></p>\

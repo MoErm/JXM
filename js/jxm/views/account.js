@@ -22,7 +22,7 @@ define(function (require, exports, module) {
             if (status == 1) {
                 App.goTo("translate_password");
             } else if(status == 0){
-                App.goTo("set_card_psw");
+                App.goTo("reset_password?soure=0");
             }else {
                 var authentication = handle.prompt('您尚未完成实名认证<br>立即前往认证', '取消', '认证', '', function () {
                     App.goTo('bind_card_new');
@@ -35,7 +35,7 @@ define(function (require, exports, module) {
             if (status == 1) {
                 App.goTo("forget_password");
             } else if(status == 0){
-                App.goTo("set_card_psw");
+                App.goTo("reset_password?soure=0");
             }else{
                 var authentication = handle.prompt('您尚未完成实名认证<br>立即前往认证', '取消', '认证', '', function () {
                     App.goTo('bind_card_new');
@@ -104,7 +104,9 @@ define(function (require, exports, module) {
                     self.$el.find('#js_set').text('未设置');
                     self.$el.find('.set_trans_psw').data("isSetTransPsw", 2);
                     self.$el.find('.reset_password').data("isResetPsw", 2)
-                } else {
+                } else if(data.ret == 999001){
+                    handle.goLogin();
+                }else {
                     App.showToast(data.msg)
                 }
             }).catch(function () {
@@ -132,7 +134,7 @@ define(function (require, exports, module) {
 //                            }
                             //跳转至手机号check
                         }else if(data.phase==4){
-                            App.goTo("set_card_psw")
+                            App.goTo("reset_password?soure=0")
                         }else{
                             App.goTo("setting")
                         }

@@ -8,24 +8,10 @@ define(function (require, exports, module) {
         <input type="password" value="" maxlength="12"id="js_oldpassword" placeholder="请输入您当前交易的密码" class="inpt_txt" />\
         </div>\
         </li>\
-        <li class="item item_tips">\
-        <p class="tips_warning">交易密码不可与登录密码相同</p>\
-        </li>\
-        <li class="item">\
-        <div class="item_hd">新密码</div>\
-        <div class="item_bd">\
-        <input type="password" value="" id="js_newpassowrd" placeholder="6位密码数字密码" class="inpt_txt"maxlength="6" />\
-        </div>\
-        </li>\
-        <li class="item">\
-        <div class="item_hd">确认密码</div>\
-        <div class="item_bd">\
-        <input type="password" value="" placeholder="重复输入新的密码" id="js_affirmpassword" class="inpt_txt" maxlength="6"/>\
-        </div>\
-        </li>\
+        \
         </ul>\
         </div>\
-        <div class="btn_box_submit" id="js_affirm">确认</div>\
+        <div class="btn_box_submit" id="js_affirm">下一步</div>\
         </article>\
         <footer class="foot_copyright">\
         <div class="fixed">\

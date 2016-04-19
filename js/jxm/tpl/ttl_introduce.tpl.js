@@ -6,7 +6,8 @@ define(function (require, exports, module) {
 					<h2><%=getTtlProperty.yestIncome%></h2>\
 				</div>\
     		</div>\
-    		\
+    		<div class="notice" style="display: none"><div class="notice_text"></div></div>\
+<div style="clear: both"></div>\
     		<div class="ttl_introduce_m">\
 				<div class="total">\
 					<p>总金额(元)</p>\
@@ -17,6 +18,7 @@ define(function (require, exports, module) {
 					<h2><%=getTtlProperty.historyIncome%></h2>\
 				</div>\
     		</div>\
+    		\
 			<div class="ttl_introduce_b">\
 				<h3 class="title" id="title_tip">\
 					<em></em>\
@@ -108,7 +110,7 @@ define(function (require, exports, module) {
                 <div class="action">\
                     <ul class="action_list">\
                         <li><input type="button" value="赎回" class="action_redem <%if(getTtlProperty.isCanRedeem!=1){%> lock<% } %>" id="action_redem" /></li>\
-                        <li><input type="button" value="购买" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" /></li>\
+                        <li><input type="button" value="<%=buttonText%>" class="action_buy <%if(getTtlProperty.isCanBuy!=1){%> lock<% } %>" id="action_buy" /></li>\
                     </ul>\
                 </div>\
             </div>\

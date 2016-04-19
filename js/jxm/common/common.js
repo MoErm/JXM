@@ -356,8 +356,8 @@ define(function(require, exports, module) {
         inviteFriends: function(isHideShareBar) {
             var popwin = new App.UI.UIPopWin({
                 maskToHide: true,
-                weixin: '<div class="mod_guide js_share_info" style="position:fixed;top:0px;right:0px;">\
-                            <div class="guide_img js_share_close"><img src="images/invite.png" alt=""></div>\
+                weixin: '<div class="mod_guide js_share_info" style="position:fixed;top:0px;right:0px;padding: 0;height: 100%;width: 100%">\
+                            <div class="guide_img js_share_close" style="height: 100%;width: 100%"><img src="images/invite2.png" alt="" style="width: 120px;height: 25%"><img src="images/invite1.png" alt="" class="invite_img"></div>\
                         </div>',
                 dimension: '<div class="mod_popup js_qrcode" style="position:fixed;right:0px;">\
                         <div class="pop_cont">\
@@ -494,6 +494,46 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
+        newBonus: function(money,day) {
+            var tem = '<div class="newBonus_box newBonus_show1">\
+                        <div class="newBonus_close newBonus_show2"></div>\
+                        <div class="newBonus_box1">\
+                            <div class="newBonus_cycle"><small>￥</small>';
+            tem+=money+'</div>\
+                             <div class="newBonus_text1">尊贵的客户恭喜您收到了';
+            tem+=money+'元\
+                            抵现红包！已经放入您的红包账户中</div>\
+                             <div class="newBonus_text2">有效期';
+            tem+=day+'天，不要浪费哦！</div>\
+                             <div class="newBonus_logo"></div>\
+                            <button class="newBonus_btn">立即查看</button>\
+                        </div>\
+                        </div>';
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click .newBonus_close": "onHideLayer",
+                    "click .newBonus_btn": "toMyWallet"
+
+
+                },
+                maskToHide: false,
+                template: tem,
+                onHideLayer: function() {
+                    this.hide();
+                },
+                toMyWallet:function(){
+                    this.hide();
+                    App.goTo("my_wallet")
+
+                },
+                onShow: function() {
+                    var width=document.body.clientWidth
+                    $(".newBonus_btn").css("marginTop",width*0.8/0.7*0.8+"px")
+
+                }
+            });
+            popwin.show();
+        },
 
         //邀请好友
         sendBonus: function(isHideShareBar, url) {
@@ -547,7 +587,6 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
-
         //公告
         showAD: function(view) {
             var month = new Date().getMonth() + 1;

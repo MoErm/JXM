@@ -76,7 +76,7 @@ define(function(require, exports, module) {
                     }else if(data.ret == 110009){
                         //未设置交易密码                        
                         self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
-                            App.goTo('set_card_psw');
+                            App.goTo('reset_password?soure=0');
                         });                        
                         self.passAlert.show();
                     }else if(data.ret == 110203){
@@ -206,8 +206,9 @@ define(function(require, exports, module) {
                     return;
                 }
                 if(self.amountVal> parseInt(self.pageData.cardData.surplusAmount)){
-                    self.passAlert = handle.alert("不能超过剩余可投上限");
+                    self.passAlert = handle.alert("超过剩余可投金额");
                     self.passAlert.show();
+                    $("#imoney_num").val(self.pageData.cardData.surplusAmount)
                     return;
                 }
             } 

@@ -70,7 +70,7 @@ define(function (require, exports, module) {
                                     self.$el.html(_.template(amount_check)(data)+footer);
                                     //跳转至手机号check
                                 }else if(data.phase==4){
-                                    App.goTo("set_card_psw")
+                                    App.goTo("reset_password?soure=0")
                                 }else{
                                     App.goTo("setting")
                                 }
@@ -151,7 +151,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else if(data.ret == 110009){
-                            App.goTo('set_card_psw');
+                            App.goTo('reset_password?soure=0');
                         }
                     },
                     error: function(){

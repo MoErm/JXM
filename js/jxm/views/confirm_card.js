@@ -105,7 +105,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else if(data.ret == 110009){
-                            App.goTo('set_card_psw');
+                            App.goTo('reset_password?soure=0');
                         }
                     },
                     error: function(){

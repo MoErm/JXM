@@ -10,6 +10,8 @@ define(function(require, exports, module) {
     var handle = new tool();
     var loginStore = new store.loginStore();
     var getUserInfo = new Model.getUserInfo();
+    var getBannerImages = new Model.getBannerImages();
+    var getRollingNotice = new Model.getRollingNotice();
     var imageSlider = null;
     var self = null;
     module.exports = App.Page.extend({
@@ -33,11 +35,13 @@ define(function(require, exports, module) {
             if(openid!=""){
                 sessionStorage.setItem("openid",openid);
             }
-
             handle.share();
-            handle.orientationTips();
-            self.initInvest();
+            handle.orientationTips();            
             self.getUserInfo();
+            self.getBannerImg();  
+            self.initInvest();
+
+
         },       
         getUserInfo:function(){
             getUserInfo.exec({
@@ -57,26 +61,33 @@ define(function(require, exports, module) {
                 }
             });
         },
+        getBannerImg: function(){
+            getBannerImages.exec({
+                type: 'get',
+                success: function(data){
+                    if(data.ret == 0){
+                        self.bannerData= data.data;
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
         initAD: function() {
             var container = self.$el.find(".img_box");
             var minHeight = $(window).width() / 3.2;
-            var imgs = [
-//                {
-//                id: 4,
-//                src: './images/sdhd.jpg',
-//                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=401822477&idx=1&sn=2787511fd2fecbbcf8bcffabb1653c6c#rd'
-//            }
-//            { id: 1, src: './images/sytz.jpg', href:"http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=402476113&idx=1&sn=fe5958e3e30ad9d6b330bd4e51101722#rd"  },
-            {
-                id: 2,
-                src: './images/xszn.jpg',
-                href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=209894037&idx=1&sn=5ad856a2d275475c801c6a0604874843#rd'
-            }, {
+
+            var imgs =self.bannerData ? self.bannerData.bannerImages:[{
                 id: 3,
                 src: './images/xszy.jpg',
                 href: 'http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=210062014&idx=1&sn=babbf5cda487369cf0ae489719e12a73#rd '
             }];
-
             container.css({
                 "max-height": minHeight,
                 "min-height": minHeight,
@@ -175,6 +186,38 @@ define(function(require, exports, module) {
             $(".foot_nav .item").removeClass('cur');
             $(".foot_nav .ico_tuijian").addClass('cur');
         },
+        initNotice:function(){
+            getRollingNotice.exec({
+                type: 'get',
+                data:{
+                    index:'01'
+                },
+                success: function(data){
+                    if(data.ret == 0){
+                        if(data.data.isShow==1){
+                            $(".notice").css("display","block")
+                            $(".notice_text").html(data.data.content)
+                            self.time=data.data.duration
+                            self.noticeAni()
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
+        noticeAni:function(){
+            $(".notice_text").css("marginLeft",document.body.clientWidth)
+            require(["jquery"], function ($) {
+                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+            });
+        },
         initInvest: function() {
             App.showLoading();
             getTtlCulInvest.exec({
@@ -189,6 +232,7 @@ define(function(require, exports, module) {
                         self.initChart();
                         self.initAD();
                         self.initFooter();
+                        self.initNotice();
 
                     } else if (data.ret == 999001) {
                         handle.goLogin();

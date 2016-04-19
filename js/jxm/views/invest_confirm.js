@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     var toInvestConfirmMode = new Model.toInvestConfirm();
     var createOrderMode = new Model.createOrder();
     var abortChange= new Model.abortChange();
+    var getRollingNotice = new Model.getRollingNotice();
     var handle = new tool();
     var self;
     module.exports = App.Page.extend({
@@ -33,6 +34,38 @@ define(function (require, exports, module) {
             }else{
                 window.location.href=urlhref;
             }
+        },
+        initNotice:function(){
+            getRollingNotice.exec({
+                type: 'get',
+                data:{
+                    index:'04'
+                },
+                success: function(data){
+                    if(data.ret == 0){
+                        if(data.data.isShow==1){
+                            $(".notice").css("display","block")
+                            $(".notice_text").html(data.data.content)
+                            self.time=data.data.duration
+                            self.noticeAni()
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
+        noticeAni:function(){
+            $(".notice_text").css("marginLeft",document.body.clientWidth)
+            require(["jquery"], function ($) {
+                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+            });
         },
       /* active:function(){
             if(parseInt(self.$el.find('.js_par').val())>10000){
@@ -97,6 +130,7 @@ define(function (require, exports, module) {
                         }
                         data.data.showNum=self.showNum
                         self.$el.html(_.template(Template)(data.data));
+                        self.initNotice()
                         //协议返回金额保存
                         /*var amount = localStorage.getItem('amount')
                          if(!_.isUndefined(amount)){

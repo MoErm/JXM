@@ -41,7 +41,7 @@ define(function(require, exports, module) {
     <li class="v_mod">\
         <div class="v_item">\
         <div class="v_item_hd"><span class="v_item_title">固定</span><span class="v_item_cont">预期年化收益</span></div>\
-    <div class="v_item_bd"><span class="v_item_title"><span class="webtxt">7.0~13.0%</span></span><span class="v_item_cont">预期年化</span></div>\
+    <div class="v_item_bd"><span class="v_item_title"><span class="webtxt">6.0~10.2%</span></span><span class="v_item_cont">预期年化</span></div>\
     <div class="v_item_bd"><span class="v_item_title">1000<span class="unit">元</span></span><span class="v_item_cont">起投金额</span></div>\
     </div>\
     <div class="tips type2">T+0起息，银行VIP顶级投资产品，收益高且稳健，迄今本息100%安全兑付</div>\

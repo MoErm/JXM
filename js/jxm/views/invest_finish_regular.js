@@ -46,20 +46,22 @@ define(function (require, exports, module) {
 
         },
 		onShow: function () {
-			this.setHeader()
-
-			this.render()
             App.hideLoading();
-
+			this.setHeader();
+			this.render();
 		},
 		render: function(){
-			var data = JSON.parse(localStorage.getItem('regular'))
+            App.hideLoading();
+			var data = JSON.parse(localStorage.getItem('regular'));
             self.data=data;
 			if(_.isNull(data)) {App.showToast("非法请求,将返回列表页");window.setTimeout(function(){App.goTo("list")},2000);return;}
 			var investAmount=data.data.fixedProdInfo&&parseFloat((data.data.fixedProdInfo.investAmount).split(",").join(""));
-
 			self.$el.html(_.template(Template)(data.data));
-            self.checkUser()
+            if(self.data.data.hasNewerBonus==1){
+                App.hideLoading();
+                common.newBonus(self.data.data.bonusAmount,self.data.data.bonusValidityPeriod);
+            }
+            self.checkUser();
 			//if(investAmount&&investAmount>=10000){common.showAD(self)};
 			//localStorage.removeItem('regular')
 		},
@@ -67,10 +69,9 @@ define(function (require, exports, module) {
             activityCondition.exec({
                 type: 'get',
                 success: function(data){
-                    console.log(data)
                     if(data.ret == 0) {
 
-                        if(data.data.productSource=='00'||data.data.productSource=='01'){
+                        if(data.data&&(data.data.productSource=='00'||data.data.productSource=='01')){
 
                             if(data.data.isGot=='0'){
                                 if(data.data.productSource=='00'){

@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var handle = new tool();
     var getTtlProperty = new Model.getTtlProperty(); //获取灵活宝资产信息接口
     var getTtlRate = new Model.getTtlRate(); //获取收益率接口
+    var getRollingNotice = new Model.getRollingNotice();
     var pool = new Array(1, 2, 3);
     var hidePool = new Array(4, 5, 6, 7, 8);
     var turnNum = 0;
@@ -358,15 +359,25 @@ define(function(require, exports, module) {
                     'tagname': 'back',
                     callback: function() {
                         var query = self.request.query;
-                        if (_.isUndefined(query) || _.isUndefined(query.last)) {
-                            App.goTo('ttl_recommend');
+                        if(handle.mobileType()=="android"){
+                            window.app.ttlBack()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('ttlBack', null, function(response) {
+                                })
+                            })
                         }else{
-                            if(query.last==1){
+                            if (_.isUndefined(query) || _.isUndefined(query.last)) {
                                 App.goTo('ttl_recommend');
                             }else{
-                                App.goTo('my_invest');
+                                if(query.last==1){
+                                    App.goTo('ttl_recommend');
+                                }else{
+                                    App.goTo('my_invest');
+                                }
                             }
                         }
+
 
                     }
                 },
@@ -374,7 +385,17 @@ define(function(require, exports, module) {
                     'tagname': '',
                     'value': '交易记录&ensp;',
                     callback: function() {
-                        App.goTo("redeem?type=1")
+                        if(handle.mobileType()=="android"){
+                            window.app.ttlRedeem()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('ttlRedeem', null, function(response) {
+                                })
+                            })
+                        }else{
+                            App.goTo("redeem?type=1")
+                        }
+
                     }
                 }]
             });
@@ -392,7 +413,16 @@ define(function(require, exports, module) {
                         self.pageData.getTtlProperty = data.data;
                         self.initTemple();
                     } else if (data.ret == 999001) {
-                        handle.goLogin();
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     } else {
                         App.showToast(data.msg || self.message);
                     }
@@ -451,7 +481,16 @@ define(function(require, exports, module) {
                         self.$("#todayYieldRate").html(self.format(data.data.todayYieldRate))
 
                     } else if (data.ret == 999001) {
-                        handle.goLogin();
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     } else {
                         App.showToast(data.msg || self.message);
                     }
@@ -464,6 +503,7 @@ define(function(require, exports, module) {
         initTemple: function() {
             self.initBuyTime();
             self.$el.html(_.template(introduce)(self.pageData));
+            self.initNotice()
             self.setCycle();
             self.initRate();
             App.hideLoading();
@@ -474,73 +514,156 @@ define(function(require, exports, module) {
             self.saleStart = self.pageData.getTtlProperty.saleStartTime;
             self.saleEnd = self.pageData.getTtlProperty.saleEndTime;
 
+            self.saleStatus=self.pageData.getTtlProperty.saleStatus;
+            self.nextSaleDate=self.pageData.getTtlProperty.nextSaleDate;
             // console.log(self.serverTime);
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
             //如果在售卖时间段内
-            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
-                self.pageData.getTtlProperty.isCanBuy = 1;
-            } else {
+
+            if (self.saleStatus=='01') {
+                self.pageData.buttonText="购买"
+                if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
+                    self.pageData.getTtlProperty.isCanBuy = 1;
+                }else{
+                    self.pageData.getTtlProperty.isCanBuy = 0;
+                }
+            }else if (self.saleStatus=='03')  {
+                self.pageData.buttonText="已售罄"
+                self.pageData.getTtlProperty.isCanBuy = 0;
+            } else  if (self.saleStatus=='02') {
+                self.pageData.buttonText="还有机会"
+                self.pageData.getTtlProperty.isCanBuy = 0;
+            }else{
+                self.pageData.buttonText="购买"
                 self.pageData.getTtlProperty.isCanBuy = 0;
             }
-            var today=new Date()
-            //console.log(today>1454716800000&&today<1455494400000)
-            if(today>1454716800000&&today<1455494400000){
-                self.pageData.getTtlProperty.isCanBuy = 0;
-            }
+            //var today=new Date()
+            ////console.log(today>1454716800000&&today<1455494400000)
+            //if(today>1454716800000&&today<1455494400000){
+            //    self.pageData.getTtlProperty.isCanBuy = 0;
+            //}
 
         },
         goBuyPage: function(e) {
-            if(self.pageData.getTtlProperty.isCanBuy==0){
-                self.getOrderInfoAlert = handle.alert('春节期间暂不开放购买，请2.15日再来~', function () {
-
-                }).show();
-                return
-            }
             e.preventDefault(e);
-            getTtlProperty.exec({
-                type: 'get',
-                success: function(data) {
-                    if (data.ret == 0) {
-                        self.pageData.getTtlProperty = data.data;
-
-                    } else if (data.ret == 999001) {
-                        handle.goLogin();
-                    } else {
-                        App.showToast(data.msg || self.message);
-                    }
-                },
-                error: function() {
-                    App.hideLoading();
-                }
-            });
+            //getTtlProperty.exec({
+            //    type: 'get',
+            //    success: function(data) {
+            //        if (data.ret == 0) {
+            //            self.pageData.getTtlProperty = data.data;
+            //
+            //        } else if (data.ret == 999001) {
+            //            handle.goLogin();
+            //        } else {
+            //            App.showToast(data.msg || self.message);
+            //        }
+            //    },
+            //    error: function() {
+            //        App.hideLoading();
+            //    }
+            //});
 
             // console.log(self.serverTime);
             // console.log(self.saleStart);
             // console.log(self.saleEnd);
 
             //如果在售卖时间段内
-            if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
-                App.goTo("ttl_buy_one");
-            } else {
-                App.showToast("产品开放购买时间为06:00 ~ 22:00，请到时再来哦！");
+            if (self.saleStatus=='01') {
+                if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
+                    if(handle.mobileType()=="android"){
+                        window.app.ttlBuy()
+                    }else  if(handle.mobileType()!="html") {
+                        handle.setupWebViewJavascriptBridge(function(bridge) {
+                            bridge.callHandler('ttlBuy', null, function(response) {
+                            })
+                        })
+                    }else{
+                        App.goTo("ttl_buy_one");
+                    }
+
+                }else{
+                    self.getOrderInfoAlert = handle.alert('产品开放购买时间为06:00 ~ 22:00，请到时再来哦！', function () {
+                    }).show();
+                }
+            } else if (self.saleStatus=='00')  {
+                self.getOrderInfoAlert = handle.alert('下个开放购买日期为'+self.nextSaleDate, function () {
+                }).show();
+                return;
+            }else if (self.saleStatus=='02')  {
+                self.getOrderInfoAlert = handle.alert('暂无额度，但还有人未完成支付，5分钟后再来看看！', function () {
+                }).show();
+                return;
+            }else if (self.saleStatus=='03')  {
                 return;
             }
         },
         goRedemPage: function() {
             var redemBtn = $("#action_redem");
             if (!redemBtn.hasClass('lock')) {
-                App.goTo("redemption");
+                if(handle.mobileType()=="android"){
+                    window.app.ttlRedemption()
+                }else  if(handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('ttlRedemption', null, function(response) {
+                        })
+                    })
+                }else{
+                    App.goTo("redemption");
+                }
+
             } else {
                 // App.showAlert("不可赎回");
                 return;
             }
         },
+        initNotice:function(){
+            getRollingNotice.exec({
+                type: 'get',
+                data:{
+                    index:'02'
+                },
+                success: function(data){
+                    if(data.ret == 0){
+                        if(data.data.isShow==1){
+                            $(".notice").css("display","block")
+                            $(".notice_text").html(data.data.content)
+                            self.time=data.data.duration
+                            self.noticeAni()
+                        }
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
+        noticeAni:function(){
+            $(".notice_text").css("marginLeft",document.body.clientWidth)
+            require(["jquery"], function ($) {
+                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+            });
+        },
         onHide: function() {
             now = 0
         },
         actionTitleTip: function() {
+            if(handle.mobileType()=="android"){
+                window.app.ttlTipsOn()
+            }else  if(handle.mobileType()!="html") {
+                handle.setupWebViewJavascriptBridge(function(bridge) {
+                    bridge.callHandler('ttlTipsOn', null, function(response) {
+                    })
+                })
+            }else{
+
+            }
             var titleTip = '<article class="ttl_title_tip " id="ttl_title_tip">\
                     <h2 class="tip_head">收益率小助手</h2>\
                     <dl class="tip_list">\
@@ -552,21 +675,23 @@ define(function(require, exports, module) {
                         <dl class="tip_list_content">根据转盘两侧的提示符，分别向右、向左转动转盘， 可查看昨日以及未来7日（共9天）年化收益率。</dl>\
                         <dt class="tip_list_title">四、什么是“当日最高收益率”？</dt>\
                         <dl class="tip_list_content">所有在投订单中拥有最高收益率订单的今日收益率（若无在投资产， 数值显示为起始收益率）。</dl>\
-                        <dt class="tip_list_title">五、购买时间？</dt>\
-                        <dl class="tip_list_content">每日06:00 ~ 22:00 开放购买。</dl>\
-                        <dt class="tip_list_title">六、何日起息？何日能看到收益？</dt>\
+                        <dt class="tip_list_title">五、可售日期？</dt>\
+                        <dl class="tip_list_content">周日~周四可售，如遇法定节假日：则节假日前一天停止售卖，直至节假日最后一天开放购买。（即：第一个工作日前一天起 ~ 第一个假期日前第二个工作日可售）</dl>\
+                         <dt class="tip_list_title">六、购买时间？</dt>\
+                          <dl class="tip_list_content">每日06:00 ~ 22:00 开放购买。</dl>\
+                        <dt class="tip_list_title">七、何日起息？何日能看到收益？</dt>\
                         <dl class="tip_list_content">投资成功后，当日起息；次日显示收益（若收益少于0.01元，则不予显示）。</dl>\
-                        <dt class="tip_list_title">七、何时可以赎回？是否需要手续费？</dt>\
+                        <dt class="tip_list_title">八、何时可以赎回？是否需要手续费？</dt>\
                         <dl class="tip_list_content">投资成功后，随时可申请赎回，无任何手续费。</dl>\
-                        <dt class="tip_list_title">八、赎回次数与金额？</dt>\
+                        <dt class="tip_list_title">九、赎回次数与金额？</dt>\
                         <dl class="tip_list_content">每日赎回限额为20万元，次数为5次（大额赎回通道即将开放）。</dl>\
-                        <dt class="tip_list_title">九、赎回的金额什么时候到账？</dt>\
+                        <dt class="tip_list_title">十、赎回的金额什么时候到账？</dt>\
                         <dl class="tip_list_content">提交赎回后（t 日），一般为（t + 3 ）个工作日到账，如遇节假日， 将往后顺延，具体时间视银行而定（请关注平台交易记录中的赎回状态）。</dl>\
-                        <dt class="tip_list_title">十、赎回到哪张银行卡？</dt>\
+                        <dt class="tip_list_title">十一、赎回到哪张银行卡？</dt>\
                         <dl class="tip_list_content">严格遵循原卡原退原则，赎回金额将返回对应的购买银行卡。</dl>\
-                        <dt class="tip_list_title">十一、赎回规则？</dt>\
+                        <dt class="tip_list_title">十二、赎回规则？</dt>\
                         <dl class="tip_list_content">为了您的收益最大化，我们的赎回规则为：按订单的收益率从低到高开始赎回（即较晚投资的订单优先赎回）。</dl>\
-                        <dt class="tip_list_title">十二、赎回当天是否计算收益？</dt>\
+                        <dt class="tip_list_title">十三、赎回当天是否计算收益？</dt>\
                         <dl class="tip_list_content">赎回当天不计算收益。</dl>\
                     </dl>\
                     <div class="tip_close"><em class="tip_close_btn" id="tip_close_btn"></em></div>\
@@ -577,6 +702,16 @@ define(function(require, exports, module) {
             App.showToast($("#ttl_title_tip"));
             //隐藏收益小助手
             $("#tip_close_btn").on("click", function() {
+                if(handle.mobileType()=="android"){
+                    window.app.ttlTipsOff()
+                }else  if(handle.mobileType()!="html") {
+                    handle.setupWebViewJavascriptBridge(function(bridge) {
+                        bridge.callHandler('ttlTipsOff', null, function(response) {
+                        })
+                    })
+                }else{
+
+                }
                 $("#ttl_title_tip").remove();
             });
         }

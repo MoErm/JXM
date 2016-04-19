@@ -73,6 +73,10 @@
 		ChangeTradePassword : initModel({
 			url: host+'/api/userInfo/modifyTradePwd'
 		}),
+        //验证原交易密码
+        chkOldTradePwd : initModel({
+			url: host+'/api/userInfo/chkOldTradePwd'
+		}),
 		//忘记交易密码
 		checkTranPwd : initModel({
 			url: host+'/api/userInfo/checkForResetTradePwd'
@@ -325,6 +329,15 @@
             url:host+"/api/demand/demandProductContract"
         }),
         
+        // 获取banner图片
+        getBannerImages: initModel({
+             url:host+"/api/notice/getBannerImages"
+        }),
+        // 获取滚动条
+        getRollingNotice: initModel({
+             url:host+"/api/notice/getRollingNotice"
+        }),
+
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"

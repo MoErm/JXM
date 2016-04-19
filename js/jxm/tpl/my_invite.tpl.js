@@ -54,7 +54,6 @@ define(function (require, exports, module) {
 	      <div class="v_item v_item3">\
 	        <div class="v_item_bd"><span class="v_item_title">成功邀请人数</span><span class="v_item_cont"><%=totalCount%></span></div>\
 	        <div class="v_item_bd"><span class="v_item_title">红包总额（元）</span><span class="v_item_cont"><%=totalBonus%></span></div>\
-	        <div class="v_item_bd"><a href="javascript:void(0)" class="btn_link btn_link1 js_contract" id="14">查看规则</a></div>\
 	      </div>\
 	    </div>\
 	  </div>\
