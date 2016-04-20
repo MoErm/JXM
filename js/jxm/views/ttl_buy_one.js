@@ -20,7 +20,7 @@ define(function(require, exports, module) {
             'click #action_buy': 'goBuyTipPage',
             'click .js_tips': 'goContractTip',//《风险提示书》
             'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
-            'click #cardSelect': 'goCardSelectWin'//《产品收益权转让及服务协议》
+            'click #cash_addbtn': 'goRechargePage'// 去充值页面
         },
         onShow: function() {
             self = this.initialize();
@@ -248,11 +248,10 @@ define(function(require, exports, module) {
                 }
             })
         },
-        goCardSelectWin: function(){
-            //传入当前银行卡ID
-            self.currentCardBox= $(event.target).closest('#cardSelect');
-            common.ttlSelectCard(self.currentCardBox,'02','');
-        }
+        goRechargePage: function(){
+
+            App.goTo('recharge');
+        }        
     });
 
 })  
