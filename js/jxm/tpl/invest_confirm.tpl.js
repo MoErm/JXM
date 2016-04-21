@@ -13,14 +13,6 @@ define(function (require, exports, module) {
 	          <div class="v_item_bd"> <span class="v_item_title"><i class="webtxt2"><%=surplusAmount_show%></i></span><span class="v_item_cont">剩余可投</span> </div>\
 	        </div>\
 	        <div class="ttl_buy_one_m">\
-				<div class="mycard" id="cardSelectSecond">\
-					<p class="head"><img src="<%=bankLogo%>" alt="" class="banklogo" /></p>\
-					<div class="mycard_info"  data-cardid= "<%=cardInfoId%>">\
-						<div class="card_detail">\
-							<p class="card_cur" ><%=bankName%>(尾号<%=cardNoTail%>)</p>\
-						</div>\
-					</div>\
-				</div>\
 				<div class="imoney">\
 					<p class="head">金额</p>\
 					<div class="imoney_content">\
@@ -28,8 +20,8 @@ define(function (require, exports, module) {
 						<span class="imoney_text">元</span>\
 					</div>\
 				</div>\
+				<div class="imoney_tip">财主,您的余额不足,请先充值</div>\
 			</div>\
-	        <% if ("s" != "") {%><div class="invest_change">红包：<p id="change"><%=change%></p></div><% }%>\
 	        <div class="v_item v_item2">\
 	          <div class="v_item_hd"><span class="v_item_title"><i class="webtxt js_profit">--</i><span class="unit">元</span></span><span class="v_item_cont"><% if (incomeType == "04") {%>最高收益可达<%} else {%>预计到期收益<% } %></span></div>\
 	          <div class="v_item_bd"><span class="v_item_title">\
@@ -38,6 +30,11 @@ define(function (require, exports, module) {
 	          	<span class="v_item_cont">手续费</span>\
 	          </div>\
 	          <div class="v_item_bd"><% if (productType == "01") {%><span class="ico_query js_regular_pop">收益说明</span><% } else if(productType == "02") {%><%if(salesCharge=="0.0%" && serviceCharge=="0.0%"){%><span class="ico_query js_float_pop">手续费说明</span><%}else{%><span class="ico_query js_float_pop">手续费说明</span><%} %><%} %></div>\
+	        </div>\
+	        <div class="invest_recharge">\
+        		<div class="invest_money"><span class="title">现金余额</span> <span class="num">2,000.00</span>元</div>\
+	       		<% if ("s" != "") {%><div class="invest_change"><span class="title">红包</span><p id="change"><%=change%></p></div><% }%>\
+	       		<button class="cash_addbtn" id="cash_addbtn">充值</button>\
 	        </div>\
 	      </li>\
 	    </ul>\
