@@ -712,8 +712,8 @@ define(function(require, exports, module) {
                             if(element.cardId == self.choosedCardId){
                                 self.choosedCardData= element;
                                 self.onHideLayer();
-                                self.actNewCard= '<p class="head"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
-                                    <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p></div></div>';
+                                self.actNewCard= '<p class="maycard_title"><img src="'+self.choosedCardData.bankLogo+ '" alt="" class="banklogo" /></p><div class="mycard_info" data-cardid= "'+self.choosedCardData.cardId+ '"><div class="card_detail">\
+                                    <p class="card_cur">'+self.choosedCardData.bankName+ '(尾号'+self.choosedCardData.cardNo.slice(-4)+ ')</p><p class="limit_text">单笔限额：'+element.transactLimit+'，单日限额：'+element.dailyLimit+'</p></div></div>';
                                     
                                 cardBox.html(self.actNewCard);
                             }

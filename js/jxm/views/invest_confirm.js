@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     var Model = require("jxm/model/model");
     var Store = require("jxm/model/store");
     var Template = require("jxm/tpl/invest_confirm.tpl");
@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     var payLayer = require("jxm/common/common")
     var toInvestConfirmMode = new Model.toInvestConfirm();
     var createOrderMode = new Model.createOrder();
-    var abortChange= new Model.abortChange();
+    var abortChange = new Model.abortChange();
     var getRollingNotice = new Model.getRollingNotice();
     var handle = new tool();
     var self;
@@ -20,76 +20,72 @@ define(function (require, exports, module) {
             'click .js_notice': 'notice',
             'input .js_amount': 'changeAmount',
             'click .js_contract': 'goContract',
-            'click #cardSelectSecond' :"goCardSelectWin"
+            'click #cash_addbtn': 'goRechargePage' // 去充值页面
         },
-        initialize: function () {
+        initialize: function() {
             self = this;
         },
-        notice:function(){
-            var urlhref="http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400082926&idx=1&sn=f3c1486ae959330abe726931bd6a0c9d#rd"
-            if(window.WebViewJavascriptBridge){
+        notice: function() {
+            var urlhref = "http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400082926&idx=1&sn=f3c1486ae959330abe726931bd6a0c9d#rd"
+            if (window.WebViewJavascriptBridge) {
 
-                    window.WebViewJavascriptBridge.callHandler('openUrl',{"url": urlhref},function(response) {})
+                window.WebViewJavascriptBridge.callHandler('openUrl', {
+                    "url": urlhref
+                }, function(response) {})
 
-            }else{
-                window.location.href=urlhref;
+            } else {
+                window.location.href = urlhref;
             }
         },
-        initNotice:function(){
+        initNotice: function() {
             getRollingNotice.exec({
                 type: 'get',
-                data:{
-                    index:'04'
+                data: {
+                    index: '04'
                 },
-                success: function(data){
-                    if(data.ret == 0){
-                        if(data.data.isShow==1){
-                            $(".notice").css("display","block")
+                success: function(data) {
+                    if (data.ret == 0) {
+                        if (data.data.isShow == 1) {
+                            $(".notice").css("display", "block")
                             $(".notice_text").html(data.data.content)
-                            self.time=data.data.duration
+                            self.time = data.data.duration
                             self.noticeAni()
                         }
-                    }else if(data.ret == 999001){
+                    } else if (data.ret == 999001) {
                         handle.goLogin();
-                    }else{
-                        App.showToast(data.msg  || self.message);
+                    } else {
+                        App.showToast(data.msg || self.message);
                     }
                 },
-                error: function(){
+                error: function() {
                     App.hideLoading();
                     App.showToast(self.message);
                 }
             });
         },
-        noticeAni:function(){
-            $(".notice_text").css("marginLeft",document.body.clientWidth)
-            require(["jquery"], function ($) {
-                $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
+        noticeAni: function() {
+            $(".notice_text").css("marginLeft", document.body.clientWidth)
+            require(["jquery"], function($) {
+                $(".notice_text").animate({
+                    marginLeft: -($(".notice_text")[0].scrollWidth + document.body.clientWidth)
+                }, self.time, "linear", self.noticeAni);
             });
         },
-      /* active:function(){
-            if(parseInt(self.$el.find('.js_par').val())>10000){
-                self.$el.find('.new_active').show();
-            }else{
-                self.$el.find('.new_active').hide();
-            }
-        },*/
-        onShow: function () {
+        onShow: function() {
             this.setHeader();
-           /* this.active();*/
+            /* this.active();*/
             if (self.prevPage == 'get_contract') {
                 return;
             }
             return this.render()
         },
-        changeAgree: function () {
+        changeAgree: function() {
             self.$('.entrust_agreement').toggleClass('checked')
         },
-        showNum:function(num1,num2){
-            return Number(num1)+Number(num2);
+        showNum: function(num1, num2) {
+            return Number(num1) + Number(num2);
         },
-        render: function () {
-
+        render: function() {
             App.showLoading();
             this.$el.html('');
             var query = this.request.query;
@@ -97,10 +93,12 @@ define(function (require, exports, module) {
                 App.goTo('list');
                 return;
             }
-            toInvestConfirmMode.set({'productNo': query.pid});
+            toInvestConfirmMode.set({
+                'productNo': query.pid
+            });
             return toInvestConfirmMode.exec({
                 type: 'post',
-                success: function (data) {
+                success: function(data) {
                     App.hideLoading();
                     if (data.ret == 0) {
 
@@ -128,22 +126,21 @@ define(function (require, exports, module) {
                         } else {
                             self.data.investfactorage = data.data.investFactorage
                         }
-                        data.data.showNum=self.showNum
+                        data.data.showNum = self.showNum
                         self.$el.html(_.template(Template)(data.data));
                         self.initNotice()
-                        //协议返回金额保存
-                        /*var amount = localStorage.getItem('amount')
-                         if(!_.isUndefined(amount)){
-                         self.$('.js_amount').val(amount)
-                         localStorage.removeItem('amount')
-                         }
-                         */
+                            //协议返回金额保存
+                            /*var amount = localStorage.getItem('amount')
+                             if(!_.isUndefined(amount)){
+                             self.$('.js_amount').val(amount)
+                             localStorage.removeItem('amount')
+                             }
+                             */
 
-                    }else if(data.ret == 110115){
+                    } else if (data.ret == 110115) {
                         App.hideLoading();
 
-                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
-                        });
+                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
                         self.promptAlert.show();
                     } else if (data.ret == 999001) {
                         App.goTo('login');
@@ -152,20 +149,17 @@ define(function (require, exports, module) {
                     }
 
                 },
-                error: function () {
+                error: function() {
                     App.hideLoading();
                     App.showToast('网络错误');
                 }
             })
-
         },
-        goContract: function (e) {
-            
-            App.goTo('get_contract?cid='+$(e.currentTarget).data('contractno')+'&pid='+$(e.currentTarget).data('productno'))
+        goContract: function(e) {
+
+            App.goTo('get_contract?cid=' + $(e.currentTarget).data('contractno') + '&pid=' + $(e.currentTarget).data('productno'))
         },
-
-        changeAmount: function () {
-
+        changeAmount: function() {
             if (self.data.productType == '01') {
                 if (_.isNull(self.data.incomeType)) {
                     self.$('.js_profit').html('--')
@@ -175,22 +169,22 @@ define(function (require, exports, module) {
                     var amount = parseFloat(self.$('.js_amount').val()) || 0
 
                     //投资天数
-                    
+
                     var tempDate = new Date()
                     var year = tempDate.getFullYear()
                     var month = tempDate.getMonth()
                     var date = tempDate.getDate()
-                    var today = new Date(year,month,date)
+                    var today = new Date(year, month, date)
 
                     var expectDate = new Date(self.data.expectExpiringDate)
                     var valueDate = new Date(self.data.valueDate)
 
-                     if(today >= valueDate){
-                         var day =(expectDate - today) / 1000 / 60 / 60 /24 
-                     }else {
-                        var day = (expectDate - valueDate)/ 1000 / 60 / 60 /24 
-                     }
-                    
+                    if (today >= valueDate) {
+                        var day = (expectDate - today) / 1000 / 60 / 60 / 24
+                    } else {
+                        var day = (expectDate - valueDate) / 1000 / 60 / 60 / 24
+                    }
+
 
                     //var day = parseInt(self.data.investDeadline)
                     //预期年化收益率
@@ -205,25 +199,25 @@ define(function (require, exports, module) {
                     //预期收益
                     var profit = ((amount * rate * day) / 365)
 
-                    self.$('.js_profit').html(Math.floor(profit*100)/100) //保留2位小数,不四舍五入
+                    self.$('.js_profit').html(Math.floor(profit * 100) / 100) //保留2位小数,不四舍五入
 
                     //最大金额
                     if (self.data.maxInvestAmount >= 0 && amount > self.data.maxInvestAmount) {
-                        if(self.data.surplusAmount>self.data.maxInvestAmount){
-                            self.data.realMaxInvestAmount=self.data.maxInvestAmount;
-                        }else{
-                            self.data.realMaxInvestAmount=self.data.surplusAmount;
+                        if (self.data.surplusAmount > self.data.maxInvestAmount) {
+                            self.data.realMaxInvestAmount = self.data.maxInvestAmount;
+                        } else {
+                            self.data.realMaxInvestAmount = self.data.surplusAmount;
                         }
                         self.$('.js_amount').val(self.data.realMaxInvestAmount)
                         var maxprofit = (self.data.realMaxInvestAmount * rate * day) / 365
-                        self.$('.js_profit').html(Math.floor(maxprofit*100)/100)
-                        App.showToast('超过单笔订单金额'+self.data.maxInvestAmount+'元上限')
+                        self.$('.js_profit').html(Math.floor(maxprofit * 100) / 100)
+                        App.showToast('超过单笔订单金额' + self.data.maxInvestAmount + '元上限')
                         return;
-                    }else if(amount > self.data.surplusAmount){
+                    } else if (amount > self.data.surplusAmount) {
                         self.$('.js_amount').val(self.data.surplusAmount)
                         var maxprofit = (self.data.surplusAmount * rate * day) / 365
-                        self.$('.js_profit').html(Math.floor(maxprofit*100)/100)
-                        App.showToast('超过剩余可投金额'+self.data.surplusAmount+'元')
+                        self.$('.js_profit').html(Math.floor(maxprofit * 100) / 100)
+                        App.showToast('超过剩余可投金额' + self.data.surplusAmount + '元')
                         return;
                     }
 
@@ -232,18 +226,18 @@ define(function (require, exports, module) {
                 var amount = parseFloat(self.$('.js_amount').val()) || 0
 
 
-                var sales = parseFloat(self.data.salesCharge.substring(0, self.data.salesCharge.length - 1))*0.01;
+                var sales = parseFloat(self.data.salesCharge.substring(0, self.data.salesCharge.length - 1)) * 0.01;
 
-                var service = parseFloat(self.data.serviceCharge.substring(0, self.data.serviceCharge.length - 1))*0.01;
+                var service = parseFloat(self.data.serviceCharge.substring(0, self.data.serviceCharge.length - 1)) * 0.01;
 
-                var cal_fee=amount-(Math.floor(amount/(1+sales) *100)/100)+amount*service;
+                var cal_fee = amount - (Math.floor(amount / (1 + sales) * 100) / 100) + amount * service;
 
                 //var rate = (sales + service) * 0.01
 
                 //投资手续费
-                var fee = Math.floor(cal_fee *100)/100;
+                var fee = Math.floor(cal_fee * 100) / 100;
 
-                fee=fee.toFixed(2);
+                fee = fee.toFixed(2);
 
                 if (self.data.salesCharge != "0.0%" || self.data.serviceCharge != "0.0%") {
                     self.$('.js_fee').html(fee)
@@ -253,43 +247,41 @@ define(function (require, exports, module) {
                 //最大金额
                 if (self.data.maxInvestAmount >= 0 && amount > self.data.maxInvestAmount) {
                     self.$('.js_amount').val(self.data.maxInvestAmount)
-                    var maxfee = self.data.maxInvestAmount-(Math.floor(self.data.maxInvestAmount/(1+sales) *100)/100)+self.data.maxInvestAmount*service;
-                    maxfee= Math.floor(maxfee *100)/100;
-                    maxfee=maxfee.toFixed(2);
+                    var maxfee = self.data.maxInvestAmount - (Math.floor(self.data.maxInvestAmount / (1 + sales) * 100) / 100) + self.data.maxInvestAmount * service;
+                    maxfee = Math.floor(maxfee * 100) / 100;
+                    maxfee = maxfee.toFixed(2);
                     if (self.data.salesCharge != "0.0%" || self.data.serviceCharge != "0.0%") {
                         self.$('.js_fee').html(maxfee)
                     }
-                    App.showToast('超过单笔订单金额'+self.data.maxInvestAmount+'元上限')
+                    App.showToast('超过单笔订单金额' + self.data.maxInvestAmount + '元上限')
                     return;
-                }else if(amount > self.data.surplusAmount){
+                } else if (amount > self.data.surplusAmount) {
                     self.$('.js_amount').val(self.data.surplusAmount)
-                    var maxfee = self.data.surplusAmount-(Math.floor(self.data.surplusAmount/(1+sales) *100)/100)+self.data.surplusAmount*service;
-                    maxfee= Math.floor(maxfee *100)/100;
-                    maxfee=maxfee.toFixed(2);
+                    var maxfee = self.data.surplusAmount - (Math.floor(self.data.surplusAmount / (1 + sales) * 100) / 100) + self.data.surplusAmount * service;
+                    maxfee = Math.floor(maxfee * 100) / 100;
+                    maxfee = maxfee.toFixed(2);
                     if (self.data.salesCharge != "0.0%" || self.data.serviceCharge != "0.0%") {
                         self.$('.js_fee').html(maxfee)
                     }
-                    App.showToast('超过剩余可投金额'+self.data.surplusAmount+'元')
+                    App.showToast('超过剩余可投金额' + self.data.surplusAmount + '元')
                     return;
                 }
             }
-
-
         },
-        createOrder: function () {
+        createOrder: function() {
             var self = this
             App.showLoading();
             var start = self.data.minInvestAmount;
             var addition = self.data.additionalAmount;
             var amount = parseFloat(self.$('.js_amount').val());
             var surplus = self.data.surplusAmount;
-            var selectCardId= $("#cardSelectSecond").find('div[data-cardid]').attr("data-cardid");
+            var selectCardId = $("#cardSelectSecond").find('div[data-cardid]').attr("data-cardid");
             if (self.data.productType == "01") {
                 var investAmount = parseFloat(self.$('.js_amount').val()) + parseFloat(self.$('.js_invest').attr('id'))
             } else if (self.data.productType == "02") {
                 //var temp = parseFloat(self.$('.js_fee').html())
-                var serviceFee=Math.floor(self.data.serviceCharge.split("%")[0]*amount)/100;
-                var temp=serviceFee;//价内,支付金额=投资金额+服务费
+                var serviceFee = Math.floor(self.data.serviceCharge.split("%")[0] * amount) / 100;
+                var temp = serviceFee; //价内,支付金额=投资金额+服务费
                 var investAmount = parseFloat(self.$('.js_amount').val()) + (_.isNaN(temp) ? 0 : temp)
             }
             //是否有可投资金额
@@ -304,12 +296,6 @@ define(function (require, exports, module) {
                 self.hasNumAlert = handle.alert('请输入数字').show()
                 return;
             }
-//            //勾选协议
-//            if (!(self.$('.js_agree').hasClass('checked'))) {
-//                App.hideLoading();
-//                self.hasNoContractAlert = handle.alert('请阅读并同意相关协议条款').show()
-//                return;
-//            }
             //是否输入投资金额
             if (isNaN(parseFloat(self.$('.js_amount').val()))) {
                 App.hideLoading();
@@ -319,65 +305,61 @@ define(function (require, exports, module) {
             //投资金额大于0
             if (amount < 0) {
                 App.hideLoading();
-                self.hasMinusAmountAlert=handle.alert('投资金额需大于0').show()
+                self.hasMinusAmountAlert = handle.alert('投资金额需大于0').show()
                 return;
             }
             //投资金额大于起投金额
             if (amount < start) {
                 App.hideLoading();
-                self.hasFewAmountAlert=handle.alert('投资金额需大于' + start + '元').show()
+                self.hasFewAmountAlert = handle.alert('投资金额需大于' + start + '元').show()
                 return;
             }
             //投资金额符合递增规律
             if ((amount - start) % addition != 0) {
                 App.hideLoading();
-                self.hasWrongIncrementAlert=handle.alert('投资金额需是'+handle.dealMoney(addition)+'的整数倍').show()
+                self.hasWrongIncrementAlert = handle.alert('投资金额需是' + handle.dealMoney(addition) + '的整数倍').show()
                 return
             }
             //是否超过剩余可投金额
             if (parseFloat(self.$('.js_amount').val()) > surplus) {
                 App.hideLoading();
-                self.hasLotAmountAlert=handle.alert('超过剩余可投金额').show()
+                self.hasLotAmountAlert = handle.alert('超过剩余可投金额').show()
                 return;
             }
             var query = this.request.query;
-            var change=self.$('.js_amount').html();
-                createOrderMode.set({
-                    'productNo': query.pid,
-                    'investAmount': self.$('.js_amount').val(),
-                    'token': self.data.token,
-                    'cardInfoId': selectCardId
-                });
-                createOrderMode.exec({
-                    type: 'post'
-                }).then(function (data) {
+            var change = self.$('.js_amount').html();
+            createOrderMode.set({
+                'productNo': query.pid,
+                'investAmount': self.$('.js_amount').val(),
+                'token': self.data.token,
+                'cardInfoId': selectCardId
+            });
+            createOrderMode.exec({
+                type: 'post'
+            }).then(function(data) {
+                App.hideLoading();
+                if (data && data.ret == 0) {
+                    payLayer.showPayWin(self.data, data.data)
+                } else if (data.ret == 999901 || data.ret == 300007) {
+                    self.promptAlert = handle.alert(data.msg);
+                    self.promptAlert.show();
+                } else if (data.ret == 110115) {
                     App.hideLoading();
-                    if(data&&data.ret==0){
-                        payLayer.showPayWin(self.data, data.data)
-                    }else if(data.ret==999901||data.ret==300007){
-                        self.promptAlert = handle.alert(data.msg);
-                        self.promptAlert.show();
-                    }else if(data.ret == 110115){
-                        App.hideLoading();
 
-                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){
-                        });
-                        self.promptAlert.show();
-                    }
-                    else{
-                        App.hideLoading();
-                        App.showToast(data.msg || '网络错误')
-                    }
-                }).catch(function (error) {
+                    self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
+                    self.promptAlert.show();
+                } else {
                     App.hideLoading();
-                    App.showToast(error.msg || '网络错误')
-                })
-
+                    App.showToast(data.msg || '网络错误')
+                }
+            }).catch(function(error) {
+                App.hideLoading();
+                App.showToast(error.msg || '网络错误')
+            })
         },
-
-        onHide: function () {
+        onHide: function() {
             var self = this
-            //alert隐藏
+                //alert隐藏
             self.hasNoSurplusAlert && self.hasNoSurplusAlert.hide()
             self.hasNumAlert && self.hasNumAlert.hide()
             self.hasNoContractAlert && self.hasNoContractAlert.hide()
@@ -386,12 +368,11 @@ define(function (require, exports, module) {
             self.hasFewAmountAlert && self.hasFewAmountAlert.hide()
             self.hasWrongIncrementAlert && self.hasWrongIncrementAlert.hide()
             self.hasLotAmountAlert && self.hasLotAmountAlert.hide()
-            //说明关闭
+                //说明关闭
             self.popwinRegular && self.popwinRegular.toggleHidden()
             self.popwinFloat && self.popwinFloat.toggleHidden()
-       },
-
-        popRegular: function () {
+        },
+        popRegular: function() {
             var self = this
             var amount = parseFloat(self.$('.js_amount').val()) || 0
 
@@ -400,17 +381,17 @@ define(function (require, exports, module) {
             var year = tempDate.getFullYear()
             var month = tempDate.getMonth()
             var date = tempDate.getDate()
-            var today = new Date(year,month,date)
+            var today = new Date(year, month, date)
 
             var expectDate = new Date(self.data.expectExpiringDate)
             var valueDate = new Date(self.data.valueDate)
 
-             if(today >= valueDate){
-                 var day =(expectDate - today) / 1000 / 60 / 60 /24 
-             }else {
-                var day = (expectDate - valueDate)/ 1000 / 60 / 60 /24 
-             }
-                    
+            if (today >= valueDate) {
+                var day = (expectDate - today) / 1000 / 60 / 60 / 24
+            } else {
+                var day = (expectDate - valueDate) / 1000 / 60 / 60 / 24
+            }
+
 
             //预期年化收益率
             if (self.data.incomeType == "02") {
@@ -424,7 +405,7 @@ define(function (require, exports, module) {
             //预期收益
             var profit = ((amount * rate * day) / 365)
             var Common = {
-                showPayWin: function () {
+                showPayWin: function() {
                     self.popwinRegular = new App.UI.UIPopWin({
                         template: '<div class="mod_popup" style="width:300px">\
 								  <div class="pop_cont">\
@@ -435,7 +416,7 @@ define(function (require, exports, module) {
 								      <div class="income_info">\
 								        <div class="v_item">\
 								          <div class="v_item_hd">预计到期收益</div>\
-								          <div class="v_item_bd"><span class="webtxt" style="display:block">' + Math.floor(profit*100)/100 + '元</span><span class="tips">(以实际到账为准)</span></div>\
+								          <div class="v_item_bd"><span class="webtxt" style="display:block">' + Math.floor(profit * 100) / 100 + '元</span><span class="tips">(以实际到账为准)</span></div>\
 								        </div>\
 								      </div>\
 								      <div class="income_details">\
@@ -452,7 +433,7 @@ define(function (require, exports, module) {
                         events: {
                             'click .btn_close': 'toggleHidden'
                         },
-                        toggleHidden: function (e) {
+                        toggleHidden: function(e) {
                             this.hide();
                         }
 
@@ -462,27 +443,26 @@ define(function (require, exports, module) {
                 }
             };
             Common.showPayWin()
-
         },
-        popFloat: function () {
+        popFloat: function() {
             var amount = parseFloat(self.$('.js_amount').val()) || 0
-            var sales = parseFloat(self.data.salesCharge.substring(0, self.data.salesCharge.length - 1))*0.01
+            var sales = parseFloat(self.data.salesCharge.substring(0, self.data.salesCharge.length - 1)) * 0.01
 
-            var service = parseFloat(self.data.serviceCharge.substring(0, self.data.serviceCharge.length - 1))*0.01
+            var service = parseFloat(self.data.serviceCharge.substring(0, self.data.serviceCharge.length - 1)) * 0.01
 
-            var cal_fee=amount-(Math.floor(amount/(1+sales) *100)/100)+amount*service;
+            var cal_fee = amount - (Math.floor(amount / (1 + sales) * 100) / 100) + amount * service;
 
             //var rate = (sales + service) * 0.01
 
             //投资手续费
-            var fee = Math.floor(cal_fee *100)/100;
-            fee=fee.toFixed(2);
+            var fee = Math.floor(cal_fee * 100) / 100;
+            fee = fee.toFixed(2);
 
             var Common = {
-                showPayWin: function () {
-                    var tips_word='<p class="tips">本产品实行价内/价外收费，除认购金额外将另收取<span class="webtxt">' + self.data.salesCharge + '</span>认购费和<span class="webtxt">' + self.data.serviceCharge + '</span>平台服务费，共计<span class="webtxt">' + fee + '</span>元。</p>'
-                    if(sales==0&&service==0){
-                        tips_word='<p class="tips">平台推广期间，免认购手续费</p>';
+                showPayWin: function() {
+                    var tips_word = '<p class="tips">本产品实行价内/价外收费，除认购金额外将另收取<span class="webtxt">' + self.data.salesCharge + '</span>认购费和<span class="webtxt">' + self.data.serviceCharge + '</span>平台服务费，共计<span class="webtxt">' + fee + '</span>元。</p>'
+                    if (sales == 0 && service == 0) {
+                        tips_word = '<p class="tips">平台推广期间，免认购手续费</p>';
                     }
                     self.popwinFloat = new App.UI.UIPopWin({
                         template: '<div class="mod_popup" style="width:300px"">\
@@ -491,14 +471,14 @@ define(function (require, exports, module) {
 						      <h2>手续费说明</h2>\
 						      <a href="javascript:void(0)" class="btn_close"></a></div>\
 						    <div class="pop_bd">\
-						      <div class="tips_txt">'+tips_word+'</div>\
+						      <div class="tips_txt">' + tips_word + '</div>\
 						    </div>\
 						  </div>\
 						</div>',
                         events: {
                             'click .btn_close': 'toggleHidden'
                         },
-                        toggleHidden: function (e) {
+                        toggleHidden: function(e) {
                             this.hide();
                         }
 
@@ -508,34 +488,30 @@ define(function (require, exports, module) {
             };
             Common.showPayWin()
         },
-        setHeader: function () {
+        setHeader: function() {
             var header = new App.UI.UIHeader();
             header.set({
                 view: this,
                 title: '确认投资',
                 back: {
                     'tagname': 'back',
-                    callback: function () {
+                    callback: function() {
                         App.goBack()
                     }
                 },
                 right: [{
-                    'tagname': 'custom', 'value': '',
-                    callback: function () {
+                    'tagname': 'custom',
+                    'value': '',
+                    callback: function() {
                         console.log('邀请好友');
                     }
                 }]
             });
         },
-        goCardSelectWin: function(){
-            var query = this.request.query;
-            if (_.isUndefined(query) || _.isUndefined(query.pid)) {
-                App.goTo('list');
-                return;
-            }
-            //传入当前银行卡ID
-            self.currentCardBox= $(event.target).closest('#cardSelectSecond');
-            payLayer.ttlSelectCard(self.currentCardBox,'01',query.pid);
-        }
+        goRechargePage: function(){
+
+            App.goTo('recharge');
+        }   
+
     })
 })
