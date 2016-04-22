@@ -5,9 +5,6 @@ define(function (require, exports, module) {
                             <li class="item v_arrow_r">\
                                 <div class="item_hd ico_s_account js_account_setup">账户设置</div>\
                             </li>\
-                            <li class="item v_arrow_r">\
-                                <div class="item_hd ico_s_card js_add_card">我的银行卡</div>\
-                            </li>\
                             <li class="item v_arrow_r js_phone">\
                                 <div class="item_hd ico_s_tel">客服电话</div>\
                                 <div class="item_bd"><%=tel%></div>\

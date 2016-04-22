@@ -35,6 +35,7 @@ define(function (require, exports, module) {
                 'click .js_next': 'submit',//下一步
                 'click .js_notice': 'notice',//下一步
                 'click .js_address': 'showAddress',//获取开户行信息
+                'click .js_type': 'selectType',//获取开户行信息
                 'change .js_card_number': 'inputCard',//获取开户行信息
                 'click .js_name': 'checkCardBin',//获取开户行信息
                 'click .js_id_card': 'checkCardBin',//获取开户行信息
@@ -711,6 +712,10 @@ define(function (require, exports, module) {
                             index: k
                         })
                     })
+                console.log(province)
+                console.log(cities)
+                console.log(cityX)
+                console.log(cityY)
                     self.selectCity = new App.UI.UISelectGroup({
                         data: [province, cities],
                         indexArr: [cityX, cityY],
@@ -871,6 +876,57 @@ define(function (require, exports, module) {
                     App.UI.UIInputClear(self.$('.' + item), '', null, {'right': 5});
                 })
 
+            },
+
+            selectType: function(){
+                var province = [{
+                            id: 0,
+                            name: "身份证",
+                            index:1
+                        },{
+                    id: 1,
+                    name: "其他证件",
+                    index:2
+                }];
+                var cities = ["身份证","其他证件"];
+                var cityX = 0;
+                var cityY = 0;
+                var input = self.$('.js_address input');
+                var findProvince = null;
+
+                self.selectType = new App.UI.UISelectGroup({
+                    data: [province],
+                    indexArr: [cityX],
+                    maskToHide:false,
+                    datamodel: {
+                        title: '请选择证件类型',
+                        tips: ''
+                    },
+                    changedArr: [
+                        function(item) {
+                        //    cities = [];
+                        //    var findData = _.find(self.provinces, function(o) { return o.provCode == item.id});
+                        //    _.each(findData.cities, function(o) {
+                        //        cities.push({
+                        //            id: o.cityId,
+                        //            name: o.cityName
+                        //        })
+                        //    });
+                        //    self.selectCity.scrollArr[1].reload(cities);
+                        }
+                    ],
+                    onHide: function () {
+                        this._destroyScroll();
+                    },
+                    onOkAction: function(items) {
+                        self.$('.js_type_input').val(items[0].name);
+                        this.hide();
+                    },
+                    onCancelAction: function() {
+                        this.hide();
+                    }
+                });
+                self.selectType.show();
             },
             onHide: function(){
                 self.$('#js_card_bankName').val("");

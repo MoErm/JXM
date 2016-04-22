@@ -79,7 +79,14 @@ window.global_config = {
             "url": "my_wallet",
             "controller": "my_wallet"
         },
-
+        {
+            "url": "fuyou",
+            "controller": "fuyou"
+        },
+        {
+            "url": "fuyouDetail",
+            "controller": "fuyouDetail"
+        },
         {
             "url": "invest_history",
             "controller": "invest_history"
@@ -246,6 +253,8 @@ requirejs.config({
         'reg': 'jxm/views/reg',
         'reg_next': 'jxm/views/reg_next',
         'regYY': 'jxm/views/regYY',
+        'fuyou': 'jxm/views/fuyou',
+        'fuyouDetail': 'jxm/views/fuyouDetail',
         'get_password': 'jxm/views/get_password',
         'get_password_next': 'jxm/views/get_password_next',
         'bind_card_new': 'jxm/views/bind_card_new',

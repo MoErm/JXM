@@ -183,8 +183,9 @@ define(function(require, exports, module) {
 
         },
         initFooter: function() {
-            $(".foot_nav .item").removeClass('cur');
-            $(".foot_nav .ico_tuijian").addClass('cur');
+
+            self.$('.js_ttl').addClass('footer_icon_tj_sel');
+            self.$('.js_ttl').removeClass('footer_icon_tj_unsel');
         },
         initNotice:function(){
             getRollingNotice.exec({
