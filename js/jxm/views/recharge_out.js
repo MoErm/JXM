@@ -11,9 +11,9 @@ define(function(require, exports, module) {
         initialize: function() {
             return this;
         },
-         events: {
-            'click #cardSelect': 'goCardSelectWin'//选择银行卡
-        },        
+        events: {
+            'click #get_allmoney ':'getAllmoneyFn'
+        },     
         onShow: function() {
             self = this.initialize();
             self.message = '网络错误，请稍后重试';           
@@ -41,12 +41,15 @@ define(function(require, exports, module) {
                 right: null
             });
             App.hideLoading();
-        },   
-        goCardSelectWin: function(){
+        },         
+        getAllmoneyFn: function(){
+            $("#recharge_out_money").val('88')
+        }, 
+        goCardSelectWin: function(){ // 选择银行卡
             //传入当前银行卡ID
             self.currentCardBox= $(event.target).closest('#cardSelect');
             common.ttlSelectCard(self.currentCardBox,'02','');
-        },
+        }
     });
 
 })  
