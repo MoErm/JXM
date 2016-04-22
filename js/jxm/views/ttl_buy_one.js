@@ -9,6 +9,7 @@ define(function(require, exports, module) {
     var abortChange = new Model.abortChange();
     var initTtlBuyPage = new Model.initTtlBuyPage();  //初始化购买页面
     var goTtlBuyPageCheck = new Model.goTtlBuyPageCheck();  //购买页面跳转
+
     var handle = new tool();
     var imageSlider = null;
     var self = null;
@@ -60,7 +61,7 @@ define(function(require, exports, module) {
                 type: 'get',
                 success: function(data){
                     self.pageData.cardData= data.data;
-                    if(data.ret == 0){                        
+                    if(data.ret == 0){     
                         self.initTemple();
                     }else if(data.ret == 999001){
                         //未登录
