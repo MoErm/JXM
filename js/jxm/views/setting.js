@@ -56,7 +56,9 @@ define(function (require, exports, module) {
             $(self.header).hide();
             self.$el.html(_.template(setting+Footer)({tel: tel, customer: tel.replace(/-/g, '')}));
             handle.setTitle("设置");
-            self.$('.js_setting').addClass('cur')
+
+            self.$('.js_setting').addClass('footer_icon_sz_sel');
+            self.$('.js_setting').removeClass('footer_icon_sz_unsel');
             App.hideLoading()
         },
         list: function(){

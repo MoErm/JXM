@@ -50,7 +50,8 @@ define(function (require, exports, module) {
                 handle.orientationTips();
                 self.$el.html('<div class="js_content"></div>' + footer);
                 self.$('.js_product_list').addClass('cur');
-
+                self.$('.js_product_list').addClass('footer_icon_lc_sel');
+                self.$('.js_product_list').removeClass('footer_icon_lc_unsel');
                     self.getUserInfo();
                 self.showProduct();
 

@@ -18,23 +18,28 @@ define(function (require, exports, module) {
         events: {
             'click .js_history': 'goHistory',
             'click .triangle': 'goHistory',
-            'click .my_change': 'goWallet',
+            'click .invest_icon_hb': 'goWallet',
             'click .js_float': 'goFloat',
             'click .js_regular': 'goRegular',
             'click .js_setting': 'setting',
             'click .js_product_list': 'list',
             'click .js_ttl': 'ttl_recommend',
-            'click .invest_tiantian': 'goRedeem',
+            'click .invest_icon_ttl': 'goRedeem',
+            'click .invest_icon_yhk': 'goCard',
             'click .js_close': 'goClose',
-            'click .invest_invite': 'goInvite',
-            'click .invest_record': 'goRecord',
+            'click .invest_icon_wdyq': 'goInvite',
+            'click .invest_icon_jxm': 'goRecord',
             'click .js_situation':'goHeroList'
         },
         initialize: function () {
+            this.header = document.querySelector("#header");
             self = this;
         },
         ttl_recommend:function(){
             App.goTo("ttl_recommend")
+        },
+        goCard:function(){
+            App.goTo("add_card")
         },
         goWallet:function(){
             App.goTo("my_wallet")
@@ -62,10 +67,10 @@ define(function (require, exports, module) {
             this.setHeader();
 
             self.$el.html(Footer);
-            self.$('#js_my_invest').addClass('cur');
+
             self.regQR();
             this.render();
-
+            $(self.header).hide();
             return
         },
         regQR:function(){
@@ -130,7 +135,8 @@ define(function (require, exports, module) {
                         self.$el.html(_.template(Template + Footer)(self.data));
                         self.initNotice()
                         //self.newAcitve();
-                        self.$('.js_my_invest').addClass('cur');
+                        self.$('.js_my_invest').addClass('footer_icon_wo_sel');
+                        self.$('.js_my_invest').removeClass('footer_icon_wo_unsel');
                         handle.setTitle("我");
                         //处理总资产的长度
                         self.$()

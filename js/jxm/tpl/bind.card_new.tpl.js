@@ -7,6 +7,10 @@ define(function (require, exports, module) {
                         <div class="bind_card_title">姓名</div>\
                         <div class="bind_card_text"><input type="text"  placeholder="请输入您的姓名" class="text_input js_name" maxlength="10"/></div>\
                     </div>\
+                     <div class="bind_card_input js_type">\
+                        <div class="bind_card_title">证件类型</div>\
+                        <div class="bind_card_text"><input type="text"  placeholder="请选择证件类型" readonly="readonly" class="text_input js_type_input" maxlength="10"/><i class="card_drop"></i></div>\
+                    </div>\
                     <div class="bind_card_input">\
                         <div class="bind_card_title">身份证号</div>\
                         <div class="bind_card_text"><input type="text"  placeholder="请输入您的18位二代身份证号" class="text_input  js_id_card" maxlength="18" style="text-transform:uppercase;" /></div>\
@@ -24,6 +28,10 @@ define(function (require, exports, module) {
                         <div class="cardBank js_address">\
                             <div class="bind_card_title">所属省份</div>\
                             <div class="bind_card_text"><input type="text" value="" placeholder="选择开户行省市" readonly="readonly" class="text_input inpt_readonly js_address_select" /><i class="card_drop"></i></div>\
+                        </div>\
+                        <div class="cardBank ">\
+                            <div class="bind_card_title">预留手机号</div>\
+                            <div class="bind_card_text"><input type="tel" value="" placeholder="请输入银行预留手机号" readonly="readonly" class="text_input js_card_bankName" id="js_card_bankName" maxlength="19"/></div>\
                         </div>\
                     </div>\
                     \
