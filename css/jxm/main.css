@@ -1581,7 +1581,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_card_select .ttl_card_list li.cur_card { background: url(../../images/ttl_icon_x.png) no-repeat  95% 23px; background-size: 20px }
 .ttl_card_select .ttl_card_add { line-height: 60px; text-indent: 2rem; border-bottom: 1px solid #ECECEC; background: url(../../images/ttl_icon_w.png) no-repeat  95% 23px; background-size: 15px }
 
-/*-- 充值页面 2016-4 --*/
+/*-- 充值页面 --*/
 .recharge_section { }
 .recharge_t { background: #fff; }
 .recharge_t .recharge_t_list { }
@@ -1599,7 +1599,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .mycard .maycard_title { width: 25%; height: 50px; line-height: 50px; float: left; }
 .mycard .limit_text { font-size: 12px; color: #9b9b9b; }
 .mycard .card_cur { font-size: 14px; color: #000; }
-.mycard .card_detail { background: url(../../images/ttl_icon_w.png) no-repeat  95% 45%; background-size: 5%; text-indent: 0.3rem; padding: 5px 0 0 0; }
+.mycard .card_detail { text-indent: 0.3rem; padding: 5px 0 0 0; }
 .mycard .banklogo { display: inline-block; width: 36px; height: 36px; padding: 7px 0 0 0; }
 
 /*tip样式*/
@@ -1613,7 +1613,11 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 /*提交按钮*/
 .action_buy { display: block; width: 85%; height: 42px; font-size: 2.2rem; margin: 0 auto; line-height: 42px; background: #D01B02; color: #fff; text-align: center; border-radius: 5px; }
 
-/*-- 确认投资页面 2016-4 --*/
+/*-- 提现页面 --*/
+.recharge_out{}
+.recharge_out .get_allmoney{color:#b46a25; }
+
+/*-- 确认投资页面 --*/
 .invest_recharge{background: #fff; margin: 30px 0 0 0; padding: 5px 0; color: #9b9b9b;text-indent: 7px; position: relative; }
 .invest_recharge .title{display: inline-block;width: 80px; }
 .invest_recharge .num{color: #000;margin-right: 5px; }

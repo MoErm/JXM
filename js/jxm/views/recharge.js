@@ -11,8 +11,8 @@ define(function(require, exports, module) {
         initialize: function() {
             return this;
         },
-         events: {
-            'click #cardSelect': 'goCardSelectWin'//选择银行卡
+        events: {
+
         },        
         onShow: function() {
             self = this.initialize();
@@ -42,11 +42,11 @@ define(function(require, exports, module) {
             });
             App.hideLoading();
         },   
-        goCardSelectWin: function(){
+        goCardSelectWin: function(){ // 选择银行卡
             //传入当前银行卡ID
             self.currentCardBox= $(event.target).closest('#cardSelect');
             common.ttlSelectCard(self.currentCardBox,'02','');
-        },
+        }
     });
 
 })  
