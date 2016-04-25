@@ -35,7 +35,7 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('ttl_introduce');
+                        window.history.back();
                     }
                 },
                 right: null

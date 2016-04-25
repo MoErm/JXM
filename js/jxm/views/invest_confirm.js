@@ -109,7 +109,6 @@ define(function(require, exports, module) {
                     if (data.ret == 0) {
                         // 初始化页面数据
                         self.initData = data.data;
-                        debugger
                         self.initData.additionalAmount_show = handle.dealMoney(self.initData.additionalAmount);
                         self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
                         self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
