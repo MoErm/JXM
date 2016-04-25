@@ -109,6 +109,7 @@ define(function(require, exports, module) {
                     if (data.ret == 0) {
                         // 初始化页面数据
                         self.initData = data.data;
+                        debugger
                         self.initData.additionalAmount_show = handle.dealMoney(self.initData.additionalAmount);
                         self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
                         self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
@@ -119,7 +120,6 @@ define(function(require, exports, module) {
                             self.initData.incomefloor = self.initData.incomeRateFloor.split('%')[0]
                             self.initData.activityrate = self.initData.activityIncomeRate.split('%')[0]
                         }
-
 
                         if (data.data.investFactorage == '--') {
                             self.initData.investfactorage = 0
@@ -135,10 +135,14 @@ define(function(require, exports, module) {
                         App.hideLoading();
                         self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
                         self.promptAlert.show();
-                    } else if (data.ret == 110120) { // 未完成实名绑卡
+                    } else if (data.ret == 110001) { // 未完成实名绑卡
 
                         App.hideLoading();
-                        self.promptAlert = handle.alert("未完成实名绑卡", function() {});
+                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('bind_card_new');
+                        });
                         self.promptAlert.show();
                     }else if (data.ret == 999001) {
 
