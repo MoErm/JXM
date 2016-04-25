@@ -534,6 +534,41 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
+        //富有签约
+        signFuyou: function() {
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click .newBonus_close": "onHideLayer",
+                    "click .newBonus_btn": "toMyWallet"
+
+
+                },
+                maskToHide: false,
+                template: '<div class="signFuyou">\
+                       <div class="signFuyou_box1">\
+                            <div class="signFuyou_txt"></div>\
+                            <div class="signFuyou_img"></div>\
+                            <div>\
+                            <button></button>\
+                            </div>\
+                       </div>\
+                    </div>',
+                onHideLayer: function() {
+                    this.hide();
+                },
+                toMyWallet:function(){
+                    this.hide();
+                    App.goTo("my_wallet")
+
+                },
+                onShow: function() {
+                    var width=document.body.clientWidth
+                    $(".newBonus_btn").css("marginTop",width*0.8/0.7*0.8+"px")
+
+                }
+            });
+            popwin.show();
+        },
 
         //邀请好友
         sendBonus: function(isHideShareBar, url) {

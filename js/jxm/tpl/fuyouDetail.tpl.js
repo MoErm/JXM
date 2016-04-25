@@ -2,39 +2,17 @@ define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page mod_my_invest">\
 	  \
-	   <div class="fuyou">\
-	      <div class="invest_title">现金余额<small>(元)</small></div>\
-	      <div class="invest_money">12333</div>\
+	   <div class="fuyouDetail">\
+	      <div class="fuyouDetail_title">交易金额(元)</div>\
+	      <div class="fuyouDetail_money">12333</div>\
 	  </div>\
-	      <div class="fuyou_income">\
-				<div class="currentIncome">\
-					<span>提现</span>\
-				</div>\
-				<div  class="historyIncome">\
-					<span>充值</span>\
-				</div>\
-	      </div>\
-    <div class="fuyou_title">资金记录</div>\
-    <div  class="fuyou_list">\
-		<div class="fuyou_list_line1 ">\
-			<span class="fuyou_span1 ">天添利赎回</span>\
-			<span class="fuyou_span2">1000元</span>\
-		</div>\
-		<div class="fuyou_list_line2">\
-			<span class="fuyou_span1">2015/1/12 23:12:12</span>\
-			<span class="fuyou_span2">交易成功</span>\
-		</div>\
-    </div>\
-     <div  class="fuyou_list">\
-		<div class="fuyou_list_line1 fuyou_line">\
-			<span class="fuyou_span1">天添利赎回</span>\
-			<span class="fuyou_span2">1000元</span>\
-		</div>\
-		<div class="fuyou_list_line2">\
-			<span class="fuyou_span1">2015/1/12 23:12:12</span>\
-			<span class="fuyou_span2">交易成功</span>\
-		</div>\
-    </div>\
+	  <div class="fuyouDetail_list">\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">状态</span><span class="fuyouDetail_span2">成功</span></div>\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">交易类型</span><span class="fuyouDetail_span2">投资月月加薪</span></div>\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">交易时间</span><span class="fuyouDetail_span2">2015/12/12 12:12:12</span></div>\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">流水号</span><span class="fuyouDetail_span2">4008123123</span></div>\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">备注</span><span class="fuyouDetail_span2">失败信息提示</span></div>\
+	  </div>\
 	</article>';
 
 

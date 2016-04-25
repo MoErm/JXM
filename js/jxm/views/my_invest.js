@@ -26,6 +26,8 @@ define(function (require, exports, module) {
             'click .js_ttl': 'ttl_recommend',
             'click .invest_icon_ttl': 'goRedeem',
             'click .invest_icon_yhk': 'goCard',
+            'click .invest_amount_1': 'goFuyou',
+            'click .fuyou_js_chongzhi': 'goChongZhi',
             'click .js_close': 'goClose',
             'click .invest_icon_wdyq': 'goInvite',
             'click .invest_icon_jxm': 'goRecord',
@@ -37,6 +39,13 @@ define(function (require, exports, module) {
         },
         ttl_recommend:function(){
             App.goTo("ttl_recommend")
+        },
+        goFuyou:function(){
+            //App.goTo("fuyou")
+            console.log("fu")
+        },
+        goChongZhi:function(){
+            payLayer.signFuyou()
         },
         goCard:function(){
             App.goTo("add_card")
@@ -67,7 +76,7 @@ define(function (require, exports, module) {
             this.setHeader();
 
             self.$el.html(Footer);
-
+            payLayer.signFuyou()
             self.regQR();
             this.render();
             $(self.header).hide();

@@ -15,7 +15,7 @@ define(function (require, exports, module) {
 				</div>\
 	      </div>\
     <div class="fuyou_title">资金记录</div>\
-    <div  class="fuyou_list">\
+    <div  class="fuyou_list" id="fuyouList_1">\
 		<div class="fuyou_list_line1 ">\
 			<span class="fuyou_span1 ">天添利赎回</span>\
 			<span class="fuyou_span2">1000元</span>\

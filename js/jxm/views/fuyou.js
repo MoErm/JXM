@@ -15,24 +15,13 @@ define(function (require, exports, module) {
     //接口
     module.exports = App.Page.extend({
         events: {
-            'click .js_history': 'goHistory',
-            'click .my_change': 'goWallet',
-            'click .js_float': 'goFloat',
-            'click .js_regular': 'goRegular',
-            'click .js_setting': 'setting',
-            'click .js_product_list': 'list',
-            'click .js_close': 'goClose',
-            'click .invest_invite': 'goInvite',
-            'click .js_situation':'goHeroList'
+            'click #fuyouList_1': 'goDetail'
         },
         initialize: function () {
             self = this;
         },
-        goWallet:function(){
-            App.goTo("my_wallet")
-        },
-        goInvite:function(){
-            App.goTo("my_invite")
+        goDetail:function(){
+            App.goTo("fuyouDetail")
         },
         onShow: function () {
             handle.share();

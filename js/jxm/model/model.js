@@ -337,11 +337,69 @@
         getRollingNotice: initModel({
              url:host+"/api/notice/getRollingNotice"
         }),
-
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
-        })
+        }),
+
+        //以下为富有改动新接口
+        //获取地区信息
+        fuyouAreas: initModel({
+            url:host+"/api/fuyou/areas"
+        }),
+        //获取用户当前银行卡信息
+        fuyouCurrentCardInfo: initModel({
+            url:host+"/api/fuyou/currentCardInfo"
+        }),
+        //开户注册
+        fuyouCardRegister: initModel({
+            url:host+"/api/fuyou/cardRegister"
+        }),
+        //签约签名
+        fuyouSignForAppSign: initModel({
+            url:host+"/api/fuyou/signForAppSign"
+        }),
+        //查询已绑定的银行卡
+        fuyouCard: initModel({
+            url:host+"/api/fuyou/card"
+        }),
+        //查询现金余额
+        fuyouBalance: initModel({
+            url:host+"/api/fuyou/balance"
+        }),
+        //获取充值验证码
+        fuyouSmsForCharge: initModel({
+            url:host+"/api/fuyou/smsForCharge"
+        }),
+        //充值签名
+        fuyouSignForCharge: initModel({
+            url:host+"/api/fuyou/signForCharge"
+        }),
+        //提现页面跳转
+        fuyouToWithdraw: initModel({
+            url:host+"/api/fuyou/toWithdraw"
+        }),
+        //提现签名
+        fuyouSignForWithdraw: initModel({
+            url:host+"/api/fuyou/signForWithdraw"
+        }),
+        //购买流程
+        //立即投资
+        fuyouToInvestConfirm: initModel({
+            url:host+"/api/fy/order/toInvestConfirm"
+        }),
+        //创建订单
+        fuyouCreateOrder: initModel({
+            url:host+"/api/fy/order/createOrder"
+        }),
+        //订单支付
+        fuyouPayOrder: initModel({
+            url:host+"/api/fy/order/payOrder"
+        }),
+        //检查订单支付结果
+        fuyouCheckOrder: initModel({
+            url:host+"/api/fy/order/checkOrder"
+        }),
 	}
 	return Model;
 
