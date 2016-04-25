@@ -5,7 +5,8 @@ define(function (require, exports, module) {
         var model = require('jxm/model/model');
         var Store = require("jxm/model/store");
         var getBankInfoModel = new model.getBankInfoModel();
-        var getAddrModel = new model.getAddrModel();
+        //var getAddrModel = new model.getAddrModel();
+        var getAddrModel = new model.fuyouAreas();
         var realStatusCheck = new model.realStatusCheck();
         var getBankByBin = new model.getBankByBin();
         var realCheck = new model.realCheck();

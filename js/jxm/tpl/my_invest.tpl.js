@@ -27,7 +27,7 @@ define(function (require, exports, module) {
 			 <span class="invest_amount_b"><p class="invest_amount_a">现金余额(元)</p>100</span>\
 		 </div>\
 		 <div class="invest_amount_2">\
-		 	<button class="invest_btn">充值</button>\
+		 	<button class="invest_btn fuyou_js_chongzhi">充值</button>\
 		 </div>\
 	 </div>\
 	    <div style="clear: both"></div>\

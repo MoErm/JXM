@@ -295,7 +295,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .bind_card_input .bind_card_title { width: 80px; white-space: nowrap; overflow: hidden; position: relative; float: left; min-height: 38px; color: #4f4f4f; line-height: 44px; font-size: 1.6rem; text-align: center }
 .bind_card_input .bind_card_text { float: none; position: relative; padding-left: 80px; min-height: 38px; color: #acacac; line-height: 44px; font-size: 1.6rem; }
 .bind_card_input .bind_card_text .text_input { width: 100%; height: 44px; font-size: 1.2rem; vertical-align: top; box-sizing: border-box; background: none; -webkit-appearance: none; border-radius: 0; }
-.bind_bank_card { background: #ffffff; border-radius: 5px; border: solid 1px #acacac; height: 142px; margin: 0 15px; padding-top: 20px }
+.bind_bank_card { background: #ffffff; border-radius: 5px; border: solid 1px #acacac;  margin: 0 15px; padding: 20px 0 5px 0}
 .bind_bank_card .cardNo { background: #e4e3e3 }
 .bind_bank_card .cardNo .bind_card_title, .bind_bank_card  .cardBank  .bind_card_title { width: 80px; white-space: nowrap; overflow: hidden; position: relative; float: left; min-height: 38px; color: #4f4f4f; line-height: 44px; font-size: 1.6rem; text-align: center }
 { background: #e4e3e3 }
@@ -772,12 +772,12 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .my_invest_income>.historyIncome>span{display: block;padding-left: 25px}
 .my_invest .invest_title { color: #ffffff ;text-align: center;margin-top: 10px}
 .my_invest .invest_money { font-size: 2.8rem; color: #ffffff;text-align: center}
-.invest_amount{background: white;height: 50px;margin-bottom: 10px}
+.invest_amount{background: white;height: 50px;margin-bottom: 10px;position: relative}
 .invest_btn{width: 60px;height: 30px;border-radius: 5px;color: white;background: #d01b02;margin-top: 10px}
-.invest_amount_1{width: 40%;display: block;height: 50px;float: left;padding-left: 25px;position: relative}
+.invest_amount_1{width: 100%;display: block;height: 50px;padding-left: 25px;position: relative}
 .invest_amount_b{margin-top: 5px;display: block}
 .invest_amount_a:after{ content: ""; display: inline-block; margin-top: 0px; width: 10px; height: 10px; vertical-align: middle; border-left: 2px solid #b5b5b5; border-bottom: 2px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
-.invest_amount_2{width: 40%;display: block;text-align: right;height: 50px;float: right;padding-right: 25px;}
+.invest_amount_2{display: block;text-align: right;height: 50px;padding-right: 25px;position: absolute;right: 0;top: 0}
 .invest_menu{height: 60px;width: 100%;background: white}
 .invest_menu_1{width: 50%;display: inline-block;float: left;position: relative;padding-top: 10px}
 .invest_menu_1>span,.invest_menu_2>span{padding-left: 60px;display: block}
@@ -827,8 +827,22 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .fuyou_list div>.fuyou_span2{display: inline-block;width: 40%;text-align: right}
 
 
+.fuyouDetail{background: white;height: 70px;padding:10px 20px}
+.fuyouDetail>.fuyouDetail_title{font-size: 1.2em}
+.fuyouDetail>.fuyouDetail_money{font-size: 1.6em}
+.fuyouDetail_list{background: white;padding: 5px 20px;margin-top: 10px}
+.fuyouDetail_list>.fuyouDetail_line{line-height: 30px;font-size: 1em;border-bottom: 1px solid #e8e7e7}
+.fuyouDetail_list>.fuyouDetail_line:last-child{line-height: 30px;font-size: 1em;border-bottom:none}
+.fuyouDetail_list>.fuyouDetail_line>.fuyouDetail_span1{display: inline-block;width: 40%;top:0}
+.fuyouDetail_list>.fuyouDetail_line>.fuyouDetail_span2{display: inline-block;width: 60%;text-align: right}
 
 
+.signFuyou { z-index: 1002; position: fixed; width: 100%; height: 250px; top: 30%; left: 0%; }
+.signFuyou_box1 { height: 100%; width: 90%; margin: 0 5%; background:#fcdd2c; padding-top: 30px; z-index: 1002; border-radius: 10px}
+.signFuyou_title1{margin: 0 auto;text-align: center;font-size: 1.4em}
+.signFuyou_title2{margin: 0 auto;text-align: center;font-size: 1.6em}
+.signFuyou_img{margin: 0 auto;text-align: center;font-size: 1.6em;height: 55px;background: url(../../images/signFuyou_img.png) no-repeat;background-size: 100% 100%;width: 180px;margin-top: 20px}
+.signFuyou_txt{margin: 0 auto;text-align: center;font-size: 1.6em;height: 70px;background: url(../../images/signFuyou_txt.png) no-repeat;background-size: 100% 100%;width: 240px;}
 
 .my_change { background-color: #ffffff; border-bottom: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px;border-top: 1px solid #cecece}
 .invest_invite { background-color: #ffffff; border-bottom: 1px solid #cecece; border-top: 1px solid #cecece; padding: 10px 20px; color: #a7a7a7; margin-top: 10px }

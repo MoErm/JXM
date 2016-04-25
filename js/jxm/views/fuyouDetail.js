@@ -28,12 +28,6 @@ define(function (require, exports, module) {
         initialize: function () {
             self = this;
         },
-        goWallet:function(){
-            App.goTo("my_wallet")
-        },
-        goInvite:function(){
-            App.goTo("my_invite")
-        },
         onShow: function () {
             handle.share();
             this.setHeader();
@@ -53,11 +47,11 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo("my_invest")
+                        App.goTo("fuyou")
                     }
                 },
                 center: {
-                    'tagname': 'title', 'value': ['现金余额']
+                    'tagname': 'title', 'value': ['交易详情']
                 },
                 setting: function () {
                     App.goTo('setting');
