@@ -18,7 +18,7 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #action_buy': 'goBuyTipPage',
+            'click #action_buy': 'goBuyCheckTip',
             'click .js_tips': 'goContractTip',//《风险提示书》
             'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
             'click #cash_addbtn': 'goRechargePage'// 去充值页面
@@ -123,8 +123,7 @@ define(function(require, exports, module) {
             //购买post数据并检测银行卡，交易密码
             App.showLoading();            
             goTtlBuyPageCheck.set({
-                "amount": goBuyData.amountVal,
-                "cardId": goBuyData.cardId
+                "amount": goBuyData.amountVal
             });
             goTtlBuyPageCheck.exec({
                 type: 'post'
@@ -186,11 +185,10 @@ define(function(require, exports, module) {
             });
             return this;
         },
-        goBuyTipPage: function(e){
+        goBuyCheckTip: function(e){
             e.preventDefault(e);
             self.amountVal= Number($("#imoney_num").val());
-            self.cardId= $("#cardSelect").find("div[data-cardid]").attr("data-cardid");
-            self.goBuyData= {"amountVal":self.amountVal, "cardId":self.cardId};
+            self.goBuyData= {"amountVal":self.amountVal};
 
             if(self.amountVal== ""){
                 App.showToast("请输入投资金额");

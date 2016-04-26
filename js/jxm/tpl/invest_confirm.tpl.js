@@ -33,7 +33,7 @@ define(function (require, exports, module) {
 	        </div>\
 	        <div class="invest_recharge">\
         		<div class="invest_money"><span class="title">现金余额</span> <span class="num">2,000.00</span>元</div>\
-	       		<% if ("s" != "") {%><div class="invest_change"><span class="title">红包</span><p id="change"><%=change%></p></div><% }%>\
+	       		<% if ("s" != "") {%><div class="invest_change"><span class="title">红包</span><p id="change"><span class="num"><%=change%></span></p>元</div><% }%>\
 	       		<button class="cash_addbtn" id="cash_addbtn">充值</button>\
 	        </div>\
 	      </li>\
