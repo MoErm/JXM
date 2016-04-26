@@ -538,8 +538,8 @@ define(function(require, exports, module) {
         signFuyou: function() {
             var popwin = new App.UI.UIPopWin({
                 events: {
-                    "click .newBonus_close": "onHideLayer",
-                    "click .newBonus_btn": "toMyWallet"
+                    "click .btn_left": "onHideLayer",
+                    "click .btn_right": "toSign"
 
 
                 },
@@ -548,22 +548,22 @@ define(function(require, exports, module) {
                        <div class="signFuyou_box1">\
                             <div class="signFuyou_txt"></div>\
                             <div class="signFuyou_img"></div>\
-                            <div>\
-                            <button></button>\
+                            <div class="signFuyou_btn">\
+                                <button class="btn_left">取消</button>\
+                                <button class="btn_right">去签约</button>\
                             </div>\
                        </div>\
                     </div>',
                 onHideLayer: function() {
                     this.hide();
                 },
-                toMyWallet:function(){
+                toSign:function(){
                     this.hide();
-                    App.goTo("my_wallet")
+                    //App.goTo("my_wallet")
 
                 },
                 onShow: function() {
-                    var width=document.body.clientWidth
-                    $(".newBonus_btn").css("marginTop",width*0.8/0.7*0.8+"px")
+
 
                 }
             });

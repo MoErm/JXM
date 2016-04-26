@@ -10,7 +10,12 @@ define(function (require, exports, module) {
                  </div>\
                 <% })%>\
                 \
-                \
+                <div class="same_card_tip">\
+					<h2 class="tip_head"><span class="text">Tips</span><em class="line"></em></h2>\
+					<em class="tip_icon"></em>\
+					<p class="tip_text">1.暂限绑定一张借记卡</p>\
+					<p class="tip_text" style="margin-top: 10px">2.绑卡成功后，提现密码默认为平台登录账号的后6位，可到设置中修改</p>\
+				</div>\
                </article>\
               \
                ';

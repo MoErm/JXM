@@ -371,6 +371,10 @@
         fuyouSmsForCharge: initModel({
             url:host+"/api/fuyou/smsForCharge"
         }),
+        //充值页面跳转
+        fuyouToCharge: initModel({
+            url:host+"/api/fuyou/toCharge"
+        }),
         //充值签名
         fuyouSignForCharge: initModel({
             url:host+"/api/fuyou/signForCharge"

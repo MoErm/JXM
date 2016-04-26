@@ -16,6 +16,12 @@ define(function (require, exports, module) {
         <li class="item v_arrow_r reset_password ">\
         <div class="item_hd">忘记交易密码</div>\
         </li>\
+        <li class="item v_arrow_r reset_password ">\
+        <div class="item_hd">修改提现密码</div>\
+        </li>\
+        <li class="item v_arrow_r reset_password ">\
+        <div class="item_hd">忘记提现密码</div>\
+        </li>\
         </ul>\
         </div>\
         <div class="mod_login_out" id="js_login_out">退出登录</div>\

@@ -202,7 +202,6 @@ define(function(require, exports, module) {
     }
     //删除空格
     Tool.prototype.deleteAllBlank = function(str) {
-
         return str.replace(/\s/g, '');
     }
     //验证手机号码

@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     var myProperty = new Model.myProperty();
     var historyOrder = new Model.historyOrder();
     var getRollingNotice = new Model.getRollingNotice();
+    var fuyouToCharge = new Model.fuyouToCharge();
     var Store = require("jxm/model/store");
     var loginStore = new Store.loginStore();
     var tool = require('jxm/utils/Tool')
@@ -41,11 +42,30 @@ define(function (require, exports, module) {
             App.goTo("ttl_recommend")
         },
         goFuyou:function(){
-            //App.goTo("fuyou")
-            console.log("fu")
+            App.goTo("fuyou")
         },
         goChongZhi:function(){
-            payLayer.signFuyou()
+            fuyouToCharge.exec({
+                type: 'get',
+                success: function(data){
+                    if(data.ret == 0){
+
+                    }else if(data.ret == 110001){
+                        self.promptAlert = handle.alert(data.msg,function(){
+                            App.go("bind_card_new")
+                        });
+                    }else if(data.ret == 110210){
+                        payLayer.signFuyou()
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+
         },
         goCard:function(){
             App.goTo("add_card")
@@ -74,9 +94,8 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             this.setHeader();
-
             self.$el.html(Footer);
-            payLayer.signFuyou()
+            //payLayer.signFuyou()
             self.regQR();
             this.render();
             $(self.header).hide();

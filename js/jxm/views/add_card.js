@@ -4,7 +4,8 @@ define(function (require, exports, module) {
     var myCardTpl = require('jxm/tpl/my.card.tpl');
     var Model = require("jxm/model/model");
     var footer = require('jxm/tpl/card.footer.tpl');
-    var addMyBankCard= new Model.addMyBankCard();
+    //var addMyBankCard= new Model.addMyBankCard();
+    var addMyBankCard= new Model.fuyouCard();
     var changeCheck= new Model.changeCheck();
     var abortChange= new Model.abortChange();
     var HasSetTransPwd = new Model.HasSetTransPwd();
