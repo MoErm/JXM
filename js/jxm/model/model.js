@@ -405,25 +405,25 @@
             url:host+"/api/fy/order/checkOrder"
         }),
         //天天利 购买流程
-        //购买页面初始化
+        // 购买页面初始化
         fuyouInitTtlBuyPage: initModel({
-            url:host+"/api/demand/toBuy"
+            url:host+"/api/fy/demand/toBuy"
         }),
-        //购买天添利
+        // 购买天添利
         fuyouTtlBuyPageCheck: initModel({
-            url:host+"/api/fy/order/createDemandOrder"
-        }),
-        // 获取天添利支付验证码
-        getTtlPayCode: initModel({
-            url:host+"/api/fy/order/getDemandPayMsg"
-        }),
+            url:host+"/api/fy/demand/createDemandOrder"
+        }),      
         // 天添利支付
         fuyouTtlPayOrder: initModel({
-            url:host+"/api/fy/order/payDemandOrder"
+            url:host+"/api/fy/demand/payDemandOrder"
         }),
         // 天添利支付结果检查接口
         fuyouTtlPayResult: initModel({
-            url:host+"/api/fy/order/checkDemandOrder"
+            url:host+"/api/fy/demand/checkDemandOrder"
+        }),
+        // 天添利赎回页跳转接口
+        fuyouConfirmRedeem:initModel({
+            url:host+"/api/fy/demand/confirmRedeem"
         }),
 	}
 	return Model;
