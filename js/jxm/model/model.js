@@ -292,7 +292,7 @@
         getTtlCulInvest: initModel({
         	url:host+"/api/demand/all"
         }),
-        //获取灵活宝资产信息接口
+        //获取天添利资产信息接口
         getTtlProperty: initModel({
         	url:host+"/api/demand/property"
         }),
@@ -304,23 +304,23 @@
         initTtlBuyPage: initModel({
             url:host+"/api/demand/toBuy"
         }),
-        // 同意灵活宝协议
+        // 同意天添利协议
         agreeTtlContract: initModel({
             url:host+"/api/demand/agreeContract"
         }),        
-        //购买灵活宝
+        //购买天添利
         goTtlBuyPageCheck: initModel({
             url:host+"/api/demand/createDemandOrder"
         }),
-        // 获取灵活宝支付验证码
+        // 获取天添利支付验证码
         getTtlPayCode: initModel({
             url:host+"/api/demand/getDemandPayMsg"
         }),
-        // 灵活宝支付
+        // 天添利支付
         goTtlPayOrder: initModel({
             url:host+"/api/demand/payDemandOrder"
         }),
-        // 灵活宝支付结果检查接口
+        // 天添利支付结果检查接口
         goTtlPayResult: initModel({
             url:host+"/api/demand/checkDemandOrder"
         }),
@@ -407,6 +407,27 @@
         //检查订单支付结果
         fuyouCheckOrder: initModel({
             url:host+"/api/fy/order/checkOrder"
+        }),
+        //天天利 购买流程
+        // 购买页面初始化
+        fuyouInitTtlBuyPage: initModel({
+            url:host+"/api/fy/demand/toBuy"
+        }),
+        // 购买天添利
+        fuyouTtlBuyPageCheck: initModel({
+            url:host+"/api/fy/demand/createDemandOrder"
+        }),      
+        // 天添利支付
+        fuyouTtlPayOrder: initModel({
+            url:host+"/api/fy/demand/payDemandOrder"
+        }),
+        // 天添利支付结果检查接口
+        fuyouTtlPayResult: initModel({
+            url:host+"/api/fy/demand/checkDemandOrder"
+        }),
+        // 天添利赎回页跳转接口
+        fuyouConfirmRedeem:initModel({
+            url:host+"/api/fy/demand/confirmRedeem"
         }),
 	}
 	return Model;

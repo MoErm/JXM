@@ -7,8 +7,8 @@ define(function(require, exports, module) {
     var tool = require('jxm/utils/Tool');
     var common = require("jxm/common/common");
     var abortChange = new Model.abortChange();
-    var initTtlBuyPage = new Model.initTtlBuyPage();  //初始化购买页面
-    var goTtlBuyPageCheck = new Model.goTtlBuyPageCheck();  //购买页面跳转
+    var initTtlBuyPage = new Model.fuyouInitTtlBuyPage();  //初始化购买页面
+    var goTtlBuyPageCheck = new Model.fuyouTtlBuyPageCheck();  //购买页面跳转
 
     var handle = new tool();
     var imageSlider = null;
@@ -60,6 +60,7 @@ define(function(require, exports, module) {
             initTtlBuyPage.exec({
                 type: 'get',
                 success: function(data){
+                    debugger
                     self.pageData.cardData= data.data;
                     if(data.ret == 0){     
                         self.initTemple();

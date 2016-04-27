@@ -1,14 +1,16 @@
 define(function(require, exports, module) {
     var Model = require("jxm/model/model");
     var store = require('jxm/model/store');
-    var payOrderMode = new Model.payOrder();
+    var payOrderMode = new Model.fuyouPayOrder(); //固定产品支付
+    var checkOrder = new Model.fuyouCheckOrder(); //固定产品检查支付结果
+
     var confirmRedeem = new Model.confirmRedeem();
     var getMsgCodeModel = new Model.getMsgCodeModel();
+
     var getTtlPayCode = new Model.getTtlPayCode();
     var goTtlPayOrder = new Model.goTtlPayOrder();
     var goTtlPayResult = new Model.goTtlPayResult();
     var getMyBankCard = new Model.addMyBankCard();
-    var checkOrder = new Model.checkOrder();
     var abortChange = new Model.abortChange();
     var tool = require("jxm/utils/Tool");
     var qrcode = require("jxm/utils/qrcode");
@@ -17,36 +19,24 @@ define(function(require, exports, module) {
     var shareBonus = require("jxm/tpl/shareBonus.tpl");
     var loginStore = new store.loginStore();
     var Common = {
+        // 普通产品支付弹窗
         showPayWin: function(order, data, hasCode) {
-            var tem = '<div id="js_paywin" class="mod_popup" style="width:300px;">\
+            var tem = '<div id="js_paywin" class="mod_popup">\
                           <div class="pop_cont">\
                             <div class="pop_hd">\
-                              <h2>支付验证</h2>\
+                              <h2>支付确认</h2>\
                               <a href="javascript:void(0)" class="btn_close js_close"></a></div>\
                             <div class="pop_bd">\
                               <div class="pay_info">\
-                                <h3>' + order.productName + '</h3>\
-                                <p class="sum"><span class="tag_name">支付金额</span><span class="webtxt numb">' + data.paymentAmount + '</span></p>';
-
-            tem += '<p class="sum"><span class="tag_name">红包</span><span class="webtxt numb">' + data.crAmount + '</span></p>'
-
-            tem += '</div>\
-                              <div class="bank_info">\
-                                <div class="v_item">\
-                                  <div class="v_item_hd"><span class="bank_img"><img src="' + data.bankLogo + '" alt=""></span><span class="bank_name">' + data.bankName + '</span><span class="bank_card">尾号' + data.cardTailNo + '</span></div>\
-                                  <div class="v_item_bd"><span style="display: block">支付限额</span><span class="webtxt numb" style="display: block;font-size: 1.2rem">' + data.transactLimit + '</span></div>\
-                                </div>\
-                              </div>\
-                              <div class="pay_form">\
+                                 <p class="sum"><span class="tag_name">'+ order.productName+'</span><span class=" numb">' + order.orderAmount + '</span></p>\
+                                <p class="sum"><span class="tag_name">支付金额</span><span class="webtxt numb">' + data.paymentAmount + '</span></p>\
+                                <p class="sum"><span class="tag_name">红包</span><span class="webtxt numb">' + data.crAmount + '</span></p></div>\
+                            <div class="pay_form">\
                                 <ul>\
                                   <li class="frm_item frm_item_getcode">\
                                     <label for="inpt_code">验证码</label>\
                                     <input type="text" id="inpt_code" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
                                     <span class="code js_code code_disabled">已获取（60）</span></li>\
-                                  <li class="frm_item">\
-                                    <label for="inpt_pssword">交易密码</label>\
-                                    <input type="password" id="inpt_pssword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
-                                  </li>\
                                   <li class="frm_btn"> <a href="javascript:void(0)" class="btn_link btn_link2 js_pay">支付</a> </li>\
                                   <li class="frm_tips">请在<span class="webtxt time js_time">' + '-分-秒' + '</span>内完成支付！</li>\
                                 </ul>\
@@ -120,16 +110,6 @@ define(function(require, exports, module) {
                     });
 
                 },
-                showSelfToast: function(message) {
-                    var self = this;
-                    self.$el.find('.mod_popup_toast').html(message);
-                    self.$el.find('.mod_popup_mask').toggleClass('hidden')
-                    self.$el.find('.mod_popup_toast').toggleClass('hidden')
-
-                    var left = self.$el.find('.mod_popup_toast').width() / 2
-                    self.$el.find('.mod_popup_toast').css('margin-left', '-' + left + 'px')
-                    self.hideSelfToast();
-                },
                 hideSelfToast: function() {
                     var self = this;
                     setTimeout(function() {
@@ -161,14 +141,12 @@ define(function(require, exports, module) {
                     clearInterval(self.codetimer);
                     self.codetimer = setInterval(function() {
                         self.$el.find('.js_code').html('已获取（' + second + '）');
-                        //self.$el.find('.js_code').data("hascode", 1);
                         getCodeFlag=true
                         self.$el.find('.js_code').addClass("code_disabled");
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.codetimer);
                             self.$el.find('.js_code').html('获取验证码');
-                            //self.$el.find('.js_code').data("hascode", 0);
                             getCodeFlag=false
                             self.$el.find('.js_code').removeClass("code_disabled");
                         }
@@ -178,10 +156,12 @@ define(function(require, exports, module) {
                     var self = this;
                     //支付倒计时
                     var surplus = data.surplusPayTime;
+
                     clearInterval(self.ordertimer);
                     self.ordertimer = setInterval(function() {
                         var minute = Math.floor(surplus / 60);
                         var second = surplus - minute * 60;
+
                         self.$el.find('.js_time').html(minute + '分' + second + '秒');
                         surplus -= 1;
                         if (surplus == -1) {
@@ -194,7 +174,6 @@ define(function(require, exports, module) {
                 onShow: function() {
                     var self = this
                     self.showOrderCountDown();
-
 
                     if (hasCode == false) {
                         self.getCode();
@@ -642,7 +621,7 @@ define(function(require, exports, module) {
                 }
             });
         },
-        //选择银行卡
+        // 选择银行卡
         ttlSelectCard: function(cardBox,source,productNo){
             var self = null;
             var currentCardId= cardBox.find("div[data-cardid]").attr("data-cardid");
@@ -758,7 +737,7 @@ define(function(require, exports, module) {
                 selectCardWin.show();
             }
         },
-        //支付弹出窗
+        // 支付弹出窗
         ttlPayWin: function(data,from) {
             var tem = '<article class="ttl_pay_test">\
                     <div class="ttl_pay_test_t">支付确认<em class="close" id="payClose"></em></div>\
@@ -773,10 +752,6 @@ define(function(require, exports, module) {
                                 <label for="inpt_code">验证码</label>\
                                 <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
                                 <span class="code js_code code_disabled">已获取（60）</span></li>\
-                              <li class="frm_item">\
-                                <label for="inpt_pssword">交易密码</label>\
-                                <input type="password" id="checkPassword" maxlength="12" class="frm_inpt" value="" placeholder="" >\
-                              </li>\
                               <li class="forget"><span class="forget_password" id="forget_password">忘记交易密码?</span></li>\
                             </ul>\
                         </div>\
@@ -821,14 +796,12 @@ define(function(require, exports, module) {
                     clearInterval(self.codetimer);
                     self.codetimer = setInterval(function() {
                         self.$el.find('.js_code').html('已获取（' + second + '）');
-                        //self.$el.find('.js_code').data("hascode", 1);
                         getCodeFlag_ttl=true
                         self.$el.find('.js_code').addClass("code_disabled");
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.codetimer);
                             self.$el.find('.js_code').html('获取验证码');
-                            //self.$el.find('.js_code').data("hascode", 0);
                             getCodeFlag_ttl=false
                             self.$el.find('.js_code').removeClass("code_disabled");
                         }
