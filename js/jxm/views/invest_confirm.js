@@ -168,7 +168,7 @@ define(function(require, exports, module) {
             //             self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
             //                 App.goTo('list');
             //             },function(){                          
-            //                 App.goTo('bind_card_new');
+            //                 App.goTo('fuyou_sign');
             //             });                  
             //             self.promptAlert.show();
 
@@ -176,7 +176,7 @@ define(function(require, exports, module) {
 
             //             App.hideLoading();
             //             self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
-            //                App.goTo('list');
+            //                App.goBack();
             //             });                  
             //             self.promptAlert.show();
 
