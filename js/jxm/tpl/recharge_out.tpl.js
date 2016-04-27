@@ -2,22 +2,22 @@ define(function (require, exports, module) {
     var tpl ='<article class="recharge_section recharge_out">\
             <div class="recharge_t">\
                 <ul class="recharge_t_list">\
-                    <li>现金余额(元) <span class="list_con number">88.88</span></li>\
+                    <li>现金余额(元) <span class="list_con number"><%=chargeData.amount%></span></li>\
                     <li>提现金额(元) <span class="list_con"><input type="number" class="recharge_money" id="recharge_out_money" placeholder="100元起"/></span><span class="get_allmoney" id="get_allmoney">全部提现</span></li>\
                 </ul>\
             </div>\
             <div class="recharge_m">\
                 <h2 class="recharge_m_head">提现银行卡</h2>\
                 <div class="mycard" id="cardSelect">\
-                    <p class="maycard_title"><img src="" alt="" class="banklogo" /></p>\
+                     <p class="maycard_title"><img src="<%=chargeData.bankLogo%>" alt="" class="banklogo" /></p>\
                     <div class="mycard_info"  data-cardid= "">\
                         <div class="card_detail">\
-                            <p class="card_cur">光大银行(尾号000)</p>\
-                            <p class="limit_text">单笔限额：'+ 000 +'，单日限额：'+ 000 +'</p>\
+                            <p class="card_cur"><%=chargeData.bankName%>(尾号<%=chargeData.cardTailNo%>)</p>\
+                            <p class="limit_text">单笔限额：<%=chargeData.transactLimit%> ，单日限额：<%=chargeData.dailyLimit%> </p>\
                         </div>\
                     </div>\
                 </div>\
-                <div class="recharge_m_times">今日剩余免费提现 <span class="times_num">3</span> 次</div>\
+                <div class="recharge_m_times">今日剩余免费提现 <span class="times_num"><%=chargeData.surplusCount%></span> 次</div>\
             </div>\
             <div class="recharge_b">\
                 <button class="action_buy" id="recharge_btn">提现</button>\
