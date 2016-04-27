@@ -363,6 +363,10 @@
         fuyouCard: initModel({
             url:host+"/api/fuyou/card"
         }),
+        //查询已绑定的银行卡
+        fuyouNotSignedCard: initModel({
+            url:host+"/api/fuyou/notSignedCard"
+        }),
         //查询现金余额
         fuyouBalance: initModel({
             url:host+"/api/fuyou/balance"

@@ -84,6 +84,10 @@ window.global_config = {
             "controller": "fuyou"
         },
         {
+            "url": "fuyou_sign",
+            "controller": "fuyou_sign"
+        },
+        {
             "url": "fuyouDetail",
             "controller": "fuyouDetail"
         },
@@ -262,6 +266,7 @@ requirejs.config({
         'reg_next': 'jxm/views/reg_next',
         'regYY': 'jxm/views/regYY',
         'fuyou': 'jxm/views/fuyou',
+        'fuyou_sign': 'jxm/views/fuyou_sign',
         'fuyouDetail': 'jxm/views/fuyouDetail',
         'get_password': 'jxm/views/get_password',
         'get_password_next': 'jxm/views/get_password_next',

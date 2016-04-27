@@ -27,11 +27,15 @@ define(function (require, exports, module) {
            }
         },
         events: {
-            'click .js_add_card': 'goAddCard'
+            'click .js_add_card': 'goAddCard',
+            'click .js_next': 'goSign'
         },
         onShow: function () {
 
             return this.showCard();
+        },
+        goSign:function(){
+
         },
         showCard:function(){
              self = this;
@@ -41,17 +45,23 @@ define(function (require, exports, module) {
                 success: function (data){
                     self.data=data.data;
                     App.hideLoading();
+                    console.log(self.data)
                     if(data.ret == 0){
-                        if(data.data.cardList.length!=0){
-                            self.$el.html(_.template(myCardTpl + footer)(data.data));
+                        self.$el.html(_.template(myCardTpl + footer)(data.data));
                             self.setHeader2();
-                            //console.log(self.data.cardList[0].status)
+                        //if(data.data.cardList.length!=0){
+                        //    self.$el.html(_.template(myCardTpl + footer)(data.data));
+                        //    self.setHeader2();
+                        //    //console.log(self.data.cardList[0].status)
+                        //
+                        //}else{
+                        //    self.setHeader();
+                        //    self.$el.html(addCard + footer);
+                        //}
 
-                        }else{
-                            self.setHeader();
-                            self.$el.html(addCard + footer);
-                        }
-
+                    }else if(data.ret == 110001){
+                        self.setHeader();
+                        self.$el.html(addCard + footer);
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else {
@@ -106,9 +116,15 @@ define(function (require, exports, module) {
                 },
                 right:
                     [{
-                        'tagname': 'changeCard', 'value': '<i style="font-size: 3rem">&plus;</i>&nbsp;&nbsp;',
+                        'tagname': 'changeCard', 'value': '更换银行卡&nbsp;',
                         callback: function () {
-                            App.goTo('bind_card_new');
+                            var customer = self.$('.js_customer');
+                            if(!self.callPhone){
+                                self.callPhone = handle.prompt('更换银行卡请联系客服并提供相应证明，客服电话：4008-339-869','取消', '呼叫', null, function(){
+                                    customer.trigger('click');
+                                });
+                            }
+                            self.callPhone.show();
                         }
                     }]
             });

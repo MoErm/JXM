@@ -70,7 +70,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .foot_nav { position: relative; width: 100%; height: 55px; background-color: #FFF; }
 .foot_nav::before { position: absolute; left: 0; top: 0; width: 100%; height: 1px; content: ''; background-color: #ebebeb; overflow: hidden; }
 .foot_nav ul { display: table; table-layout: fixed; width: 100%; }
-.foot_nav li { display: table-cell; height: 42px; line-height: 16px; font-size: 1.2rem; text-align: center; color: #98999a; vertical-align: middle; padding: 8px 10px 4px 10px; }
+.foot_nav li { display: table-cell; height: 42px; line-height: 16px; font-size: 1.2rem; text-align: center;  vertical-align: middle; padding: 8px 10px 4px 10px; }
 .foot_nav li::before { display: block; margin-left: auto; margin-right: auto; margin-bottom: 2px; }
 .foot_nav a { color: #98999a; }
 .foot_nav li:hover, .foot_nav .cur, .foot_nav .cur a, .foot_nav .cur a:hover { color: #d21c00; }

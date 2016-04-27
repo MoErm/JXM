@@ -559,7 +559,7 @@ define(function(require, exports, module) {
                 },
                 toSign:function(){
                     this.hide();
-                    //App.goTo("my_wallet")
+                    App.goTo("fuyou_sign")
 
                 },
                 onShow: function() {
