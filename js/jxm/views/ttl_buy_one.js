@@ -60,7 +60,6 @@ define(function(require, exports, module) {
             initTtlBuyPage.exec({
                 type: 'get',
                 success: function(data){
-                    debugger
                     self.pageData.cardData= data.data;
                     if(data.ret == 0){     
                         self.initTemple();
