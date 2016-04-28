@@ -6,9 +6,7 @@ define(function(require, exports, module) {
     var common = require("jxm/common/common");
     var recharge = require('jxm/tpl/recharge.tpl');
     var fuyouToCharge = new Model.fuyouToCharge();  // 获取页面初始数据
-    var fuyouSmsForCharge = new Model.fuyouSmsForCharge();  // 获取充值验证码
     var fuyouSignForCharge = new Model.fuyouSignForCharge();  // 充值签名
-
     var handle = new tool();
     var self = null;
     module.exports = App.Page.extend({
@@ -16,7 +14,7 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-
+            'click #recharge_btn':'goToRecharge'
         },        
         onShow: function() {
             self = this.initialize();
@@ -25,12 +23,9 @@ define(function(require, exports, module) {
             // 定义初始化方法 
             self.setHeader();            
             self.getInitTemData();   
-            // self.getSmsForCharge();       
-            // self.getSignForCharge();       
         }, 
         initTemple: function(){
             //添加内容        
-            console.log(self.pageData)
             self.$el.html(_.template(recharge)(self.pageData));
         },       
         setHeader: function () {
@@ -54,6 +49,9 @@ define(function(require, exports, module) {
                 success: function(data){
                     if(data.ret == 0){     
                         self.pageData.chargeData= data.data;
+                        // 处理限额信息
+                        self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?self.pageData.chargeData.dailyLimit:'无限额';
+                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额';                        
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
@@ -94,54 +92,40 @@ define(function(require, exports, module) {
                 }
             });  
         },
-        getSmsForCharge: function(){ // 获取充值验证码
-            fuyouSmsForCharge.exec({
-                type: 'get',
-                success: function(data){
-                    if(data.ret == 0){     
-                      console.log('短信获取成功')
-                    }
-                    else if(data.ret == 999001){ // 登录超时
-                         App.goTo('login');
-                    }
-                    else if(data.ret == 110001){ // 未完成实名绑卡 跳转到实名绑卡流程
-                        App.hideLoading();
-                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
-                            App.goBack();
-                        },function(){                          
-                            App.goTo('bind_card_new');
-                        });
-                        self.promptAlert.show();
-                    }
-                    else if(data.ret == 110210){ // 当前银行卡未签约，请先签约 
-                        App.hideLoading();                       
-                        self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
-                            App.goBack();
-                        },function(){                          
-                            App.goTo('fuyou_sign');
-                        });                  
-                        self.promptAlert.show();
-                    }                   
-                    else{
-                        App.showToast(data.msg  || self.message);
-                    }
-                    App.hideLoading();
-                },
-                error: function(){
-                    App.hideLoading();
+        goToRecharge: function(){
+            var rechargeData={
+                'amount':$("#recharge_money").val()
+            }
+            // 充值金额校验
+            function checkAmount(){
+                 if(rechargeData.amount==''){ // 空验证
+                    App.showToast('充值金额不能为空');
+                    return;
                 }
-            });  
-        },
-        getSignForCharge: function(){ // 充值签名
+                if(parseInt(rechargeData.amount)<100){
+                    App.showToast('充值金额不能小于100');
+                    return;
+                }
+                if(parseInt(rechargeData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
+                    App.showToast('充值金额不能大于银行卡单笔限额');
+                    return;
+                }
+                return true;
+            }    
+
+            if(checkAmount(rechargeData)){
+                self.goSignForCharge(rechargeData);
+            }
+        }, 
+        goSignForCharge: function(rechargeData){ // 充值签名
             fuyouSignForCharge.set({
-                'amount': 0,
-                'smsCode': 838616
+                'amount': rechargeData.amount
             });
             fuyouSignForCharge.exec({
                 type: 'get',
                 success: function(data){
-                    if(data.ret == 0){     
-                        console.log('充值成功')
+                    if(data.ret == 0){  
+                        creatForm(data.data);
                     }
                     else if(data.ret == 999001){ // 登录超时
                          App.goTo('login');
@@ -173,6 +157,31 @@ define(function(require, exports, module) {
                     App.hideLoading();
                 }
             });  
+            
+            function creatForm(postData){
+                // 创建
+                var tem='<form method="post" id="recharge_form" accept-charset="utf-8">\
+                        <input type="hidden" id="amount" name="amount" />\
+                        <input type="hidden" id="bgCallback"  name="bgCallback" />\
+                        <input type="hidden" id="loginId"  name="loginId" />\
+                        <input type="hidden" id="merCode"  name="merCode" />\
+                        <input type="hidden" id="pgCallback"  name="pgCallback" />\
+                        <input type="hidden" id="serialNo"  name="serialNo" />\
+                        <input type="hidden" id="signature"  name="signature" />\
+                    </form>';                    
+                $('body').append(tem);
+                // 赋值
+                $("#amount").val(postData.amount);
+                $("#bgCallback").val(postData.bgCallback);
+                $("#loginId").val(postData.loginId);
+                $("#merCode").val(postData.merCode);
+                $("#pgCallback").val(postData.pgCallback);
+                $("#serialNo").val(postData.serialNo);
+                $("#signature").val(postData.signature);
+                $("#recharge_form").attr('action',postData.chargeUrl);
+                // 提交
+                $("#recharge_form").submit();
+            }
         }
     });
 

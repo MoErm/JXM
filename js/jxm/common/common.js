@@ -2,11 +2,9 @@ define(function(require, exports, module) {
     var Model = require("jxm/model/model");
     var store = require('jxm/model/store');
     var payOrderMode = new Model.fuyouPayOrder(); //固定产品支付
-    var checkOrder = new Model.fuyouCheckOrder(); //固定产品检查支付结果
-
+    var checkOrder = new Model.fuyouCheckOrder(); //固定产品检查支付结果   
     var confirmRedeem = new Model.confirmRedeem();
     var getMsgCodeModel = new Model.getMsgCodeModel();
-
     var getTtlPayCode = new Model.getTtlPayCode();
     var goTtlPayOrder = new Model.goTtlPayOrder();
     var goTtlPayResult = new Model.goTtlPayResult();

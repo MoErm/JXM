@@ -15,7 +15,8 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #get_allmoney ':'getAllmoneyFn'
+            'click #get_allmoney ':'getAllmoneyFn',
+            'click #recharge_btn':'goToRechargeOut'
         },     
         onShow: function() {
             self = this.initialize();
@@ -27,7 +28,6 @@ define(function(require, exports, module) {
             // self.getSignForChargeOut();            
         }, 
         initTemple: function(){
-            console.log(self.pageData)           
             //添加内容
             self.$el.html(_.template(recharge)(self.pageData));
         },       
@@ -47,7 +47,7 @@ define(function(require, exports, module) {
             App.hideLoading();
         },         
         getAllmoneyFn: function(){
-            $("#recharge_out_money").val('88')
+            $("#recharge_out_money").val(self.pageData.chargeData.amount)
         }, 
         getInitTemData: function(){
             fuyouToWithdraw.exec({
@@ -55,6 +55,9 @@ define(function(require, exports, module) {
                 success: function(data){
                     if(data.ret == 0){     
                         self.pageData.chargeData= data.data;
+                         // 处理限额信息
+                        self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?self.pageData.chargeData.dailyLimit:'无限额';
+                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额';                        
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
@@ -95,15 +98,40 @@ define(function(require, exports, module) {
                 }
             });
         },
-        getSignForChargeOut: function(){ // 充值签名
+        goToRechargeOut: function(){
+            var rechargeOutData={
+                'amount':$("#recharge_out_money").val()
+            }
+            // 充值金额校验
+            function checkAmount(){
+                 if(rechargeOutData.amount==''){ // 空验证
+                    App.showToast('提现金额不能为空');
+                    return;
+                }
+                if(parseInt(rechargeOutData.amount)<100 && parseInt(rechargeOutData.amount)!=parseInt(self.pageData.chargeData.amount)){
+                    App.showToast('提现余额小余100元，需一次性全额提现');
+                    return;
+                }
+                if(parseInt(rechargeOutData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
+                    App.showToast('提现金额不能大于银行卡单笔限额');
+                    return;
+                }
+                return true;
+            }    
+
+            if(checkAmount(rechargeOutData)){
+                self.getSignForChargeOut(rechargeOutData);
+            }
+        }, 
+        getSignForChargeOut: function(rechargeOutData){ // 充值签名
             fuyouSignForWithdraw.set({
-                'amount': 0
+                'amount': rechargeOutData.amount
             });
             fuyouSignForWithdraw.exec({
                 type: 'get',
                 success: function(data){
-                    if(data.ret == 0){     
-                        console.log('提现成功')
+                    if(data.ret == 0){    
+                        creatForm(data.data)
                     }
                     else if(data.ret == 999001){ // 登录超时
                          App.goTo('login');
@@ -134,7 +162,31 @@ define(function(require, exports, module) {
                 error: function(){
                     App.hideLoading();
                 }
-            });  
+            }); 
+            function creatForm(postData){
+                // 创建
+                var tem='<form method="post" id="recharge_out_form" accept-charset="utf-8">\
+                        <input type="hidden" id="amount" name="amount" />\
+                        <input type="hidden" id="bgCallback"  name="bgCallback" />\
+                        <input type="hidden" id="loginId"  name="loginId" />\
+                        <input type="hidden" id="merCode"  name="merCode" />\
+                        <input type="hidden" id="pgCallback"  name="pgCallback" />\
+                        <input type="hidden" id="serialNo"  name="serialNo" />\
+                        <input type="hidden" id="signature"  name="signature" />\
+                    </form>';                     
+                $('body').append(tem);
+                // 赋值
+                $("#amount").val(postData.amount);
+                $("#bgCallback").val(postData.bgCallback);
+                $("#loginId").val(postData.loginId);
+                $("#merCode").val(postData.merCode);
+                $("#pgCallback").val(postData.pgCallback);
+                $("#serialNo").val(postData.serialNo);
+                $("#signature").val(postData.signature);
+                $("#recharge_out_form").attr('action',postData.withdrawUrl);
+                // 提交
+                $("#recharge_out_form").submit();
+            } 
         }
     });
 
