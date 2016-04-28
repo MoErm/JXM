@@ -56,7 +56,7 @@ define(function (require, exports, module) {
                             App.go("bind_card_new")
                         });
                     }else if(data.ret == 110210){
-                        payLayer.signFuyou()
+                        self.sign=payLayer.signFuyou()
                     }else{
                         App.showToast(data.msg  || self.message);
                     }
@@ -96,7 +96,7 @@ define(function (require, exports, module) {
             handle.share();
             this.setHeader();
             self.$el.html(Footer);
-            self.sign=payLayer.signFuyou()
+
             self.regQR();
             this.render();
             $(self.header).hide();

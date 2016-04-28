@@ -1,7 +1,7 @@
 define(function (require, exports, module) {
     var tpl= '\
     <article class="mod_user_center mod_card_bind">\
-                    <form action="" method="post" id="myform" accept-charset="utf-8">\
+                    <form action="" method="post" id="signForm" accept-charset="utf-8">\
                     <div class="bind_bank_card">\
                         <div class="cardNo">\
                             <div class="bind_card_title" style="background: #e4e3e3">银行卡号</div>\
@@ -17,7 +17,7 @@ define(function (require, exports, module) {
                         </div>\
                         <div class="cardBank ">\
                             <div class="bind_card_title">预留手机号</div>\
-                            <div class="bind_card_text"><input type="tel" value="" placeholder="请输入银行预留手机号"  class="text_input " id="js_cardMobile"  maxlength="11"/></div>\
+                            <div class="bind_card_text"><input type="tel"  placeholder="请输入银行预留手机号"  class="text_input " id="js_cardMobile"  maxlength="11"/></div>\
                         </div>\
                     </div>\
                     <div style="clear: both">\
@@ -25,13 +25,9 @@ define(function (require, exports, module) {
                     <div class="btn_box_submit js_next">下一步</div>\
                     <input type="hidden" id="mchnt_cd" name="mchnt_cd">\
                     <input type="hidden" id="mchnt_txn_ssn" name="mchnt_txn_ssn">\
-                    <input type="hidden" id="certif_tp" name="certif_tp">\
-                    <input type="hidden" id="cust_nm" name="cust_nm">\
-                    <input type="hidden" id="mobile_no" name="mobile_no">\
-                    <input type="hidden" id="city_id" name="city_id">\
-                    <input type="hidden" id="capAcntNo" name="capAcntNo">\
-                    <input type="hidden" id="certif_id" name="certif_id">\
-                    <input type="hidden" id="back_notify_url" name="back_notify_url">\
+                    <input type="hidden" id="login_id" name="login_id">\
+                    <input type="hidden" id="mobile" name="mobile">\
+                    <input type="hidden" id="page_notify_url" name="page_notify_url">\
                     <input type="hidden" id="signature" name="signature">\
                 </form>\
                 </article>';

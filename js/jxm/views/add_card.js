@@ -35,7 +35,7 @@ define(function (require, exports, module) {
             return this.showCard();
         },
         goSign:function(){
-
+            App.goTo("fuyou_sign")
         },
         showCard:function(){
              self = this;
@@ -111,7 +111,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('setting');
+                        App.goTo('my_invest');
                     }
                 },
                 right:

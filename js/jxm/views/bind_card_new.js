@@ -15,6 +15,7 @@ define(function (require, exports, module) {
         //var getSignature = new model.getSignature();
         var getSignature = new model.fuyouCardRegister();
         var getRealInfo = new model.getRealInfo();
+        var fuyouCurrentCardInfo = new model.fuyouCurrentCardInfo();
         var footer = require('jxm/tpl/card.footer.tpl');
         var handle = new tool();
         var message = '网络错误，请稍后重试';
@@ -146,7 +147,7 @@ define(function (require, exports, module) {
 
 
 
-                            self.$('#merCode').val(data.data.merCode)
+                            self.$('#mchnt_cd').val(data.data.merCode)
                             self.$('#mchnt_txn_ssn').val(data.data.serialNo)
                             self.$('#mobile_no').val(data.data.loginId)
                             self.$('#city_id').val(self.cityData.cityId)
@@ -410,18 +411,20 @@ define(function (require, exports, module) {
             },
             checkUserInfo:function(){
 
-                getRealInfo.exec({
+                fuyouCurrentCardInfo.exec({
                     type: 'get',
                     success: function(data){
                         App.hideLoading();
                         if(data.ret == 0){
                             //存变量
-                            if(data.data.userName!=null){
-                                self.$('.js_name').val(data.data.userName)
+                            if(data.data.name!=null){
+                                self.$('.js_name').val(data.data.name)
                                 self.$('.js_name')[0].readOnly=true
 
-                                self.$('.js_id_card').val(data.data.certNo)
+                                self.$('.js_id_card').val(data.data.certNum)
                                 self.$('.js_id_card')[0].readOnly=true
+                                self.$('#js_type_input_hidden').val(data.data.certType)
+                                self.$('.js_type_input').val(data.data.certType=="01"?"身份证":"其他证件")
                             }
 
                         }else if(data.ret == 999001){
