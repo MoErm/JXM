@@ -391,6 +391,18 @@
         fuyouSignForWithdraw: initModel({
             url:host+"/api/fuyou/signForWithdraw"
         }),
+        //支付密码修改签名
+        fuyouSignForPayPwdModify: initModel({
+            url:host+"/api/fuyou/signForPayPwdModify"
+        }),
+        //交易记录查询
+        fuyouTradeRecords: initModel({
+            url:host+"/api/fuyou/tradeRecords"
+        }),
+        //交易详情
+        fuyouTradeInfo: initModel({
+            url:host+"/api/fuyou/tradeInfo"
+        }),
         //购买流程
         //立即投资
         fuyouToInvestConfirm: initModel({

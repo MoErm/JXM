@@ -3,8 +3,8 @@ define(function (require, exports, module) {
     var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
     var Template = require("jxm/tpl/fuyou.tpl");
-    var orderList = new Model.orderList();
-    var historyOrder = new Model.historyOrder();
+    var fuyouTradeRecords = new Model.fuyouTradeRecords();
+    var fuyouBalance = new Model.fuyouBalance();
 
     var Store = require("jxm/model/store");
     var loginStore = new Store.loginStore();
@@ -26,11 +26,49 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             this.setHeader();
-            self.$el.html(_.template(Template));
+
             App.hideLoading()
+            this.initData()
             return
         },
-
+        initData:function(){
+            fuyouTradeRecords.exec({
+                type: "get",
+                success: function (data){
+                    console.log(data)
+                    App.hideLoading();
+                    if(data.ret == 0){
+                        self.data.records=data.data.records
+                        self.initYuE()
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }
+                },
+                error:function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
+        },
+        initYuE:function(){
+            fuyouBalance.exec({
+                type: 'get',
+                success: function(data){
+                    if(data.ret == 0){
+                        self.data.fyAmount = data.data.amount
+                        self.$el.html(_.template(Template));
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+        },
         setHeader: function () {
             var header = new App.UI.UIHeader();
 
