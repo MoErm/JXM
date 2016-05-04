@@ -4,7 +4,7 @@ define(function (require, exports, module) {
 	  \
 	   <div class="fuyou">\
 	      <div class="invest_title">现金余额<small>(元)</small></div>\
-	      <div class="invest_money">12333</div>\
+	      <div class="invest_money"><%=amount%></div>\
 	  </div>\
 	      <div class="fuyou_income">\
 				<div class="currentIncome">\

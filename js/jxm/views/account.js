@@ -8,6 +8,7 @@ define(function (require, exports, module) {
     var realStatusCheck = new Model.realStatusCheck();
     var loginStore = new Store.loginStore();
     var loginOut = new Model.loginOut();
+    var fuyouSignForPayPwdModify= new Model.fuyouSignForPayPwdModify();
     var self;
     module.exports = App.Page.extend({
         template: Template,
@@ -15,7 +16,37 @@ define(function (require, exports, module) {
             'click #js_mod_log_password': 'goModLogPassword',
             'click .reset_password': 'goResetPassword',
             'click .set_trans_psw': 'goTranslatePassword',
+            'click .fuyou_reset': 'fuyouReset',
             'click #js_login_out': 'doLoginOut'
+        },
+        fuyouReset:function(){
+            fuyouSignForPayPwdModify.exec({
+                type: "get",
+                success: function (data){
+                    self.data=data.data;
+                    App.hideLoading();
+                    console.log(self.data)
+                    if(data.ret == 0){
+                        self.$('#mchnt_cd').val(data.data.merCode)
+                        self.$('#mchnt_txn_ssn').val(data.data.serialNo)
+                        self.$('#login_id').val(data.data.loginId)
+                        self.$('#busi_tp').val(data.data.businessType)
+                        self.$('#back_url').val(data.data.callbackUrl)
+                        self.$('#signature').val(data.data.signature)
+                        var actionUrl= data.data.modifyUrl;
+                        self.$('#fuyouReset')[0].action =actionUrl;
+                        document.getElementById('fuyouReset').submit();
+                    }else if(data.ret == 999001){
+                        handle.goLogin();
+                    }else {
+                        App.showToast(data.msg || message);
+                    }
+                },
+                error:function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
         },
         goTranslatePassword: function () {
             var status=this.$el.find('.set_trans_psw').data("isSetTransPsw");

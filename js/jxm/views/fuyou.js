@@ -35,10 +35,9 @@ define(function (require, exports, module) {
             fuyouTradeRecords.exec({
                 type: "get",
                 success: function (data){
-                    console.log(data)
+                    //console.log(data)
                     App.hideLoading();
                     if(data.ret == 0){
-                        self.data.records=data.data.records
                         self.initYuE()
                     }else if(data.ret == 999001){
                         handle.goLogin();
@@ -54,9 +53,10 @@ define(function (require, exports, module) {
             fuyouBalance.exec({
                 type: 'get',
                 success: function(data){
+                    console.log(data.data.amount)
                     if(data.ret == 0){
-                        self.data.fyAmount = data.data.amount
-                        self.$el.html(_.template(Template));
+                        self.data=data.data
+                        self.$el.html(_.template(Template)(self.data));
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{
