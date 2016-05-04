@@ -59,7 +59,7 @@ define(function (require, exports, module) {
             App.showLoading();
 //            loginModel.set({"userId": phone_num, "loginPwd": passWord, "captcha": code_num})
              var sendData={
-                 "userId": phone_num, "loginPwd": passWord, "captcha": code_num,"openId":openId,"source":source
+                 "userId": phone_num, "loginPwd": passWord, "captcha": code_num,"openId":openId,"source":source,"version":"1.1"
              }
 
             //loginModel.set({"userId": phone_num, "loginPwd": passWord, "captcha": code_num,"openId":openId})

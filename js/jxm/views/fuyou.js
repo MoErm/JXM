@@ -15,13 +15,21 @@ define(function (require, exports, module) {
     //接口
     module.exports = App.Page.extend({
         events: {
-            'click #fuyouList_1': 'goDetail'
+            'click #fuyouList_1': 'goDetail',
+            'click .currentIncome': 'rechargeOut',
+            'click .historyIncome': 'recharge'
         },
         initialize: function () {
             self = this;
         },
         goDetail:function(){
             App.goTo("fuyouDetail")
+        },
+        recharge:function(){
+            App.goTo("recharge")
+        },
+        rechargeOut:function(){
+            App.goTo("recharge_out")
         },
         onShow: function () {
             handle.share();

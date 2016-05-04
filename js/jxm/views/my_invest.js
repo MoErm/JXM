@@ -50,7 +50,7 @@ define(function (require, exports, module) {
                 type: 'get',
                 success: function(data){
                     if(data.ret == 0){
-
+                        App.goTo("recharge")
                     }else if(data.ret == 110001){
                         self.promptAlert = handle.alert(data.msg,function(){
                             App.go("bind_card_new")
