@@ -166,24 +166,24 @@ define(function(require, exports, module) {
             function creatForm(postData){
                 // 创建
                 var tem='<form method="post" id="recharge_out_form" accept-charset="utf-8">\
-                        <input type="hidden" id="amount" name="amount" />\
-                        <input type="hidden" id="bgCallback"  name="bgCallback" />\
-                        <input type="hidden" id="loginId"  name="loginId" />\
-                        <input type="hidden" id="merCode"  name="merCode" />\
-                        <input type="hidden" id="pgCallback"  name="pgCallback" />\
-                        <input type="hidden" id="serialNo"  name="serialNo" />\
+                        <input type="hidden" id="amt" name="amt" />\
+                        <input type="hidden" id="back_notify_url"  name="back_notify_url" />\
+                        <input type="hidden" id="login_id"  name="login_id" />\
+                        <input type="hidden" id="mchnt_cd"  name="mchnt_cd" />\
+                        <input type="hidden" id="page_notify_url"  name="page_notify_url" />\
+                        <input type="hidden" id="mchnt_txn_ssn"  name="mchnt_txn_ssn" />\
                         <input type="hidden" id="signature"  name="signature" />\
                     </form>';                     
                 $('body').append(tem);
                 // 赋值
-                $("#amount").val(postData.amount);
-                $("#bgCallback").val(postData.bgCallback);
-                $("#loginId").val(postData.loginId);
-                $("#merCode").val(postData.merCode);
-                $("#pgCallback").val(postData.pgCallback);
-                $("#serialNo").val(postData.serialNo);
-                $("#signature").val(postData.signature);
-                $("#recharge_out_form").attr('action',postData.withdrawUrl);
+                $("#amt").val(postData.amount); // 充值金额（以分为单位）
+                $("#back_notify_url").val(postData.bgCallback); // 后台回调地址
+                $("#login_id").val(postData.loginId); // 个人用户登录名
+                $("#mchnt_cd").val(postData.merCode); // 商户号
+                $("#page_notify_url").val(postData.pgCallback); // 前台回调地址
+                $("#mchnt_txn_ssn").val(postData.serialNo); // 流水号码
+                $("#signature").val(postData.signature); // 签名值
+                $("#recharge_out_form").attr('action',postData.withdrawUrl); // 提现地址
                 // 提交
                 $("#recharge_out_form").submit();
             } 
