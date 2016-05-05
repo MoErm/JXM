@@ -7,7 +7,8 @@ define(function(require, exports, module) {
     var tool = require('jxm/utils/Tool');
     var common = require("jxm/common/common");
     var abortChange = new Model.abortChange();
-    var initTtlBuyPage = new Model.fuyouInitTtlBuyPage();  //初始化购买页面
+    // var initTtlBuyPage = new Model.fuyouInitTtlBuyPage();  //初始化购买页面
+    var initTtlBuyPage = new Model.initTtlBuyPage();  //初始化购买页面
     var goTtlBuyPageCheck = new Model.fuyouTtlBuyPageCheck();  //购买页面跳转
 
     var handle = new tool();
@@ -119,7 +120,14 @@ define(function(require, exports, module) {
 
             App.goTo('ttl_introduce');
         },
-        goBuyPagePost: function(goBuyData){
+        goBuyPagePost: function(goBuyData){            
+            // 支付信息：金额，红包，时间
+            // var initData= {
+            //     'amountVal': '30000',
+            //     'crAmount': '50',
+            //     'surplusPayTime':300
+            // }
+            //  common.ttlPayWin(initData);
             //购买post数据并检测银行卡，交易密码
             App.showLoading();            
             goTtlBuyPageCheck.set({

@@ -19,7 +19,7 @@ define(function(require, exports, module) {
     var Common = {
         // 普通产品支付弹窗
         showPayWin: function(order, data, hasCode) {
-            var tem = '<div id="js_paywin" class="mod_popup">\
+            var tem = '<div id="js_paywin" class="paywin_box">\
                           <div class="pop_cont">\
                             <div class="pop_hd">\
                               <h2>支付确认</h2>\
@@ -678,9 +678,9 @@ define(function(require, exports, module) {
             }            
             getCardList.init();
             function showCardWin(cardDetail,cardData){                
-                var tem = '<article class="ttl_pay_test">\
-                    <div class="ttl_pay_test_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
-                    <div class="ttl_pay_test_m">\
+                var tem = '<article class="paywin_box">\
+                    <div class="paywin_box_t">选择支付银行卡<em class="close" id="cardSelectClose"></em></div>\
+                    <div class="paywin_box_m">\
                         <div class="ttl_card_select">\
                             <ul class="ttl_card_list" id="cardList">'+cardDetail+'</ul>\
                             <div class="ttl_card_add" id="useNewCard">使用新卡支付</div>\
@@ -737,9 +737,9 @@ define(function(require, exports, module) {
         },
         // 支付弹出窗
         ttlPayWin: function(data,from) {
-            var tem = '<article class="ttl_pay_test">\
-                    <div class="ttl_pay_test_t">支付确认<em class="close" id="payClose"></em></div>\
-                    <div class="ttl_pay_test_m">\
+            var tem = '<article class="paywin_box">\
+                    <div class="paywin_box_t">支付确认<em class="close" id="payClose"></em></div>\
+                    <div class="paywin_box_m">\
                         <div class="paycontent pay_form">\
                             <div class="pay_detail">\
                                 <p class="title">投资金额</p>\
@@ -754,7 +754,7 @@ define(function(require, exports, module) {
                             </ul>\
                         </div>\
                     </div>\
-                    <div class="ttl_pay_test_b">\
+                    <div class="paywin_box_b">\
                         <div class="action">\
                             <input type="button" value="支付" class="gopay" id="gopay" />\
                             <p class="tip">请在 <em class="tip_num"></em> 内完成支付！</p>\
@@ -807,7 +807,7 @@ define(function(require, exports, module) {
                 },
                 showOrderCountDown: function() {
                     //支付倒计时
-                    var surplus = data.postData.surplusPayTime;
+                    var surplus = data.surplusPayTime;                    
                     clearInterval(self.ordertimer);
                     self.ordertimer = setInterval(function() {
                         var minute = Math.floor(surplus / 60);

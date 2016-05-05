@@ -10,7 +10,7 @@ define(function (require, exports, module) {
         var realStatusCheck = new model.realStatusCheck();
         var abortChange= new model.abortChange();
         var getUserInfo = new model.getUserInfo();
-        var toInvestConfirmMode = new model.toInvestConfirm();
+        var fuyouToInvestConfirmMode = new model.fuyouToInvestConfirm();
         var page;
         var handle = new tool();
         var timer = {};
@@ -403,8 +403,8 @@ define(function (require, exports, module) {
             //立即购买
             toInvestConfirm: function(pid){
                 App.showLoading();
-                toInvestConfirmMode.set({'productNo': pid});
-                toInvestConfirmMode.exec({
+                fuyouToInvestConfirmMode.set({'productNo': pid});
+                fuyouToInvestConfirmMode.exec({
                     type: 'post',
                     success: function(data){
                         App.hideLoading();

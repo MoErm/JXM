@@ -90,110 +90,111 @@ define(function(require, exports, module) {
             return Number(num1) + Number(num2);
         },
         renderProduct: function() { // 初始化产品
-            var orderData={
-                'productName': '月月加薪',
-                'orderAmount': '30000'
-            }
-            var initData= {
-                'paymentAmount': '30000',
-                'crAmount': '50',
-                'surplusPayTime':300
-            }
-            common.showPayWin(orderData,initData);
-            // 2016-4-22 
-            // App.showLoading();
-            // this.$el.html('');
-            // var query = this.request.query;
-            // if (_.isUndefined(query) || _.isUndefined(query.pid)) {
-            //     App.goTo('list');
-            //     return;
+            // var orderData={
+            //     'productName': '月月加薪',
+            //     'orderAmount': '30000'
             // }
-            // toInvestConfirmMode.set({
-            //     'productNo': query.pid
-            // });
-            // return toInvestConfirmMode.exec({
-            //     type: 'post',
-            //     success: function(data) {
-            //         App.hideLoading();
-            //         if (data.ret == 0) {
-            //             // 初始化页面数据
-            //             self.initData = data.data;
-            //             self.initData.additionalAmount_show = handle.dealMoney(self.initData.additionalAmount);
-            //             self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
-            //             self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
-            //             self.initData.surplusAmount_show = handle.dealMoney(self.initData.surplusAmount);
+            // // 支付信息：金额，红包，时间
+            // var initData= {
+            //     'paymentAmount': '30000',
+            //     'crAmount': '50',
+            //     'surplusPayTime':300
+            // }
+            // common.showPayWin(orderData,initData);
+            // 2016-4-22 
+            App.showLoading();
+            this.$el.html('');
+            var query = this.request.query;
+            if (_.isUndefined(query) || _.isUndefined(query.pid)) {
+                App.goTo('list');
+                return;
+            }
+            toInvestConfirmMode.set({
+                'productNo': query.pid
+            });
+            return toInvestConfirmMode.exec({
+                type: 'post',
+                success: function(data) {
+                    App.hideLoading();
+                    if (data.ret == 0) {
+                        // 初始化页面数据
+                        self.initData = data.data;
+                        self.initData.additionalAmount_show = handle.dealMoney(self.initData.additionalAmount);
+                        self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
+                        self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
+                        self.initData.surplusAmount_show = handle.dealMoney(self.initData.surplusAmount);
                         
-            //             if (self.initData.incomeType != "03") {
-            //                 self.initData.incomeceiling = self.initData.incomeRateCeiling.split('%')[0]
-            //                 self.initData.incomefloor = self.initData.incomeRateFloor.split('%')[0]
-            //                 self.initData.activityrate = self.initData.activityIncomeRate.split('%')[0]
-            //             }
+                        if (self.initData.incomeType != "03") {
+                            self.initData.incomeceiling = self.initData.incomeRateCeiling.split('%')[0]
+                            self.initData.incomefloor = self.initData.incomeRateFloor.split('%')[0]
+                            self.initData.activityrate = self.initData.activityIncomeRate.split('%')[0]
+                        }
 
-            //             if (data.data.investFactorage == '--') {
-            //                 self.initData.investfactorage = 0
-            //             } else {
-            //                 self.initData.investfactorage = data.data.investFactorage
-            //             }
-            //             data.data.showNum = self.showNum
-            //             self.$el.html(_.template(Template)(data.data));
-            //             self.initNotice();                          
+                        if (data.data.investFactorage == '--') {
+                            self.initData.investfactorage = 0
+                        } else {
+                            self.initData.investfactorage = data.data.investFactorage
+                        }
+                        data.data.showNum = self.showNum
+                        self.$el.html(_.template(Template)(data.data));
+                        self.initNotice();                          
 
-            //         } else if (data.ret == 110115) { // 银行卡数据异常，请联系客服
+                    } else if (data.ret == 110115) { // 银行卡数据异常，请联系客服
 
-            //             App.hideLoading();
-            //             self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
-            //             self.promptAlert.show();
-            //         } else if (data.ret == 110001) { // 未完成实名绑卡
+                        App.hideLoading();
+                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
+                        self.promptAlert.show();
+                    } else if (data.ret == 110001) { // 未完成实名绑卡
 
-            //             App.hideLoading();
-            //             self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
-            //                 App.goTo('list');
-            //             },function(){                          
-            //                 App.goTo('bind_card_new');
-            //             });
-            //             self.promptAlert.show();
-            //         } else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    } else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
 
-            //             App.hideLoading();
-            //              self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){                          
-            //                 App.goTo('list');
-            //             },function(){                          
-            //                 App.goTo('bind_card_new');
-            //             });                  
-            //             self.promptAlert.show();
+                        App.hideLoading();
+                         self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('bind_card_new');
+                        });                  
+                        self.promptAlert.show();
 
-            //         } else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+                    } else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
 
-            //             App.hideLoading();                       
-            //             self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
-            //                 App.goTo('list');
-            //             },function(){                          
-            //                 App.goTo('fuyou_sign');
-            //             });                  
-            //             self.promptAlert.show();
+                        App.hideLoading();                       
+                        self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('fuyou_sign');
+                        });                  
+                        self.promptAlert.show();
 
-            //         } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
+                    } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
 
-            //             App.hideLoading();
-            //             self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
-            //                App.goBack();
-            //             });                  
-            //             self.promptAlert.show();
+                        App.hideLoading();
+                        self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
+                           App.goBack();
+                        });                  
+                        self.promptAlert.show();
 
-            //         } else if (data.ret == 999001) {
+                    } else if (data.ret == 999001) {
 
-            //             App.goTo('login');
-            //         } else {
+                        App.goTo('login');
+                    } else {
 
-            //             App.showToast(data.msg || '网络错误');
-            //         }
+                        App.showToast(data.msg || '网络错误');
+                    }
 
-            //     },
-            //     error: function() {
-            //         App.hideLoading();
-            //         App.showToast('网络错误');
-            //     }
-            // })
+                },
+                error: function() {
+                    App.hideLoading();
+                    App.showToast('网络错误');
+                }
+            })
         },       
         changeAmount: function() {
             if (self.initData.productType == '01') {
