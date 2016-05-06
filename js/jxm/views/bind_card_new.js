@@ -266,7 +266,7 @@ define(function (require, exports, module) {
             submit:function(){
 
                 if(cardChecked){
-                    App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入银联认证...</p>',8000)
+                    App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入富友联认证...</p>',8000)
                     self.signature();
                     return;
                 }
@@ -311,7 +311,7 @@ define(function (require, exports, module) {
                     App.showToast('请输入正确的银行卡号');
                     return;
                 }
-                App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入银联认证...</p>',8000)
+                App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入富友联认证...</p>',8000)
 
                 //App.showLoading();
                 getBankByBin.exec({

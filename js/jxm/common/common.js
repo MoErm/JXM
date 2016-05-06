@@ -111,7 +111,7 @@ define(function(require, exports, module) {
                 },
                 showPayCountDown: function() {
                     var self = this;
-                    App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id="js_pay_count_down">10</span>秒', 10000);
+                    App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id="js_pay_count_down">10</span>秒', 10000);
                     var second = 9;
                     self.paytimer = setInterval(function() {
                         $('#js_pay_count_down').html(second);
