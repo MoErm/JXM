@@ -24,9 +24,9 @@ define(function (require, exports, module) {
 						<span class="imoney_text">元</span>\
 					</div>\
 				</div>\
-				<div class="imoney_tip">财主,您的余额不足,请先充值</div>\
+				<div class="imoney_tip" hidden>财主,您的余额不足,请先充值</div>\
 				<div class="cash_box">\
-					现金余额<span class="cash_number"> 20000 </span>元\
+					现金余额<span class="cash_number"> <%=cardData.balance%> </span>元\
 					<button class="cash_addbtn" id="cash_addbtn">充值</button>\
 				</div>\
 			</div>\

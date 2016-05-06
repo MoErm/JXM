@@ -1,13 +1,16 @@
 define(function(require, exports, module) {
     var Model = require("jxm/model/model");
     var store = require('jxm/model/store');
-    var payOrderMode = new Model.fuyouPayOrder(); //固定产品支付
-    var checkOrder = new Model.fuyouCheckOrder(); //固定产品检查支付结果   
-    var confirmRedeem = new Model.confirmRedeem();
+    var payOrderMode = new Model.fuyouPayOrder(); // fuyou 固定产品支付
+    var checkOrder = new Model.fuyouCheckOrder(); // fuyou 固定产品检查支付结果   
     var getMsgCodeModel = new Model.getMsgCodeModel();
-    var getTtlPayCode = new Model.getTtlPayCode();
-    var goTtlPayOrder = new Model.goTtlPayOrder();
-    var goTtlPayResult = new Model.goTtlPayResult();
+    var sendRedeemMsgCode = new Model.fuyouSendRedeemMsgCode(); // fuyou 天添利赎回验证码
+    var confirmRedeem = new Model.fuyouConfirmRedeem(); // fuyou 天添利赎回
+
+    var getTtlPayCode = new Model.getTtlPayCode(); // fuyou 天添利支付验证码
+    var goTtlPayOrder = new Model.fuyouTtlPayOrder(); // fuyou 天添利支付
+    var goTtlPayResult = new Model.fuyouTtlPayResult(); // fuyou 天添利支付结果
+
     var getMyBankCard = new Model.addMyBankCard();
     var abortChange = new Model.abortChange();
     var tool = require("jxm/utils/Tool");
@@ -380,58 +383,99 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
+        // 天添利赎回
         payRedeem: function(redeemValue) {
-            var tem = '<div class="payRedeem">\
-                        <div class="payRedeem_title">交易密码<div class="payRedeem_close"></div></div>\
-                        <div class="pay_detail">\
+            var tem = '<article class="paywin_box">\
+                    <div class="paywin_box_t">支付确认<em class="close" id="payRedeem_close"></em></div>\
+                    <div class="paywin_box_m">\
+                        <div class="paycontent pay_form">\
+                            <div class="pay_detail">\
                                 <p class="title">赎回金额</p>\
                                 <h2 class="num" id="payRedeem_redeemValue"></h2>\
                             </div>\
-                        <div class="payRedeem_input">交易密码<input type="password" id="redeemPwd" maxlength="12"></div>\
-                        <p class="payRedeem_forget"><a id="payRedeem_forget_a">忘记交易密码？</a></p>\
-                        <button class="payRedeem_btn payRedeem_margin payRedeem_bgRed" id="payRedeem_btn">确认赎回</button>\
-                    </div>';
+                            <ul class="pay_list">\
+                              <li class="frm_item frm_item_getcode">\
+                                <label for="inpt_code">验证码</label>\
+                                <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
+                                <span class="code js_code code_disabled">已获取（60）</span></li>\
+                            </ul>\
+                        </div>\
+                    </div>\
+                    <div class="paywin_box_b">\
+                        <div class="action">\
+                            <input type="button" value="确认赎回" class="gopay" id="payRedeem_btn" />\
+                        </div>\
+                    </div>\
+                </article>';
+            var self = null;
+            var getCodeFlag_ttl=true
             var popwin = new App.UI.UIPopWin({
                 events: {
-                    "click .payRedeem_close": "onHideLayer",
-                    "click #payRedeem_forget_a": "forget",
-                    //                    "input #redeemPwd":"canPay",
-                    "click .payRedeem_btn": "doPay"
-
+                    "click #payRedeem_close": "onHideLayer",
+                    "click #payRedeem_btn": "payRedeem",
+                    'click .js_code': 'getCode'
                 },
                 maskToHide: false,
                 template: tem,
+                initialize: function() {
+                    return this;
+                },
                 onHideLayer: function() {
                     this.hide();
                 },
-                canPay: function() {
-                    var tradePassword = $('#redeemPwd').val();
-                    if (tradePassword.length > 0) {
-                        payFlag = true;
-                        $('#payRedeem_btn').removeClass("payRedeem_bgGrey")
-                        $('#payRedeem_btn').addClass("payRedeem_bgRed")
-                    } else {
-                        payFlag = false;
-                        $('#payRedeem_btn').addClass("payRedeem_bgGrey")
-                        $('#payRedeem_btn').removeClass("payRedeem_bgRed")
-                    }
+                showCodeCountDown: function(timer) {
+                    //获取验证码倒计时
+                    var second = timer || 60;
+                    clearInterval(self.codetimer);
+                    self.codetimer = setInterval(function() {
+                        self.$el.find('.js_code').html('已获取（' + second + '）');
+                        getCodeFlag_ttl=true
+                        self.$el.find('.js_code').addClass("code_disabled");
+                        second -= 1;
+                        if (second == -1) {
+                            clearInterval(self.codetimer);
+                            self.$el.find('.js_code').html('获取验证码');
+                            getCodeFlag_ttl=false
+                            self.$el.find('.js_code').removeClass("code_disabled");
+                        }
+                    }, 1000);
                 },
-                forget: function() {
-                    App.goTo("forget_password")
-                    this.hide();
+                showAcountValue: function(){ // 格式化金额显示
+                    var money = redeemValue.toString().split('.');
+                    var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
+                    $('#payRedeem_redeemValue').html("¥" + show);
                 },
-                doPay: function() {
-                    var tradePassword = $('#redeemPwd').val();
-                    if (tradePassword == "") {
-                        App.showToast("请输入交易密码")
-                        return
-                    }
-                    var data = {
-                        'tradePassword': tradePassword,
-                        'redeemAmount': redeemValue
-                    }
-                    App.showLoading()
-                    confirmRedeem.set(data)
+                getCode: function() { //获取赎回验证码                    
+                    App.showLoading();
+                    sendRedeemMsgCode.set({
+                        'redeemAmount': redeemValue,
+                    });
+                    sendRedeemMsgCode.exec({
+                        type: 'post',
+                        success: function(data) {
+                            App.hideLoading();
+                            if (data.ret == 0) {
+                                self.showCodeCountDown(59);
+                            } else if (data.ret == 999001) {
+                                App.goTo('login');
+                            }else if (data.ret == 100017) {
+                                self.showCodeCountDown(data.data.waitSeconds);
+                            } else {
+                                App.showToast(data.msg || "网络错误");
+                            }
+                        },
+                        error: function() {
+                            App.hideLoading();
+                        }
+                    });
+                },              
+                payRedeem: function() {
+                    var msgCodeVal = $('#checkCode').val();                   
+                    App.showLoading();
+
+                    confirmRedeem.set({
+                        'msgCode': msgCodeVal
+                    })
                     confirmRedeem.exec({
                         type: 'post',
                         success: function(data) {
@@ -442,10 +486,7 @@ define(function(require, exports, module) {
                             } else if (data.ret == 999001) {
                                 handle.goLogin();
                             } else {
-                                self.promptAlert = handle.alert(data.msg, function() {
-                                    this.hide();
-                                });
-                                self.promptAlert.show();
+                                App.showToast(data.msg)
                             }
                         },
                         error: function() {
@@ -457,9 +498,10 @@ define(function(require, exports, module) {
                     this.hide();
                 },
                 onShow: function() {
-                    var money = redeemValue.toString().split('.');
-                    var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
-                    $('#payRedeem_redeemValue').html("¥" + show);
+                    self = this.initialize();
+                    self.showAcountValue();
+                    self.getCode();
+                    
 
                 }
             });
@@ -744,7 +786,6 @@ define(function(require, exports, module) {
                                 <label for="inpt_code">验证码</label>\
                                 <input type="text" id="checkCode" maxlength="8 "class="frm_inpt" value="" placeholder="" style="padding-right:10px;" >\
                                 <span class="code js_code code_disabled">已获取（60）</span></li>\
-                              <li class="forget"><span class="forget_password" id="forget_password">忘记交易密码?</span></li>\
                             </ul>\
                         </div>\
                     </div>\
@@ -801,7 +842,7 @@ define(function(require, exports, module) {
                 },
                 showOrderCountDown: function() {
                     //支付倒计时
-                    var surplus = data.surplusPayTime;                    
+                    var surplus = data.surplusPayTime||300;                    
                     clearInterval(self.ordertimer);
                     self.ordertimer = setInterval(function() {
                         var minute = Math.floor(surplus / 60);
@@ -873,8 +914,6 @@ define(function(require, exports, module) {
                     var money = str.toString().split('.');
                     var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
                     $('#amount_num').html("¥" + show);
-
-                    //                    $("#amount_num").html('<em class="amount_unit">￥</em>'+data.amountVal);
                 },
                 onHideLayer: function() {
                     clearInterval(self.paytimer);
@@ -883,9 +922,6 @@ define(function(require, exports, module) {
                     self.hide();
                 },
                 getCode: function() {
-                    //if (self.$el.find('.js_code').data("hascode")) {
-                    //    return;
-                    //}
                     if(getCodeFlag_ttl){
                         return
                     }
@@ -940,16 +976,10 @@ define(function(require, exports, module) {
                         App.showToast("验证码不能为空");
                         return;
                     }
-                    if (psw == "") {
-                        App.showToast("请输入平台交易密码");
-                        return;
-                    }
-
 
                     App.showLoading();
                     goTtlPayOrder.set({
                         'checkMsg': code,
-                        'tradePwd': psw,
                         'orderNo': orderNo
                     });
                     goTtlPayOrder.exec({
@@ -965,12 +995,12 @@ define(function(require, exports, module) {
                                 handle.goLogin();
                             } else {
                                 clearInterval(self.codetimer);
-                                //self.$el.find('.js_code').data("hascode", 0)
-                                getCodeFlag_ttl=false
+                                getCodeFlag_ttl=false;
                                 self.$el.find('.js_code').removeClass("code_disabled");
                                 self.$el.find('.js_code').html('获取验证码');
                                 self.$el.find('#checkCode').val('');
                                 self.$el.find('#checkPassword').val('');
+
                                 if (data.ret == 999901) {
 
                                     self.promptAlert = handle.alert(data.msg);

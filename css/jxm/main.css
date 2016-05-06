@@ -81,7 +81,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ico_f_invest.cur::before { background-position: -25px -115px; }
 .ico_f_setting.cur::before { background-position: -60px -115px; }
 .foot_copyright { min-height: 60px; line-height: 20px; font-size: 1.2rem; text-align: center; margin-top: 10px; }
-.foot_copyright .fixed { position: fixed; z-index: 99; left: 0; bottom: 0; width: 100%; min-height: 40px; background-color: #FFF; padding-top: 5px; padding-bottom: 5px; }
+.foot_copyright .fixed { position: fixed; z-index: 99; left: 0; bottom: 0; width: 100%; min-height: 40px;  padding-top: 5px; padding-bottom: 5px; }
 .foot_copyright .fixed2 { position: fixed; z-index: 99; left: 0; bottom: 0; width: 100%; min-height: 40px; background-color: #FFF; padding-top: 5px; padding-bottom: 5px; }
 .foot_copyright .security { color: #4f4f4f; }
 .foot_copyright .security::before { display: inline-block; width: 12px; height: 16px; vertical-align: middle; margin-right: 4px; background-position: 0 0; }

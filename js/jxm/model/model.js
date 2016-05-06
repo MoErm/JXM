@@ -437,10 +437,15 @@
         fuyouTtlPayResult: initModel({
             url:host+"/api/fy/demand/checkDemandOrder"
         }),
+        // 天添利赎回验证码接口
+        fuyouSendRedeemMsgCode:initModel({
+            url:host+"/api/fy/demand/sendRedeemMsgCode"
+        }),
         // 天添利赎回页跳转接口
         fuyouConfirmRedeem:initModel({
             url:host+"/api/fy/demand/confirmRedeem"
         }),
+
 	}
 	return Model;
 

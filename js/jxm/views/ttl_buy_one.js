@@ -21,7 +21,8 @@ define(function(require, exports, module) {
             'click #action_buy': 'goBuyCheckTip',
             'click .js_tips': 'goContractTip',//《风险提示书》
             'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
-            'click #cash_addbtn': 'goRechargePage'// 去充值页面
+            'click #cash_addbtn': 'goRechargePage',// 去充值页面
+            'input #imoney_num': 'checkChangeAmount' //修改充值参数
         },
         onShow: function() {
             self = this.initialize();
@@ -61,35 +62,49 @@ define(function(require, exports, module) {
                 type: 'get',
                 success: function(data){
                     self.pageData.cardData= data.data;
-                    if(data.ret == 0){     
+                    if(data.ret == 0){ 
                         self.initTemple();
-                    }else if(data.ret == 999001){
+                    } else if(data.ret == 999001){
                         //未登录
                         handle.goLogin();
-                    }else if(data.ret == 110001){
-                        //未绑定银行卡                        
-                        self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', function(){
-                            self.goIntroducePage();
-                        }, function(){
+                    }  else if (data.ret == 110001) { // 未完成实名绑卡
+
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
                             App.goTo('bind_card_new');
-                        });                    
-                        self.promptAlert.show();
-                    }else if(data.ret == 110009){
-                        //未设置交易密码                        
-                        self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
-                            App.goTo('reset_password?soure=0');
-                        });                        
-                        self.passAlert.show();
-                    }else if(data.ret == 110203){
-                        self.promptAlert = handle.prompt('您的银行卡处于换卡中，无法进行投资，请继续完成换成或终止换卡','放弃', '去更换',function(){
-                            //解除锁定
-                            self.giveUp()
-                        }, function(){
-                            //继续更换
-                            App.goTo("rebind_card")
                         });
                         self.promptAlert.show();
-                    }else{
+                    } else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
+
+                        App.hideLoading();
+                         self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('bind_card_new');
+                        });                  
+                        self.promptAlert.show();
+
+                    } else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+
+                        App.hideLoading();                       
+                        self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
+                            App.goTo('list');
+                        },function(){                          
+                            App.goTo('fuyou_sign');
+                        });                  
+                        self.promptAlert.show();
+
+                    } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
+
+                        App.hideLoading();
+                        self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
+                           App.goBack();
+                        });                  
+                        self.promptAlert.show();
+
+                    } else{
                         App.showToast(data.msg  || self.message);
                     }
                     App.hideLoading();
@@ -115,18 +130,38 @@ define(function(require, exports, module) {
                 sessionStorage.setItem("isagreed",isagreed);
             }
         },
+        checkChangeAmount: function(){
+            checkTip();
+            // 检查提示
+            function checkTip(){
+                var amtNum = parseFloat(self.$('#imoney_num').val()) || 0;
+                var balNum= parseFloat(self.pageData.cardData.balance);
+                var surNum= parseInt(self.pageData.cardData.surplusAmount);
+                // 判断现金余额
+                if(amtNum > balNum){
+                    $('.imoney_tip').show();
+                }
+                else{
+                    $('.imoney_tip').hide();
+                }  
+                if(isNaN(amtNum)){
+                    App.showToast("请输入合法数字金额");
+                    $("#imoney_num").val("");
+                }              
+                if(amtNum > surNum){
+                    App.showToast("超过剩余可投金额");
+                    $("#imoney_num").val(surNum);
+                    if(surNum < balNum){
+                        $('.imoney_tip').hide();
+                    }
+                }             
+            }
+        },
         goIntroducePage: function(){
 
             App.goTo('ttl_introduce');
-        },
-        goBuyPagePost: function(goBuyData){            
-            // 支付信息：金额，红包，时间
-            // var initData= {
-            //     'amountVal': '30000',
-            //     'crAmount': '50',
-            //     'surplusPayTime':300
-            // }
-            //  common.ttlPayWin(initData);
+        },      
+        goBuyPagePost: function(goBuyData){    
             //购买post数据并检测银行卡，交易密码
             App.showLoading();            
             goTtlBuyPageCheck.set({
@@ -139,7 +174,10 @@ define(function(require, exports, module) {
                 if(data.ret == 0){
                     //渲染投资金额
                     $("#imoney_num").val(goBuyData.amountVal);
+                    // 投资金额
                     self.pageData.amountVal= goBuyData.amountVal;
+                    // 过期时间
+                    self.pageData.surplusPayTime= 300;
                     common.ttlPayWin(self.pageData);
                 }else if(data.ret == 999001){
                     //未登录
@@ -197,11 +235,11 @@ define(function(require, exports, module) {
             self.amountVal= Number($("#imoney_num").val());
             self.goBuyData= {"amountVal":self.amountVal};
 
-            if(self.amountVal== ""){
+            if(self.amountVal== ""){ // 空值检查
                 App.showToast("请输入投资金额");
                 $("#imoney_num").val("");
                 return;
-            }else{                
+            }else{ // 验证规则
                 if(isNaN(self.amountVal)){
                     App.showToast("请输入合法数字金额");
                     $("#imoney_num").val("");
@@ -211,12 +249,19 @@ define(function(require, exports, module) {
                     self.passAlert.show();
                     return;
                 }
+                // 超过剩余可投金额
                 if(self.amountVal> parseInt(self.pageData.cardData.surplusAmount)){
                     self.passAlert = handle.alert("超过剩余可投金额");
                     self.passAlert.show();
                     $("#imoney_num").val(self.pageData.cardData.surplusAmount)
                     return;
                 }
+                // 现金是否够用
+                if($(".imoney_tip").css('display')=='block'){                    
+                    App.hideLoading();
+                    self.hasLotAmountAlert = handle.alert('您的余额不足,请先充值').show();
+                    return;
+                }  
             } 
 
             if(self.pageData.cardData.isContractAgreed==0){

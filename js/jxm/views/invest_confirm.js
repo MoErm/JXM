@@ -127,11 +127,6 @@ define(function(require, exports, module) {
                         self.$el.html(_.template(Template)(data.data));
                         self.initNotice();                          
 
-                    } else if (data.ret == 110115) { // 银行卡数据异常，请联系客服
-
-                        App.hideLoading();
-                        self.promptAlert = handle.alert("银行卡数据异常，请联系客服", function() {});
-                        self.promptAlert.show();
                     } else if (data.ret == 110001) { // 未完成实名绑卡
 
                         App.hideLoading();
@@ -366,7 +361,7 @@ define(function(require, exports, module) {
                     self.hasLotAmountAlert = handle.alert('超过剩余可投金额').show()
                     return false;
                 }
-                //现金红包是否够用
+                // 现金是否够用
                 if($(".imoney_tip").css('display')=='block'){                    
                     App.hideLoading();
                     self.hasLotAmountAlert = handle.alert('您的余额不足,请先充值').show()
