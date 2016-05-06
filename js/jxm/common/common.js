@@ -18,7 +18,7 @@ define(function(require, exports, module) {
     var loginStore = new store.loginStore();
     var Common = {
         // 普通产品支付弹窗
-        showPayWin: function(order, data, hasCode) {
+        showPayWin: function(data, hasCode) {
             var tem = '<div id="js_paywin" class="paywin_box">\
                           <div class="pop_cont">\
                             <div class="pop_hd">\
@@ -26,7 +26,7 @@ define(function(require, exports, module) {
                               <a href="javascript:void(0)" class="btn_close js_close"></a></div>\
                             <div class="pop_bd">\
                               <div class="pay_info">\
-                                 <p class="sum"><span class="tag_name">'+ order.productName+'</span><span class=" numb">' + order.orderAmount + '</span></p>\
+                                 <p class="sum"><span class="tag_name">'+ data.productName+'</span><span class=" numb">' + data.investAmount + '</span></p>\
                                 <p class="sum"><span class="tag_name">支付金额</span><span class="webtxt numb">' + data.paymentAmount + '</span></p>\
                                 <p class="sum"><span class="tag_name">红包</span><span class="webtxt numb">' + data.crAmount + '</span></p></div>\
                             <div class="pay_form">\
@@ -88,16 +88,10 @@ define(function(require, exports, module) {
                                     });
                                     self.payCountAlert.show();
                                 }
-                                //                               else if(data.ret ==300002){
-                                //                                   clearInterval(self.paytimer);
-                                //                                   self.payCountAlert  = handle.alert('支付确认中，请到"我的投资"查看支付结果', function(){
-                                //                                       App.goTo("my_invest")
-                                //                                   });
-                                //                                   self.payCountAlert.show();
-                                //                               }
+                              
                                 else {
                                     clearInterval(self.paytimer);
-                                    //App.showToast(data.msg);
+                                    App.showToast(data.msg);
                                 }
                             }
                         },

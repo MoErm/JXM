@@ -90,18 +90,6 @@ define(function(require, exports, module) {
             return Number(num1) + Number(num2);
         },
         renderProduct: function() { // 初始化产品
-            // var orderData={
-            //     'productName': '月月加薪',
-            //     'orderAmount': '30000'
-            // }
-            // // 支付信息：金额，红包，时间
-            // var initData= {
-            //     'paymentAmount': '30000',
-            //     'crAmount': '50',
-            //     'surplusPayTime':300
-            // }
-            // common.showPayWin(orderData,initData);
-            // 2016-4-22 
             App.showLoading();
             this.$el.html('');
             var query = this.request.query;
@@ -304,17 +292,23 @@ define(function(require, exports, module) {
                     return;
                 }
             }
+
+            checkTip();
+            // 检查提示
+            function checkTip(){
+                var amtNum = parseFloat(self.$('.js_amount').val()) || 0;
+                var balNum= parseFloat(self.initData.balance);
+                var chaNum= parseFloat(self.initData.change);
+                if(amount > (balNum+chaNum)){
+                    $('.imoney_tip').show();
+                }
+                else{
+                    $('.imoney_tip').hide();
+                }
+            }
+            
         },
         createOrder: function() { //立即投资
-            var self = this
-            App.showLoading();
-            var start = self.initData.minInvestAmount;
-            var addition = self.initData.additionalAmount;
-            var amount = parseFloat(self.$('.js_amount').val());
-            var surplus = self.initData.surplusAmount;
-            var selectCardId = $("#cardSelectSecond").find('div[data-cardid]').attr("data-cardid");
-
-
             // if (self.initData.productType == "01") { //固定产品
 
             //     var investAmount = amount + parseFloat(self.$('.js_invest').attr('id'))
@@ -323,8 +317,13 @@ define(function(require, exports, module) {
             //     var temp = serviceFee; //价内,支付金额=投资金额+服务费
             //     var investAmount = amount + (_.isNaN(temp) ? 0 : temp)
             // }
-           
+            var self = this
+            App.showLoading(); 
             function createOrderCheck(){
+                var start = self.initData.minInvestAmount;
+                var addition = self.initData.additionalAmount;
+                var amount = parseFloat(self.$('.js_amount').val());
+                var surplus = self.initData.surplusAmount;
                 //是否有可投资金额
                 if (surplus <= 0) {
                     App.hideLoading();
@@ -367,6 +366,12 @@ define(function(require, exports, module) {
                     self.hasLotAmountAlert = handle.alert('超过剩余可投金额').show()
                     return false;
                 }
+                //现金红包是否够用
+                if($(".imoney_tip").css('display')=='block'){                    
+                    App.hideLoading();
+                    self.hasLotAmountAlert = handle.alert('您的余额不足,请先充值').show()
+                    return false;
+                }
                 return true;
             } 
             //创建订单
@@ -374,6 +379,7 @@ define(function(require, exports, module) {
                 var query = self.request.query;
                 var change = self.$('.js_amount').html();
                 var investAmountNum = self.$('.js_amount').val();
+            
                 createOrderMode.set({
                     'productNo': query.pid,
                     'investAmount': investAmountNum,
@@ -384,7 +390,10 @@ define(function(require, exports, module) {
                 }).then(function(data) {
                     App.hideLoading();
                     if (data && data.ret == 0) {
-                        common.showPayWin(self.initData, data.data);
+                        var creatData=data.data;
+                        // 添加产品名字
+                        creatData.productName= self.initData.productName;
+                        common.showPayWin(creatData);
 
                     } else if (data.ret == 999901 || data.ret == 300007) {
                         self.promptAlert = handle.alert(data.msg);
