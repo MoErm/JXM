@@ -362,7 +362,7 @@ define(function(require, exports, module) {
                     return false;
                 }
                 // 现金是否够用
-                if($(".imoney_tip").css('display')=='block'){                    
+                if($(".imoney_tip").css('display')=='block'){
                     App.hideLoading();
                     self.hasLotAmountAlert = handle.alert('您的余额不足,请先充值').show()
                     return false;
