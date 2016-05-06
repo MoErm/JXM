@@ -10,17 +10,17 @@ define(function(require, exports, module) {
     <ul class="advantage_list">\
         <li>\
         <h3 class="index_icon_1">稀缺之选</h3>\
-        <p>甄选顶级投资项目</p>\
-        <p>仅需1,000元起投，便可尊享银行顶级投资产品</p>\
+        <p>甄选投资项目</p>\
+        <p>仅需1,000元起投，便可尊享银行投资产品</p>\
     </li>\
     <li>\
     <h3 class="index_icon_2">信任之选</h3>\
-        <p>行业顶级投研团队筛选精品投资项目</p>\
-        <p>中伦律所提供常年法律顾问,中信银行360度资金监管</p>\
+        <p>行业投研团队筛选精品投资项目</p>\
+        <p>安全兑付率100%</p>\
     </li>\
     <li>\
     <h3 class="index_icon_3">财富之选</h3>\
-        <p>平均年化收益12%，</p>\
+        <p>最高年化收益10.2%，</p>\
     <p>银行活期的35倍，宝宝类的3倍</p>\
     </li>\
     </ul>\
@@ -44,14 +44,7 @@ define(function(require, exports, module) {
     <div class="v_item_bd"><span class="v_item_title"><span class="webtxt">6.0~10.2%</span></span><span class="v_item_cont">预期年化</span></div>\
     <div class="v_item_bd"><span class="v_item_title">1000<span class="unit">元</span></span><span class="v_item_cont">起投金额</span></div>\
     </div>\
-    <div class="tips type2">T+0起息，银行VIP顶级投资产品，收益高且稳健，迄今本息100%安全兑付</div>\
-    </li>\
-        <div class="v_item">\
-        <div class="v_item_hd"><span class="v_item_title">浮动</span><span class="v_item_cont">预期年化收益</span></div>\
-    <div class="v_item_bd"><span class="v_item_title"><span class="webtxt">最高10倍</span></span><span class="v_item_cont">预期年化</span></div>\
-    <div class="v_item_bd"><span class="v_item_title">1<span class="unit">万元</span></span><span class="v_item_cont">起投金额</span></div>\
-    </div>\
-    <div class="tips type3">行业顶级稀缺基金。收益可无限放大至无上限，但也可能出现亏损。</div>\
+    <div class="tips type2">T+0起息，银行VIP优质投资产品，收益高且稳健，迄今本息100%安全兑付</div>\
     </li>\
     </ul>\
     </div>\
@@ -69,7 +62,7 @@ define(function(require, exports, module) {
         </section>\
         <section class="page_box">\
         <div class="mod_staffers">\
-        <h2>顶级投研团队介绍</h2>\
+        <h2>投研团队介绍</h2>\
         <ul class="staffers_list">\
         <li>\
         <h3><span class="name">肖光伟</span><span class="grade">董事长</span></h3>\
