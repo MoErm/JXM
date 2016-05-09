@@ -31,11 +31,8 @@ define(function (require, exports, module) {
             var orderNo=query&&query.orderNo||"";
 
             var data={
-                postData:{
-                    surplusPayTime:self.surplus,
-                    orderNo:orderNo
-
-                },
+                surplusPayTime:self.data.surplusPayTime,
+                orderNo:orderNo,
                 amountVal:self.currentAmount
             }
             payLayer.ttlPayWin(data,false)
