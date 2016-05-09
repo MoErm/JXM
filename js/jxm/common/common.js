@@ -970,7 +970,7 @@ define(function(require, exports, module) {
                 payOrder: function() {
                     var code = $('#checkCode').val();
                     var psw = $('#checkPassword').val();
-                    var orderNo = data.postData.orderNo;
+                    var orderNo = data.orderNo;
 
                     if (code == "") {
                         App.showToast("验证码不能为空");

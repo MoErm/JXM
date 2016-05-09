@@ -172,13 +172,20 @@ define(function(require, exports, module) {
             }).then(function (data) {
                 self.pageData.postData= data.data;
                 if(data.ret == 0){
-                    //渲染投资金额
-                    $("#imoney_num").val(goBuyData.amountVal);
-                    // 投资金额
-                    self.pageData.amountVal= goBuyData.amountVal;
-                    // 过期时间
-                    self.pageData.surplusPayTime= 300;
-                    common.ttlPayWin(self.pageData);
+                    function payTtlData(){
+                        // 渲染投资金额
+                        $("#imoney_num").val(goBuyData.amountVal);
+                        // 投资金额
+                        self.pageData.amountVal= goBuyData.amountVal;
+                        // 过期时间
+                        self.pageData.surplusPayTime= self.pageData.postData.surplusPayTime||300;
+                        // 订单号码
+                        self.pageData.orderNo= self.pageData.postData.orderNo;
+                        // 支付天添利
+                        common.ttlPayWin(self.pageData);
+                    }
+                    payTtlData();                    
+                   
                 }else if(data.ret == 999001){
                     //未登录
                     handle.goLogin();
