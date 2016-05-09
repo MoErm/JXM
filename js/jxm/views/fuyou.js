@@ -3,6 +3,7 @@ define(function (require, exports, module) {
     var Store = require("jxm/model/store");
     var Chart = require("jxm/utils/Chart");
     var Template = require("jxm/tpl/fuyou.tpl");
+    var TemplateList = require("jxm/tpl/fuyouList.tpl");
     var fuyouTradeRecords = new Model.fuyouTradeRecords();
     var fuyouBalance = new Model.fuyouBalance();
 
@@ -12,18 +13,18 @@ define(function (require, exports, module) {
     var handle = new tool();
     var payLayer = require("jxm/common/common");
     var self;
+    var totalPages=0;
+    var currentPage=1;
+    var showFlag=false;
     //接口
     module.exports = App.Page.extend({
         events: {
-            'click #fuyouList_1': 'goDetail',
+            'click .fuyou_list': 'toDetail',
             'click .currentIncome': 'rechargeOut',
             'click .historyIncome': 'recharge'
         },
         initialize: function () {
             self = this;
-        },
-        goDetail:function(){
-            App.goTo("fuyouDetail")
         },
         recharge:function(){
             App.goTo("recharge")
@@ -37,15 +38,19 @@ define(function (require, exports, module) {
 
             App.hideLoading()
             this.initData()
+            this.scrollTopListener()
             return
         },
         initData:function(){
             fuyouTradeRecords.exec({
                 type: "get",
                 success: function (data){
-                    //console.log(data)
+
                     App.hideLoading();
                     if(data.ret == 0){
+                        self.data=data.data
+                        currentPage++;
+                        totalPages=data.data.totalPages
                         self.initYuE()
                     }else if(data.ret == 999001){
                         handle.goLogin();
@@ -61,9 +66,10 @@ define(function (require, exports, module) {
             fuyouBalance.exec({
                 type: 'get',
                 success: function(data){
-                    console.log(data.data.amount)
                     if(data.ret == 0){
-                        self.data=data.data
+                        self.data.amount=data.data.amount
+                        self.data.showName=self.showName
+                        self.data.dealMoney2=handle.dealMoney2
                         self.$el.html(_.template(Template)(self.data));
                     }else if(data.ret == 999001){
                         handle.goLogin();
@@ -76,6 +82,79 @@ define(function (require, exports, module) {
                     App.showToast(self.message);
                 }
             });
+        },
+        showName:function(tradeType){
+            switch (tradeType){
+                case "01":
+                    return "充值";
+                case "02":
+                    return "提现";
+                case "03":
+                    return "固定产品投资";
+                case "04":
+                    return "固定产品到期";
+                case "05":
+                    return "天添利产品投资";
+                case "06":
+                    return "天添利产品赎回";
+            }
+        },
+        scrollTopListener:function(){
+            $(window).bind('scroll', function(){
+                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+                    console.log(currentPage+"   "+totalPages)
+                        if(currentPage>totalPages){
+                            return
+                        }else{
+                            if(showFlag){
+                                return
+                            }else{
+                                self.showMoreIn()
+                            }
+
+                        }
+
+                }
+            })
+        },
+        showMoreIn: function () {
+            var self = this;
+            showFlag=true;
+            return fuyouTradeRecords.exec({
+                type: 'get',
+                data:{
+                    'page':currentPage
+                },
+                success: function (data) {
+
+                    if (data.ret == 0) {
+                        showFlag=false;
+                        var moreData={};
+                        moreData=data.data
+                        moreData.showName=self.showName
+                        moreData.dealMoney2=handle.dealMoney2
+                        currentPage++;
+
+                        var inHtml=_.template(TemplateList)(moreData)
+                        var html=self.$('#ListArea')[0].innerHTML
+                        html=html+inHtml
+                        self.$('#ListArea').html(html)
+
+                    } else if (data.ret == 999001) {
+                        handle.goLogin();
+                    } else {
+                        App.showToast(data.msg || '网络错误');
+                    }
+                },
+                error: function () {
+                    App.hideLoading();
+                    App.showToast('网络错误');
+                }
+            })
+        },
+        toDetail:function(e){
+            var id=$(e.currentTarget).attr('id');
+            App.goTo("fuyouDetail?serialNo="+id)
         },
         setHeader: function () {
             var header = new App.UI.UIHeader();

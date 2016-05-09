@@ -104,6 +104,10 @@ define(function(require, exports, module) {
         var money = str.toString().split('.');
         return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + ' 元'
     }
+    Tool.prototype.dealMoney3 = function(str){
+        var money = str.toString().split('.');
+        return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1])
+    }
     Tool.prototype.showTag = function(type,isNew,time,saleStartTime,productTag){
         var str=""
         var month=saleStartTime.split("/")

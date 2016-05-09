@@ -144,30 +144,7 @@ define(function (require, exports, module) {
                 $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
             });
         },
-        showFuyouYuE:function(){
-            fuyouBalance.exec({
-                type: 'get',
-                success: function(data){
-                    if(data.ret == 0){
-                        self.data.fyAmount = data.data.amount
-                        self.$el.html(_.template(Template + Footer)(self.data));
-                        self.initNotice()
-                        //self.newAcitve();
-                        self.$('.js_my_invest').addClass('footer_icon_wo_sel');
-                        self.$('.js_my_invest').removeClass('footer_icon_wo_unsel');
-                        handle.setTitle("我");
-                    }else if(data.ret == 999001){
-                        handle.goLogin();
-                    }else{
-                        App.showToast(data.msg  || self.message);
-                    }
-                },
-                error: function(){
-                    App.hideLoading();
-                    App.showToast(self.message);
-                }
-            });
-        },
+
         render: function () {
             $(".mod_my_invest").html("")
             var self = this;
@@ -183,8 +160,13 @@ define(function (require, exports, module) {
                         //百分位显示
                         self.data.floatPropRate = (self.data.floatPropRate * 100).toFixed(2)
                         self.data.fixedPropRate = (self.data.fixedPropRate * 100).toFixed(2)
-                        self.showFuyouYuE();
-
+                        self.data.dealMoney3=handle.dealMoney3
+                        self.$el.html(_.template(Template + Footer)(self.data));
+                        self.initNotice()
+                        //self.newAcitve();
+                        self.$('.js_my_invest').addClass('footer_icon_wo_sel');
+                        self.$('.js_my_invest').removeClass('footer_icon_wo_unsel');
+                        handle.setTitle("我");
 
                         //处理总资产的长度
 

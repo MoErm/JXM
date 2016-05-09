@@ -24,7 +24,7 @@ define(function (require, exports, module) {
 	 <div class="invest_amount">\
 		 <div class="invest_amount_1">\
 			 \
-			 <span class="invest_amount_b"><p class="invest_amount_a">现金余额(元)</p><%=fyAmount%></span>\
+			 <span class="invest_amount_b"><p class="invest_amount_a">现金余额(元)</p><%=dealMoney3(balance)%></span>\
 		 </div>\
 		 <div class="invest_amount_2">\
 		 	<button class="invest_btn fuyou_js_chongzhi">充值</button>\
@@ -51,7 +51,7 @@ define(function (require, exports, module) {
 			</div>\
 			<div class="invest_menu_2 invest_icon_yhk">\
 				<span class="invest_menu_text1">银行卡</span>\
-				<span class="invest_menu_text2">未绑卡</span>\
+				<span class="invest_menu_text2"><%=cardStatusDesc%></span>\
 			</div>\
 	    </div>\
 	     <div style="clear: both"></div>\
