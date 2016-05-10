@@ -13,7 +13,7 @@ define(function (require, exports, module) {
                         <input type="hidden" id="js_type_input_hidden"/>\
                     </div>\
                     <div class="bind_card_input">\
-                        <div class="bind_card_title">身份证号</div>\
+                        <div class="bind_card_title">证件号</div>\
                         <div class="bind_card_text"><input type="text"  placeholder="请输入您的18位二代身份证号" class="text_input  js_id_card" maxlength="18" style="text-transform:uppercase;" /></div>\
                     </div>\
                      <h2 class="bind_bank_text" style="">请填写银行预留的实名信息</h2>\

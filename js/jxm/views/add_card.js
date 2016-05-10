@@ -44,9 +44,10 @@ define(function (require, exports, module) {
                 type: "get",
                 success: function (data){
                     self.data=data.data;
+
                     App.hideLoading();
-                    console.log(self.data)
                     if(data.ret == 0){
+                        self.data.dealBankNum=handle.dealBankNum;
                         self.$el.html(_.template(myCardTpl + footer)(data.data));
                             self.setHeader2();
                         //if(data.data.cardList.length!=0){
@@ -95,7 +96,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('setting');
+                        App.goTo('my_invest');
                     }
                 },
                 right:null

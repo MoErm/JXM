@@ -46,17 +46,17 @@ define(function (require, exports, module) {
             App.goTo("fuyou")
         },
         goChongZhi:function(){
+            App.showLoading();
             fuyouToCharge.exec({
                 type: 'get',
                 success: function(data){
+                    App.hideLoading();
                     if(data.ret == 0){
                         App.goTo("recharge")
                     }else if(data.ret == 110001){
-                        self.promptAlert = handle.alert(data.msg,function(){
-                            App.go("bind_card_new")
-                        });
+                        self.sign=payLayer.signFuyou("bind")
                     }else if(data.ret == 110210){
-                        self.sign=payLayer.signFuyou()
+                        self.sign=payLayer.signFuyou("sign")
                     }else{
                         App.showToast(data.msg  || self.message);
                     }

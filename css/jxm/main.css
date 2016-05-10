@@ -774,8 +774,8 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .my_invest .invest_money { font-size: 2.8rem; color: #ffffff;text-align: center}
 .invest_amount{background: white;height: 50px;margin-bottom: 10px;position: relative}
 .invest_btn{width: 60px;height: 30px;border-radius: 5px;color: white;background: #d01b02;margin-top: 10px}
-.invest_amount_1{width: 100%;display: block;height: 50px;padding-left: 25px;position: relative;padding-top: 3px}
-.invest_amount_b{margin-top: 5px;display: block}
+.invest_amount_1{width: 90%;display: block;height: 50px;padding-left: 25px;position: relative;padding-top: 3px}
+.invest_amount_b{margin-top: 5px;display: block;width: 90%}
 .invest_amount_a:after{ content: ""; display: inline-block; margin-top: 0px; width: 10px; height: 10px; vertical-align: middle; border-left: 2px solid #b5b5b5; border-bottom: 2px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
 .invest_amount_2{display: block;text-align: right;height: 50px;padding-right: 25px;position: absolute;right: 0;top: 0}
 .invest_menu{height: 60px;width: 100%;background: white}

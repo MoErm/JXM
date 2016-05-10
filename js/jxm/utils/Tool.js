@@ -252,6 +252,12 @@ define(function(require, exports, module) {
         var tailStr = str.substr(-4);
         return headStr + '****' + tailStr;
     }
+    //电话掩码
+    Tool.prototype.dealBankNum =  function(str){
+        var headStr = str.substr(0, 4);
+        var tailStr = str.substr(-4);
+        return headStr + ' **** **** **** ' + tailStr;
+    }
     //没有进度条
     Tool.prototype.noProgress = function(){
         return '<div class="item_progress js_progress" style="background-color:#f2f2f2"></div>';

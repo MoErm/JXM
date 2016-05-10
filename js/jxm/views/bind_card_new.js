@@ -504,7 +504,7 @@ define(function (require, exports, module) {
                                     if(handle.mobileType()=="android"){
                                         window.app.goBack()
                                     }else{
-                                        handle.getProductLink();
+                                       App.goTo("my_invest")
                                     }
                                 });
                             self.promptAlert.show();

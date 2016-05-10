@@ -36,7 +36,7 @@ define(function (require, exports, module) {
             handle.share();
             this.setHeader();
 
-            App.hideLoading()
+            App.showLoading();
             this.initData()
             this.scrollTopListener()
             return
@@ -46,7 +46,7 @@ define(function (require, exports, module) {
                 type: "get",
                 success: function (data){
 
-                    App.hideLoading();
+
                     if(data.ret == 0){
                         self.data=data.data
                         currentPage++;
@@ -70,7 +70,9 @@ define(function (require, exports, module) {
                         self.data.amount=data.data.amount
                         self.data.showName=self.showName
                         self.data.dealMoney2=handle.dealMoney2
+                        self.data.dealMoney3=handle.dealMoney3
                         self.$el.html(_.template(Template)(self.data));
+                        App.hideLoading();
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{

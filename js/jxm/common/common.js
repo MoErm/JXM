@@ -548,7 +548,17 @@ define(function(require, exports, module) {
             popwin.show();
         },
         //富有签约
-        signFuyou: function() {
+        signFuyou: function(type) {
+            var temp='<div class="signFuyou">\
+                       <div class="signFuyou_box1">\
+                            <div class="signFuyou_txt"></div>\
+                            <div class="signFuyou_img"></div>\
+                            <div class="signFuyou_btn">\
+                                <button class="btn_left">取消</button>\
+                                <button class="btn_right" id="btn_right">'+(type=="sign"?"去签约":"去绑卡")+'</button>\
+                            </div>\
+                       </div>\
+                    </div>'
             var popwin = new App.UI.UIPopWin({
                 events: {
                     "click .btn_left": "onHideLayer",
@@ -557,23 +567,18 @@ define(function(require, exports, module) {
 
                 },
                 maskToHide: false,
-                template: '<div class="signFuyou">\
-                       <div class="signFuyou_box1">\
-                            <div class="signFuyou_txt"></div>\
-                            <div class="signFuyou_img"></div>\
-                            <div class="signFuyou_btn">\
-                                <button class="btn_left">取消</button>\
-                                <button class="btn_right">去签约</button>\
-                            </div>\
-                       </div>\
-                    </div>',
+                template: temp,
                 onHideLayer: function() {
                     this.hide();
                 },
                 toSign:function(){
                     this.hide();
-                    App.goTo("fuyou_sign")
 
+                    if(type=="sign"){
+                        App.goTo("fuyou_sign")
+                    }else{
+                        App.goTo("bind_card_new")
+                    }
                 },
                 onShow: function() {
 
