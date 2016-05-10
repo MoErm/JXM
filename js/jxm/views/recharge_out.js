@@ -15,8 +15,9 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #get_allmoney ':'getAllmoneyFn',
-            'click #recharge_btn':'goToRechargeOut'
+            'click #get_allmoney ':'getAllmoneyFn', // 全额提现
+            'click #recharge_btn':'goToRechargeOut',
+            'input #recharge_out_money': 'checkChangeAmount' // 修改提现参数
         },     
         onShow: function() {
             self = this.initialize();
@@ -39,16 +40,35 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('ttl_introduce');
+                        window.history.back();
                     }
                 },
                 right: null
             });
             App.hideLoading();
         },         
-        getAllmoneyFn: function(){
+        getAllmoneyFn: function(){ //全额提现
+
             $("#recharge_out_money").val(self.pageData.chargeData.amount)
         }, 
+        checkChangeAmount: function(){
+            checkTip();
+            // 检查提示
+            function checkTip(){
+                var amtNum = parseFloat(self.$('#recharge_out_money').val()) || 0;
+                var allAmountNum= parseFloat(self.pageData.chargeData.amount);
+                
+               
+                if(isNaN(amtNum)){
+                    App.showToast("请输入合法数字金额");
+                    $("#recharge_out_money").val("");
+                }              
+                if(amtNum > allAmountNum){
+                    App.showToast("提现金额不能大于现金余额");
+                    $("#recharge_out_money").val(allAmountNum);                  
+                }             
+            }
+        },
         getInitTemData: function(){
             fuyouToWithdraw.exec({
                 type: 'get',
@@ -57,7 +77,8 @@ define(function(require, exports, module) {
                         self.pageData.chargeData= data.data;
                          // 处理限额信息
                         self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?self.pageData.chargeData.dailyLimit:'无限额';
-                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额';                        
+                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额'; 
+                        self.pageData.chargeData.amount= handle.dealMoney3(self.pageData.chargeData.amount);
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
@@ -122,7 +143,7 @@ define(function(require, exports, module) {
             if(checkAmount(rechargeOutData)){
                 self.getSignForChargeOut(rechargeOutData);
             }
-        }, 
+        },         
         getSignForChargeOut: function(rechargeOutData){ // 充值签名
             fuyouSignForWithdraw.set({
                 'amount': rechargeOutData.amount
