@@ -55,10 +55,9 @@ define(function(require, exports, module) {
             checkTip();
             // 检查提示
             function checkTip(){
-                var amtNum = parseFloat(self.$('#recharge_out_money').val()) || 0;
-                var allAmountNum= parseFloat(self.pageData.chargeData.amount);
+                var amtNum = parseInt(self.$('#recharge_out_money').val()) || 0;
+                var allAmountNum= parseInt(self.pageData.chargeData.amount);
                 
-               
                 if(isNaN(amtNum)){
                     App.showToast("请输入合法数字金额");
                     $("#recharge_out_money").val("");
@@ -78,7 +77,8 @@ define(function(require, exports, module) {
                          // 处理限额信息
                         self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?self.pageData.chargeData.dailyLimit:'无限额';
                         self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额'; 
-                        self.pageData.chargeData.amount= handle.dealMoney3(self.pageData.chargeData.amount);
+                        self.pageData.chargeData.allAmount= handle.dealMoney3(self.pageData.chargeData.amount);
+
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
