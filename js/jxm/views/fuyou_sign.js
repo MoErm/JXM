@@ -29,8 +29,8 @@ define(function (require, exports, module) {
             },
 
             onShow: function () {
-                //self.initData()
-                self.$el.html(bindCard_new + footer)
+                self.initData()
+                //self.$el.html(bindCard_new + footer)
 
                 App.hideLoading()
                 self.setHeader();
@@ -48,6 +48,7 @@ define(function (require, exports, module) {
                             handle.goLogin();
                         }else {
                             App.showToast(data.msg);
+                            App.goBack()
                         }
                     },
                     error:function(){
@@ -69,8 +70,8 @@ define(function (require, exports, module) {
                         mobile:cardMobile
                     },
                     success: function (data){
-                        App.hideLoading();
-                        console.log(data)
+                        //App.hideLoading();
+                        //console.log(data)
                         if(data.ret == 0){
                             self.$('#mchnt_cd').val(data.data.merCode)
                             self.$('#mchnt_txn_ssn').val(data.data.serialNo)

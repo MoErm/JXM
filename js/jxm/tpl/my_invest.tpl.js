@@ -4,8 +4,8 @@ define(function (require, exports, module) {
 	<div class="notice" style="display: none"><div class="notice_text"></div></div>\
 		<div style="clear: both"></div>\
 	  <div class="my_invest">\
-	  	<div class="user_title"><p>小星星</p>\
-	  	12387654321</div>\
+	  	<div class="user_title"><p><%=userName%></p>\
+	  	<%=mobile%></div>\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\
 	  </div>\

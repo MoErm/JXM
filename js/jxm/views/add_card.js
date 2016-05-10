@@ -62,6 +62,12 @@ define(function (require, exports, module) {
                     }else if(data.ret == 110001){
                         self.setHeader();
                         self.$el.html(addCard + footer);
+                    }else if(data.ret == 100031){
+                        self.promptAlert = handle.alert(data.msg,function(){
+                        });
+                        self.promptAlert.show();
+                        self.setHeader();
+                        self.$el.html(addCard + footer);
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else {
