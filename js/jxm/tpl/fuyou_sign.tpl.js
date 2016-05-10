@@ -5,15 +5,15 @@ define(function (require, exports, module) {
                     <div class="bind_bank_card">\
                         <div class="cardNo">\
                             <div class="bind_card_title" style="background: #e4e3e3">银行卡号</div>\
-                            <div class="bind_card_text"  ><input type="tel" readonly="readonly"  class="text_input  js_card_number" style="background: #e4e3e3"  maxlength="19" /></div>\
+                            <div class="bind_card_text"  ><input type="tel" readonly="readonly" value="<%=cardNo%>"  class="text_input  js_card_number" style="background: #e4e3e3"  maxlength="19" /></div>\
                         </div>\
                          <div class="cardBank js_band_card">\
                             <div class="bind_card_title">开户银行</div>\
-                            <div class="bind_card_text"><input type="tel" readonly="readonly"  class="text_input js_card_bankName" id="js_card_bankName" maxlength="19"/></div>\
+                            <div class="bind_card_text"><input type="tel" readonly="readonly" value="<%=bankName%>"  class="text_input js_card_bankName" id="js_card_bankName" maxlength="19"/></div>\
                         </div>\
                         <div class="cardBank js_address">\
                             <div class="bind_card_title">所属省份</div>\
-                            <div class="bind_card_text"><input type="text" readonly="readonly"" class="text_input inpt_readonly js_address_select" /></div>\
+                            <div class="bind_card_text"><input type="text" readonly="readonly" value="<%=provName%>"  class="text_input inpt_readonly js_address_select" /></div>\
                         </div>\
                         <div class="cardBank ">\
                             <div class="bind_card_title">预留手机号</div>\
