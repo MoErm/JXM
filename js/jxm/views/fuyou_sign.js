@@ -44,6 +44,7 @@ define(function (require, exports, module) {
 
                         if(data.ret == 0){
                             self.$el.html((_.template(bindCard_new + footer)(self.data)));
+                            self.$('#js_cardMobile').val(data.data.mobile)
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else {

@@ -149,12 +149,9 @@ define(function (require, exports, module) {
 
                             self.$('#mchnt_cd').val(data.data.merCode)
                             self.$('#mchnt_txn_ssn').val(data.data.serialNo)
-                            self.$('#mobile_no').val(data.data.loginId)
-                            self.$('#city_id').val(self.cityData.cityId)
-                            self.$('#capAcntNo').val(sendData.cardNumber)
-                            self.$('#certif_tp').val(sendData.certType=="01"?1:7)
-                            self.$('#certif_id').val(sendData.certNo)
-                            self.$('#back_notify_url').val(data.data.pgCallback)
+                            self.$('#login_id').val(data.data.loginId)
+                            self.$('#mobile').val(data.data.cardMobile)
+                            self.$('#page_notify_url').val(data.data.pgCallback)
                             self.$('#signature').val(data.data.signature)
 
                             var actionUrl;
@@ -424,7 +421,7 @@ define(function (require, exports, module) {
                                 self.$('.js_id_card').val(data.data.certNum)
                                 self.$('.js_id_card')[0].readOnly=true
                                 self.$('#js_type_input_hidden').val(data.data.certType)
-                                self.$('.js_type_input').val(data.data.certType=="01"?"身份证":"其他证件")
+                                self.$('.js_type_input').val(data.data.certType=="01"?"身份证":"港澳台证件")
                             }
 
                         }else if(data.ret == 999001){
@@ -905,10 +902,10 @@ define(function (require, exports, module) {
                             index:1
                         },{
                     id: "02",
-                    name: "其他证件",
+                    name: "港澳台证件",
                     index:2
                 }];
-                var cities = ["身份证","其他证件"];
+                var cities = ["身份证","港澳台证件"];
                 var cityX = 0;
                 var cityY = 0;
                 var input = self.$('.js_address input');
