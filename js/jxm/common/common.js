@@ -386,7 +386,7 @@ define(function(require, exports, module) {
         // 天添利赎回
         payRedeem: function(redeemValue) {
             var tem = '<article class="paywin_box">\
-                    <div class="paywin_box_t">支付确认<em class="close" id="payRedeem_close"></em></div>\
+                    <div class="paywin_box_t">赎回确认<em class="close" id="payRedeem_close"></em></div>\
                     <div class="paywin_box_m">\
                         <div class="paycontent pay_form">\
                             <div class="pay_detail">\
