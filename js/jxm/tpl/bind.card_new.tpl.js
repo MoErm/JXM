@@ -39,15 +39,11 @@ define(function (require, exports, module) {
                      </div>\
                     <div class="btn_box_submit js_next">下一步</div>\
                     <p class="entrust_agreement2 js_agreement">我已阅读并同意<a href="javascript:void(0)" class="bind_card_agreement">《委托支付服务协议》</a></p>\
-                    <input type="hidden" id="mchnt_cd" name="mchnt_cd">\
+                   <input type="hidden" id="mchnt_cd" name="mchnt_cd">\
                     <input type="hidden" id="mchnt_txn_ssn" name="mchnt_txn_ssn">\
-                    <input type="hidden" id="certif_tp" name="certif_tp">\
-                    <input type="hidden" id="cust_nm" name="cust_nm">\
-                    <input type="hidden" id="mobile_no" name="mobile_no">\
-                    <input type="hidden" id="city_id" name="city_id">\
-                    <input type="hidden" id="capAcntNo" name="capAcntNo">\
-                    <input type="hidden" id="certif_id" name="certif_id">\
-                    <input type="hidden" id="back_notify_url" name="back_notify_url">\
+                    <input type="hidden" id="login_id" name="login_id">\
+                    <input type="hidden" id="mobile" name="mobile">\
+                    <input type="hidden" id="page_notify_url" name="page_notify_url">\
                     <input type="hidden" id="signature" name="signature">\
                 </form>\
                  <a href="tel:4008339869" class="js_customer" style="display:none"></a>\
