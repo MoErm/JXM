@@ -14,7 +14,8 @@ define(function(require, exports, module) {
             return this;
         },
         events: {
-            'click #recharge_btn':'goToRecharge'
+            'click #recharge_btn':'goToRecharge',
+             'input #recharge_money': 'checkChangeAmount' // 修改充值参数
         },        
         onShow: function() {
             self = this.initialize();
@@ -42,6 +43,23 @@ define(function(require, exports, module) {
                 right: null
             });
             App.hideLoading();
+        },
+        checkChangeAmount: function(){
+            checkTip();
+            // 检查提示
+            function checkTip(){
+                var amtNum = $('#recharge_money').val();
+                var transactLimitNum= Number(self.pageData.chargeData.transactLimit);
+                if(isNaN(amtNum)){
+                    App.showToast("请输入合法数字金额");
+                    $("#recharge_money").val("");
+                }                    
+                if(amtNum > transactLimitNum){
+                    App.showToast("充值金额不能大于银行卡单笔限额");
+                    $("#recharge_money").val(transactLimitNum);
+                    return;            
+                }             
+            }
         },
         getInitTemData: function(){ // 获取可用余额
             fuyouToCharge.exec({
@@ -98,7 +116,7 @@ define(function(require, exports, module) {
             }
             // 充值金额校验
             function checkAmount(){
-                 if(rechargeData.amount==''){ // 空验证
+                if(rechargeData.amount==''){ // 空验证
                     App.showToast('充值金额不能为空');
                     return;
                 }

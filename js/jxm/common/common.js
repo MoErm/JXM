@@ -215,6 +215,8 @@ define(function(require, exports, module) {
                             //self.$el.find('.js_code').data("hascode", 0);
 
                             App.goTo('login');
+                        } else if (data.ret == 100017) {
+                            App.showToast('还需要等待' + data.data.waitSeconds + '秒');
                         } else {
                             //self.showCodeCountDown(data.data.retryWait);
                             App.showToast(data.msg || "网络错误");
@@ -386,7 +388,7 @@ define(function(require, exports, module) {
         // 天添利赎回
         payRedeem: function(redeemValue) {
             var tem = '<article class="paywin_box">\
-                    <div class="paywin_box_t">支付确认<em class="close" id="payRedeem_close"></em></div>\
+                    <div class="paywin_box_t">赎回确认<em class="close" id="payRedeem_close"></em></div>\
                     <div class="paywin_box_m">\
                         <div class="paycontent pay_form">\
                             <div class="pay_detail">\
@@ -459,7 +461,7 @@ define(function(require, exports, module) {
                             } else if (data.ret == 999001) {
                                 App.goTo('login');
                             }else if (data.ret == 100017) {
-                                self.showCodeCountDown(data.data.waitSeconds);
+                                App.showToast('还需要等待' + data.data.waitSeconds + '秒');
                             } else {
                                 App.showToast(data.msg || "网络错误");
                             }
@@ -943,8 +945,7 @@ define(function(require, exports, module) {
                                 getCodeFlag_ttl=false
                                 App.goTo('login');
                             }else if (data.ret == 100017) {
-                                self.showCodeCountDown(data.data.waitSeconds);
-                                //App.showToast(data.msg || "网络错误");
+                                 App.showToast('还需要等待' + data.data.waitSeconds + '秒');
                             } else {
                                 App.showToast(data.msg || "网络错误");
                             }
