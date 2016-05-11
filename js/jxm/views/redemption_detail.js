@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     var payLayer = require("jxm/common/common");
     var getRansomDetails = new Model.getRansomDetails();
     //接口
+    var self;
     module.exports = App.Page.extend({
         events: {
             'click .redemption_btn': 'payRedeem'
@@ -48,6 +49,9 @@ define(function (require, exports, module) {
                     if(data.ret == 0){
                         self.data=data.data
                         self.data.format=self.format
+                        if(_.isUndefined(data.data.bankName )){
+                            self.data.bankName =""
+                        }
                         self.$el.html(_.template(Template)(self.data));
 
                     }else if(data.ret == 999001) {

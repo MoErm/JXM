@@ -6,7 +6,6 @@ define(function (require, exports, module) {
 					<em class="icon"></em>\
 					<div class="info">\
 						<p class="sub_total">成功支付  <%=successData.investAmount%> </p>\
-						<p><%=successData.bankName%>（尾号<%=successData.cardNoTail%>）</p>\
 						<p><%=successData.investTime%></p>\
 					</div>\
 				</li>\
