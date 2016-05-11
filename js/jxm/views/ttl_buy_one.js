@@ -118,6 +118,8 @@ define(function(require, exports, module) {
             self.pageData.cardData.maxInvestAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
             self.pageData.cardData.miNRate= self.pageData.cardData.initialRate*100;
             self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*10000/100;
+            self.pageData.cardData.allAmount= handle.dealMoney3(self.pageData.cardData.balance);
+
             //添加内容
             self.$el.html(_.template(buyStepOne)(self.pageData));
             self.initSession();

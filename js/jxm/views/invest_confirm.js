@@ -111,6 +111,7 @@ define(function(require, exports, module) {
                         self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
                         self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
                         self.initData.surplusAmount_show = handle.dealMoney(self.initData.surplusAmount);
+                        self.initData.allAmount = handle.dealMoney3(self.initData.balance);
                         
                         if (self.initData.incomeType != "03") {
                             self.initData.incomeceiling = self.initData.incomeRateCeiling.split('%')[0]

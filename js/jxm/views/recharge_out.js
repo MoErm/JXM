@@ -55,8 +55,8 @@ define(function(require, exports, module) {
             checkTip();
             // 检查提示
             function checkTip(){
-                var amtNum = parseInt(self.$('#recharge_out_money').val()) || 0;
-                var allAmountNum= parseInt(self.pageData.chargeData.amount);
+                var amtNum = Number(self.$('#recharge_out_money').val()) || 0;
+                var allAmountNum= Number(self.pageData.chargeData.amount);
                 
                 if(isNaN(amtNum)){
                     App.showToast("请输入合法数字金额");

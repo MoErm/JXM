@@ -32,7 +32,7 @@ define(function (require, exports, module) {
 	          <div class="v_item_bd"><% if (productType == "01") {%><span class="ico_query js_regular_pop">收益说明</span><% } else if(productType == "02") {%><%if(salesCharge=="0.0%" && serviceCharge=="0.0%"){%><span class="ico_query js_float_pop">手续费说明</span><%}else{%><span class="ico_query js_float_pop">手续费说明</span><%} %><%} %></div>\
 	        </div>\
 	        <div class="invest_recharge">\
-        		<div class="invest_money"><span class="title">现金余额</span> <span class="num"><%=balance%></span>元</div>\
+        		<div class="invest_money"><span class="title">现金余额</span> <span class="num"><%=allAmount%></span>元</div>\
 	       		<% if ("s" != "") {%><div class="invest_change"><span class="title">红包</span><p id="change"><span class="num"><%=change%></span></p>元</div><% }%>\
 	       		<button class="cash_addbtn" id="cash_addbtn">充值</button>\
 	        </div>\
