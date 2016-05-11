@@ -3,7 +3,7 @@ define(function (require, exports, module) {
             <div class="recharge_t">\
                 <ul class="recharge_t_list">\
                     <li>现金余额(元) <span class="list_con number"><%=chargeData.allAmount%></span></li>\
-                    <li>提现金额(元) <span class="list_con"><input type="number" class="recharge_money" id="recharge_out_money" placeholder="100元起"/></span><span class="get_allmoney" id="get_allmoney">全部提现</span></li>\
+                    <li>提现金额(元) <span class="list_con"><input type="text" class="recharge_money" id="recharge_out_money" placeholder="100元起"/></span><span class="get_allmoney" id="get_allmoney">全部提现</span></li>\
                 </ul>\
             </div>\
             <div class="recharge_m">\
