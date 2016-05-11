@@ -23,7 +23,7 @@ define(function (require, exports, module) {
                 <div class="same_card_tip">\
                     <h2 class="tip_head"><span class="text">Tips</span><em class="line"></em></h2>\
                     <em class="tip_icon"></em>\
-                    <p class="tip_text">单笔充值金额100元起</p>\
+                    <p class="tip_text">1.单笔充值金额100元起</p>\
                 </div>\
             </div>\
         </article>\
