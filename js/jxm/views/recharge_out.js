@@ -151,7 +151,7 @@ define(function(require, exports, module) {
                     return;
                 }
                 if(parseInt(rechargeOutData.amount)<100 && parseInt(rechargeOutData.amount)!=parseInt(self.pageData.chargeData.amount)){
-                    App.showToast('提现余额小余100元，需一次性全额提现');
+                    App.showToast('提现余额小于100元，需一次性全额提现');
                     return;
                 }
                 if(parseInt(rechargeOutData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
