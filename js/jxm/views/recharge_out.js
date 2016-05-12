@@ -156,6 +156,7 @@ define(function(require, exports, module) {
                 }
                 if(parseInt(rechargeOutData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
                     App.showToast('提现金额不能大于银行卡单笔限额');
+                     $("#recharge_out_money").val(self.pageData.chargeData.transactLimit); 
                     return;
                 }
                 return true;
