@@ -40,7 +40,11 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        window.history.back();
+                        if(handle.mobileType()=="android"){
+                            window.app.goBack()
+                        }else{
+                           window.history.back();
+                        }                        
                     }
                 },
                 right: null
@@ -82,7 +86,16 @@ define(function(require, exports, module) {
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
-                         App.goTo('login');
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     }
                     else if(data.ret == 110001){ // 未完成实名绑卡 跳转到实名绑卡流程
                         App.hideLoading();
