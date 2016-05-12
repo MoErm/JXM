@@ -59,13 +59,21 @@ define(function(require, exports, module) {
             checkTip();
             // 检查提示
             function checkTip(){
-                var amtNum = Number(self.$('#recharge_out_money').val()) || 0;
+                var amtNum = self.$('#recharge_out_money').val();
                 var allAmountNum= Number(self.pageData.chargeData.amount);
                 
                 if(isNaN(amtNum)){
                     App.showToast("请输入合法数字金额");
                     $("#recharge_out_money").val("");
-                }              
+                } 
+                // 精确小数点后两位
+                var indexPoint= amtNum.indexOf('.');
+                if(indexPoint!=-1 ){
+                   if(amtNum.slice(indexPoint).length>=3){
+                        App.showToast("充值金额最小单位为分");
+                        $("#recharge_out_money").val(amtNum.slice(0,indexPoint+3) );
+                   }
+                }               
                 if(amtNum > allAmountNum){
                     App.showToast("提现金额不能大于现金余额");
                     $("#recharge_out_money").val(allAmountNum);                  
