@@ -40,7 +40,11 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        window.history.back();
+                        if(handle.mobileType()=="android"){
+                            window.app.goBack()
+                        }else{
+                           window.history.back();
+                        }                        
                     }
                 },
                 right: null
@@ -55,13 +59,21 @@ define(function(require, exports, module) {
             checkTip();
             // 检查提示
             function checkTip(){
-                var amtNum = Number(self.$('#recharge_out_money').val()) || 0;
+                var amtNum = self.$('#recharge_out_money').val();
                 var allAmountNum= Number(self.pageData.chargeData.amount);
                 
                 if(isNaN(amtNum)){
                     App.showToast("请输入合法数字金额");
                     $("#recharge_out_money").val("");
-                }              
+                } 
+                // 精确小数点后两位
+                var indexPoint= amtNum.indexOf('.');
+                if(indexPoint!=-1 ){
+                   if(amtNum.slice(indexPoint).length>=3){
+                        App.showToast("充值金额最小单位为分");
+                        $("#recharge_out_money").val(amtNum.slice(0,indexPoint+3) );
+                   }
+                }               
                 if(amtNum > allAmountNum){
                     App.showToast("提现金额不能大于现金余额");
                     $("#recharge_out_money").val(allAmountNum);                  
@@ -82,7 +94,16 @@ define(function(require, exports, module) {
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
-                         App.goTo('login');
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
                     }
                     else if(data.ret == 110001){ // 未完成实名绑卡 跳转到实名绑卡流程
                         App.hideLoading();
@@ -130,11 +151,12 @@ define(function(require, exports, module) {
                     return;
                 }
                 if(parseInt(rechargeOutData.amount)<100 && parseInt(rechargeOutData.amount)!=parseInt(self.pageData.chargeData.amount)){
-                    App.showToast('提现余额小余100元，需一次性全额提现');
+                    App.showToast('提现余额小于100元，需一次性全额提现');
                     return;
                 }
                 if(parseInt(rechargeOutData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
                     App.showToast('提现金额不能大于银行卡单笔限额');
+                     $("#recharge_out_money").val(self.pageData.chargeData.transactLimit); 
                     return;
                 }
                 return true;

@@ -37,7 +37,11 @@ define(function(require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        window.history.back();
+                        if(handle.mobileType()=="android"){
+                            window.app.goBack()
+                        }else{
+                            window.history.back();
+                        }                         
                     }
                 },
                 right: null
@@ -53,7 +57,15 @@ define(function(require, exports, module) {
                 if(isNaN(amtNum)){
                     App.showToast("请输入合法数字金额");
                     $("#recharge_money").val("");
-                }                    
+                } 
+                // 精确小数点后两位
+                var indexPoint= amtNum.indexOf('.');
+                if(indexPoint!=-1 ){
+                   if(amtNum.slice(indexPoint).length>=3){
+                        App.showToast("充值金额最小单位为分");
+                        $("#recharge_money").val(amtNum.slice(0,indexPoint+3) );
+                   }
+                }                  
                 if(amtNum > transactLimitNum){
                     App.showToast("充值金额不能大于银行卡单笔限额");
                     $("#recharge_money").val(transactLimitNum);
@@ -73,7 +85,17 @@ define(function(require, exports, module) {
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
-                         App.goTo('login');
+                        if(handle.mobileType()=="android"){
+                            window.app.outTime()
+                        }else  if(handle.mobileType()!="html") {
+                            handle.setupWebViewJavascriptBridge(function(bridge) {
+                                bridge.callHandler('timeout', null, function(response) {
+                                })
+                            })
+                        }else{
+                            handle.goLogin();
+                        }
+
                     }
                     else if(data.ret == 110001){ // 未完成实名绑卡 跳转到实名绑卡流程
                         App.hideLoading();
