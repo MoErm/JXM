@@ -73,7 +73,7 @@ define(function(require, exports, module) {
                         App.showToast("充值金额最小单位为分");
                         $("#recharge_out_money").val(amtNum.slice(0,indexPoint+3) );
                    }
-                }               
+                }        
                 if(amtNum > allAmountNum){
                     App.showToast("提现金额不能大于现金余额");
                     $("#recharge_out_money").val(allAmountNum);                  
@@ -149,16 +149,20 @@ define(function(require, exports, module) {
                  if(rechargeOutData.amount==''){ // 空验证
                     App.showToast('提现金额不能为空');
                     return;
-                }
-                if(parseInt(rechargeOutData.amount)<100 && parseInt(rechargeOutData.amount)!=parseInt(self.pageData.chargeData.amount)){
-                    App.showToast('提现余额小于100元，需一次性全额提现');
-                    return;
-                }
-                if(parseInt(rechargeOutData.amount) > parseInt(self.pageData.chargeData.transactLimit)){
+                }                
+                if(Number(rechargeOutData.amount) > Number(self.pageData.chargeData.transactLimit)){
                     App.showToast('提现金额不能大于银行卡单笔限额');
                      $("#recharge_out_money").val(self.pageData.chargeData.transactLimit); 
                     return;
                 }
+                if(Number(rechargeOutData.amount) < 100) {
+                     App.showToast("提现金额不能小于100");
+                     return;
+                }   
+                if(Number(rechargeOutData.amount)<100 && Number(self.pageData.chargeData.amount)<100 ){
+                    App.showToast('提现余额小于100元，需一次性全额提现');
+                    return;
+                } 
                 return true;
             }    
 
