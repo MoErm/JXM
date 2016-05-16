@@ -8,7 +8,7 @@ define(function (require, exports, module) {
 	  </div>\
 	  <div class="fuyouDetail_list">\
 	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">状态</span><span class="fuyouDetail_span2"><%=tradeStatusDesc%></span></div>\
-	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">交易类型</span><span class="fuyouDetail_span2"><%=showName(tradeType)%></span></div>\
+	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">交易类型</span><span class="fuyouDetail_span2"><%=showName(tradeType,productName)%></span></div>\
 	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">交易时间</span><span class="fuyouDetail_span2"><%=tradeTime%></span></div>\
 	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">流水号</span><span class="fuyouDetail_span2"><%=serialNo%></span></div>\
 	  	<div class="fuyouDetail_line"><span class="fuyouDetail_span1">备注</span><span class="fuyouDetail_span2"><%=remark%></span></div>\

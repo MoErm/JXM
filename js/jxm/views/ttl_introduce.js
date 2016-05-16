@@ -324,7 +324,6 @@ define(function(require, exports, module) {
             //App.showToast("deg   " )
             deg = deg.substring(7, deg.length - 4)
             var mathDeg = parseInt(deg)
-            console.log("mathdeg   "+mathDeg)
             cycle.style.webkitTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
             cycle.style.MozTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
             cycle.style.msTransform = "rotate(" + (mathDeg + key * 45) + "deg)";

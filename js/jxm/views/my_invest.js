@@ -155,8 +155,10 @@ define(function (require, exports, module) {
                     App.hideLoading();
                     if (data.ret == 0) {
                         self.data = data.data
+                        if(_.isUndefined(data.data.balance)){
+                            self.data.balance=0
+                        }
                         self.data.currentIncome = data.data.currentIncome || 0
-
                         //百分位显示
                         self.data.floatPropRate = (self.data.floatPropRate * 100).toFixed(2)
                         self.data.fixedPropRate = (self.data.fixedPropRate * 100).toFixed(2)
@@ -167,10 +169,7 @@ define(function (require, exports, module) {
                         self.$('.js_my_invest').addClass('footer_icon_wo_sel');
                         self.$('.js_my_invest').removeClass('footer_icon_wo_unsel');
                         handle.setTitle("我");
-
                         //处理总资产的长度
-
-
                        //self.setChart()
                     } else if (data.ret == 999001) {
                         handle.goLogin();

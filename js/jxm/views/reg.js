@@ -119,7 +119,7 @@ define(function (require, exports, module) {
                 source='02'
             }
             App.showLoading();
-            registerCheck.set({"userId": phone_num,"loginPwd":passWord,"msgCaptcha":coad_num,"inviteCode":inviteCode,"openId":openId,"source":source})//组织参数
+            registerCheck.set({"userId": phone_num,"loginPwd":passWord,"msgCaptcha":coad_num,"inviteCode":inviteCode,"openId":openId,"source":source,"version":"1.1"})//组织参数
             registerCheck.exec({
                 type: 'get',
                 success: function (data) {

@@ -25,7 +25,6 @@ define(function (require, exports, module) {
                 success: function (data){
                     self.data=data.data;
                     App.hideLoading();
-                    console.log(self.data)
                     if(data.ret == 0){
                         self.$('#mchnt_cd').val(data.data.merCode)
                         self.$('#mchnt_txn_ssn').val(data.data.serialNo)

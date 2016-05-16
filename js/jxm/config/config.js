@@ -92,6 +92,10 @@ window.global_config = {
             "controller": "fuyouDetail"
         },
         {
+            "url": "fuyouSuccess",
+            "controller": "fuyouSuccess"
+        },
+        {
             "url": "invest_history",
             "controller": "invest_history"
         }, {
@@ -268,6 +272,7 @@ requirejs.config({
         'fuyou': 'jxm/views/fuyou',
         'fuyou_sign': 'jxm/views/fuyou_sign',
         'fuyouDetail': 'jxm/views/fuyouDetail',
+        'fuyouSuccess': 'jxm/views/fuyouSuccess',
         'get_password': 'jxm/views/get_password',
         'get_password_next': 'jxm/views/get_password_next',
         'bind_card_new': 'jxm/views/bind_card_new',

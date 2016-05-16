@@ -1,7 +1,6 @@
 define(function (require, exports, module) {
     var Model = require("jxm/model/model");
     var Store = require("jxm/model/store");
-    var Chart = require("jxm/utils/Chart");
     var Template = require("jxm/tpl/fuyouDetail.tpl");
     var fuyouTradeInfo = new Model.fuyouTradeInfo();
 
@@ -59,20 +58,20 @@ define(function (require, exports, module) {
                 }
             })
         },
-        showName:function(tradeType){
+        showName:function(tradeType,productName){
             switch (tradeType){
                 case "01":
                     return "充值";
                 case "02":
                     return "提现";
                 case "03":
-                    return "固定产品投资";
+                    return productName+"投资";
                 case "04":
-                    return "固定产品到期";
+                    return productName+"到期";
                 case "05":
-                    return "天添利产品投资";
+                    return productName+"投资";
                 case "06":
-                    return "天添利产品赎回";
+                    return productName+"赎回";
             }
         },
         setHeader: function () {

@@ -85,21 +85,36 @@ define(function (require, exports, module) {
                 }
             });
         },
-        showName:function(tradeType){
-            switch (tradeType){
-                case "01":
-                    return "充值";
-                case "02":
-                    return "提现";
-                case "03":
-                    return "固定产品投资";
-                case "04":
-                    return "固定产品到期";
-                case "05":
-                    return "天添利产品投资";
-                case "06":
-                    return "天添利产品赎回";
-            }
+        showName:function(tradeType,productName){
+            //if((tradeType!="01"&&tradeType!="02")&&productName.length>10){
+            //    productName=productName.substr(0, 10);
+            //    switch (tradeType){
+            //        case "03":
+            //            return productName+"...";
+            //        case "04":
+            //            return productName+"...";
+            //        case "05":
+            //            return productName+"...";
+            //        case "06":
+            //            return productName+"...";
+            //    }
+            //}else{
+                switch (tradeType){
+                    case "01":
+                        return "充值";
+                    case "02":
+                        return "提现";
+                    case "03":
+                        return productName+"投资";
+                    case "04":
+                        return productName+"到期";
+                    case "05":
+                        return productName+"投资";
+                    case "06":
+                        return productName+"赎回";
+                }
+            //}
+
         },
         scrollTopListener:function(){
             $(window).bind('scroll', function(){
