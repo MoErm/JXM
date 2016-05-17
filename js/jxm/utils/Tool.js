@@ -48,10 +48,8 @@ define(function(require, exports, module) {
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.indexOf("hih5hybird") > -1) {
             mType='android'
-        } else {
-            this.setupWebViewJavascriptBridge(function(bridge) {
-
-            })
+        } else if (userAgent.indexOf("iphone") > -1){
+            mType='ios';
         }
 
     }
@@ -60,7 +58,7 @@ define(function(require, exports, module) {
         return mType;
     }
     Tool.prototype.setupWebViewJavascriptBridge=function(callback){
-        if (window.WebViewJavascriptBridge) {  mType='ios'; return callback(WebViewJavascriptBridge); }
+        if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
         if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
 
         window.WVJBCallbacks = [callback];
@@ -69,7 +67,6 @@ define(function(require, exports, module) {
         WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
         document.documentElement.appendChild(WVJBIframe);
         setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-
 
     }
     //Money
