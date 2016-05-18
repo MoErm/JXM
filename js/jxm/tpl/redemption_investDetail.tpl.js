@@ -8,7 +8,9 @@ define(function (require, exports, module) {
            <span class="span_2">累计收益</span><span class="span_4"> +<%=income%>元</span>\
           </div>\
 	   <div class="item icon_ok">成功支付 <i class="numb"><%=investAmount%></i><br>\
+	   <%if(bankName!=""){%>\
 	   <p><%=bankName%>(尾号<%=cardTailNo%>)</p>\
+	   <%}%>\
 	   <p><%=orderTime%></p>\
 	   </div>\
 	    <div class="item icon_coin">\

@@ -10,7 +10,7 @@ define(function (require, exports, module) {
         var realStatusCheck = new model.realStatusCheck();
         var abortChange= new model.abortChange();
         var getUserInfo = new model.getUserInfo();
-        var toInvestConfirmMode = new model.toInvestConfirm();
+        var fuyouToInvestConfirmMode = new model.fuyouToInvestConfirm();
         var page;
         var handle = new tool();
         var timer = {};
@@ -50,7 +50,8 @@ define(function (require, exports, module) {
                 handle.orientationTips();
                 self.$el.html('<div class="js_content"></div>' + footer);
                 self.$('.js_product_list').addClass('cur');
-
+                self.$('.js_product_list').addClass('footer_icon_lc_sel');
+                self.$('.js_product_list').removeClass('footer_icon_lc_unsel');
                     self.getUserInfo();
                 self.showProduct();
 
@@ -402,37 +403,51 @@ define(function (require, exports, module) {
             //立即购买
             toInvestConfirm: function(pid){
                 App.showLoading();
-                toInvestConfirmMode.set({'productNo': pid});
-                toInvestConfirmMode.exec({
+                fuyouToInvestConfirmMode.set({'productNo': pid});
+                fuyouToInvestConfirmMode.exec({
                     type: 'post',
                     success: function(data){
                         App.hideLoading();
                         if(data.ret == 0){
                             App.goTo('invest_confirm?pid=' + pid)
-                        }else if(data.ret == 110001){
-                            //未绑定银行卡
-                            if(!self.promptAlert){
-                                self.promptAlert = handle.prompt('未绑定银行卡，是否现在去设置','放弃', '去设置', null, function(){
-                                    handle.setProductLink('list');
-                                    App.goTo('bind_card_new');
-                                });
-                            }
-                            self.promptAlert.show();
-                        }else if(data.ret == 110009){
-                            //未设置交易密码
-                            if(!self.passAlert){
-                                self.passAlert = handle.prompt('未设置交易密码，是否现在去设置','放弃', '去设置', null, function(){
-                                    handle.setProductLink('list');
-                                    App.goTo('reset_password?soure=0');
-                                });
-                            }
-                            self.passAlert.show();
-                        }else if(data.ret == 200003){
-                            //未设置交易密码
-                            self.promptAlert = handle.alert("暂无额度，但还有人未完成支付，5分钟后再来看看！",function(){
+                        } else if (data.ret == 110001) { // 未完成实名绑卡
+
+                            App.hideLoading();
+                            self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
+                                App.goTo('list');
+                            },function(){                          
+                                App.goTo('bind_card_new');
                             });
                             self.promptAlert.show();
-                        }else if(data.ret == 110115){
+                        } else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
+
+                            App.hideLoading();
+                             self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){                          
+                                App.goTo('list');
+                            },function(){                          
+                                App.goTo('bind_card_new');
+                            });                  
+                            self.promptAlert.show();
+
+                        } else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+
+                            App.hideLoading();                       
+                            self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
+                                App.goTo('list');
+                            },function(){                          
+                                App.goTo('fuyou_sign');
+                            });                  
+                            self.promptAlert.show();
+
+                        } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
+
+                            App.hideLoading();
+                            self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
+                               App.goBack();
+                            });                  
+                            self.promptAlert.show();
+
+                        } else if(data.ret == 110115){
                             App.hideLoading();
 
                             self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){

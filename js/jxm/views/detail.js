@@ -7,7 +7,7 @@ define(function (require, exports, module) {
         var detailModel = new model.detailModel();
         var investModel = new model.investModel();
         var realStatusCheck = new model.realStatusCheck();
-        var toInvestConfirmMode = new model.toInvestConfirm();
+        var fuyouToInvestConfirmMode = new model.fuyouToInvestConfirm();
         var abortChange= new model.abortChange();
         var handle = new tool();
         var message = '网络错误，请稍后重试';
@@ -191,8 +191,8 @@ define(function (require, exports, module) {
             //立即购买
             toInvestConfirm: function(){
                 App.showLoading();
-                toInvestConfirmMode.set({'productNo': self.data.productNo});
-                toInvestConfirmMode.exec({
+                fuyouToInvestConfirmMode.set({'productNo': self.data.productNo});
+                fuyouToInvestConfirmMode.exec({
                     type: 'post',
                     'success': function(data){
                         var url = self.request.url;

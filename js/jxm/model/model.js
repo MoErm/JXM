@@ -292,7 +292,7 @@
         getTtlCulInvest: initModel({
         	url:host+"/api/demand/all"
         }),
-        //获取灵活宝资产信息接口
+        //获取天添利资产信息接口
         getTtlProperty: initModel({
         	url:host+"/api/demand/property"
         }),
@@ -304,23 +304,23 @@
         initTtlBuyPage: initModel({
             url:host+"/api/demand/toBuy"
         }),
-        // 同意灵活宝协议
+        // 同意天添利协议
         agreeTtlContract: initModel({
             url:host+"/api/demand/agreeContract"
         }),        
-        //购买灵活宝
+        //购买天添利
         goTtlBuyPageCheck: initModel({
             url:host+"/api/demand/createDemandOrder"
         }),
-        // 获取灵活宝支付验证码
+        // 获取天添利支付验证码
         getTtlPayCode: initModel({
             url:host+"/api/demand/getDemandPayMsg"
         }),
-        // 灵活宝支付
+        // 天添利支付
         goTtlPayOrder: initModel({
             url:host+"/api/demand/payDemandOrder"
         }),
-        // 灵活宝支付结果检查接口
+        // 天添利支付结果检查接口
         goTtlPayResult: initModel({
             url:host+"/api/demand/checkDemandOrder"
         }),
@@ -337,11 +337,115 @@
         getRollingNotice: initModel({
              url:host+"/api/notice/getRollingNotice"
         }),
-
         //chinaPay 验证
         NewCardBindService:initModel({
             url:"http://bianmin-test.chinapay.com/USWeb/NewCardBindService"
-        })
+        }),
+
+        //以下为富有改动新接口
+        //获取地区信息
+        fuyouAreas: initModel({
+            url:host+"/api/fuyou/areas"
+        }),
+        //获取用户当前银行卡信息
+        fuyouCurrentCardInfo: initModel({
+            url:host+"/api/fuyou/currentCardInfo"
+        }),
+        //开户注册
+        fuyouCardRegister: initModel({
+            url:host+"/api/fuyou/cardRegister"
+        }),
+        //签约签名
+        fuyouSignForAppSign: initModel({
+            url:host+"/api/fuyou/signForAppSign"
+        }),
+        //查询已绑定的银行卡
+        fuyouCard: initModel({
+            url:host+"/api/fuyou/card"
+        }),
+        //查询已绑定的银行卡
+        fuyouNotSignedCard: initModel({
+            url:host+"/api/fuyou/notSignedCard"
+        }),
+        //查询现金余额
+        fuyouBalance: initModel({
+            url:host+"/api/fuyou/balance"
+        }),
+        //获取充值验证码
+        fuyouSmsForCharge: initModel({
+            url:host+"/api/fuyou/smsForCharge"
+        }),
+        //充值页面跳转
+        fuyouToCharge: initModel({
+            url:host+"/api/fuyou/toCharge"
+        }),
+        //充值签名
+        fuyouSignForCharge: initModel({
+            url:host+"/api/fuyou/signForCharge"
+        }),
+        //提现页面跳转
+        fuyouToWithdraw: initModel({
+            url:host+"/api/fuyou/toWithdraw"
+        }),
+        //提现签名
+        fuyouSignForWithdraw: initModel({
+            url:host+"/api/fuyou/signForWithdraw"
+        }),
+        //支付密码修改签名
+        fuyouSignForPayPwdModify: initModel({
+            url:host+"/api/fuyou/signForPayPwdModify"
+        }),
+        //交易记录查询
+        fuyouTradeRecords: initModel({
+            url:host+"/api/fuyou/tradeRecords"
+        }),
+        //交易详情
+        fuyouTradeInfo: initModel({
+            url:host+"/api/fuyou/tradeInfo"
+        }),
+        //购买流程
+        //立即投资
+        fuyouToInvestConfirm: initModel({
+            url:host+"/api/fy/order/toInvestConfirm"
+        }),
+        //创建订单
+        fuyouCreateOrder: initModel({
+            url:host+"/api/fy/order/createOrder"
+        }),
+        //订单支付
+        fuyouPayOrder: initModel({
+            url:host+"/api/fy/order/payOrder"
+        }),
+        //检查订单支付结果
+        fuyouCheckOrder: initModel({
+            url:host+"/api/fy/order/checkOrder"
+        }),
+        //天天利 购买流程
+        // 购买页面初始化
+        fuyouInitTtlBuyPage: initModel({
+            url:host+"/api/fy/demand/toBuy"
+        }),
+        // 购买天添利
+        fuyouTtlBuyPageCheck: initModel({
+            url:host+"/api/fy/demand/createDemandOrder"
+        }),      
+        // 天添利支付
+        fuyouTtlPayOrder: initModel({
+            url:host+"/api/fy/demand/payDemandOrder"
+        }),
+        // 天添利支付结果检查接口
+        fuyouTtlPayResult: initModel({
+            url:host+"/api/fy/demand/checkDemandOrder"
+        }),
+        // 天添利赎回验证码接口
+        fuyouSendRedeemMsgCode:initModel({
+            url:host+"/api/fy/demand/sendRedeemMsgCode"
+        }),
+        // 天添利赎回页跳转接口
+        fuyouConfirmRedeem:initModel({
+            url:host+"/api/fy/demand/confirmRedeem"
+        }),
+
 	}
 	return Model;
 

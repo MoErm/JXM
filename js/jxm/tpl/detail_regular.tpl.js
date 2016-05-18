@@ -39,10 +39,6 @@ define(function (require, exports, module) {
 	        <div class="v_item_bd"><%=fixedProdInfo.investAmout%></div>\
 	      </li>\
 	      <li class="v_item">\
-	        <div class="v_item_hd">投资银行卡</div>\
-	        <div class="v_item_bd"><%=bankName%>(尾号<%=cardTailNo%>)</div>\
-	      </li>\
-	      <li class="v_item">\
 	        <div class="v_item_hd">年化收益率</div>\
 	        <div class="v_item_bd"><%=fixedProdInfo.incomeRateCeiling%></div>\
 	      </li>\
@@ -121,10 +117,6 @@ define(function (require, exports, module) {
 	      <li class="v_item">\
 	        <div class="v_item_hd">投资金额</div>\
 	        <div class="v_item_bd"><%=fixedProdInfo.investAmout%></div>\
-	      </li>\
-	      <li class="v_item">\
-	        <div class="v_item_hd">投资银行卡</div>\
-	        <div class="v_item_bd"><%=bankName%>(尾号<%=cardTailNo%>)</div>\
 	      </li>\
 	      <li class="v_item">\
 	        <div class="v_item_hd">预期年化收益</div>\

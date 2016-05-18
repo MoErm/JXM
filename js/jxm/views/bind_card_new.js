@@ -5,14 +5,17 @@ define(function (require, exports, module) {
         var model = require('jxm/model/model');
         var Store = require("jxm/model/store");
         var getBankInfoModel = new model.getBankInfoModel();
-        var getAddrModel = new model.getAddrModel();
+        //var getAddrModel = new model.getAddrModel();
+        var getAddrModel = new model.fuyouAreas();
         var realStatusCheck = new model.realStatusCheck();
         var getBankByBin = new model.getBankByBin();
         var realCheck = new model.realCheck();
         var sendDribblet = new model.sendDribblet();
         var loginStore = new Store.loginStore();
-        var getSignature = new model.getSignature();
+        //var getSignature = new model.getSignature();
+        var getSignature = new model.fuyouCardRegister();
         var getRealInfo = new model.getRealInfo();
+        var fuyouCurrentCardInfo = new model.fuyouCurrentCardInfo();
         var footer = require('jxm/tpl/card.footer.tpl');
         var handle = new tool();
         var message = '网络错误，请稍后重试';
@@ -35,6 +38,7 @@ define(function (require, exports, module) {
                 'click .js_next': 'submit',//下一步
                 'click .js_notice': 'notice',//下一步
                 'click .js_address': 'showAddress',//获取开户行信息
+                'click .js_type': 'selectType',//获取开户行信息
                 'change .js_card_number': 'inputCard',//获取开户行信息
                 'click .js_name': 'checkCardBin',//获取开户行信息
                 'click .js_id_card': 'checkCardBin',//获取开户行信息
@@ -65,10 +69,17 @@ define(function (require, exports, module) {
                 var idCard = handle.deleteAllBlank(self.$('.js_id_card').val());
                 var addressStr=handle.deleteAllBlank(self.$('.js_card_bankName').val());
 
+                var idType=handle.deleteAllBlank(self.$('#js_type_input_hidden').val());
+                var cardMobile=handle.deleteAllBlank(self.$('#js_cardMobile').val());
+
                 if(!name){
                     error.push('请输入姓名');
                 }else if(!handle.checkName(name)){
                     error.push('姓名不正确');
+                }
+
+                if(!idType){
+                    error.push('请选择证件类型');
                 }
                 if(!idCard){
                     error.push('请输入身份证号');
@@ -83,6 +94,9 @@ define(function (require, exports, module) {
                 if(!cardNumber || cardNumber.length < 16){
                     error.push('请输入正确的银行卡号');
                 }
+                if(!cardMobile || cardMobile.length < 11){
+                    error.push('请输入正确的银行预留手机号');
+                }
 
                 if(error.length){
                     App.showToast(error[0]);
@@ -93,57 +107,55 @@ define(function (require, exports, module) {
 
                 var sendData={
                     cardNo:cardNumber,
-                    certNo:idCard,
-                    usrName:name,
-                    'bankCode': self.bankData.bankCode,
-                    'bankName': self.bankData.bankName,
-                    'provinceCode': self.cityData.bankProvinceCode,
-                    'provinceName': self.cityData.bankProvinceName,
-                    'cityName': self.cityData.cityName,
-                    'cityCode':   self.cityData.cityId,
-                    'source':   source,
-                    'productNo':   productNo
+                    areaCode:self.cityData.cityId,
+                    certNum:idCard,
+                    name:name,
+                    certType:   idType,
+                    cardMobile:   cardMobile
+                    //'bankCode': self.bankData.bankCode,
+                    //'bankName': self.bankData.bankName,
+                    //'provinceCode': self.cityData.bankProvinceCode,
+                    //'provinceName': self.cityData.bankProvinceName,
+                    //'cityName': self.cityData.cityName,
+                    //'cityCode':   self.cityData.cityId,
+                    //'source':   source,
+                    //
+                    //'productNo':   productNo
                 }
-
+                //console.log(sendData)
+                //return
                 getSignature.set(sendData);
                 getSignature.exec({
                     type: 'POST',
                     success: function (data) {
+                        console.log(data)
                         submitFlag=false;
                         App.hideToast();
                         App.hideLoading();
                         if(data.ret == 0){
-//                            var bind_info={
-//                                cardNo:cardNumber,
-//                                certNo:idCard,
-//                                usrName:name,
-//                                address:addressStr,
-//                                'provinceCode': self.cityData.bankProvinceCode,
-//                                'provinceName': self.cityData.bankProvinceName,
-//                                'cityName': self.cityData.cityName,
-//                                'cityCode':   self.cityData.cityId
-//
-//                            }
-//                            sessionStorage.setItem("bind_info", JSON.stringify(bind_info));
-                            self.$('#cardNo').val(sendData.cardNo)
-                            self.$('#certNo').val(sendData.certNo)
-                            self.$('#usrName').val(sendData.usrName)
-                            self.$('#appSysId').val(data.data.appSysId)
-                            self.$('#signMethod').val(data.data.signMethod)
-                            self.$('#pgRetUrl').val(data.data.pgRetUrl)
-                            self.$('#bgRetUrl').val(data.data.bgRetUrl)
-                            self.$('#ordDate').val(data.data.ordDate)
-                            self.$('#ordSeqId').val(data.data.ordSeqId)
-                            self.$('#certType').val(data.data.certType)
+
+                            //self.$('#cardNo').val(sendData.cardNo)
+                            //self.$('#certNo').val(sendData.certNo)
+                            //self.$('#usrName').val(sendData.usrName)
+                            //self.$('#appSysId').val(data.data.appSysId)
+                            //self.$('#signMethod').val(data.data.signMethod)
+                            //self.$('#pgRetUrl').val(data.data.pgRetUrl)
+                            //self.$('#bgRetUrl').val(data.data.bgRetUrl)
+                            //self.$('#ordDate').val(data.data.ordDate)
+                            //self.$('#ordSeqId').val(data.data.ordSeqId)
+                            //self.$('#certType').val(data.data.certType)
+
+
+
+                            self.$('#mchnt_cd').val(data.data.merCode)
+                            self.$('#mchnt_txn_ssn').val(data.data.serialNo)
+                            self.$('#login_id').val(data.data.loginId)
+                            self.$('#mobile').val(data.data.cardMobile)
+                            self.$('#page_notify_url').val(data.data.pgCallback)
                             self.$('#signature').val(data.data.signature)
 
                             var actionUrl;
-//                            if(window.location.host.indexOf("localhost")>-1||window.location.host=="test.jiaxinmore.com"){
-//                                actionUrl= "http://140.206.112.245/CPPayWeb/trans!certification.ac"
-//                            }else{
-//                                actionUrl= "https://bianmin.chinapay.com/CPPayWeb/trans!certification.ac"
-//                            }
-                            actionUrl= data.data.requestUrl;
+                            actionUrl= data.data.appSignUrl;
                             self.$('#myform')[0].action =actionUrl;
 
                             if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
@@ -251,7 +263,7 @@ define(function (require, exports, module) {
             submit:function(){
 
                 if(cardChecked){
-                    App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入银联认证...</p>',8000)
+                    App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入富友联认证...</p>',8000)
                     self.signature();
                     return;
                 }
@@ -260,12 +272,17 @@ define(function (require, exports, module) {
                 var cardNumber = handle.deleteAllBlank(self.$('.js_card_number').val());
                 var name = handle.deleteAllBlank(self.$('.js_name').val());
                 var idCard = handle.deleteAllBlank(self.$('.js_id_card').val());
-                var addressStr=handle.deleteAllBlank(self.$('.js_card_bankName').val());
+                //var addressStr=handle.deleteAllBlank(self.$('.js_card_bankName').val());
+                var idType=handle.deleteAllBlank(self.$('#js_type_input_hidden').val());
+                var cardMobile=handle.deleteAllBlank(self.$('#js_cardMobile').val());
 
                 if(!name){
                     error.push('请输入姓名');
                 }else if(!handle.checkName(name)){
                     error.push('姓名不正确');
+                }
+                if(!idType){
+                    error.push('请选择证件类型');
                 }
                 if(!idCard){
                     error.push('请输入身份证号');
@@ -280,7 +297,9 @@ define(function (require, exports, module) {
                 if(!cardNumber || cardNumber.length < 16){
                     error.push('请输入正确的银行卡号');
                 }
-
+                if(!cardMobile || cardMobile.length < 11){
+                    error.push('请输入正确的银行预留手机号');
+                }
                 if(error.length){
                     App.showToast(error[0]);
                     return;
@@ -289,7 +308,7 @@ define(function (require, exports, module) {
                     App.showToast('请输入正确的银行卡号');
                     return;
                 }
-                App.showToast('<img src="./images/yl.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入银联认证...</p>',8000)
+                App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br><p style="font-weight: 300">正在接入富友联认证...</p>',8000)
 
                 //App.showLoading();
                 getBankByBin.exec({
@@ -389,18 +408,20 @@ define(function (require, exports, module) {
             },
             checkUserInfo:function(){
 
-                getRealInfo.exec({
+                fuyouCurrentCardInfo.exec({
                     type: 'get',
                     success: function(data){
                         App.hideLoading();
                         if(data.ret == 0){
                             //存变量
-                            if(data.data.userName!=null){
-                                self.$('.js_name').val(data.data.userName)
+                            if(data.data.name!=null){
+                                self.$('.js_name').val(data.data.name)
                                 self.$('.js_name')[0].readOnly=true
 
-                                self.$('.js_id_card').val(data.data.certNo)
+                                self.$('.js_id_card').val(data.data.certNum)
                                 self.$('.js_id_card')[0].readOnly=true
+                                self.$('#js_type_input_hidden').val(data.data.certType)
+                                self.$('.js_type_input').val(data.data.certType=="01"?"身份证":"港澳台证件")
                             }
 
                         }else if(data.ret == 999001){
@@ -480,7 +501,7 @@ define(function (require, exports, module) {
                                     if(handle.mobileType()=="android"){
                                         window.app.goBack()
                                     }else{
-                                        handle.getProductLink();
+                                       App.goTo("my_invest")
                                     }
                                 });
                             self.promptAlert.show();
@@ -711,6 +732,7 @@ define(function (require, exports, module) {
                             index: k
                         })
                     })
+
                     self.selectCity = new App.UI.UISelectGroup({
                         data: [province, cities],
                         indexArr: [cityX, cityY],
@@ -871,6 +893,51 @@ define(function (require, exports, module) {
                     App.UI.UIInputClear(self.$('.' + item), '', null, {'right': 5});
                 })
 
+            },
+
+            selectType: function(){
+                var province = [{
+                            id: "01",
+                            name: "身份证",
+                            index:1
+                        },{
+                    id: "02",
+                    name: "港澳台证件",
+                    index:2
+                }];
+                var cities = ["身份证","港澳台证件"];
+                var cityX = 0;
+                var cityY = 0;
+                var input = self.$('.js_address input');
+                var findProvince = null;
+
+                self.selectType = new App.UI.UISelectGroup({
+                    data: [province],
+                    indexArr: [cityX],
+                    maskToHide:false,
+                    datamodel: {
+                        title: '请选择证件类型',
+                        tips: ''
+                    },
+                    changedArr: [
+                        function(item) {
+
+                        }
+                    ],
+                    onHide: function () {
+                        this._destroyScroll();
+                    },
+                    onOkAction: function(items) {
+                        self.$('.js_type_input').val(items[0].name);
+                        self.$('#js_type_input_hidden').val(items[0].id);
+                        console.log(items[0].id)
+                        this.hide();
+                    },
+                    onCancelAction: function() {
+                        this.hide();
+                    }
+                });
+                self.selectType.show();
             },
             onHide: function(){
                 self.$('#js_card_bankName').val("");

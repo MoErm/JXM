@@ -19,9 +19,6 @@ define(function (require, exports, module) {
             return
         },
         backToIndex:function(){
-
-
-
             if(handle.mobileType()=="android"){
                 window.app.goBack()
             }else if(handle.mobileType()!="html") {
@@ -48,8 +45,6 @@ define(function (require, exports, module) {
             }else{
                 msg="出错啦"
             }
-
-
             self.$('.errorText').html(msg)
         },
         setHeader: function () {

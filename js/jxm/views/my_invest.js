@@ -7,6 +7,8 @@ define(function (require, exports, module) {
     var myProperty = new Model.myProperty();
     var historyOrder = new Model.historyOrder();
     var getRollingNotice = new Model.getRollingNotice();
+    var fuyouToCharge = new Model.fuyouToCharge();
+    var fuyouBalance = new Model.fuyouBalance();
     var Store = require("jxm/model/store");
     var loginStore = new Store.loginStore();
     var tool = require('jxm/utils/Tool')
@@ -18,23 +20,56 @@ define(function (require, exports, module) {
         events: {
             'click .js_history': 'goHistory',
             'click .triangle': 'goHistory',
-            'click .my_change': 'goWallet',
+            'click .invest_icon_hb': 'goWallet',
             'click .js_float': 'goFloat',
             'click .js_regular': 'goRegular',
             'click .js_setting': 'setting',
             'click .js_product_list': 'list',
             'click .js_ttl': 'ttl_recommend',
-            'click .invest_tiantian': 'goRedeem',
+            'click .invest_icon_ttl': 'goRedeem',
+            'click .invest_icon_yhk': 'goCard',
+            'click .invest_amount_1': 'goFuyou',
+            'click .fuyou_js_chongzhi': 'goChongZhi',
             'click .js_close': 'goClose',
-            'click .invest_invite': 'goInvite',
-            'click .invest_record': 'goRecord',
+            'click .invest_icon_wdyq': 'goInvite',
+            'click .invest_icon_jxm': 'goRecord',
             'click .js_situation':'goHeroList'
         },
         initialize: function () {
+            this.header = document.querySelector("#header");
             self = this;
         },
         ttl_recommend:function(){
             App.goTo("ttl_recommend")
+        },
+        goFuyou:function(){
+            App.goTo("fuyou")
+        },
+        goChongZhi:function(){
+            App.showLoading();
+            fuyouToCharge.exec({
+                type: 'get',
+                success: function(data){
+                    App.hideLoading();
+                    if(data.ret == 0){
+                        App.goTo("recharge")
+                    }else if(data.ret == 110001){
+                        self.sign=payLayer.signFuyou("bind")
+                    }else if(data.ret == 110210){
+                        self.sign=payLayer.signFuyou("sign")
+                    }else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(self.message);
+                }
+            });
+
+        },
+        goCard:function(){
+            App.goTo("add_card")
         },
         goWallet:function(){
             App.goTo("my_wallet")
@@ -60,12 +95,11 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             this.setHeader();
-
             self.$el.html(Footer);
-            self.$('#js_my_invest').addClass('cur');
+
             self.regQR();
             this.render();
-
+            $(self.header).hide();
             return
         },
         regQR:function(){
@@ -110,6 +144,7 @@ define(function (require, exports, module) {
                 $(".notice_text").animate({marginLeft:-($(".notice_text")[0].scrollWidth+document.body.clientWidth)},self.time,"linear",self.noticeAni);
             });
         },
+
         render: function () {
             $(".mod_my_invest").html("")
             var self = this;
@@ -120,22 +155,21 @@ define(function (require, exports, module) {
                     App.hideLoading();
                     if (data.ret == 0) {
                         self.data = data.data
+                        if(_.isUndefined(data.data.balance)){
+                            self.data.balance=0
+                        }
                         self.data.currentIncome = data.data.currentIncome || 0
-
                         //百分位显示
                         self.data.floatPropRate = (self.data.floatPropRate * 100).toFixed(2)
                         self.data.fixedPropRate = (self.data.fixedPropRate * 100).toFixed(2)
-
-
+                        self.data.dealMoney3=handle.dealMoney3
                         self.$el.html(_.template(Template + Footer)(self.data));
                         self.initNotice()
                         //self.newAcitve();
-                        self.$('.js_my_invest').addClass('cur');
+                        self.$('.js_my_invest').addClass('footer_icon_wo_sel');
+                        self.$('.js_my_invest').removeClass('footer_icon_wo_unsel');
                         handle.setTitle("我");
                         //处理总资产的长度
-                        self.$()
-
-
                        //self.setChart()
                     } else if (data.ret == 999001) {
                         handle.goLogin();

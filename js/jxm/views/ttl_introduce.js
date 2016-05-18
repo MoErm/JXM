@@ -21,6 +21,9 @@ define(function(require, exports, module) {
     var now;
     var startPoint;
     var today;
+
+
+
     /**
      * @version 1.0
      * @author cuisuqiang@163.com
@@ -105,6 +108,11 @@ define(function(require, exports, module) {
             nowRoundNum = 0;
             max = 0;
             min = 0;
+            //self.$("#cycle").on('touchstart',function(e){
+            //    App.showToast("ssssss")
+            //    e.stopPropagation();
+            //    e.preventDefault();
+            //});
 
             self.message = '网络错误，请稍后重试';
             handle.share();
@@ -131,16 +139,20 @@ define(function(require, exports, module) {
             var cycle = window.document.getElementById("cycle")
 
             mc.get('pinch').set({
-                enable: true
+                enable: false
             });
             mc.on("hammer.input", function(ev) {
                 //                self.cycleTime(ev.deltaX)
                 //                console.log(ev)
 //                console.log(ev.deltaTime + "  " + ev.srcEvent.type)
 //                console.log(ev.deltaTime < 100 && ev.srcEvent.type == "touchend")
+//                window.document.getElementById("cycle").addEventListener('touchmove',function(e){
+//
+//                });
 
 
                 if (ev.deltaTime < 100 && ev.srcEvent.type == "touchend") {
+
                     console.log("循环起始" + Math.abs(RoundNum - 2))
                     var fuwei = RoundNum
                     if (fuwei == 2) {
@@ -164,6 +176,7 @@ define(function(require, exports, module) {
 
                 //                self.routeCal(ev.deltaX,ev.deltaY,ev.srcEvent.type)
                 if (ev.srcEvent.type == "touchend") {
+
                     turnNum = 0
                 }
             });
@@ -178,7 +191,7 @@ define(function(require, exports, module) {
                 //            }else if(type=="touchend"){
                 //
                 //            }
-            if (x > 5) {
+            if (x > 10) {
                 if (y > 0) {
                     //                    console.log("右下")
                 } else if (y < 0) {
@@ -193,6 +206,7 @@ define(function(require, exports, module) {
                         //                    console.log("左上")
                 }
             } else {
+                return 0
                 if (startPoint > document.body.clientWidth / 2) {
                     if (y > 0) {
 
@@ -304,11 +318,23 @@ define(function(require, exports, module) {
                     self.$("#cycle_" + hidePool[i]).html(showDate_0.substr(4, 2) + "/" + showDate_0.substr(6, 2))
                 }
             }
+
             var cycle = window.document.getElementById("cycle")
-            var deg = cycle.style.webkitTransform;
+            var deg = self.$("#cycle").css("-webkit-transform")
+            //App.showToast("deg   " )
             deg = deg.substring(7, deg.length - 4)
             var mathDeg = parseInt(deg)
             cycle.style.webkitTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
+            cycle.style.MozTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
+            cycle.style.msTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
+            cycle.style.OTransform = "rotate(" + (mathDeg + key * 45) + "deg)";
+            cycle.style.transform = "rotate(" + (mathDeg + key * 45) + "deg)";
+
+            //self.$("#cycle").css({
+            //    'transform':     'rotate('+ (mathDeg + key * 45) + 'deg)',
+            //    '-moz-transform':'rotate('+ (mathDeg + key * 45) + 'deg)',
+            //    '-o-transform':  'rotate('+ (mathDeg + key * 45) + 'deg)'
+            //});
         },
         setRate: function(key) {
             var rate = map.get(key)
@@ -503,9 +529,16 @@ define(function(require, exports, module) {
         initTemple: function() {
             self.initBuyTime();
             self.$el.html(_.template(introduce)(self.pageData));
+            //App.showToast("aaaaaaaa")
+            document.getElementById("cycle").addEventListener('touchmove',function(e){
+                //App.showToast("ssssss")
+                e.stopPropagation();
+                e.preventDefault();
+            });
             self.initNotice()
             self.setCycle();
             self.initRate();
+
             App.hideLoading();
         },
         initBuyTime: function() {

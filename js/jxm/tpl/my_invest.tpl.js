@@ -1,38 +1,72 @@
 define(function (require, exports, module) {
 	var tpl = '\
 	<article class="mod_page mod_my_invest">\
-	\
+	<div class="notice" style="display: none"><div class="notice_text"></div></div>\
+		<div style="clear: both"></div>\
 	  <div class="my_invest">\
+	  	<div class="user_title"><p><%=userName%></p>\
+	  	<%=mobile%></div>\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\
+	  </div>\
+	      <div class="my_invest_income">\
+				<div class="currentIncome">\
+					<span>当前收益(元)</span>\
+					<span><%=currentIncome%></span>\
+				</div>\
+				<div  class="historyIncome">\
+					<span>历史收益(元)</span>\
+					<span><%=historyIncome%></span>	\
+				</div>\
 	      </div>\
-	     <div class="notice" style="display: none"><div class="notice_text"></div></div>\
-<div style="clear: both"></div> \
-	  <div class="v_mod invest_base_info">\
-	    <div class="item">\
-	      <div class="v_item v_item2" style="text-align: left">\
-	        <div class="v_item_bd" style="padding-left:10px "><span class="v_item_title js_test ">当前收益<small>(元)</small></span><span class="v_item_cont" style="font-size: 2rem;position: relative"><%=currentIncome%></span></div>\
-	        <div style="padding-left:20px;" class="v_item_bd" ><span class="v_item_title">历史收益<small>(元)</small></span><span class="v_item_cont  " style="font-size: 2rem;position: relative"><%=historyIncome%></span></div>\
-	      </div>\
+	      \
+	     \
+	 <div class="invest_amount">\
+		 <div class="invest_amount_1">\
+			 \
+			 <span class="invest_amount_b"><p class="invest_amount_a">现金余额(元)</p><%=dealMoney3(balance)%></span>\
+		 </div>\
+		 <div class="invest_amount_2">\
+		 	<button class="invest_btn fuyou_js_chongzhi">充值</button>\
+		 </div>\
+	 </div>\
+	    <div style="clear: both"></div>\
+	    \
+	    <div class="invest_menu invest_menu_top">\
+			<div class="invest_menu_1 invest_icon_ttl">\
+				<span class="invest_menu_text1">天添利</span>\
+				<span class="invest_menu_text2">昨日收益<%=demandYestIncome%>元</span>\
+			</div>\
+			<div class="invest_menu_2 invest_icon_jxm">\
+				<span class="invest_menu_text1">加薪系列</span>\
+				<span class="invest_menu_text2">持有<%=fixedPeriodOrderCount%>笔</span>\
+			</div>\
+	    </div>\
+	    \
+	    <div style="clear: both"></div>\
+	     <div class="invest_menu invest_menu_body">\
+			<div class="invest_menu_1 invest_icon_hb">\
+				<span class="invest_menu_text1">红包</span>\
+				<span class="invest_menu_text2"><%=change%></span>\
+			</div>\
+			<div class="invest_menu_2 invest_icon_yhk">\
+				<span class="invest_menu_text1">银行卡</span>\
+				<span class="invest_menu_text2"><%=cardStatusDesc%></span>\
+			</div>\
+	    </div>\
+	     <div style="clear: both"></div>\
+	     <div class="invest_menu invest_menu_body">\
+			<div class="invest_menu_1 invest_icon_wdyq">\
+				<span class="invest_menu_text1">我的邀请</span>\
+				<span class="invest_menu_text2"><%=inviteeCount%>名理财好友</span>\
+			</div>\
+			<div class="invest_menu_2 ">\
+				<span class="invest_menu_text1"></span>\
+				<span class="invest_menu_text2"></span>\
+			</div>\
 	    </div>\
 	    \
 	  </div>\
-	    <div class="my_change ico_redbao">\
-	    <span  class="fontBlack">加薪红包</span>\
-	    <span class="change"><%=change%></span>\
-	    </div>\
-	    <div class="invest_tiantian ico_ttl">\
-	        <span class="fontBlack">天添利</span>\
-	        <span class="change">昨日收益<%=demandYestIncome%>元</span>\
-	    </div>\
-	    <div class="invest_tiantian2 ico_jiaxin invest_record">\
-	        <span  class="fontBlack">持有产品(<%=fixedPeriodOrderCount%>)</span>\
-	        <span class="change"></span>\
-	    </div>\
-	    <div class="invest_invite ico_yaoqing">\
-	        <span  class="fontBlack">我的邀请(<%=inviteeCount%>)</span>\
-	        <span class="change">已获返利<%=bonusAmount%>元</span>\
-	    </div>\
 	  \
         <div id="titletest" style="display:none"></div>\
 	</article>';

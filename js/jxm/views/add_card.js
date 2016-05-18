@@ -4,7 +4,8 @@ define(function (require, exports, module) {
     var myCardTpl = require('jxm/tpl/my.card.tpl');
     var Model = require("jxm/model/model");
     var footer = require('jxm/tpl/card.footer.tpl');
-    var addMyBankCard= new Model.addMyBankCard();
+    //var addMyBankCard= new Model.addMyBankCard();
+    var addMyBankCard= new Model.fuyouCard();
     var changeCheck= new Model.changeCheck();
     var abortChange= new Model.abortChange();
     var HasSetTransPwd = new Model.HasSetTransPwd();
@@ -26,11 +27,15 @@ define(function (require, exports, module) {
            }
         },
         events: {
-            'click .js_add_card': 'goAddCard'
+            'click .js_add_card': 'goAddCard',
+            'click .js_next': 'goSign'
         },
         onShow: function () {
 
             return this.showCard();
+        },
+        goSign:function(){
+            App.goTo("fuyou_sign")
         },
         showCard:function(){
              self = this;
@@ -39,18 +44,31 @@ define(function (require, exports, module) {
                 type: "get",
                 success: function (data){
                     self.data=data.data;
+
                     App.hideLoading();
                     if(data.ret == 0){
-                        if(data.data.cardList.length!=0){
-                            self.$el.html(_.template(myCardTpl + footer)(data.data));
+                        self.data.dealBankNum=handle.dealBankNum;
+                        self.$el.html(_.template(myCardTpl + footer)(data.data));
                             self.setHeader2();
-                            //console.log(self.data.cardList[0].status)
+                        //if(data.data.cardList.length!=0){
+                        //    self.$el.html(_.template(myCardTpl + footer)(data.data));
+                        //    self.setHeader2();
+                        //    //console.log(self.data.cardList[0].status)
+                        //
+                        //}else{
+                        //    self.setHeader();
+                        //    self.$el.html(addCard + footer);
+                        //}
 
-                        }else{
-                            self.setHeader();
-                            self.$el.html(addCard + footer);
-                        }
-
+                    }else if(data.ret == 110001){
+                        self.setHeader();
+                        self.$el.html(addCard + footer);
+                    }else if(data.ret == 100031){
+                        self.promptAlert = handle.alert(data.msg,function(){
+                        });
+                        self.promptAlert.show();
+                        self.setHeader();
+                        self.$el.html(addCard + footer);
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else {
@@ -78,7 +96,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('setting');
+                        App.goTo('my_invest');
                     }
                 },
                 right:null
@@ -100,14 +118,20 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goTo('setting');
+                        App.goTo('my_invest');
                     }
                 },
                 right:
                     [{
-                        'tagname': 'changeCard', 'value': '<i style="font-size: 3rem">&plus;</i>&nbsp;&nbsp;',
+                        'tagname': 'changeCard', 'value': '更换银行卡&nbsp;',
                         callback: function () {
-                            App.goTo('bind_card_new');
+                            var customer = self.$('.js_customer');
+                            if(!self.callPhone){
+                                self.callPhone = handle.prompt('更换银行卡请联系客服并提供相应证明，客服电话：4008-339-869','取消', '呼叫', null, function(){
+                                    customer.trigger('click');
+                                });
+                            }
+                            self.callPhone.show();
                         }
                     }]
             });

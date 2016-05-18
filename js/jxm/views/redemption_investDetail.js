@@ -7,7 +7,7 @@ define(function (require, exports, module) {
     var getOrderDetails = new Model.getOrderDetails();
     var surplus=0;
     //接口getOrderDetails
-    var self
+    var self;
     module.exports = App.Page.extend({
         events: {
             'click .js_pay': 'pay',
@@ -31,11 +31,8 @@ define(function (require, exports, module) {
             var orderNo=query&&query.orderNo||"";
 
             var data={
-                postData:{
-                    surplusPayTime:self.surplus,
-                    orderNo:orderNo
-
-                },
+                surplusPayTime:self.data.surplusPayTime,
+                orderNo:orderNo,
                 amountVal:self.currentAmount
             }
             payLayer.ttlPayWin(data,false)
@@ -63,7 +60,9 @@ define(function (require, exports, module) {
                         self.data=data.data
                         self.data.format=self.format
                         self.data.orderNo=orderNo
-
+                        if(_.isUndefined(data.data.bankName )){
+                            self.data.bankName =""
+                        }
                         self.$el.html(_.template(Template)(self.data));
                         var stat;
                         if(self.data.orderStatus==05||self.data.orderStatus==07||self.data.orderStatus==08){

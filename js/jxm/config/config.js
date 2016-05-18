@@ -79,7 +79,26 @@ window.global_config = {
             "url": "my_wallet",
             "controller": "my_wallet"
         },
-
+        {
+            "url": "fuyou",
+            "controller": "fuyou"
+        },
+        {
+            "url": "fuyou_sign",
+            "controller": "fuyou_sign"
+        },
+        {
+            "url": "fuyouDetail",
+            "controller": "fuyouDetail"
+        },
+        {
+            "url": "fuyouSuccess",
+            "controller": "fuyouSuccess"
+        },
+        {
+            "url": "fuyouResetForApp",
+            "controller": "fuyouResetForApp"
+        },
         {
             "url": "invest_history",
             "controller": "invest_history"
@@ -211,6 +230,14 @@ window.global_config = {
             "url": "ttl_service_ordertip",
             "controller": "ttl_service_ordertip"
         }
+        , {
+            "url": "recharge",
+            "controller": "recharge"
+        }
+        , {
+            "url": "recharge_out",
+            "controller": "recharge_out"
+        }
 //        ,{ "url": "App_list",
 //            "controller": "App_list"
 //        },
@@ -246,6 +273,11 @@ requirejs.config({
         'reg': 'jxm/views/reg',
         'reg_next': 'jxm/views/reg_next',
         'regYY': 'jxm/views/regYY',
+        'fuyou': 'jxm/views/fuyou',
+        'fuyou_sign': 'jxm/views/fuyou_sign',
+        'fuyouDetail': 'jxm/views/fuyouDetail',
+        'fuyouSuccess': 'jxm/views/fuyouSuccess',
+        'fuyouResetForApp': 'jxm/views/fuyouResetForApp',
         'get_password': 'jxm/views/get_password',
         'get_password_next': 'jxm/views/get_password_next',
         'bind_card_new': 'jxm/views/bind_card_new',
@@ -304,7 +336,9 @@ requirejs.config({
         'redemption_finish': 'jxm/views/redemption_finish',
         'redemption_detail': 'jxm/views/redemption_detail',
         'redemption_investDetail': 'jxm/views/redemption_investDetail',
-        'recommend': 'jxm/views/recommend'
+        'recommend': 'jxm/views/recommend',
+        'recharge': 'jxm/views/recharge',
+        'recharge_out': 'jxm/views/recharge_out',
 //        ,
 //        'App_detail': 'App/views/detail',
 //        'App_invest_confirm': 'App/views/invest_confirm',

@@ -48,10 +48,8 @@ define(function(require, exports, module) {
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.indexOf("hih5hybird") > -1) {
             mType='android'
-        } else {
-            this.setupWebViewJavascriptBridge(function(bridge) {
-
-            })
+        } else if (userAgent.indexOf("iphone") > -1){
+            mType='ios';
         }
 
     }
@@ -60,7 +58,7 @@ define(function(require, exports, module) {
         return mType;
     }
     Tool.prototype.setupWebViewJavascriptBridge=function(callback){
-        if (window.WebViewJavascriptBridge) {  mType='ios'; return callback(WebViewJavascriptBridge); }
+        if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
         if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
 
         window.WVJBCallbacks = [callback];
@@ -69,7 +67,6 @@ define(function(require, exports, module) {
         WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
         document.documentElement.appendChild(WVJBIframe);
         setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-
 
     }
     //Money
@@ -94,24 +91,19 @@ define(function(require, exports, module) {
             var str = ((money[0]/10000).toFixed(fixNum)).toString();
             var arr = str.split('.');
             var wang = arr[0].toString();
-            return wang.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')  + (_.isUndefined(arr[1]) || !(parseInt(arr[1], 10)) ? '' : '.' + arr[1]) +'<em class="num_unit">万元</em>';
+            return wang.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')  + (_.isUndefined(arr[1]) || !(parseInt(arr[1], 10)) ? '' : '.' + arr[1]) +'<em class="num_unit"> 万元</em>';
         }else{
-            return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + '元'
+            return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + ' 元'
         }
       ;
     }
     Tool.prototype.dealMoney2 = function(str){
         var money = str.toString().split('.');
-        return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + '元'
-//        if(parseInt(money[0], 10) > 9999){
-//            var str = ((money[0]/10000).toFixed(2)).toString();
-//            var arr = str.split('.');
-//            var wang = arr[0].toString();
-//            return wang.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')  + (_.isUndefined(arr[1]) || !(parseInt(arr[1], 10)) ? '' : '.' + arr[1]) +'万元';
-//        }else{
-//
-//        }
-            ;
+        return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + ' 元'
+    }
+    Tool.prototype.dealMoney3 = function(str){
+        var money = str.toString().split('.');
+        return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1])
     }
     Tool.prototype.showTag = function(type,isNew,time,saleStartTime,productTag){
         var str=""
@@ -211,7 +203,6 @@ define(function(require, exports, module) {
     }
     //删除空格
     Tool.prototype.deleteAllBlank = function(str) {
-
         return str.replace(/\s/g, '');
     }
     //验证手机号码
@@ -257,6 +248,12 @@ define(function(require, exports, module) {
         var headStr = str.substr(0, 3);
         var tailStr = str.substr(-4);
         return headStr + '****' + tailStr;
+    }
+    //电话掩码
+    Tool.prototype.dealBankNum =  function(str){
+        var headStr = str.substr(0, 4);
+        var tailStr = str.substr(-4);
+        return headStr + ' **** **** **** ' + tailStr;
     }
     //没有进度条
     Tool.prototype.noProgress = function(){

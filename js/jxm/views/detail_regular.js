@@ -97,8 +97,8 @@ define(function (require, exports, module) {
                 window.orderDetail.pay(self.data)
                 return
             }
-//			payLayer.showPayWin(self.data,self.data.paymentAmount,self.data.crAmount,self.data,false)
-			payLayer.showPayWin(self.data,self.data,false)
+            self.data.investAmount=self.data.fixedProdInfo.investAmout;
+			payLayer.showPayWin(self.data,false)
 		},
 		onHide: function (){
 			var self = this
