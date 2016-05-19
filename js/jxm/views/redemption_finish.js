@@ -33,6 +33,9 @@ define(function (require, exports, module) {
                     'redeemTime':query.redeemTime
                 }
                 self.$el.html(_.template(Template)(data));
+                App.hideLoading();
+            }else{
+                App.goTo("my_invest")
             }
         },
         setHeader: function () {

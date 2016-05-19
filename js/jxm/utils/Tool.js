@@ -49,7 +49,9 @@ define(function(require, exports, module) {
         if (userAgent.indexOf("hih5hybird") > -1) {
             mType='android'
         } else if (userAgent.indexOf("iphone") > -1){
-            mType='ios';
+            this.setupWebViewJavascriptBridge(function(bridge) {
+                mType='ios';
+            })
         }
 
     }

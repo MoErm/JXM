@@ -598,9 +598,10 @@ define(function(require, exports, module) {
             //    }
             //});
 
-            // console.log(self.serverTime);
-            // console.log(self.saleStart);
-            // console.log(self.saleEnd);
+             //console.log(self.serverTime);
+             //console.log(self.saleStart);
+             //console.log(self.saleEnd);
+             //console.log(self.saleStatus);
 
             //如果在售卖时间段内
             if (self.saleStatus=='01') {
@@ -711,7 +712,7 @@ define(function(require, exports, module) {
                         <dt class="tip_list_title">五、可售日期？</dt>\
                         <dl class="tip_list_content">周日~周四可售，如遇法定节假日：则节假日前一天停止售卖，直至节假日最后一天开放购买。（即：第一个工作日前一天起 ~ 第一个假期日前第二个工作日可售）</dl>\
                          <dt class="tip_list_title">六、购买时间？</dt>\
-                          <dl class="tip_list_content">每日06:00 ~ 22:00 开放购买。</dl>\
+                          <dl class="tip_list_content">每个可售日期的06:00 ~ 22:00 开放购买</dl>\
                         <dt class="tip_list_title">七、何日起息？何日能看到收益？</dt>\
                         <dl class="tip_list_content">投资成功后，当日起息；次日显示收益（若收益少于0.01元，则不予显示）。</dl>\
                         <dt class="tip_list_title">八、何时可以赎回？是否需要手续费？</dt>\
@@ -720,8 +721,8 @@ define(function(require, exports, module) {
                         <dl class="tip_list_content">每日赎回限额为20万元，次数为5次（大额赎回通道即将开放）。</dl>\
                         <dt class="tip_list_title">十、赎回的金额什么时候到账？</dt>\
                         <dl class="tip_list_content">提交赎回后（t 日），一般为（t + 3 ）个工作日到账，如遇节假日， 将往后顺延，具体时间视银行而定（请关注平台交易记录中的赎回状态）。</dl>\
-                        <dt class="tip_list_title">十一、赎回到哪张银行卡？</dt>\
-                        <dl class="tip_list_content">严格遵循原卡原退原则，赎回金额将返回对应的购买银行卡。</dl>\
+                        <dt class="tip_list_title">十一、资金赎回到哪里？</dt>\
+                        <dl class="tip_list_content">赎回资金将返回现金余额账户， 请点击底部导航菜单“我”进行查看。</dl>\
                         <dt class="tip_list_title">十二、赎回规则？</dt>\
                         <dl class="tip_list_content">为了您的收益最大化，我们的赎回规则为：按订单的收益率从低到高开始赎回（即较晚投资的订单优先赎回）。</dl>\
                         <dt class="tip_list_title">十三、赎回当天是否计算收益？</dt>\

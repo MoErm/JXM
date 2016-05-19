@@ -150,11 +150,6 @@ define(function(require, exports, module) {
                     App.showToast('提现金额不能为空');
                     return;
                 }                
-                if(Number(rechargeOutData.amount) > Number(self.pageData.chargeData.transactLimit)){
-                    App.showToast('提现金额不能大于银行卡单笔限额');
-                     $("#recharge_out_money").val(self.pageData.chargeData.transactLimit); 
-                    return;
-                }
                 if(Number(rechargeOutData.amount) < 100) {
                      App.showToast("提现金额不能小于100");
                      return;

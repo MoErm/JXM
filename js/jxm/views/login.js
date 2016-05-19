@@ -145,13 +145,12 @@ define(function (require, exports, module) {
         onShow: function () {
             var query = this.request.query;
             var openid=query&&query.openid||"";
+            App.hideLoading();
             if(openid!=""){
                 sessionStorage.setItem("openid",openid);
             }
-
             this.$el.find(".js_mobile").val('');
             this.$el.find(".js_password").val('');
-            App.hideLoading();
             this.regClear();
             this.setHeader();
             var shareConfig={"link":window.location.origin};

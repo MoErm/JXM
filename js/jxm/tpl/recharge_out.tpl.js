@@ -11,9 +11,8 @@ define(function (require, exports, module) {
                 <div class="mycard" id="cardSelect">\
                      <p class="maycard_title"><img src="<%=chargeData.bankLogo%>" alt="" class="banklogo" /></p>\
                     <div class="mycard_info"  data-cardid= "">\
-                        <div class="card_detail">\
-                            <p class="card_cur"><%=chargeData.bankName%>(尾号<%=chargeData.cardTailNo%>)</p>\
-                            <p class="limit_text">单笔限额：<%=chargeData.transactLimit%> ，单日限额：<%=chargeData.dailyLimit%> </p>\
+                        <div class="card_detail" style="padding-top: 0">\
+                            <p class="card_cur" style="height: 50px;line-height: 50px;padding-top: 0"><%=chargeData.bankName%>(尾号<%=chargeData.cardTailNo%>)</p>\
                         </div>\
                     </div>\
                 </div>\

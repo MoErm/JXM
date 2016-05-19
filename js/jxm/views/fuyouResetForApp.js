@@ -40,7 +40,6 @@ define(function (require, exports, module) {
             }
         },
         sendData:function(data){
-            App.showToast("sendData")
             self.$('#mchnt_cd').val(data.merCode);
             self.$('#mchnt_txn_ssn').val(data.serialNo);
             self.$('#login_id').val(data.loginId);

@@ -286,6 +286,7 @@ define(function (require, exports, module) {
         },
         onHide: function () {
             handle.setTitle("加薪猫");
+            App.hideLoading();
         }
     })
 })

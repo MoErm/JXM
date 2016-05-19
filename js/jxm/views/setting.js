@@ -50,6 +50,7 @@ define(function (require, exports, module) {
             self.callPhone.show();
         },
         onShow: function () {
+            App.hideLoading()
             this.header = document.querySelector("#header");
             handle.share();
 
@@ -59,7 +60,7 @@ define(function (require, exports, module) {
 
             self.$('.js_setting').addClass('footer_icon_sz_sel');
             self.$('.js_setting').removeClass('footer_icon_sz_unsel');
-            App.hideLoading()
+
         },
         list: function(){
             App.goTo('list');

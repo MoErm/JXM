@@ -17,35 +17,39 @@ define(function (require, exports, module) {
     var onceClick=true;
     module.exports = App.Page.extend({
         beforeIn:  function () {
+            App.hideLoading();
            if(handle.mobileType()=="android"){
                window.app.goMyCards()
-           }else if(handle.mobileType()!="html") {
+           }else if(handle.mobileType()=="ios") {
                handle.setupWebViewJavascriptBridge(function (bridge) {
                    bridge.callHandler('back', null, function (response) {
                    })
                })
            }
         },
+        initialize: function () {
+            self=this;
+        },
         events: {
             'click .js_add_card': 'goAddCard',
             'click .js_next': 'goSign'
         },
         onShow: function () {
-
+            setTimeout(function(){
+                App.hideLoading();
+            },1000)
             return this.showCard();
         },
         goSign:function(){
             App.goTo("fuyou_sign")
         },
         showCard:function(){
-             self = this;
-            App.showLoading();
+
             return addMyBankCard.exec({
                 type: "get",
                 success: function (data){
-                    self.data=data.data;
-
                     App.hideLoading();
+                    self.data=data.data;
                     if(data.ret == 0){
                         self.data.dealBankNum=handle.dealBankNum;
                         self.$el.html(_.template(myCardTpl + footer)(data.data));
@@ -220,7 +224,7 @@ define(function (require, exports, module) {
             })
         },
         onHide: function(){
-            this.$el.html('');
+
         }
     })
 })
