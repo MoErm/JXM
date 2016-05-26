@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 					<p class="tip_text">余额小于100元需一次性全额赎回</p>\
 					\
 					<p class="tip_text" style="margin-top: 10px"> 预计赎回金额t+3个工作日返回至现金余额账户<br></p>\
-                    <p class="tip_text" style="margin-top: 10px"> 若赎回金额大于20w， 请联系客服：4008-339-869</p>\
+                    <p class="tip_text" style="margin-top: 10px"> 若赎回金额大于20万， 请联系客服：4008-339-869</p>\
 				</div>\
 	</article>';
 	module.exports = tpl;

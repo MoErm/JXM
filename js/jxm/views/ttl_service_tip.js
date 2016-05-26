@@ -16,6 +16,9 @@ define(function(require, exports, module) {
             
         },
         onShow: function() {
+            setTimeout(function(){
+                App.hideLoading();
+            },500)
             self = this.initialize();
 
             handle.share();

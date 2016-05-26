@@ -195,7 +195,7 @@ define(function (require, exports, module) {
         },
         changePhone:function(){
             var query = this.request.query;
-            self.$el.find(".bonus_input").attr("placeholder","当前手机号："+query.mobile)
+            self.$el.find(".bonus_input").attr("placeholder","当前手机号："+self.mobile)
             self.$el.find("#bonus_old").css("display","none")
             self.$el.find("#bonus_new").css("display","block")
             self.$el.find("#openImg").attr("src","./images/bonus_openBtn_grey.png")

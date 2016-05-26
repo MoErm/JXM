@@ -35,7 +35,8 @@ define(function (require, exports, module) {
         onShow: function () {
             handle.share();
             this.setHeader();
-
+            totalPages=0;
+            currentPage=1;
             App.showLoading();
             this.initData()
             this.scrollTopListener()
@@ -45,10 +46,13 @@ define(function (require, exports, module) {
             fuyouTradeRecords.exec({
                 type: "get",
                 success: function (data){
-
-
                     if(data.ret == 0){
                         self.data=data.data
+                        if(data.data.records.length==0){
+                            self.data.showListTitle=false
+                        }else{
+                            self.data.showListTitle=true
+                        }
                         currentPage++;
                         totalPages=data.data.totalPages
                         self.initYuE()
@@ -119,7 +123,6 @@ define(function (require, exports, module) {
         scrollTopListener:function(){
             $(window).bind('scroll', function(){
                 if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-                    console.log(currentPage+"   "+totalPages)
                         if(currentPage>totalPages){
                             return
                         }else{

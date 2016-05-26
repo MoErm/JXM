@@ -218,6 +218,26 @@ define(function (require, exports, module) {
                                 });
                             }
                             self.passAlert.show();
+                        }else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
+
+                            App.hideLoading();
+                            self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){
+
+                            },function(){
+                                App.goTo('bind_card_new');
+                            });
+                            self.promptAlert.show();
+
+                        }else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+
+                            App.hideLoading();
+                            self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){
+
+                            },function(){
+                                App.goTo('fuyou_sign');
+                            });
+                            self.promptAlert.show();
+
                         }else if(data.ret == 110115){
                             App.hideLoading();
                             self.promptAlert = handle.alert("银行卡数据异常，请联系客服",function(){

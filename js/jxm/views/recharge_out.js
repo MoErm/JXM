@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     var tool = require('jxm/utils/Tool');
     var common = require("jxm/common/common");
     var recharge = require('jxm/tpl/recharge_out.tpl');
+    var footer = require('jxm/tpl/card.footer.tpl');
     var fuyouToWithdraw = new Model.fuyouToWithdraw();  // 获取提现初始数据
     var fuyouSignForWithdraw = new Model.fuyouSignForWithdraw();  // 提现签名
 
@@ -22,7 +23,10 @@ define(function(require, exports, module) {
         onShow: function() {
             self = this.initialize();
             self.message = '网络错误，请稍后重试';           
-            self.pageData= {};   
+            self.pageData= {};
+            if(handle.mobileType()=="ios") {
+                $(self.header).hide();
+            }
             // 定义初始化方法 
             self.setHeader();            
             self.getInitTemData();            
@@ -30,7 +34,7 @@ define(function(require, exports, module) {
         }, 
         initTemple: function(){
             //添加内容
-            self.$el.html(_.template(recharge)(self.pageData));
+            self.$el.html(_.template(recharge+footer)(self.pageData));
         },       
         setHeader: function () {
             var header = new App.UI.UIHeader();
@@ -96,7 +100,7 @@ define(function(require, exports, module) {
                     else if(data.ret == 999001){ // 登录超时
                         if(handle.mobileType()=="android"){
                             window.app.outTime()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('timeout', null, function(response) {
                                 })
@@ -130,6 +134,26 @@ define(function(require, exports, module) {
                         });                  
                         self.promptAlert.show();
                     }
+                    else if(data.ret == 100031){ // 余额查询失败，请稍后重试
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+                            if(handle.mobileType()=="android"){
+                                window.app.goBack()
+                            }else if(handle.mobileType()=="ios") {
+                                handle.setupWebViewJavascriptBridge(function (bridge) {
+                                    bridge.callHandler('back', null, function (response) {
+                                    })
+                                })
+                            }else{
+                                App.goTo("my_invest")
+                            }
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    }
                     else{
                         App.showToast(data.msg  || self.message);
                     }
@@ -149,15 +173,19 @@ define(function(require, exports, module) {
                  if(rechargeOutData.amount==''){ // 空验证
                     App.showToast('提现金额不能为空');
                     return;
-                }                
-                if(Number(rechargeOutData.amount) < 100) {
-                     App.showToast("提现金额不能小于100");
-                     return;
-                }   
-                if(Number(rechargeOutData.amount)<100 && Number(self.pageData.chargeData.amount)<100 ){
-                    App.showToast('提现余额小于100元，需一次性全额提现');
-                    return;
-                } 
+                }
+                if(Number(self.pageData.chargeData.amount)<100){
+                    if(Number(self.pageData.chargeData.amount)>Number(rechargeOutData.amount)){
+                        App.showToast('提现余额小于100元，需一次性全额提现');
+                        return;
+                    }
+                }else{
+                    if(Number(rechargeOutData.amount) < 100) {
+                        App.showToast("提现金额不能小于100");
+                        return;
+                    }
+                }
+
                 return true;
             }    
 

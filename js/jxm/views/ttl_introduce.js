@@ -9,6 +9,8 @@ define(function(require, exports, module) {
     var getTtlProperty = new Model.getTtlProperty(); //获取灵活宝资产信息接口
     var getTtlRate = new Model.getTtlRate(); //获取收益率接口
     var getRollingNotice = new Model.getRollingNotice();
+    var toRedeem = new Model.fuyouToRedeem();
+    var initTtlBuyPage = new Model.fuyouInitTtlBuyPage();  //初始化购买页面
     var pool = new Array(1, 2, 3);
     var hidePool = new Array(4, 5, 6, 7, 8);
     var turnNum = 0;
@@ -387,7 +389,7 @@ define(function(require, exports, module) {
                         var query = self.request.query;
                         if(handle.mobileType()=="android"){
                             window.app.ttlBack()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('ttlBack', null, function(response) {
                                 })
@@ -413,7 +415,7 @@ define(function(require, exports, module) {
                     callback: function() {
                         if(handle.mobileType()=="android"){
                             window.app.ttlRedeem()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('ttlRedeem', null, function(response) {
                                 })
@@ -441,7 +443,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         if(handle.mobileType()=="android"){
                             window.app.outTime()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('timeout', null, function(response) {
                                 })
@@ -509,7 +511,7 @@ define(function(require, exports, module) {
                     } else if (data.ret == 999001) {
                         if(handle.mobileType()=="android"){
                             window.app.outTime()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('timeout', null, function(response) {
                                 })
@@ -581,40 +583,18 @@ define(function(require, exports, module) {
         },
         goBuyPage: function(e) {
             e.preventDefault(e);
-            //getTtlProperty.exec({
-            //    type: 'get',
-            //    success: function(data) {
-            //        if (data.ret == 0) {
-            //            self.pageData.getTtlProperty = data.data;
-            //
-            //        } else if (data.ret == 999001) {
-            //            handle.goLogin();
-            //        } else {
-            //            App.showToast(data.msg || self.message);
-            //        }
-            //    },
-            //    error: function() {
-            //        App.hideLoading();
-            //    }
-            //});
-
-             //console.log(self.serverTime);
-             //console.log(self.saleStart);
-             //console.log(self.saleEnd);
-             //console.log(self.saleStatus);
-
             //如果在售卖时间段内
             if (self.saleStatus=='01') {
                 if (self.saleStart <= self.serverTime && self.serverTime <= self.saleEnd) {
                     if(handle.mobileType()=="android"){
                         window.app.ttlBuy()
-                    }else  if(handle.mobileType()!="html") {
+                    }else  if(handle.mobileType()=="ios") {
                         handle.setupWebViewJavascriptBridge(function(bridge) {
                             bridge.callHandler('ttlBuy', null, function(response) {
                             })
                         })
                     }else{
-                        App.goTo("ttl_buy_one");
+                       self.ToTtlBuy()
                     }
 
                 }else{
@@ -633,24 +613,152 @@ define(function(require, exports, module) {
                 return;
             }
         },
+        ToTtlBuy:function(){
+            // 初始化购买页面
+            App.showLoading();
+            initTtlBuyPage.exec({
+                type: 'get',
+                success: function(data){
+
+                    if(data.ret == 0){
+                        sessionStorage.setItem("ttlBuyData",JSON.stringify(data.data))
+                        App.goTo('ttl_buy_one');
+                    } else if(data.ret == 999001){
+                        //未登录
+                        handle.goLogin();
+                    }  else if (data.ret == 110001) { // 未完成实名绑卡
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){
+                        },function(){
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    }  else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){
+                        },function(){
+                            App.goTo('fuyou_sign');
+                        });
+                        self.promptAlert.show();
+
+                    } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
+
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    } else{
+                        App.showToast(data.msg  || self.message);
+                    }
+                    App.hideLoading();
+                },
+                error: function(){
+                    App.hideLoading();
+                }
+            });
+        },
         goRedemPage: function() {
             var redemBtn = $("#action_redem");
             if (!redemBtn.hasClass('lock')) {
                 if(handle.mobileType()=="android"){
                     window.app.ttlRedemption()
-                }else  if(handle.mobileType()!="html") {
+                }else  if(handle.mobileType()=="ios") {
                     handle.setupWebViewJavascriptBridge(function(bridge) {
                         bridge.callHandler('ttlRedemption', null, function(response) {
                         })
                     })
                 }else{
-                    App.goTo("redemption");
+                    self.ToRedemption()
                 }
 
             } else {
                 // App.showAlert("不可赎回");
                 return;
             }
+        },
+        ToRedemption:function(){
+            App.showLoading()
+            toRedeem.exec({
+                type: 'get',
+                success: function(data){
+
+                    App.hideLoading();
+                    if(data.ret == 0){
+                        sessionStorage.setItem("redemptionData",JSON.stringify(data.data))
+                        App.goTo("redemption")
+                    }else if(data.ret == 999001) {
+                        handle.goLogin();
+                    }else if(data.ret == 100301||data.ret == 100302||data.ret == 100303||data.ret == 100304||data.ret == 100305) {
+                        self.promptAlert = handle.alert(data.msg);
+                        self.promptAlert.show();
+                    }else if (data.ret == 110001) { // 未完成实名绑卡
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){
+                        },function(){
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    }  else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){
+                        },function(){
+                            App.goTo('fuyou_sign');
+                        });
+                        self.promptAlert.show();
+
+                    }else if(data.ret == 100031) {
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+                            if(handle.mobileType()=="android"){
+                                window.app.goBack()
+                            }else if(handle.mobileType()=="ios") {
+                                handle.setupWebViewJavascriptBridge(function (bridge) {
+                                    bridge.callHandler('back', null, function (response) {
+                                    })
+                                })
+                            }else{
+                                App.goTo("ttl_introduce")
+                            }
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
+                    }else if(data.ret == 110210) {
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去签约',function(){
+                            //解除锁定
+                            if(handle.mobileType()=="android"){
+                                window.app.goBack()
+                            }else if(handle.mobileType()=="ios") {
+                                handle.setupWebViewJavascriptBridge(function (bridge) {
+                                    bridge.callHandler('back', null, function (response) {
+                                    })
+                                })
+                            }else{
+                                App.goTo("ttl_introduce")
+                            }
+                        }, function(){
+                            //继续更换
+                            App.goTo('fuyou_sign');
+                        });
+                        self.promptAlert.show();
+                    }else{
+                        App.showToast(data.msg  ||message);
+                    }
+
+
+                },
+                error: function(){
+                    App.hideLoading();
+                    App.showToast(message);
+                }
+            })
         },
         initNotice:function(){
             getRollingNotice.exec({
@@ -690,7 +798,7 @@ define(function(require, exports, module) {
         actionTitleTip: function() {
             if(handle.mobileType()=="android"){
                 window.app.ttlTipsOn()
-            }else  if(handle.mobileType()!="html") {
+            }else  if(handle.mobileType()=="ios") {
                 handle.setupWebViewJavascriptBridge(function(bridge) {
                     bridge.callHandler('ttlTipsOn', null, function(response) {
                     })
@@ -738,7 +846,7 @@ define(function(require, exports, module) {
             $("#tip_close_btn").on("click", function() {
                 if(handle.mobileType()=="android"){
                     window.app.ttlTipsOff()
-                }else  if(handle.mobileType()!="html") {
+                }else  if(handle.mobileType()=="ios") {
                     handle.setupWebViewJavascriptBridge(function(bridge) {
                         bridge.callHandler('ttlTipsOff', null, function(response) {
                         })

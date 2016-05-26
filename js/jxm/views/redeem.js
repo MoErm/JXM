@@ -190,6 +190,7 @@ define(function (require, exports, module) {
 
         onShow: function () {
             self = this;
+            App.hideLoading();
             handle.share();
             this.setHeader();
             outPageNum=1;

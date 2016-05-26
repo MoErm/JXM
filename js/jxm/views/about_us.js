@@ -9,7 +9,7 @@ define(function (require, exports, module) {
             App.hideLoading()
         },
         onShow: function () {
-            if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+            if(handle.mobileType()=="ios") {
 
             }else{
                 this.setHeader();

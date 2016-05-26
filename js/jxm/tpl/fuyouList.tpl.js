@@ -5,7 +5,13 @@ define(function (require, exports, module) {
 		<div class="fuyou_list_line1 ">\
 			<span class="fuyou_span1 "><%=showName(record.tradeType,record.productName)%></span>\
 			<% if(record.inOut=="01") {%>\
-			<span  class="fuyou_span2 fuyouIn">+<%=dealMoney2(record.tradeAmount)%></span>\
+			<span  class=" fuyou_span2\
+			<% if(record.tradeStatus=="12"||record.tradeStatus=="21"||record.tradeStatus=="32"||record.tradeStatus=="41"||record.tradeStatus=="52"||record.tradeStatus=="62") {%>\
+			 fuyouIn \
+			 <%} else{%>\
+			  fuyouOut \
+			  <% } %>\
+			  ">+<%=dealMoney2(record.tradeAmount)%></span>\
                 <%} else{%>\
                 <span  class="fuyou_span2 fuyouOut">-<%=dealMoney2(record.tradeAmount)%></span>\
                 <% } %>\

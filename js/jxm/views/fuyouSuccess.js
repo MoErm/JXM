@@ -42,7 +42,7 @@ define(function (require, exports, module) {
                     clearInterval(self.countdown);
                     if(handle.mobileType()=="android"){
                         window.app.goBack()
-                    }else if(handle.mobileType()!="html") {
+                    }else if(handle.mobileType()=="ios") {
                         handle.setupWebViewJavascriptBridge(function (bridge) {
                             bridge.callHandler('back', null, function (response) {
                             })

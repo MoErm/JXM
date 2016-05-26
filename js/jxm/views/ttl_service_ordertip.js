@@ -15,6 +15,9 @@ define(function(require, exports, module) {
             return this;
         },
         onShow: function() {
+            setTimeout(function(){
+                App.hideLoading();
+            },500)
             self = this.initialize();
             self.pageData= {};
             handle.share();
@@ -56,7 +59,7 @@ define(function(require, exports, module) {
                 
                 if(data.ret == 0){ 
                     //添加内容
-                    self.initTemple();               
+                    self.initTemple();
                     // App.goTo('redeem');
                 }else if(data.ret == 999001){
                     //未登录
@@ -68,8 +71,7 @@ define(function(require, exports, module) {
             });            
         },
         initTemple: function(){
-            
-            self.$el.html(_.template(ttlServiceOrderTip)(self.pageData));                
+            self.$el.html(_.template(ttlServiceOrderTip)(self.pageData));
             App.hideLoading();
         }
     })

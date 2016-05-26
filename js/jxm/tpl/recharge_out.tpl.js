@@ -3,7 +3,7 @@ define(function (require, exports, module) {
             <div class="recharge_t">\
                 <ul class="recharge_t_list">\
                     <li>现金余额(元) <span class="list_con number"><%=chargeData.allAmount%></span></li>\
-                    <li>提现金额(元) <span class="list_con"><input type="text" class="recharge_money" id="recharge_out_money" placeholder="100元起"/></span><span class="get_allmoney" id="get_allmoney">全部提现</span></li>\
+                    <li>提现金额(元) <span class="list_con"><input type="text" class="recharge_money" id="recharge_out_money" placeholder="100元起"  style="width: 45%;"/></span><span class="get_allmoney" id="get_allmoney">全部提现</span></li>\
                 </ul>\
             </div>\
             <div class="recharge_m">\
@@ -16,7 +16,7 @@ define(function (require, exports, module) {
                         </div>\
                     </div>\
                 </div>\
-                <div class="recharge_m_times">今日剩余免费提现 <span class="times_num"><%=chargeData.surplusCount%></span> 次</div>\
+                <div class="recharge_m_times">今日剩余提现 <span class="times_num"><%=chargeData.surplusCount%></span> 次</div>\
             </div>\
             <div class="recharge_b">\
                 <button class="action_buy" id="recharge_btn">提现</button>\
@@ -25,16 +25,11 @@ define(function (require, exports, module) {
                     <em class="tip_icon"></em>\
                     <p class="tip_text">1.提现成功后预计t+1个工作日到账</p>\
                     <p class="tip_text">2.只能提现到平台绑定的银行卡，单笔限额100万单日无限额</p>\
-                    <p class="tip_text">3.现金余额小余100元，需一次性全额提现</p>\
+                    <p class="tip_text">3.现金余额小于100元，需一次性全额提现</p>\
                 </div>\
             </div>\
         </article>\
-        <footer class="foot_copyright">\
-          <div class="fixed">\
-            <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
-            <p class="copyright">©2015 加薪猫 jiaxinmore.com</p>\
-          </div>\
-        </footer>'
+        '
 
     module.exports = tpl;
 })

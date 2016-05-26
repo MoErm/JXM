@@ -145,7 +145,9 @@ define(function (require, exports, module) {
         onShow: function () {
             var query = this.request.query;
             var openid=query&&query.openid||"";
-            App.hideLoading();
+            setTimeout(function(){
+                App.hideLoading();
+            },500)
             if(openid!=""){
                 sessionStorage.setItem("openid",openid);
             }

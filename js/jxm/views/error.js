@@ -21,7 +21,7 @@ define(function (require, exports, module) {
         backToIndex:function(){
             if(handle.mobileType()=="android"){
                 window.app.goBack()
-            }else if(handle.mobileType()!="html") {
+            }else if(handle.mobileType()=="ios") {
                 handle.setupWebViewJavascriptBridge(function (bridge) {
                     bridge.callHandler('back', null, function (response) {
                     })
@@ -57,7 +57,7 @@ define(function (require, exports, module) {
                     callback: function () {
                         if(handle.mobileType()=="android"){
                             window.app.goBack()
-                        }else if(handle.mobileType()!="html") {
+                        }else if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function (bridge) {
                                 bridge.callHandler('back', null, function (response) {
                                 })

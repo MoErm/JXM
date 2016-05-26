@@ -760,32 +760,32 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .redeem_list .detail { color: #575757; text-align: right; }
 .redeem_shouyi { position: absolute; top: 0; right: 0; margin-top: 35px; margin-right: 40px; text-align: center; color: #575757 }
 .my_invest { margin: 0 0; padding:5px 10px 10px 10px; background:url(../../images/my_invest_bg.jpg) no-repeat;background-size: 100% 100%;}
-.my_invest_income{background: #fc8323;height: 50px;border-top: 1px solid #fea560;}
+.my_invest_income{background: #fc8323;height: 70px;border-top: 1px solid #fea560;}
 .user_title{color: white;margin: 0 auto;width: 50%;text-align: center;position: relative;}
 .user_title:before{ position: absolute; content: ""; display: block;background:url(../../images/touxiang.png) no-repeat;background-size: 100% 100%;width: 38px;height: 38px;top: 2px;left: 0;margin-left: -10px}
-.my_invest_income>.currentIncome{color: white;width: 49%;display: inline-block;padding-top: 5px;position: relative}
-.my_invest_income>.currentIncome:after{content: "";display: block;width: 1px;height: 40px;position: absolute;right: 0;top: 5px;background-color:#fea560;margin-right: -2px }
+.my_invest_income>.currentIncome{color: white;width: 49%;display: inline-block;padding-top: 15px;position: relative}
+.my_invest_income>.currentIncome:after{content: "";display: block;width: 1px;height: 60px;position: absolute;right: 0;top: 5px;background-color:#fea560;margin-right: -2px }
 .my_invest_income>.currentIncome>span{display: block;padding-left: 25px;}
-.my_invest_income>.historyIncome{color: white;width: 49%;display: inline-block;padding-top: 5px}
+.my_invest_income>.historyIncome{color: white;width: 49%;display: inline-block;padding-top: 15px}
 .my_invest_income>.historyIncome>span{display: block;padding-left: 25px}
-.my_invest .invest_title { color: #ffffff ;text-align: center;margin-top: 10px}
-.my_invest .invest_money { font-size: 2.8rem; color: #ffffff;text-align: center}
-.invest_amount{background: white;height: 50px;margin-bottom: 10px;position: relative}
-.invest_btn{width: 60px;height: 30px;border-radius: 5px;color: white;background: #d01b02;margin-top: 10px}
+.my_invest .invest_title { color: #ffffff ;text-align: center;margin-top: 15px}
+.my_invest .invest_money { font-size: 2.8rem; color: #ffffff;text-align: center;margin-top: 5px;margin-bottom: 10px}
+.invest_amount{background: white;height: 60px;margin-bottom: 10px;position: relative}
+.invest_btn{width: 60px;height: 30px;border-radius: 5px;color: white;background: #d01b02;margin-top: 15px}
 .invest_amount_1{width: 90%;display: block;height: 50px;padding-left: 25px;position: relative;padding-top: 3px}
-.invest_amount_b{margin-top: 5px;display: block;width: 90%}
-.invest_amount_a:after{ content: ""; display: inline-block; margin-top: 0px; width: 10px; height: 10px; vertical-align: middle; border-left: 2px solid #b5b5b5; border-bottom: 2px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
+.invest_amount_b{margin-top: 10px;display: block;width: 90%}
+.invest_amount_a:after{ content: ""; display: inline-block; margin-top: 0px; width: 10px; height: 10px; vertical-align: middle; border-left: 1px solid #b5b5b5; border-bottom: 1px solid #b5b5b5; -webkit-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-box-sizing: border-box; box-sizing: border-box; }
 .invest_amount_2{display: block;text-align: right;height: 50px;padding-right: 25px;position: absolute;right: 0;top: 0}
 .invest_menu{height: 60px;width: 100%;background: white}
 .invest_menu_1{width: 50%;display: inline-block;float: left;position: relative;padding-top: 10px}
 .invest_menu_1>span,.invest_menu_2>span{padding-left: 60px;display: block}
 .invest_menu_1:after{content: "";position: absolute;width: 1px;height: 60px;right: 0;top:0;background: #f7f6f6}
 .invest_menu_2{width: 50%;display: inline-block;float: right;padding-top: 10px;position: relative}
-.invest_icon_ttl:before{content: "";position: absolute;width: 40px;height: 40px;display: block;background: url(../../images/icon_ttl.png) no-repeat;background-size: 100% 100%;left: 15px;top:10px}
-.invest_icon_jxm:before{content: "";position: absolute;width: 40px;height: 40px;display: block;background: url(../../images/icon_jxm.png) no-repeat;background-size: 100% 100%;left: 15px;top:10px}
-.invest_icon_hb:before{content: "";position: absolute;width: 32px;height: 35px;display: block;background: url(../../images/icon_hb.png) no-repeat;background-size: 100% 100%;left: 18px;top:10px}
-.invest_icon_wdyq:before{content: "";position: absolute;width: 35px;height: 35px;display: block;background: url(../../images/icon_wdyq.png) no-repeat;background-size: 100% 100%;left: 18px;top:10px}
-.invest_icon_yhk:before{content: "";position: absolute;width: 35px;height: 32px;display: block;background: url(../../images/icon_yhk.png) no-repeat;background-size: 100% 100%;left: 17px;top:12px}
+.invest_icon_ttl:before{content: "";position: absolute;width: 30px;height: 30px;display: block;background: url(../../images/icon_ttl.png) no-repeat;background-size: 100% 100%;left: 18px;top:13px}
+.invest_icon_jxm:before{content: "";position: absolute;width: 30px;height: 30px;display: block;background: url(../../images/icon_jxm.png) no-repeat;background-size: 100% 100%;left: 18px;top:13px}
+.invest_icon_hb:before{content: "";position: absolute;width: 24px;height: 28px;display: block;background: url(../../images/icon_hb.png) no-repeat;background-size: 100% 100%;left: 21px;top:13px}
+.invest_icon_wdyq:before{content: "";position: absolute;width: 28px;height: 28px;display: block;background: url(../../images/icon_wdyq.png) no-repeat;background-size: 100% 100%;left: 21px;top:13px}
+.invest_icon_yhk:before{content: "";position: absolute;width: 28px;height: 26px;display: block;background: url(../../images/icon_yhk.png) no-repeat;background-size: 100% 100%;left: 20px;top:15px}
 .invest_menu_text1{font-size: 1em;color: #4f4f4f}
 .invest_menu_text2{font-size:0.8em;color: #9b9b9b}
 .invest_menu_top{border-top: 1px solid #f7f6f6;border-bottom: 1px solid #f7f6f6}
@@ -822,9 +822,9 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .fuyou_list{background: white;color: #9b9b9b;padding:0 20px;}
 .fuyou_list>.fuyou_list_line1{font-size: 1.6rem;padding-top: 5px;}
 .fuyou_list>.fuyou_line{border-top: 1px solid #e8e7e7}
-.fuyou_list>.fuyou_list_line2{font-size: 1.2rem;padding-bottom: 5px}
-.fuyou_list div>.fuyou_span1{display: inline-flex;width: 68%;white-space: nowrap;overflow: hidden}
-.fuyou_list div>.fuyou_span2{display: inline-block;width: 30%;text-align: right}
+.fuyou_list>.fuyou_list_line2{font-size: 1.2rem;padding-bottom: 5px;border-bottom: 1px solid #f2f2f2}
+.fuyou_list div>.fuyou_span1{display: inline-block;width: 68%;white-space: nowrap;overflow: hidden}
+.fuyou_list div>.fuyou_span2{display: inline-block;width: 30%;text-align: right;float: right}
 
 
 .fuyouDetail{background: white;height: 70px;padding:10px 20px}
@@ -1556,6 +1556,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .ttl_service_tip .ttl_service_tip_t .tip_title li { margin-bottom: 3px; }
 .ttl_service_tip .ttl_service_tip_t .tip_title .list_title { margin-right: 10px; }
 .ttl_service_tip .ttl_service_tip_m .tip_title { font-weight: bold; text-indent: 1rem; margin: 30px auto 0 auto; }
+.ttl_service_tip .ttl_service_tip_m .tip_title2 { font-weight: bold; text-indent: 1rem; margin: 5px auto 0 auto; }
 .ttl_service_tip .ttl_service_tip_m .tip_list dt { font-weight: bold; margin: 30px 0 5px 0; }
 .ttl_service_tip .ttl_service_tip_m .tip_list dd p { text-indent: 2rem; margin-bottom: 5px; }
 .ttl_service_tip .ttl_service_tip_m .tip_list .tip_sublist { text-indent: 2rem; }
@@ -1594,7 +1595,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none !important; margin: 
 .recharge_section { }
 .recharge_t { background: #fff; }
 .recharge_t .recharge_t_list { }
-.recharge_t .recharge_t_list li { height: 50px; line-height: 50px; text-indent: 2em; border-bottom: 1px solid #ECECEC; color: }
+.recharge_t .recharge_t_list li { height: 50px; line-height: 50px; text-indent: 2em; border-bottom: 1px solid #ECECEC; }
 .recharge_t .recharge_t_list .list_con { margin-left: 5px; }
 .recharge_t .recharge_t_list .number { color: #db3710; }
 .recharge_m { text-indent: 2em;margin: 0 auto 30px auto; }

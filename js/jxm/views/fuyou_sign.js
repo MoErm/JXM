@@ -18,6 +18,7 @@ define(function (require, exports, module) {
         var submitFlag=false;
         module.exports = App.Page.extend({
             initialize:function(){
+                this.header = document.querySelector("#header");
                 self = this;
             },
             afterMount: function(){
@@ -33,7 +34,15 @@ define(function (require, exports, module) {
                 //self.$el.html(bindCard_new + footer)
 
                 App.hideLoading()
-                self.setHeader();
+
+                if(handle.mobileType()=="android"){
+
+                }else if(handle.mobileType()=="ios") {
+                    $(self.header).hide();
+                }else{
+                    self.setHeader();
+                }
+
             },
             initData:function(){
                 fuyouNotSignedCard.exec({

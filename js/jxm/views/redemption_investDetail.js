@@ -63,6 +63,9 @@ define(function (require, exports, module) {
                         if(_.isUndefined(data.data.bankName )){
                             self.data.bankName =""
                         }
+                        if(_.isUndefined(data.data.failedReason )){
+                            self.data.failedReason ="支付失败"
+                        }
                         self.$el.html(_.template(Template)(self.data));
                         var stat;
                         if(self.data.orderStatus==05||self.data.orderStatus==07||self.data.orderStatus==08){

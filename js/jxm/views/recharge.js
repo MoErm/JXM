@@ -80,14 +80,15 @@ define(function(require, exports, module) {
                     if(data.ret == 0){     
                         self.pageData.chargeData= data.data;
                         // 处理限额信息
-                        self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?self.pageData.chargeData.dailyLimit:'无限额';
-                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?self.pageData.chargeData.transactLimit:'无限额';                        
+                        self.pageData.chargeData.dailyLimit= self.pageData.chargeData.dailyLimit?(self.pageData.chargeData.dailyLimit):'无限额';
+                        self.pageData.chargeData.transactLimit= self.pageData.chargeData.transactLimit?(self.pageData.chargeData.transactLimit):'无限额';
+                        self.pageData.dealMoney3= handle.dealMoney3
                         self.initTemple();
                     }
                     else if(data.ret == 999001){ // 登录超时
                         if(handle.mobileType()=="android"){
                             window.app.outTime()
-                        }else  if(handle.mobileType()!="html") {
+                        }else  if(handle.mobileType()=="ios") {
                             handle.setupWebViewJavascriptBridge(function(bridge) {
                                 bridge.callHandler('timeout', null, function(response) {
                                 })
@@ -120,6 +121,25 @@ define(function(require, exports, module) {
                         self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
                            App.goBack();
                         });                  
+                        self.promptAlert.show();
+                    }
+                    else if(data.ret == 100031){ // 余额查询失败，请稍后重试
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+                            if(handle.mobileType()=="android"){
+                                window.app.goBack()
+                            }else if(handle.mobileType()=="ios") {
+                                handle.setupWebViewJavascriptBridge(function (bridge) {
+                                    bridge.callHandler('back', null, function (response) {
+                                    })
+                                })
+                            }else{
+                                App.goTo("my_invest")
+                            }
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
                         self.promptAlert.show();
                     }
                     else{

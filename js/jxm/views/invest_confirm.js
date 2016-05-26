@@ -111,8 +111,9 @@ define(function(require, exports, module) {
                         self.initData.minInvestAmount_show = handle.dealMoney(self.initData.minInvestAmount);
                         self.initData.maxInvestAmount_show = handle.dealMoney(self.initData.maxInvestAmount);
                         self.initData.surplusAmount_show = handle.dealMoney(self.initData.surplusAmount);
-                        self.initData.allAmount = handle.dealMoney3(self.initData.balance);
-                        
+                        self.initData.allAmount =(self.initData.balance);
+                        self.initData.change = (self.initData.change);
+                        self.initData.dealMoney3=handle.dealMoney3
                         if (self.initData.incomeType != "03") {
                             self.initData.incomeceiling = self.initData.incomeRateCeiling.split('%')[0]
                             self.initData.incomefloor = self.initData.incomeRateFloor.split('%')[0]
@@ -188,7 +189,13 @@ define(function(require, exports, module) {
                     //计算预计到期收益
 
                     var amount = parseFloat(self.$('.js_amount').val()) || 0
-
+                    //var re = /([0-9]+\.[0-9]{2})[0-9]*/;
+                    //amount=amount.toString()
+                    //amount = amount.replace(re,"$1");
+                    ////amount=parseFloat(amount)
+                    ////amount=amount.toFixed(2)
+                    //self.$('.js_profit').html(amount)
+                    //var amount = parseFloat(self.$('.js_amount').val()) || 0
                     //投资天数
 
                     var tempDate = new Date()
@@ -240,8 +247,18 @@ define(function(require, exports, module) {
                         self.$('.js_profit').html(Math.floor(maxprofit * 100) / 100)
                         App.showToast('超过剩余可投金额' + self.initData.surplusAmount + '元')
                         return;
-                    }
+                    }else if(amount >  self.initData.allAmount) {
+                        var amountStr=amount.toString()
+                        self.$('.js_amount').val(amountStr.substring(0, amountStr.length - 1))
+                        //var maxprofit = ( self.initData.allAmount * rate * day) / 365
+                        //self.$('.js_profit').html(handle.dealMoney3(Math.floor(maxprofit * 100) / 100))
+                        //App.showToast('超过剩余可投金额' + self.initData.surplusAmount + '元')
+                        $('.imoney_tip').show();
+                        return;
 
+                    }else{
+                        $('.imoney_tip').hide();
+                    }
                 }
             } else if (self.initData.productType == '02') {
                 var amount = parseFloat(self.$('.js_amount').val()) || 0
@@ -286,22 +303,34 @@ define(function(require, exports, module) {
                     }
                     App.showToast('超过剩余可投金额' + self.initData.surplusAmount + '元')
                     return;
-                }
-            }
-
-            checkTip();
-            // 检查提示
-            function checkTip(){
-                var amtNum = parseFloat(self.$('.js_amount').val()) || 0;
-                var balNum= parseFloat(self.initData.balance);
-                var chaNum= parseFloat(self.initData.change);
-                if(amount > (balNum+chaNum)){
+                }else if(amount >  self.initData.allAmount) {
+                    var amountStr=amount.toString()
+                    self.$('.js_amount').val(amountStr.substring(0, amountStr.length - 1))
+                    //self.$('.js_amount').val( self.initData.allAmount)
+                    //var maxprofit = ( self.initData.allAmount * rate * day) / 365
+                    //self.$('.js_profit').html(Math.floor(maxprofit * 100) / 100)
+                    //App.showToast('超过剩余可投金额' + self.initData.surplusAmount + '元')
                     $('.imoney_tip').show();
-                }
-                else{
+                    return;
+
+                }else{
                     $('.imoney_tip').hide();
                 }
             }
+
+            //checkTip();
+            //// 检查提示
+            //function checkTip(){
+            //    var amtNum = parseFloat(self.$('.js_amount').val()) || 0;
+            //    var balNum= parseFloat(self.initData.balance);
+            //    var chaNum= parseFloat(self.initData.change);
+            //    if(amount > (balNum+chaNum)){
+            //        $('.imoney_tip').show();
+            //    }
+            //    else{
+            //        $('.imoney_tip').hide();
+            //    }
+            //}
             
         },
         createOrder: function() { //立即投资
@@ -320,6 +349,7 @@ define(function(require, exports, module) {
                 var addition = self.initData.additionalAmount;
                 var amount = parseFloat(self.$('.js_amount').val());
                 var surplus = self.initData.surplusAmount;
+                var allAmount=self.initData.allAmount
                 //是否有可投资金额
                 if (surplus <= 0) {
                     App.hideLoading();
@@ -363,7 +393,7 @@ define(function(require, exports, module) {
                     return false;
                 }
                 // 现金是否够用
-                if($(".imoney_tip").css('display')=='block'){
+                if(amount>allAmount){
                     App.hideLoading();
                     self.hasLotAmountAlert = handle.alert('您的余额不足,请先充值').show()
                     return false;

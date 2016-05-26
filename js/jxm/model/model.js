@@ -403,6 +403,10 @@
         fuyouTradeInfo: initModel({
             url:host+"/api/fuyou/tradeInfo"
         }),
+        //获取银行信息
+        fuyouGetBankInfo: initModel({
+            url:host+"/api/fuyou/getBankInfo"
+        }),
         //购买流程
         //立即投资
         fuyouToInvestConfirm: initModel({
@@ -425,6 +429,10 @@
         fuyouInitTtlBuyPage: initModel({
             url:host+"/api/fy/demand/toBuy"
         }),
+        // 购买页面初始化
+        fuyouToRedeem: initModel({
+            url:host+"/api/fy/demand/toRedeem"
+        }),
         // 购买天添利
         fuyouTtlBuyPageCheck: initModel({
             url:host+"/api/fy/demand/createDemandOrder"
@@ -436,6 +444,10 @@
         // 天添利支付结果检查接口
         fuyouTtlPayResult: initModel({
             url:host+"/api/fy/demand/checkDemandOrder"
+        }),
+        // 天添利支付结果检查接口
+        fuyouAskRedeem: initModel({
+            url:host+"/api/fy/demand/askRedeem"
         }),
         // 天添利赎回验证码接口
         fuyouSendRedeemMsgCode:initModel({

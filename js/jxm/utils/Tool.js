@@ -16,6 +16,16 @@ define(function(require, exports, module) {
                                         </div>\
                                     </div>\
                                 </div>';
+    var alertTpl2 = '<div class="mod_popup" style="width: 320px;">\
+                                    <div class="pop_cont">\
+                                        <div class="pop_bd"><%=content%></div>\
+                                        <div class="pop_ft">\
+                                            <div class="btn_box">\
+                                                <%_.each(btns, function(item){%><span class="btn_link <%=item.className%>"><%=item.name%></span><%})%>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>';
     function Tool() {}
     //处理时间
     Tool.prototype.dealTime = function(str) {
@@ -48,7 +58,7 @@ define(function(require, exports, module) {
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.indexOf("hih5hybird") > -1) {
             mType='android'
-        } else if (userAgent.indexOf("iphone") > -1){
+        } else{
             this.setupWebViewJavascriptBridge(function(bridge) {
                 mType='ios';
             })
@@ -103,9 +113,20 @@ define(function(require, exports, module) {
         var money = str.toString().split('.');
         return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1]) + ' 元'
     }
-    Tool.prototype.dealMoney3 = function(str){
-        var money = str.toString().split('.');
-        return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1])
+    Tool.prototype.dealMoney3 = function(s){
+        var n=2;
+        s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+        var l = s.split(".")[0].split("").reverse(),
+            r = s.split(".")[1];
+        var t = "";
+        for(var i = 0; i < l.length; i ++ )
+        {
+            t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+        }
+        return t.split("").reverse().join("") + "." + r;
+
+        //var money = str.toString().split('.');
+        //return money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '' : '.' + money[1])
     }
     Tool.prototype.showTag = function(type,isNew,time,saleStartTime,productTag){
         var str=""
@@ -273,6 +294,27 @@ define(function(require, exports, module) {
     Tool.prototype.alert = function(str, fun) {
         return new App.UI.UIAlert({
             template: alertTpl,
+            datamodel: {
+                content: str,
+                btns: [{
+                    name: '知道了',
+                    className: 'btn_link1'
+                }]
+            },
+            events: {
+                'click .btn_link1': 'okAction'
+            },
+            okAction: function() {
+                this.hide();
+                if(fun){
+                    fun();
+                }
+            }
+        });
+    }
+    Tool.prototype.alert2 = function(str, fun) {
+        return new App.UI.UIAlert({
+            template: alertTpl2,
             datamodel: {
                 content: str,
                 btns: [{

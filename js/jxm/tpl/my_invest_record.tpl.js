@@ -6,7 +6,7 @@ define(function (require, exports, module) {
 	        <% if(orderListLength!=0) {%>\
           <% _.each(orderList, function(order){%>\
       <ul class="invest_list">\
-        <li id="<%=order.orderNo%>" class="v_mod item <% if(order.productType == "01"){%>js_regular<% } else if(order.productType == "02"){%>js_float<% }%>">\
+        <li id="<%=order.orderNo%>" style="background-color: white" class="v_mod item <% if(order.productType == "01"){%>js_regular<% } else if(order.productType == "02"){%>js_float<% }%>">\
             <p class="status status2 <%if(order.orderStatus == "02" || order.orderStatus == "06"|| order.orderStatus == "03"|| order.orderStatus == "07") {%>status_fail<% } %>"><%=order.orderStatusDesc%></p>\
             <h3 class="hd_title"><%=order.productName%></h3>\
             <div class="v_item">\

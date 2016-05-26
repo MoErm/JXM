@@ -5,6 +5,7 @@ define(function (require, exports, module) {
         var model = require('jxm/model/model');
         var Store = require("jxm/model/store");
         var getBankInfoModel = new model.getBankInfoModel();
+        var fuyouGetBankInfo = new model.fuyouGetBankInfo();
         //var getAddrModel = new model.getAddrModel();
         var getAddrModel = new model.fuyouAreas();
         var realStatusCheck = new model.realStatusCheck();
@@ -25,6 +26,7 @@ define(function (require, exports, module) {
          var cardChecked=false;
         var firstInit=false;
         var submitFlag=false;
+        var oldUser=false;
         module.exports = App.Page.extend({
             initialize:function(){
                 self = this;
@@ -158,7 +160,7 @@ define(function (require, exports, module) {
                             actionUrl= data.data.appSignUrl;
                             self.$('#myform')[0].action =actionUrl;
 
-                            if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                            if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('doSubmit', null, function(response) {
                                     })
@@ -169,7 +171,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()!="html") {
+                            }else  if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -239,7 +241,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()!="html") {
+                            }else  if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -275,7 +277,6 @@ define(function (require, exports, module) {
                 //var addressStr=handle.deleteAllBlank(self.$('.js_card_bankName').val());
                 var idType=handle.deleteAllBlank(self.$('#js_type_input_hidden').val());
                 var cardMobile=handle.deleteAllBlank(self.$('#js_cardMobile').val());
-
                 if(!name){
                     error.push('请输入姓名');
                 }else if(!handle.checkName(name)){
@@ -285,10 +286,14 @@ define(function (require, exports, module) {
                     error.push('请选择证件类型');
                 }
                 if(!idCard){
-                    error.push('请输入身份证号');
-                }else if(!handle.checkIdCard(idCard)){
-                    error.push('身份证号不正确');
+                    error.push('请输入证件号');
                 }
+                if(idType=="01"){
+                    if(!handle.checkIdCard(idCard)){
+                        error.push('身份证号不正确');
+                    }
+                }
+
                 idCard = idCard.toUpperCase();
                 if(!self.cityData){
                     error.push('请选择银行卡开户省份');
@@ -331,7 +336,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()!="html") {
+                            }else  if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -366,7 +371,7 @@ define(function (require, exports, module) {
 
             onShow: function () {
 //                if(firstInit){
-                if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                if(handle.mobileType()=="ios") {
                     handle.setupWebViewJavascriptBridge(function(bridge) {
                         bridge.callHandler('bindInit', null, function(response) {
                         })
@@ -414,20 +419,23 @@ define(function (require, exports, module) {
                         App.hideLoading();
                         if(data.ret == 0){
                             //存变量
-                            if(data.data.name!=null){
+                            if(!_.isUndefined(data.data)){
                                 self.$('.js_name').val(data.data.name)
                                 self.$('.js_name')[0].readOnly=true
+                                self.$('.js_card_bankName').val(data.data.bankName)
+                                self.$('.js_card_number').val(data.data.cardNo)
 
                                 self.$('.js_id_card').val(data.data.certNum)
                                 self.$('.js_id_card')[0].readOnly=true
                                 self.$('#js_type_input_hidden').val(data.data.certType)
-                                self.$('.js_type_input').val(data.data.certType=="01"?"身份证":"港澳台证件")
+                                self.$('.js_type_input').val(data.data.certType=="02"?"港澳台证件":"身份证")
+                                oldUser=true
                             }
 
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()!="html") {
+                            }else  if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -451,7 +459,7 @@ define(function (require, exports, module) {
             agreementLink: function(e){
 
 
-                if(handle.mobileType()!="android"&&handle.mobileType()!="html") {
+                if(handle.mobileType()=="ios") {
                     handle.setupWebViewJavascriptBridge(function(bridge) {
                         bridge.callHandler('contract', null, function(response) {
                         })
@@ -531,7 +539,7 @@ define(function (require, exports, module) {
             },
             showBankTips:function(){
                     App.showLoading();
-                    getBankInfoModel.exec({
+                fuyouGetBankInfo.exec({
                         type: 'get',
                         success: function(data){
                             App.hideLoading();
@@ -541,19 +549,20 @@ define(function (require, exports, module) {
                                     var html="";
                                     _.each(data.data.banks, function(i, k) {
                                         var index=k+1;
-                                        html+="<tr><td>"+index+"</td><td>"+i.bankName+"</td><td>"+i.transactLimit+"</td><td>"+i.dailyLimit+"</td></tr>";
+                                        html+="<tr><td>"+index+"</td><td>"+i.bankName+"</td><td>"+i.transactLimit+"</td><td>"+i.dailyLimit+"</td><td>"+i.monthlyLimit+"</td></tr>";
                                         self.banklist.push({
-                                            'name':'<img src="'+ i.bankLogo+'" width="30px" height="30px" /> <span style="display: inline-block;height: 30px;line-height: 30px;vertical-align: top">'+ i.bankName+'(限额<span style="display:inline-block;width:60px;text-align: left">'+ i.transactLimit+')</span></span>',
+                                            'name':'<img src="'+ i.bankLogo+'" width="30px" height="30px" /> <span style="display: inline-block;height: 30px;line-height: 30px;vertical-align: top">'
+                                            + i.bankName+'(限额<span style="display:inline-block;width:60px;text-align: left">'+ i.transactLimit+')</span></span>',
                                             'selectName': i.bankName,
                                             'id': i.bankCode,
                                             'index': k
                                         })
                                     })
-                                    var tpl="<table class='limit_info'><caption>银行卡支付限额信息表</caption>" +
-                                        "<tr><td>序号</td><td>银行名称</td><td>单笔限额</td><td>单日限额</td></tr>"
+                                    var tpl="<table class='limit_info'><caption>银行卡快速充值限额信息表（APP签约）</caption>" +
+                                        "<tr><td>序号</td><td>银行名称</td><td>单笔限额</td><td>单日限额</td><td>单月限额</td></tr>"
                                         +html+
                                         "</table>";
-                                    var banktips=handle.alert(tpl);
+                                    var banktips=handle.alert2(tpl);
                                     banktips.show();
                                 }else{
                                     App.showToast('出现错误，请稍后重试');
@@ -561,7 +570,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()!="html") {
+                                }else  if(handle.mobileType()=="ios") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -605,7 +614,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()!="html") {
+                                }else  if(handle.mobileType()=="ios") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -677,7 +686,7 @@ define(function (require, exports, module) {
                             }else if(data.ret == 999001){
                                 if(handle.mobileType()=="android"){
                                     window.app.outTime()
-                                }else  if(handle.mobileType()!="html") {
+                                }else  if(handle.mobileType()=="ios") {
                                     handle.setupWebViewJavascriptBridge(function(bridge) {
                                         bridge.callHandler('timeout', null, function(response) {
                                         })
@@ -792,7 +801,7 @@ define(function (require, exports, module) {
                         }else if(data.ret == 999001){
                             if(handle.mobileType()=="android"){
                                 window.app.outTime()
-                            }else  if(handle.mobileType()!="html") {
+                            }else  if(handle.mobileType()=="ios") {
                                 handle.setupWebViewJavascriptBridge(function(bridge) {
                                     bridge.callHandler('timeout', null, function(response) {
                                     })
@@ -810,84 +819,6 @@ define(function (require, exports, module) {
                     }
                 })
             },
-            next: function(){
-                    var error = [];
-                    var cardNumber = handle.deleteAllBlank(self.$('.js_card_number').val());
-                        var name = handle.deleteAllBlank(self.$('.js_name').val());
-                        var idCard = handle.deleteAllBlank(self.$('.js_id_card').val());
-
-
-                        if(!name){
-                            error.push('请输入姓名');
-                        }else if(!handle.checkName(name)){
-                            error.push('姓名不正确');
-                        }
-                        if(!idCard){
-                            error.push('请输入身份证号');
-                        }else if(!handle.checkIdCard(idCard)){
-                            error.push('身份证号不正确');
-                        }
-                        idCard = idCard.toUpperCase();
-                    if(!self.cityData){
-                        error.push('请选择银行卡开户省份');
-                    }
-
-                    if(!cardNumber || cardNumber.length < 16){
-                        error.push('请输入正确的银行卡号');
-                    }
-
-                    if(error.length){
-                        App.showToast(error[0]);
-                        return;
-                    }
-
-                    App.showLoading();
-                     realCheck.set({
-                        'idNo':  idCard,
-                        'name': name,
-                        'cardNo': cardNumber,
-                        'bankCode': self.bankData.bankCode,
-                        'bankName': self.bankData.bankName,
-                        'bankProvinceCode': self.cityData.bankProvinceCode,
-                        'bankProvinceName': self.cityData.bankProvinceName,
-                        'cityName': self.cityData.cityName,
-                        'cityCode':   self.cityData.cityId
-                    });
-                     realCheck.exec({
-                        type: 'post',
-                        success: function(data){
-                            App.hideLoading();
-                            if(data.ret == 0){
-                                    if(data.defaultCheckMode=='02'){
-                                        self.getDribblet();
-                                    }else{
-                                        App.showLoading();
-                                        App.goTo('bind_card_new_step3');
-                                    }
-                            }else if(data.ret == 999001){
-                                if(handle.mobileType()=="android"){
-                                    window.app.outTime()
-                                }else  if(handle.mobileType()!="html") {
-                                    handle.setupWebViewJavascriptBridge(function(bridge) {
-                                        bridge.callHandler('timeout', null, function(response) {
-                                        })
-                                    })
-                                }else{
-                                    handle.goLogin();
-                                }
-                            }else if(data.ret == 110199){
-                                self.promptAlert = handle.alert(data.msg);
-                                self.promptAlert.show();
-                            }else{
-                                App.showToast(data.msg || message);
-                            }
-                        },
-                        error: function(){
-                            App.hideLoading();
-                            App.showToast(message);
-                        }
-                    })
-            },
             regClear:function(){
                 _.each(['js_id_card', 'js_card_number'], function(item){
                     App.UI.UIInputClear(self.$('.' + item), '', null, {'right': 5});
@@ -896,6 +827,9 @@ define(function (require, exports, module) {
             },
 
             selectType: function(){
+                if(oldUser){
+                    return
+                }
                 var province = [{
                             id: "01",
                             name: "身份证",
@@ -931,6 +865,11 @@ define(function (require, exports, module) {
                         self.$('.js_type_input').val(items[0].name);
                         self.$('#js_type_input_hidden').val(items[0].id);
                         console.log(items[0].id)
+                        if(items[0].id=="01"){
+                            self.$el.find(".js_id_card").attr("placeholder","请输入您的18位二代身份证号")
+                        }else if(items[0].id=="02"){
+                            self.$el.find(".js_id_card").attr("placeholder","请输入您的港澳台证件号")
+                        }
                         this.hide();
                     },
                     onCancelAction: function() {

@@ -11,7 +11,7 @@ define(function (require, exports, module) {
 	  </div>\
 	      <div class="my_invest_income">\
 				<div class="currentIncome">\
-					<span>当前收益(元)</span>\
+					<span>当前预期收益(元)</span>\
 					<span><%=currentIncome%></span>\
 				</div>\
 				<div  class="historyIncome">\

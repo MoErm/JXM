@@ -25,7 +25,7 @@ define(function (require, exports, module) {
         beforeIn:  function () {
             if(handle.mobileType()=="android"){
                 window.app.setMoneyPsd()
-            }else if(handle.mobileType()!="html") {
+            }else if(handle.mobileType()=="ios") {
                 handle.setupWebViewJavascriptBridge(function (bridge) {
                     bridge.callHandler('setPassword', null, function (response) {
                     })

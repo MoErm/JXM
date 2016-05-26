@@ -57,6 +57,16 @@ define(function (require, exports, module) {
                         self.sign=payLayer.signFuyou("bind")
                     }else if(data.ret == 110210){
                         self.sign=payLayer.signFuyou("sign")
+                    }else if(data.ret == 100031){
+                        App.hideLoading();
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
+                        self.promptAlert.show();
                     }else{
                         App.showToast(data.msg  || self.message);
                     }

@@ -32,8 +32,10 @@ define(function(require, exports, module) {
             self.isAgreeAction= sessionStorage.getItem("isagreedAction");
             self.isagreedData= JSON.parse(sessionStorage.getItem("isagreedData"));
             self.setHeader();
-            self.initBuyPage();
-
+            self.initTemple();
+            setTimeout(function(){
+                App.hideLoading();
+            },500)
             if(self.isAgreeAction==1 && self.isagreedData!=null){
                 //进行数据传递
                 self.goBuyPagePost(self.isagreedData);
@@ -71,26 +73,16 @@ define(function(require, exports, module) {
 
                         App.hideLoading();
                         self.promptAlert = handle.prompt('未完成实名绑卡,是否立即去绑卡？','放弃', '确定', function(){                          
-                            App.goTo('list');
+                            App.goTo('ttl_introduce');
                         },function(){                          
                             App.goTo('bind_card_new');
                         });
                         self.promptAlert.show();
-                    } else if (data.ret == 100031) { // 支付系统已升级，请重新验证银行卡
-
-                        App.hideLoading();
-                         self.promptAlert = handle.prompt('支付系统已升级，是否重新验证银行卡？','放弃', '确定', function(){                          
-                            App.goTo('list');
-                        },function(){                          
-                            App.goTo('bind_card_new');
-                        });                  
-                        self.promptAlert.show();
-
-                    } else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
+                    }  else if (data.ret == 110210) { // 当前银行卡未签约，请先签约
 
                         App.hideLoading();                       
                         self.promptAlert = handle.prompt('当前银行卡未签约，是否去签约？','放弃', '确定', function(){                          
-                            App.goTo('list');
+                            App.goTo('ttl_introduce');
                         },function(){                          
                             App.goTo('fuyou_sign');
                         });                  
@@ -99,11 +91,23 @@ define(function(require, exports, module) {
                     } else if (data.ret == 100031) { // 余额查询失败，请稍后重试
 
                         App.hideLoading();
-                        self.promptAlert = handle.alert('余额查询失败，请稍后重试',function(){
-                           App.goBack();
-                        });                  
+                        self.promptAlert = handle.prompt(data.msg,'放弃', '去设置',function(){
+                            //解除锁定
+                            if(handle.mobileType()=="android"){
+                                window.app.goBack()
+                            }else if(handle.mobileType()=="ios") {
+                                handle.setupWebViewJavascriptBridge(function (bridge) {
+                                    bridge.callHandler('back', null, function (response) {
+                                    })
+                                })
+                            }else{
+                                App.goTo("ttl_introduce")
+                            }
+                        }, function(){
+                            //继续更换
+                            App.goTo('bind_card_new');
+                        });
                         self.promptAlert.show();
-
                     } else{
                         App.showToast(data.msg  || self.message);
                     }
@@ -115,6 +119,7 @@ define(function(require, exports, module) {
             });
         },
         initTemple: function(){
+            self.pageData.cardData=JSON.parse(sessionStorage.getItem("ttlBuyData"))
             self.pageData.cardData.maxInvestAmount= handle.dealMoney1(self.pageData.cardData.surplusAmount,2);
             self.pageData.cardData.miNRate= self.pageData.cardData.initialRate*100;
             self.pageData.cardData.maXRate= self.pageData.cardData.maxRate*10000/100;

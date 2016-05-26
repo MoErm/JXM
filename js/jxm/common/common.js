@@ -410,7 +410,7 @@ define(function(require, exports, module) {
                     </div>\
                 </article>';
             var self = null;
-            var getCodeFlag_ttl=true
+            var getRedemCodeFlag=true
             var popwin = new App.UI.UIPopWin({
                 events: {
                     "click #payRedeem_close": "onHideLayer",
@@ -425,19 +425,22 @@ define(function(require, exports, module) {
                 onHideLayer: function() {
                     this.hide();
                 },
+                hideWindow:function(){
+                    this.hide();
+                },
                 showCodeCountDown: function(timer) {
                     //获取验证码倒计时
                     var second = timer || 60;
                     clearInterval(self.codetimer);
                     self.codetimer = setInterval(function() {
                         self.$el.find('.js_code').html('已获取（' + second + '）');
-                        getCodeFlag_ttl=true
+                        getRedemCodeFlag=true
                         self.$el.find('.js_code').addClass("code_disabled");
                         second -= 1;
                         if (second == -1) {
                             clearInterval(self.codetimer);
                             self.$el.find('.js_code').html('获取验证码');
-                            getCodeFlag_ttl=false
+                            getRedemCodeFlag=false
                             self.$el.find('.js_code').removeClass("code_disabled");
                         }
                     }, 1000);
@@ -447,13 +450,16 @@ define(function(require, exports, module) {
                     var show = money[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (_.isUndefined(money[1]) ? '.00' : money[1].length == 1 ? "." + money[1] + "0" : "." + money[1])
                     $('#payRedeem_redeemValue').html("¥" + show);
                 },
-                getCode: function() { //获取赎回验证码                    
+                getCode: function() { //获取赎回验证码
+                    if(getRedemCodeFlag){
+                        return
+                    }
                     App.showLoading();
-                    sendRedeemMsgCode.set({
-                        'redeemAmount': redeemValue,
-                    });
+                    //sendRedeemMsgCode.set({
+                    //    'redeemAmount': redeemValue,
+                    //});
                     sendRedeemMsgCode.exec({
-                        type: 'post',
+                        type: 'get',
                         success: function(data) {
                             App.hideLoading();
                             if (data.ret == 0) {
@@ -472,7 +478,11 @@ define(function(require, exports, module) {
                     });
                 },              
                 payRedeem: function() {
-                    var msgCodeVal = $('#checkCode').val();                   
+                    var msgCodeVal = $('#checkCode').val();
+                    if(msgCodeVal==""){
+                        App.showToast("请输入验证码")
+                        return
+                    }
                     App.showLoading();
 
                     confirmRedeem.set({
@@ -502,8 +512,8 @@ define(function(require, exports, module) {
                 onShow: function() {
                     self = this.initialize();
                     self.showAcountValue();
-                    self.getCode();
-                    
+                    //self.getCode();
+                    self.showCodeCountDown(59);
 
                 }
             });

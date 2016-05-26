@@ -50,7 +50,9 @@ define(function (require, exports, module) {
             self.callPhone.show();
         },
         onShow: function () {
-            App.hideLoading()
+            setTimeout(function(){
+                App.hideLoading();
+            },500)
             this.header = document.querySelector("#header");
             handle.share();
 

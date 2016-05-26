@@ -2,7 +2,7 @@ define(function (require, exports, module) {
 	var tpl = '<% _.each(records, function(order){%>\
             <ul class="invest_list" id="invest_record">\
             <% _.each(records, function(order){%>\
-            <li class="v_mod item investList" data-id="<%=order.orderNo%>">\
+            <li class="v_mod item investList" style="background-color: white" data-id="<%=order.orderNo%>">\
             <p class="status status2 <%if(order.orderStatus == "08"||order.orderStatus == "06"||order.orderStatus == "03"||order.orderStatus == "02") {%>status_fail<% } %>"><%=order.orderStatusDesc%></p>\
             <h3 class="hd_title"><small style="font-size: 1.6rem;color: #b5b5b5">当前余额&ensp;&ensp;&ensp;</small><%if(order.orderStatus == "08"||order.orderStatus == "06"||order.orderStatus == "03"||order.orderStatus == "02"||order.orderStatus == "04") {%>- -<% }else{ %> <%=order.surplusAmount%> 元<% } %></h3>\
             <div class="v_item">\
