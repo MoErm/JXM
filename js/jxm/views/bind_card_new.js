@@ -9,7 +9,7 @@ define(function (require, exports, module) {
         //var getAddrModel = new model.getAddrModel();
         var getAddrModel = new model.fuyouAreas();
         var realStatusCheck = new model.realStatusCheck();
-        var getBankByBin = new model.getBankByBin();
+        var getBankByBin = new model.fuyouGetBankByBin();
         var realCheck = new model.realCheck();
         var sendDribblet = new model.sendDribblet();
         var loginStore = new Store.loginStore();

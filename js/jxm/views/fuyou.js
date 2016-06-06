@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                 }
             });
         },
-        showName:function(tradeType,productName){
+        showName:function(tradeType,productName,chargeWay){
             //if((tradeType!="01"&&tradeType!="02")&&productName.length>10){
             //    productName=productName.substr(0, 10);
             //    switch (tradeType){
@@ -116,6 +116,8 @@ define(function (require, exports, module) {
                         return productName+"投资";
                     case "06":
                         return productName+"赎回";
+                    case "07":
+                        return chargeWay;
                 }
             //}
 

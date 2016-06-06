@@ -407,6 +407,10 @@
         fuyouGetBankInfo: initModel({
             url:host+"/api/fuyou/getBankInfo"
         }),
+        //获取银行信息
+        fuyouGetBankByBin: initModel({
+            url:host+"/api/fuyou/getBankByBin"
+        }),
         //购买流程
         //立即投资
         fuyouToInvestConfirm: initModel({

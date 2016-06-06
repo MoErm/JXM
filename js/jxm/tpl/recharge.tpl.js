@@ -3,7 +3,7 @@ define(function (require, exports, module) {
             <div class="recharge_t">\
                 <ul class="recharge_t_list">\
                     <li>现金余额(元) <span class="list_con number"><%=dealMoney3(chargeData.amount)%></span></li>\
-                    <li>充值金额(元) <span class="list_con"><input type="text" class="recharge_money" id="recharge_money" placeholder="100.00元起"/></span></li>\
+                    <li>充值金额(元) <span class="list_con"><input type="text" class="recharge_money" id="recharge_money" placeholder="<%=chargeData.minChargeAmt%>元起"/></span></li>\
                 </ul>\
             </div>\
             <div class="recharge_m">\
@@ -17,14 +17,16 @@ define(function (require, exports, module) {
                         </div>\
                     </div>\
                 </div>\
+                <%if(chargeData.surplusCount!=null){%>\
                 <div class="recharge_m_times">今日剩余充值 <span class="times_num"><%=chargeData.surplusCount%></span> 次</div>\
+                <%}%>\
             </div>\
             <div class="recharge_b">\
                 <button class="action_buy" id="recharge_btn">充值</button>\
                 <div class="same_card_tip">\
                     <h2 class="tip_head"><span class="text">Tips</span><em class="line"></em></h2>\
                     <em class="tip_icon"></em>\
-                    <p class="tip_text">1.单笔充值金额100.00元起</p>\
+                    <p class="tip_text">1.单笔充值金额<%=chargeData.minChargeAmt%>元起</p>\
                 </div>\
             </div>\
         </article>\
