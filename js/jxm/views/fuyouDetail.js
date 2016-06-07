@@ -58,7 +58,7 @@ define(function (require, exports, module) {
                 }
             })
         },
-        showName:function(tradeType,productName){
+        showName:function(tradeType,productName,chargeWay){
             switch (tradeType){
                 case "01":
                     return "充值";
@@ -72,6 +72,8 @@ define(function (require, exports, module) {
                     return productName+"投资";
                 case "06":
                     return productName+"赎回";
+                case "07":
+                    return chargeWay;
             }
         },
         setHeader: function () {
