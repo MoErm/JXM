@@ -598,7 +598,7 @@ define(function(require, exports, module) {
                     }
 
                 }else{
-                    self.getOrderInfoAlert = handle.alert('产品开放购买时间为06:00 ~ 22:00，请到时再来哦！', function () {
+                    self.getOrderInfoAlert = handle.alert('产品开放购买时间为10:00 ~ 22:00，请到时再来哦！', function () {
                     }).show();
                 }
             } else if (self.saleStatus=='00')  {
@@ -820,7 +820,7 @@ define(function(require, exports, module) {
                         <dt class="tip_list_title">五、可售日期？</dt>\
                         <dl class="tip_list_content">周日~周四可售，如遇法定节假日：则节假日前一天停止售卖，直至节假日最后一天开放购买。（即：第一个工作日前一天起 ~ 第一个假期日前第二个工作日可售）</dl>\
                          <dt class="tip_list_title">六、购买时间？</dt>\
-                          <dl class="tip_list_content">每个可售日期的06:00 ~ 22:00 开放购买</dl>\
+                          <dl class="tip_list_content">每个可售日期的10:00 ~ 22:00 开放购买</dl>\
                         <dt class="tip_list_title">七、何日起息？何日能看到收益？</dt>\
                         <dl class="tip_list_content">投资成功后，当日起息；次日显示收益（若收益少于0.01元，则不予显示）。</dl>\
                         <dt class="tip_list_title">八、何时可以赎回？是否需要手续费？</dt>\
