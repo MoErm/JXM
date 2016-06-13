@@ -470,7 +470,7 @@ define(function (require, exports, module) {
                         sessionStorage.setItem("bind_tel", tel);
                     }
                     e.stopImmediatePropagation();
-                    App.goTo('get_contract?cid=13&type=2');
+                    App.goTo('get_contract?cid=25&type=2');
                 }
             },
 //            review:function(){

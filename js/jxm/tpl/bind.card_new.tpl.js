@@ -38,7 +38,7 @@ define(function (require, exports, module) {
                     <div style="clear: both">\
                      </div>\
                     <div class="btn_box_submit js_next">下一步</div>\
-                    <p class="entrust_agreement2 js_agreement">我已阅读并同意<a href="javascript:void(0)" class="bind_card_agreement">《委托支付服务协议》</a></p>\
+                    <p class="entrust_agreement2 js_agreement">我已阅读并同意<a href="javascript:void(0)" class="bind_card_agreement">《委托开户协议》</a></p>\
                    <input type="hidden" id="mchnt_cd" name="mchnt_cd">\
                     <input type="hidden" id="mchnt_txn_ssn" name="mchnt_txn_ssn">\
                     <input type="hidden" id="login_id" name="login_id">\

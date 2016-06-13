@@ -20,12 +20,16 @@ define(function(require, exports, module) {
             'click .js_float_pop': 'popFloat',
             'click .js_invest': 'createOrder', // 立即投资
             'click .js_notice': 'notice',
+            'click .js_zhifu': 'toZhiFuXieYi',// 委托支付协议
             'input .js_amount': 'changeAmount',
             'click .js_contract': 'goContractPage',
             'click #cash_addbtn': 'goRechargePage' // 去充值页面
         },
         initialize: function() {
             self = this;
+        },
+        toZhiFuXieYi:function(){
+            App.goTo('get_contract?cid=24&type=2');
         },
         notice: function() {
             var urlhref = "http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=400082926&idx=1&sn=f3c1486ae959330abe726931bd6a0c9d#rd"

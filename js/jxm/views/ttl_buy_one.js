@@ -22,6 +22,7 @@ define(function(require, exports, module) {
             'click .js_tips': 'goContractTip',//《风险提示书》
             'click .js_transfer': 'goContractTransfer', //《产品收益权转让及服务协议》
             'click #cash_addbtn': 'goRechargePage',// 去充值页面
+            'click .js_zhifu': 'toZhiFuXieYi',// 委托支付协议
             'input #imoney_num': 'checkChangeAmount' //修改充值参数
         },
         onShow: function() {
@@ -42,7 +43,10 @@ define(function(require, exports, module) {
                 sessionStorage.removeItem('isagreedAction');
                 sessionStorage.removeItem("isagreedData");
             }
-        },        
+        },
+        toZhiFuXieYi:function(){
+            App.goTo('get_contract?cid=24&type=2');
+        },
         setHeader: function () {
             var header = new App.UI.UIHeader();
             header.set({

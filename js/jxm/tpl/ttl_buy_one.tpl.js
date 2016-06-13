@@ -35,7 +35,7 @@ define(function (require, exports, module) {
 					<input type="button" value="确认投资" class="action_buy" id="action_buy"/>\
 					<div class="action_tip">投资并同意\
 					<a href="javascript:void(0)" class="weblink js_tips">《风险提示书》</a><a href="javascript:void(0)" class="weblink js_transfer ">《债权收益权转让服务协议》</a>\
-					所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
+					<a href="javascript:void(0)" class="weblink js_zhifu">《加薪猫委托支付授权书》</a>所有条款，充分了解并清楚知晓相应权利义务，愿意承担相关风险</div>\
 				</div>\
 			</div>\
         </article>\
