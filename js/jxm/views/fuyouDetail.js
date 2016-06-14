@@ -35,12 +35,14 @@ define(function (require, exports, module) {
                     serialNo:  query.serialNo
                 },
                 success: function (data){
-                    console.log(data.data)
                     App.hideLoading();
                     if(data.ret == 0){
                         self.data=data.data
                         if(_.isUndefined(data.data.remark)){
                             self.data.remark="无"
+                        }
+                        if(_.isUndefined(data.data.chargeWay)){
+                            self.data.chargeWay=""
                         }
                         self.data.serialNo=query.serialNo
 
