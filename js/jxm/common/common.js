@@ -11,6 +11,9 @@ define(function(require, exports, module) {
     var goTtlPayOrder = new Model.fuyouTtlPayOrder(); // fuyou 天添利支付
     var goTtlPayResult = new Model.fuyouTtlPayResult(); // fuyou 天添利支付结果
 
+    var yujiaSendPayMsgCode = new Model.yujiaSendPayMsgCode(); // yujia 短信
+    var yujiaPayCarOrder = new Model.yujiaPayCarOrder(); // yujia 支付
+
     var getMyBankCard = new Model.addMyBankCard();
     var abortChange = new Model.abortChange();
     var tool = require("jxm/utils/Tool");
@@ -19,6 +22,7 @@ define(function(require, exports, module) {
     var share = require("jxm/tpl/share.tpl");
     var shareBonus = require("jxm/tpl/shareBonus.tpl");
     var loginStore = new store.loginStore();
+    var message = '网络错误，请稍后重试';
     var Common = {
         // 普通产品支付弹窗
         showPayWin: function(data, hasCode) {
@@ -516,6 +520,228 @@ define(function(require, exports, module) {
                     self.showCodeCountDown(59);
 
                 }
+            });
+            popwin.show();
+        },
+        //yujialist
+        showyujiaList: function(list) {
+            var showList=''
+            for(var i=0;i<list.length;i++){
+                showList+='<div class="monthList_list_2"><span>'+list[i].period+'期</span><span>'+list[i].returnedDate+'</span><span>'+list[i].returnedAmount+'</span></div>'
+            }
+            var temp='<div id="monthList"><div class="monthList">' +
+                '                <div class="monthList_title">月回款详情' +
+                '                <div class="monthList_close"  onClick={this.closeLayer}></div>' +
+                '            </div>' +
+                '            <div class="monthList_showArea">' +
+                '                <div class="monthList_list_1">' +
+                '                <span>期数</span>' +
+                '                <span>回款日期</span>' +
+                '                <span>回款金额（元）</span>' +
+                '            </div>' +showList+
+                '            </div>' +
+                '            </div>' +
+                '</div>'
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click .monthList_close": "onHideLayer"
+                },
+                maskToHide: false,
+                template: temp,
+                onHideLayer: function() {
+                    this.hide();
+                },
+                onShow: function() {
+                }
+            });
+            popwin.show();
+        },
+        //buyyujia
+        buyYujia: function(data) {
+            var self;
+            var codeCountDown;
+            var countDown
+            var msgCodeFlag=true
+            var temp='<div id="payLayer">' +
+                '                <div class="payLayer">' +
+                '                <div class="payTitle">支付验证<i class="payCross"></i></div>' +
+                '            <div class="payTxt_1">' +
+                '                <span class="span_1">'+data.productName+'</span>' +
+                '            <span class="span_2">'+data.investPeriod+'期</span>' +
+                '            </div>' +
+                '            <div class="payTxt_1">' +
+                '                <span class="span_1">支付金额</span>' +
+                '                <span class="span_2 red">'+handle.dealMoney3(data.investAmount)+'</span>' +
+                '            </div>' +
+                '            <div class="payTxt_3">' +
+                '                <span class="span_1">验证码</span>' +
+                '                <span class="span_2"><input type="text" id="msgCode" maxLength="6"/><div class="payCode" id="payCode">获取验证码</div></span>' +
+                '                </div>' +
+                '            <button class="payBtn" >支付</button>' +
+                '            <div class="payTxt_4">' +
+                '                <p id="countDown">请在-分-秒内完成支付！</p>        ' +
+                '    </div>' +
+                '            </div>' +
+                '     </div>'
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click #payCode": "getCode",
+                    "click .payCross": "onHideLayer",
+                    "click .payBtn": "pay"
+                },
+                maskToHide: false,
+                template: temp,
+                onHideLayer: function() {
+                    clearInterval(codeCountDown);
+                    clearInterval(countDown);
+                    clearInterval(self.paytimer);
+                    this.hide();
+                },
+                onShow: function() {
+                    self=this;
+                    this.showCodeCountDown()
+                    this.showCountDown(data.surplusPayTime)
+                },
+                pay:function(){
+                    var msgCode=$("#msgCode").val()
+                    yujiaPayCarOrder.exec({
+                        type: 'post',
+                        data:{
+                            msgCode:msgCode,
+                            orderNo:data.orderNo
+                        },
+                        success: function(data) {
+                            App.hideLoading();
+                            if (data.ret == 0) {
+                                self.checkCarOrder()
+                            } else if (data.ret == 999001) {
+                                handle.goLogin();
+                            } else {
+                                App.showToast(data.msg)
+                            }
+                        },
+                        error: function() {
+                            App.hideLoading();
+                            App.showToast(message);
+                        }
+                    })
+                },
+                checkCountDownFun:function(){
+                    App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id="js_pay_count_down">10</span>秒', 10000);
+                    var second=9;
+                    self.paytimer = setInterval(function() {
+                        $('#js_pay_count_down').html(second);
+                        second -= 1;
+                        if (second == -1) {
+                            clearInterval(self.paytimer);
+
+                            self.showResult = false;
+                        }
+                    }, 1000);
+                },
+                checkCarOrder:function(){
+
+                    this.checkCountDownFun()
+                    var checkData={
+                        orderNo:data.orderNo
+                    }
+                    checkOrder.exec({
+                        type: 'get',
+                        data:checkData,
+                        success: function(data) {
+                            App.hideToast();
+                            if (data.ret == 999001) {
+                                App.goTo('login');
+                            } else {
+                                if (self.showResult == true && data.ret == 0) {
+                                    clearInterval(self.paytimer);
+                                    localStorage.setItem('yujiaData', JSON.stringify(data));
+                                    self.hide()
+                                    App.goTo('yujiaFinish');
+                                } else if (self.showResult == true && data.ret == 300001) {
+                                    clearInterval(self.paytimer);
+                                    self.payCountAlert = handle.alert(data.msg, function() {
+                                        self.hide()
+                                        App.goTo("my_invest")
+                                    });
+                                    self.payCountAlert.show();
+                                }else if (self.showResult == true && data.ret == 300002) {
+                                    clearInterval(self.paytimer);
+                                    self.payCountAlert = handle.alert('支付确认中，请到"我的投资"查看支付结果', function() {
+                                        self.hide()
+                                        App.goTo("my_invest")
+                                    });
+                                    self.payCountAlert.show();
+                                }else {
+                                    clearInterval(self.paytimer);
+                                    self.hide()
+                                    App.showToast(data.msg);
+                                }
+                            }
+                        },
+                        error: function() {
+                            App.hideLoading();
+                            self.hide()
+                            App.showToast('网络错误,请稍后重试');
+                        }
+                    });
+                },
+                getCode:function(){
+                    if(msgCodeFlag){
+                        return
+                    }
+                    yujiaSendPayMsgCode.exec({
+                        type: 'get',
+                        success: function(data) {
+                            App.hideLoading();
+                            if (data.ret == 0) {
+
+                            } else if (data.ret == 999001) {
+                                handle.goLogin();
+                            } else {
+                                App.showToast(data.msg)
+                            }
+                        },
+                        error: function() {
+                            App.hideLoading();
+                            App.showToast(message);
+                        }
+                    })
+                },
+                showCountDown:function(time){
+                    var surplus = time;
+                    countDown =setInterval(function() {
+                        var minute = Math.floor(surplus / 60);
+                        var second = surplus - minute * 60;
+                        $("#countDown").html('请在'+minute + '分' + second + '秒内完成支付！');
+                        surplus -= 1;
+                        if (surplus == -1) {
+                            $("#countDown").html(' ');
+                            clearInterval(countDown);
+                            self.hide()
+                            App.showToast('订单已关闭，请重新购买。')
+                        }
+                    }, 1000);
+                },
+                showCodeCountDown:function(time){
+                    var surplus = 60;
+                    msgCodeFlag=true
+                    $("#payCode").addClass("disabled");
+                    $("#payCode").removeClass("payCode ");
+                    codeCountDown =setInterval(function() {
+
+                        $("#payCode").html('已获取('+ surplus + ')');
+
+                        surplus -= 1;
+                        if (surplus < -1) {
+                            $("#payCode").removeClass("disabled");
+                            $("#payCode").addClass("payCode");
+                            msgCodeFlag=false
+                            clearInterval(codeCountDown);
+                            $("#payCode").html('获取验证码');
+                        }
+                    }, 1000);
+                },
             });
             popwin.show();
         },

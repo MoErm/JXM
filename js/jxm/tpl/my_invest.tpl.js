@@ -6,6 +6,7 @@ define(function (require, exports, module) {
 	  <div class="my_invest">\
 	  	<div class="user_title"><p><%=userName%></p>\
 	  	<%=mobile%></div>\
+	  	<div class="user_msg user_new_msg"><img src="./images/invest_msg.png"></div>\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\
 	  </div>\
@@ -49,9 +50,9 @@ define(function (require, exports, module) {
 				<span class="invest_menu_text1">红包</span>\
 				<span class="invest_menu_text2"><%=change%></span>\
 			</div>\
-			<div class="invest_menu_2 invest_icon_yhk">\
-				<span class="invest_menu_text1">银行卡</span>\
-				<span class="invest_menu_text2"><%=cardStatusDesc%></span>\
+			<div class="invest_menu_2 invest_icon_yujia">\
+				<span class="invest_menu_text1">御驾系列</span>\
+				<span class="invest_menu_text2">持有<%=carOrderCount%>笔</span>\
 			</div>\
 	    </div>\
 	     <div style="clear: both"></div>\
@@ -60,9 +61,9 @@ define(function (require, exports, module) {
 				<span class="invest_menu_text1">我的邀请</span>\
 				<span class="invest_menu_text2"><%=inviteeCount%>名理财好友</span>\
 			</div>\
-			<div class="invest_menu_2 ">\
-				<span class="invest_menu_text1"></span>\
-				<span class="invest_menu_text2"></span>\
+			<div class="invest_menu_2 invest_icon_yhk">\
+				<span class="invest_menu_text1">银行卡</span>\
+				<span class="invest_menu_text2"><%=cardStatusDesc%></span>\
 			</div>\
 	    </div>\
 	    \

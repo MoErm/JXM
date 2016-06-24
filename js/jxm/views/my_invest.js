@@ -28,6 +28,7 @@ define(function (require, exports, module) {
             'click .js_ttl': 'ttl_recommend',
             'click .invest_icon_ttl': 'goRedeem',
             'click .invest_icon_yhk': 'goCard',
+            'click .invest_icon_yujia': 'goYujia',
             'click .invest_amount_1': 'goFuyou',
             'click .fuyou_js_chongzhi': 'goChongZhi',
             'click .js_close': 'goClose',
@@ -44,6 +45,9 @@ define(function (require, exports, module) {
         },
         goFuyou:function(){
             App.goTo("fuyou")
+        },
+        goYujia:function(){
+            App.goTo("yujiaInvest")
         },
         goChongZhi:function(){
             App.showLoading();

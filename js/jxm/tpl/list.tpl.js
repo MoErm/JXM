@@ -1,6 +1,10 @@
 define(function (require, exports, module) {
     var tpl = '\
-  \
+  <div class="list_select_box">\
+       <div class="select_left selected" id="jiaxin">加薪系列</div>\
+       <div class="select_right" id="yujia">御驾系列</div>\
+  </div>\
+  <div id="jiaxinList"  <%if(!showhistory){%>style="padding-top:51px"<%}%>>\
     <%if(show){%><article class="mod_page mod_list js_list"><%}%>\
                 <div class="mod_listing">\
                     <%if(show){%><h2 class="hd_title"><span>每天10点，优质放送 </span></h2>\
@@ -45,7 +49,71 @@ define(function (require, exports, module) {
                     </ul>\
                 </div>\
                 \
-        <%if(show){%><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article><%}%>';
+        <%if(show){%><p class="js_loading" style="padding:10px 0 60px 0;text-align:center;color:#898989;display:none">加载中...</p></article><%}%>\
+        </div>\
+        <%if(yujiaFlag){%>\
+        <div id="yujiaList">\
+        <section class="recommend">\
+        <div class="recommend_t">\
+            <div class="part_one">\
+                <ul class="part_list">\
+                    <li class="part_l">\
+                    <p class="sub_head">5万元</p>\
+                    <p class="sub_title">起投金额</p>\
+                    </li>\
+                    <li class="part_m">\
+                        <div class="part_m_box">\
+                            <p class="sub_title">预期年化收益率</p>\
+                            <p class="sub_head">11%</p>\
+                        </div>\
+                    </li>\
+                    <li class="part_r">\
+                         <p class="sub_head">12/18/24/36</p>\
+                        <p class="sub_title">投资期限(月)</p>\
+                    </li>\
+                </ul>\
+            </div>\
+        <div class="part_two">\
+            <ul class="part_list">\
+                <li class="part_l">\
+                <em></em>\
+                <p>期限灵活</p>\
+                </li>\
+                <li class="part_m">\
+                <em></em>\
+                <p>固定收益</p>\
+                </li>\
+                <li class="part_r">\
+                <em></em>\
+                <p>方便省心</p>\
+                </li>\
+            </ul>\
+        </div>\
+        <div class="recommend_b">\
+            <div class="part_one">\
+                <h2 class="sub_head">核心价值</h2>\
+                <p class="sub_text">御驾1号是加薪猫推出的一款以多种回收期数，对接不同的银行/金融公司债权的回款方式，实现每月整体收益至少覆盖购车贷款金额的,以金融产品养车为目的的购车理财模式。</p>\
+            </div>\
+            <div class="part_two">\
+                <h2 class="sub_head">回款模式</h2>\
+                <p class="sub_text">5万元起，整万元累加。投资期限可选12、18、24、36个自然月为期数，完善您的资产配置需求。回收日期可选每月中指定的任意一天，回收资金更加灵活。每月固定收益，真正做到以金融的杠杆实现购车无压力，非常适合每月有车贷等固定资金需求的人群。</p>\
+            </div>\
+            <div class="part_three">\
+                <h2 class="sub_head">适用人群</h2>\
+                <p class="sub_text">适用于有5万元以上闲置资金的理财人群，将资金最大程度利用起来。将每月固定收益偿还银行贷款，实现财务自由支配及资产盈余的人群。</p>\
+            </div>\
+        </div>\
+        \
+    </section>\
+    <footer class="foot_copyright foot_btns">\
+                <div >\
+                    <div class="btn_link btn_link2">\
+                        <p class="btn_txt js_buy_yujia">立即购买</p>\
+                        <p class="security">账户资金安全由银行和第三方支付公司共同保障</p>\
+                    </div>\
+                </div>\
+        </footer>\
+        <%}%>';
     module.exports = tpl;
 })
 

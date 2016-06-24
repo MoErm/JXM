@@ -42,7 +42,6 @@ define(function(require, exports, module) {
         if(window.location.host.indexOf("localhost")>-1){
         }else{
             if(userAgent.indexOf("applewebkit") > -1){
-                console.log(userAgent)
                 var $iframe = $('<iframe src="favicon.ico"></iframe>').on('load', function() {
                     setTimeout(function() {
                         $iframe.off('load').remove()

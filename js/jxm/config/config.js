@@ -238,6 +238,26 @@ window.global_config = {
             "url": "recharge_out",
             "controller": "recharge_out"
         }
+        , {
+            "url": "yujia",
+            "controller": "yujia"
+        } ,
+        {
+            "url": "yujiaFinish",
+            "controller": "yujiaFinish"
+        },
+        {
+            "url": "yujiaDetail",
+            "controller": "yujiaDetail"
+        },
+        {
+            "url": "yujiaInvest",
+            "controller": "yujiaInvest"
+        }
+        , {
+            "url": "news",
+            "controller": "news"
+        }
 //        ,{ "url": "App_list",
 //            "controller": "App_list"
 //        },
@@ -339,6 +359,11 @@ requirejs.config({
         'recommend': 'jxm/views/recommend',
         'recharge': 'jxm/views/recharge',
         'recharge_out': 'jxm/views/recharge_out',
+        'yujia': 'jxm/views/yujia',
+        'yujiaFinish': 'jxm/views/yujiaFinish',
+        'yujiaInvest': 'jxm/views/yujiaInvest',
+        'yujiaDetail': 'jxm/views/yujiaDetail',
+        'news': 'jxm/views/news',
 //        ,
 //        'App_detail': 'App/views/detail',
 //        'App_invest_confirm': 'App/views/invest_confirm',

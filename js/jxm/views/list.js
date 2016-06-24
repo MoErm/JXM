@@ -11,6 +11,7 @@ define(function (require, exports, module) {
         var abortChange= new model.abortChange();
         var getUserInfo = new model.getUserInfo();
         var fuyouToInvestConfirmMode = new model.fuyouToInvestConfirm();
+        var yujiaToInvest = new model.yujiaToInvest();
         var page;
         var handle = new tool();
         var timer = {};
@@ -18,6 +19,7 @@ define(function (require, exports, module) {
         var imageSlider = null;
         var self;
         var noProgress = handle.noProgress();
+        var pageFlag=0;
         module.exports = App.Page.extend({
             initialize: function(){
                 self = this;
@@ -26,14 +28,55 @@ define(function (require, exports, module) {
             events: {
                 'click .js_my_invest': 'myInvest',//我的投资
                 'click .js_setting': 'setting',//设置
-                'click .js_ttl': 'js_ttl',//设置
+                'click .js_ttl': 'js_ttl',//ttl
+                'click .js_buy_yujia': 'js_buy_yujia',//ttl
                 'click .js_list_btn': 'listBtn',//购买
                 'click .js_list_item': 'listItem',//产品跳转
                 'click .ico_f_list': 'goRecommend',//推荐
+                'click .list_select_box>div': 'changeTab',//推荐
                 'click .js_situation':'goHeroList'
             },
             js_ttl:function(){
               App.goTo("ttl_recommend")
+            },
+            js_buy_yujia:function(){
+                yujiaToInvest.exec({
+                    type: 'get',
+                    success: function(data){
+                        console.log(data);
+                        if(data.ret == 0){
+                            sessionStorage.setItem("yujiaData",JSON.stringify(data.data));
+                            App.goTo("yujia")
+                        }else if(data.ret == 999001){
+                            handle.goLogin();
+                        }else{
+                            App.showToast(data.msg  || message);
+                        }
+                    },
+                    error: function(){
+                        App.hideLoading();
+                        App.showToast(message);
+                    }
+                })
+            },
+            changeTab:function(e){
+                var className=e.currentTarget.className
+                if(className.indexOf("selected")>-1){
+
+                }else{
+                    $(".selected").removeClass("selected")
+                    $("#"+e.currentTarget.id).addClass("selected")
+                    $(window).scrollTop(0)
+                    if(pageFlag==0){
+                        pageFlag=1;
+                        $("#yujiaList").removeClass("hidden")
+                        $("#jiaxinList").addClass("hidden")
+                    }else{
+                        pageFlag=0;
+                        $("#yujiaList").addClass("hidden")
+                        $("#jiaxinList").removeClass("hidden")
+                    }
+                }
             },
             onShow: function () {
                 self = this;
@@ -42,13 +85,12 @@ define(function (require, exports, module) {
                 if(openid!=""){
                     sessionStorage.setItem("openid",openid);
                 }
-
-
-
+                pageFlag=0;
                 //self.setHeader();
                 handle.share();
                 handle.orientationTips();
                 self.$el.html('<div class="js_content"></div>' + footer);
+
                 self.$('.js_product_list').addClass('cur');
                 self.$('.js_product_list').addClass('footer_icon_lc_sel');
                 self.$('.js_product_list').removeClass('footer_icon_lc_unsel');
@@ -67,42 +109,6 @@ define(function (require, exports, module) {
                         if(data.ret == 0){
                             loginStore.set(data.data);
 //                            self.showAd();
-                        }else if(data.ret == 999001){
-                            handle.goLogin();
-                        }else{
-                            App.showToast(data.msg  || message);
-                        }
-                    },
-                    error: function(){
-                        App.hideLoading();
-                        App.showToast(message);
-                    }
-                })
-            },
-            checkStep:function(){
-                App.showLoading();
-                realStatusCheck.exec({
-                    type: 'get',
-                    success: function(data){
-                        App.hideLoading();
-                        if(data.ret == 0){
-                            if(data.phase==1){
-                                App.goTo("bind_card_new")
-                            }else if(data.phase==2){
-                                App.goTo('bind_card_new_step2');
-                            }else if(data.phase==3){
-//                                if(data.defaultCheckMode=='02'){
-//                                    App.goTo('amount_check')
-//                                }else{
-//                                    App.goTo('bind_card_new_step3');
-//                                }
-                                App.goTo('bind_card_new_step3');
-                                //跳转至手机号check
-                            }else if(data.phase==4){
-                                App.goTo("set_card_psw")
-                            }else{
-                                App.goTo("setting")
-                            }
                         }else if(data.ret == 999001){
                             handle.goLogin();
                         }else{
@@ -160,7 +166,10 @@ define(function (require, exports, module) {
                                     data.data.show = true;
                                     data.data.showhistory = false;
                                     data.data.notice = true
+                                    data.data.yujiaFlag = true
+
                                     self.$('.js_content').html(_.template(list)(data.data));
+                                    $("#yujiaList").addClass("hidden")
                                     handle.setTitle("产品列表");
                                     $(self.header).hide();
                                     self.nextProduct();
@@ -188,6 +197,9 @@ define(function (require, exports, module) {
                 })
             },
             nextProduct: function(){
+                if(pageFlag==1){
+                    return
+                }
                 listModel.set({'type': 1,'page': page});
                 return listModel.exec({
                     type: 'get',
@@ -217,6 +229,7 @@ define(function (require, exports, module) {
                                 data.data.showhistory = true;
                                 data.data.noProgress = noProgress;
                                 data.data.notice = false
+                                data.data.yujiaFlag = false
                                 self.$('.js_loading').before(_.template(list)(data.data));
                                 self.$('.js_history_title').hide();
                                 self.$('.js_history_title').eq(0).show();

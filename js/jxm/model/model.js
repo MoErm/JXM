@@ -461,7 +461,54 @@
         fuyouConfirmRedeem:initModel({
             url:host+"/api/fy/demand/confirmRedeem"
         }),
-
+        // 御驾
+        yujiaToInvest:initModel({
+            url:host+"/api/car/toInvest"
+        }),
+        // 御驾数据校验
+        yujiaValidateInvestData:initModel({
+            url:host+"/api/car/validateInvestData"
+        }),
+        // 创建订单
+        yujiaCreateCarOrder:initModel({
+            url:host+"/api/car/createCarOrder"
+        }),
+        // 发短信
+        yujiaSendPayMsgCode:initModel({
+            url:host+"/api/car/sendPayMsgCode"
+        }),
+        // 支付订单
+        yujiaPayCarOrder:initModel({
+            url:host+"/api/car/payCarOrder"
+        }),
+        // 详情
+        yujiaOrderDeatil:initModel({
+            url:host+"/api/car/orderDeatil"
+        }),
+        // 详情
+        yujiaOrderReturnInfo:initModel({
+            url:host+"/api/car/orderReturnInfo"
+        }),
+        // 资产
+        yujiaProperty:initModel({
+            url:host+"/api/car/property"
+        }),
+        // 消息中心
+        msgIndex:initModel({
+            url:host+"/api/msgCenter/index"
+        }),
+        // 消息中心
+        msgNotices:initModel({
+            url:host+"/api/msgCenter/notices"
+        }),
+        // 消息中心
+        msgAnnouncements :initModel({
+            url:host+"/api/msgCenter/announcements "
+        }),
+        // 消息中心
+        msgAnnouncement :initModel({
+            url:host+"/api/msgCenter/announcement "
+        }),
 	}
 	return Model;
 
