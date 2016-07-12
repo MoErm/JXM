@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                 }
             });
         },
-        showName:function(tradeType,productName,chargeWay){
+        showName:function(tradeType,productName,chargeWay,carRetPeriod){
             //if((tradeType!="01"&&tradeType!="02")&&productName.length>10){
             //    productName=productName.substr(0, 10);
             //    switch (tradeType){
@@ -118,6 +118,10 @@ define(function (require, exports, module) {
                         return productName+"赎回";
                     case "07":
                         return chargeWay;
+                    case "08":
+                        return productName+"("+carRetPeriod+")期";
+                    case "09":
+                        return "御驾回款";
                 }
             //}
 

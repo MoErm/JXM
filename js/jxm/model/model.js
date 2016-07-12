@@ -493,6 +493,14 @@
         yujiaProperty:initModel({
             url:host+"/api/car/property"
         }),
+        // 资产
+        yujiaHistoryOrders:initModel({
+            url:host+"/api/car/historyOrders"
+        }),
+        // 资产
+        yujiaGetCarContract:initModel({
+            url:host+"/api/car/getCarContract"
+        }),
         // 消息中心
         msgIndex:initModel({
             url:host+"/api/msgCenter/index"

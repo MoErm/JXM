@@ -76,6 +76,10 @@ define(function (require, exports, module) {
                     return productName+"赎回";
                 case "07":
                     return chargeWay;
+                case "08":
+                    return "购买御驾";
+                case "09":
+                    return "御驾回款";
             }
         },
         setHeader: function () {

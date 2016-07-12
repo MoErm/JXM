@@ -18,11 +18,15 @@ define(function (require, exports, module) {
             'click .js_account_setup': 'goSetup',//用户设置
             'click .js_product_list': 'list',//产品列表
             'click .js_my_invest': 'invest',//我投资
+            'click .js_gonggao': 'goGonggao',//我投资
             'click .js_add_card': 'goAddCard',//我的银行卡
             'click .js_my_invite':'goInvite',//我的邀请
             'click .js_ttl': 'ttl_recommend',
             'click .js_phone':'goPhone',//客服电话
             'click .js_about_us':'goAboutUs'//关于加薪猫
+        },
+        goGonggao:function(){
+            App.goTo('news?tab=3');
         },
         goSetup: function () {
             App.goTo('account');

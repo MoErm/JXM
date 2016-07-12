@@ -32,6 +32,7 @@ define(function (require, exports, module) {
             'click .invest_amount_1': 'goFuyou',
             'click .fuyou_js_chongzhi': 'goChongZhi',
             'click .js_close': 'goClose',
+            'click .user_msg': 'toNews',
             'click .invest_icon_wdyq': 'goInvite',
             'click .invest_icon_jxm': 'goRecord',
             'click .js_situation':'goHeroList'
@@ -39,6 +40,9 @@ define(function (require, exports, module) {
         initialize: function () {
             this.header = document.querySelector("#header");
             self = this;
+        },
+        toNews:function(){
+          App.goTo("news")
         },
         ttl_recommend:function(){
             App.goTo("ttl_recommend")
@@ -114,6 +118,7 @@ define(function (require, exports, module) {
             self.regQR();
             this.render();
             $(self.header).hide();
+
             return
         },
         regQR:function(){

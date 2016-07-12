@@ -32,6 +32,7 @@ define(function (require, exports, module) {
             this.$el.append(this.template);
         },
         onShow: function () {
+            self=this
             var query = this.request.query;
             var invitecode=query&&query.invitecode||"";
             if(invitecode!=""){
@@ -59,8 +60,8 @@ define(function (require, exports, module) {
                 type: 'get',
                 success: function(data){
                     if(data.ret == 0){
-                        self.initAD();
                         self.bannerData= data.data;
+                        self.initAD();
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{

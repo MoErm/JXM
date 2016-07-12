@@ -1,9 +1,8 @@
 define(function (require, exports, module) {
-    var yujiaInvest = require('jxm/tpl/yujiaInvest.tpl');
-    var footer = require('jxm/tpl/card.footer.tpl');
+    var yujiaHistory = require('jxm/tpl/yujiaHistory.tpl');
     var tool = require('jxm/utils/Tool');
     var model = require('jxm/model/model');
-    var yujiaProperty = new model.yujiaProperty();
+    var yujiaHistoryOrders = new model.yujiaHistoryOrders();
     var message = '网络错误，请稍后重试';
     var handle = new tool();
     var self;
@@ -17,23 +16,17 @@ define(function (require, exports, module) {
             this.initData();
         },
         events: {
-            'click .list_incount': 'toYujiaDetail',
-            'click .js_history': 'toYujiaHistory'
-
-
-        },
-        toYujiaHistory:function(){
-            App.goTo("yujiaHistory")
+            'click .list_incount': 'toYujiaDetail'
         },
         toYujiaDetail:function(e){
             App.goTo("yujiaDetail?orderNo="+e.currentTarget.dataset.order)
         },
         initData:function(){
-            yujiaProperty.exec({
+            yujiaHistoryOrders.exec({
                 type: 'get',
                 success: function(data){
                     if(data.ret == 0){
-                        self.$el.html(_.template(yujiaInvest)(data.data));
+                        self.$el.html(_.template(yujiaHistory)(data.data));
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{

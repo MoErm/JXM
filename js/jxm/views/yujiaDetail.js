@@ -15,7 +15,6 @@ define(function (require, exports, module) {
             App.hideLoading()
         },
         onShow: function () {
-            this.setHeader();
             this.showDetail()
         },
         events: {
@@ -89,6 +88,10 @@ define(function (require, exports, module) {
                             self.payData.orderNo=data.data.orderNo
                             self.showPageCD(data.data.payInfo.surplusPayTime)
                         }
+
+                        if(data.data.orderStatus=="05"||data.data.orderStatus=="11"||data.data.orderStatus=="12"||data.data.orderStatus=="14"){
+                            self.setHeader(true)
+                        }
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{
@@ -107,7 +110,6 @@ define(function (require, exports, module) {
             }
             self.payData.surplusPayTime = time;
             self.investDetail_CD =setInterval(function() {
-                console.log(self.payData.surplusPayTime )
                 var minute = Math.floor(self.payData.surplusPayTime / 60);
                 var second = self.payData.surplusPayTime  - minute * 60;
                 $("#investDetail_CD").html(minute + '分' + second + '秒');
@@ -120,18 +122,27 @@ define(function (require, exports, module) {
                 }
             }, 1000);
         },
-        setHeader: function () {
+        setHeader: function (showContract) {
             var header = new App.UI.UIHeader();
             header.set({
                 view: this,
-                title: '关于加薪猫',
+                title: '御驾系列',
                 back: {
                     'tagname': 'back',
                     callback: function () {
                         App.goBack();
                     }
                 },
-                right: null
+                right: showContract?[{
+                    'tagname': 'custom', 'value': '协议',
+                    itemFn: function () {
+                        return '<span class="cm-header-btn fr js_custom" style="margin-right:10px">协议</span>';
+                    },
+                    callback: function () {
+                        var query = self.request.query;
+                        App.goTo("yujiaxieyi?orderNo="+query.orderNo)
+                    }
+                }]:null
             });
         }
     })

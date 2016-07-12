@@ -1,12 +1,6 @@
 define(function (require, exports, module) {
     var tpl = '<article >\
     <section class="acount">\
-        <div class="acount_t">\
-        <div class="acount_content">\
-        <p class="sub_title">剩余还款金额(元)</p>\
-        <p class="sub_head"><%=totalProp%></p>\
-    </div>\
-    </div>\
     <div class="acount_b">\
         <ul class="acount_b_list">\
        	<% _.each(orderList, function(order){%>\
@@ -17,20 +11,20 @@ define(function (require, exports, module) {
         <ul class="sub_content_list">\
         <li>\
         <span class="sub_content_title">投资金额</span>\
-        <span class="sub_content_text"><%=order.investAmout%></span>\
+        <span class="sub_content_text"><%=order.investAmount%></span>\
     </li>\
     <li>\
-    <span class="sub_content_title">预计到期日</span>\
-        <span class="sub_content_text"><%=order.expectDueDate%></span>\
+    <span class="sub_content_title">到期日</span>\
+        <span class="sub_content_text"><%=order.dueDate%></span>\
     </li>\
     <li>\
-    <span class="sub_content_title">预期年化</span>\
-        <span class="sub_content_text"><%=order.expectIncomeRate%></span>\
+    <span class="sub_content_title">年化收益率</span>\
+        <span class="sub_content_text"><%=order.yearRate%></span>\
     </li>\
     </ul>\
     <div class="sub_content_income">\
-        <p <%if(order.orderStatus=="01"||order.orderStatus=="04"||order.orderStatus=="05"||order.orderStatus=="11"||order.orderStatus=="12"||order.orderStatus=="14"){%>class="income_head"<%}else{%>class="income_fail"<%}%>>+<%=order.expectIncome%></p>\
-        <p class="income_title">预计到期收益</p>\
+        <p <%if(order.orderStatus=="01"||order.orderStatus=="04"||order.orderStatus=="05"||order.orderStatus=="11"||order.orderStatus=="12"||order.orderStatus=="14"){%>class="income_head"<%}else{%>class="income_fail"<%}%>>+<%=order.actualIncome%></p>\
+        <p class="income_title">实际到期收益</p>\
         </div>\
         </div>\
         </li>\
@@ -39,8 +33,6 @@ define(function (require, exports, module) {
     </ul>\
     </div>\
     </section>\
-         <% if(hasHistoryOrders == 1) {%>\
-      <div class="more_record ico_clock js_history" style="margin-bottom: 10px">查看历史投资记录</div>\
-      <% } %></article>';
+        </article>';
     module.exports = tpl;
 })

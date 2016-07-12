@@ -6,6 +6,7 @@ define(function (require, exports, module) {
     var loginModel = new Model.loginModel();
     var getCaptcha = new Model.getCaptchaModel();
     var tool = require('jxm/utils/Tool');
+    var payLayer = require("jxm/common/common");
     var handle = new tool();
     var self;
     module.exports = App.Page.extend({
@@ -70,11 +71,15 @@ define(function (require, exports, module) {
                     var expireDate = new Date();
                     expireDate.setDate(expireDate.getDate()+7);
                    document.cookie="JSESSIONID="+data.data.jsessionid+";path=/;expires="+expireDate.toGMTString();
+                    if(data.data.fyOnLineTip=="1"){
+                        payLayer.fuyoutankuang()
+                    }
                     if(self.request.query&&self.request.query.backurl){
                         window.location=window.decodeURIComponent(self.request.query.backurl)
                     }else{
                         App.goTo("ttl_recommend");
                     }
+
 
                 }else{
                     App.hideLoading();

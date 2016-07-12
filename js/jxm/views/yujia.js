@@ -10,6 +10,7 @@ define(function (require, exports, module) {
     var dates=["请选择日期",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
     var message = '网络错误，请稍后重试';
     var list;
+    var firstBuy=false;
     var validate={
         investPeriodCode:"",
         investAmount:"",
@@ -33,7 +34,7 @@ define(function (require, exports, module) {
 
         },
         xieYi:function(){
-            App.goTo('get_contract?cid=19')
+            App.goTo('yujiaxieyi')
         },
         onShow: function () {
             if(sessionStorage.getItem("yujiaData")&&sessionStorage.getItem("yujiaData")!=""){
@@ -52,6 +53,7 @@ define(function (require, exports, module) {
             this.$el.html(_.template(yujia)(self.data));
             App.hideLoading();
             this.setHeader();
+            list=null;
         },
         showDetail:function(){
             if(list){
@@ -150,10 +152,15 @@ define(function (require, exports, module) {
                 App.showToast("请输入销售员编号")
                 return
             }
+            if(firstBuy){
+                return
+            }
+            firstBuy=true
             yujiaCreateCarOrder.exec({
                 type: 'post',
                 data:validate,
                 success: function(data){
+                    firstBuy=false
                     if(data.ret == 0){
                         common.buyYujia(data.data)
                     }else if(data.ret == 999001){

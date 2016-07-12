@@ -257,6 +257,15 @@ window.global_config = {
         , {
             "url": "news",
             "controller": "news"
+        }  , {
+            "url": "newsAnnDetail",
+            "controller": "newsAnnDetail"
+        } , {
+            "url": "yujiaHistory",
+            "controller": "yujiaHistory"
+        }, {
+            "url": "yujiaxieyi",
+            "controller": "yujiaxieyi"
         }
 //        ,{ "url": "App_list",
 //            "controller": "App_list"
@@ -364,6 +373,9 @@ requirejs.config({
         'yujiaInvest': 'jxm/views/yujiaInvest',
         'yujiaDetail': 'jxm/views/yujiaDetail',
         'news': 'jxm/views/news',
+        'newsAnnDetail': 'jxm/views/newsAnnDetail',
+        'yujiaHistory': 'jxm/views/yujiaHistory',
+        'yujiaxieyi': 'jxm/views/yujiaxieyi',
 //        ,
 //        'App_detail': 'App/views/detail',
 //        'App_invest_confirm': 'App/views/invest_confirm',

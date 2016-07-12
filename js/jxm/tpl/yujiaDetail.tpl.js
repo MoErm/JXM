@@ -9,10 +9,14 @@ define(function (require, exports, module) {
     </div>\
     <div class="text_2">\
     <div><h4 class="text_2_title">回款信息</h4>\
-         <%if(orderStatus=="05"||orderStatus=="11"||orderStatus=="12"||orderStatus=="14"){%>\
+         <%if(orderStatus=="05"||orderStatus=="11"||orderStatus=="12"){%>\
          <ul>\
         <li><span>下一次回款日：<%=nextRetDate%></span></li>\
     <li><span>下一次回款金额：<%=nextRetAmount%></span></li>\
+    <li><span>已累计回款：<%=totalReturnedAmount%></span></li>\
+    </ul>\
+        <%}else if(orderStatus=="14"){%>\
+         <ul>\
     <li><span>已累计回款：<%=totalReturnedAmount%></span></li>\
     </ul>\
         <%}else if(orderStatus=="01"){%>\

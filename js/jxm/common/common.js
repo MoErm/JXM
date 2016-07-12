@@ -577,7 +577,7 @@ define(function(require, exports, module) {
                 '                <span class="span_1">验证码</span>' +
                 '                <span class="span_2"><input type="text" id="msgCode" maxLength="6"/><div class="payCode" id="payCode">获取验证码</div></span>' +
                 '                </div>' +
-                '            <button class="payBtn" >支付</button>' +
+                '            <button class="payBtn" id="yujiaPay" >支付</button>' +
                 '            <div class="payTxt_4">' +
                 '                <p id="countDown">请在-分-秒内完成支付！</p>        ' +
                 '    </div>' +
@@ -587,14 +587,14 @@ define(function(require, exports, module) {
                 events: {
                     "click #payCode": "getCode",
                     "click .payCross": "onHideLayer",
-                    "click .payBtn": "pay"
+                    "click #yujiaPay": "pay"
                 },
                 maskToHide: false,
                 template: temp,
                 onHideLayer: function() {
                     clearInterval(codeCountDown);
                     clearInterval(countDown);
-                    clearInterval(self.paytimer);
+                    clearInterval(self.yujiapaytimer);
                     this.hide();
                 },
                 onShow: function() {
@@ -604,6 +604,10 @@ define(function(require, exports, module) {
                 },
                 pay:function(){
                     var msgCode=$("#msgCode").val()
+                    if(msgCode==""){
+                        App.showToast("请输入验证码")
+                        return
+                    }
                     yujiaPayCarOrder.exec({
                         type: 'post',
                         data:{
@@ -629,11 +633,11 @@ define(function(require, exports, module) {
                 checkCountDownFun:function(){
                     App.showToast('<img src="./images/fuyou_logo.png" width="40%" style="margin: 10px 0"><br>支付结果已提交，请等待<span id="js_pay_count_down">10</span>秒', 10000);
                     var second=9;
-                    self.paytimer = setInterval(function() {
+                    self.yujiapaytimer = setInterval(function() {
                         $('#js_pay_count_down').html(second);
                         second -= 1;
                         if (second == -1) {
-                            clearInterval(self.paytimer);
+                            clearInterval(self.yujiapaytimer);
 
                             self.showResult = false;
                         }
@@ -654,26 +658,26 @@ define(function(require, exports, module) {
                                 App.goTo('login');
                             } else {
                                 if (self.showResult == true && data.ret == 0) {
-                                    clearInterval(self.paytimer);
+                                    clearInterval(self.yujiapaytimer);
                                     localStorage.setItem('yujiaData', JSON.stringify(data));
                                     self.hide()
                                     App.goTo('yujiaFinish');
-                                } else if (self.showResult == true && data.ret == 300001) {
-                                    clearInterval(self.paytimer);
+                                } else if ( data.ret == 300001) {
+                                    clearInterval(self.yujiapaytimer);
                                     self.payCountAlert = handle.alert(data.msg, function() {
                                         self.hide()
                                         App.goTo("my_invest")
                                     });
                                     self.payCountAlert.show();
-                                }else if (self.showResult == true && data.ret == 300002) {
-                                    clearInterval(self.paytimer);
+                                }else if (data.ret == 300002) {
+                                    clearInterval(self.yujiapaytimer);
                                     self.payCountAlert = handle.alert('支付确认中，请到"我的投资"查看支付结果', function() {
                                         self.hide()
                                         App.goTo("my_invest")
                                     });
                                     self.payCountAlert.show();
                                 }else {
-                                    clearInterval(self.paytimer);
+                                    clearInterval(self.yujiapaytimer);
                                     self.hide()
                                     App.showToast(data.msg);
                                 }
@@ -825,7 +829,36 @@ define(function(require, exports, module) {
             });
             popwin.show();
         },
+        //富有签约
+        fuyoutankuang: function() {
+            var temp='<div class="fuyou_kuang" >\
+                      <img src="./images/fuyou_kuang.png" width="80%" style="margin: 0px 10%" class="img_js">\
+                      <img src="./images/fuyou_x.png" class="fuyou_x">\
+                      \
+                    </div>'
+            var popwin = new App.UI.UIPopWin({
+                events: {
+                    "click .fuyou_x": "onHideLayer",
+                    "click .img_js": "toSign"
 
+
+                },
+                maskToHide: false,
+                template: temp,
+                onHideLayer: function() {
+                    this.hide();
+                },
+                toSign:function(){
+                    this.hide();
+                    window.location.href="http://mp.weixin.qq.com/s?__biz=MzA5NDk4NDA5Ng==&mid=503180325&idx=1&sn=9bca7ea79fd2a7527efa4f92c12309a7#wechat_redirect"
+                },
+                onShow: function() {
+
+
+                }
+            });
+            popwin.show();
+        },
         //邀请好友
         sendBonus: function(isHideShareBar, url) {
             var popwin = new App.UI.UIPopWin({

@@ -6,7 +6,7 @@ define(function (require, exports, module) {
 	  <div class="my_invest">\
 	  	<div class="user_title"><p><%=userName%></p>\
 	  	<%=mobile%></div>\
-	  	<div class="user_msg user_new_msg"><img src="./images/invest_msg.png"></div>\
+	  	<div class="user_msg <%if(unreadMsgFlag==1){%>user_new_msg<%}%>"><img src="./images/invest_msg.png"></div>\
 	      <div class="invest_title">总资产<small>(元)</small></div>\
 	      <div class="invest_money"><%=totalProp%></div>\
 	  </div>\

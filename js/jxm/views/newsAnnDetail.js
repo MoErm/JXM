@@ -1,39 +1,37 @@
 define(function (require, exports, module) {
-    var yujiaInvest = require('jxm/tpl/yujiaInvest.tpl');
-    var footer = require('jxm/tpl/card.footer.tpl');
+    var newsAnnDetail = require('jxm/tpl/newsAnnDetail.tpl');
     var tool = require('jxm/utils/Tool');
-    var model = require('jxm/model/model');
-    var yujiaProperty = new model.yujiaProperty();
-    var message = '网络错误，请稍后重试';
     var handle = new tool();
+    var model = require('jxm/model/model');
+    var msgAnnouncement = new model.msgAnnouncement();
+    var message = '网络错误，请稍后重试';
     var self;
     module.exports = App.Page.extend({
         afterMount: function () {
-           self=this
+            self=this
             App.hideLoading()
         },
         onShow: function () {
             this.setHeader();
-            this.initData();
-        },
-        events: {
-            'click .list_incount': 'toYujiaDetail',
-            'click .js_history': 'toYujiaHistory'
+            var query = this.request.query;
+            if(_.isUndefined(query) || _.isUndefined(query.annId)){
+                App.goTo('my_invest');
+                return;
+            }
+            this.initData(query.annId)
 
-
         },
-        toYujiaHistory:function(){
-            App.goTo("yujiaHistory")
-        },
-        toYujiaDetail:function(e){
-            App.goTo("yujiaDetail?orderNo="+e.currentTarget.dataset.order)
-        },
-        initData:function(){
-            yujiaProperty.exec({
+        initData:function(annId){
+            msgAnnouncement.exec({
                 type: 'get',
+                data:{
+                    annId:annId
+                },
                 success: function(data){
                     if(data.ret == 0){
-                        self.$el.html(_.template(yujiaInvest)(data.data));
+                        self.$el.html(_.template(newsAnnDetail)(data.data));
+                      //$("#detail").html(data.data.annContent)
+                      //$("#title").html(data.data.annTitle)
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{
@@ -50,11 +48,11 @@ define(function (require, exports, module) {
             var header = new App.UI.UIHeader();
             header.set({
                 view: this,
-                title: '御驾系列',
+                title: '平台公告',
                 back: {
                     'tagname': 'back',
                     callback: function () {
-                        App.goBack();
+                        App.goTo("news");
                     }
                 },
                 right: null
