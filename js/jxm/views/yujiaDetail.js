@@ -122,6 +122,9 @@ define(function (require, exports, module) {
                 }
             }, 1000);
         },
+        onHide:function(){
+            clearInterval(self.investDetail_CD);
+        },
         setHeader: function (showContract) {
             var header = new App.UI.UIHeader();
             header.set({
@@ -130,6 +133,7 @@ define(function (require, exports, module) {
                 back: {
                     'tagname': 'back',
                     callback: function () {
+                        clearInterval(self.investDetail_CD);
                         App.goBack();
                     }
                 },

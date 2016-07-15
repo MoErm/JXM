@@ -205,7 +205,7 @@ define(function (require, exports, module) {
 
                     if(data.ret == 0){
                         self.$el.html(_.template(news)(data.data));
-
+                        App.hideLoading()
                         $(".news_tableList").addClass("hidden")
                         $("#news_tabList1").removeClass("hidden")
                         tabData[0].currentPage=data.data.currentPage

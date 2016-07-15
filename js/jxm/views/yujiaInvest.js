@@ -34,6 +34,7 @@ define(function (require, exports, module) {
                 success: function(data){
                     if(data.ret == 0){
                         self.$el.html(_.template(yujiaInvest)(data.data));
+                        App.hideLoading()
                     }else if(data.ret == 999001){
                         handle.goLogin();
                     }else{

@@ -85,6 +85,9 @@ define(function (require, exports, module) {
             self.checkInvest()
         },
         checkInput:function(){
+            if(validate.investPeriodCode==""){
+                return false
+            }
             if(validate.investAmount==""){
                 return false
             }

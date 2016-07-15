@@ -44,7 +44,7 @@ define(function (require, exports, module) {
     </ul>\
     </div>\
     <%if(orderStatus=="05"||orderStatus=="11"||orderStatus=="12"||orderStatus=="14"){%>\
-       <div class="investDetail_fixed_1"><div class="huikuan" >回款计划</div><div class="chanpin">产品详情</div></div>\
+       <div class="investDetail_fixed_1"><div class="huikuan" >回款计划</div></div>\
     <%}else if(orderStatus=="01"){%>\
        <div class="investDetail_fixed_2"><div class="huikuan"><p>请在<span id="investDetail_CD">-分-秒</span>内完成支付</p></div><div class="zhifu" >立即支付</div></div>\
     <%}%>\

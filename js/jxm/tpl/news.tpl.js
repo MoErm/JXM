@@ -18,14 +18,14 @@ define(function (require, exports, module) {
                        </div>\
                        <% })%>\
                        <%}else{%>\
-                        <div class="news_nomsg"></div>\
+                        <div class="news_nomsg"></div><p class="news_nomsg_txt">这里没有任何消息~</p>\
                         <%}%>\
                    </div>\
                    <div class="news_tableList" id="news_tabList2">\
                    <div class="news_nomsg"></div>\
                    <p class="news_nomsg_txt">这里没有任何消息~</p>\
                    </div>\
-                   <div class="news_tableList" id="news_tabList3"> <div class="news_nomsg"></div></div>\
+                   <div class="news_tableList" id="news_tabList3"> <div class="news_nomsg"></div><p class="news_nomsg_txt">这里没有任何消息~</p></div>\
                 </article>';
     module.exports = tpl;
 })
